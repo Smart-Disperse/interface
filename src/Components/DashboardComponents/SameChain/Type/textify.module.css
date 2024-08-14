@@ -1,0 +1,1116 @@
+.tutorialcards {
+  border: 1px solid #8d37fb;
+  padding: 15px;
+  /* width: auto; */
+  width: 18%;
+  height: 101px;
+  margin: 5px;
+  border-radius: 5px;
+  box-sizing: content-box !important;
+}
+
+.buttontoaddformdataunload button.active {
+  background-color: red;
+}
+
+.activeButton {
+  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
+  border: 1px solid white;
+}
+
+.tutorialcardscontainer {
+  padding: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.headingintutorial {
+  color: #00fbfb;
+  font-weight: 300;
+}
+.subtextintutorial {
+  font-weight: 300;
+  font-size: 12px;
+  text-align: center;
+}
+
+.contentincard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iconintutorial {
+  width: 12px;
+  height: 12px;
+  color: #00fbfb;
+  border-radius: 50%;
+  padding: 5px;
+  border: 1px solid #00fbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.4s ease-in-out;
+}
+
+.sliderOpen {
+  height: auto; /* This will be set dynamically with JavaScript */
+}
+
+.contents {
+  background: transparent;
+  color: white;
+  padding: 10px;
+  margin: 0;
+}
+.Link a:-webkit-any-link {
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.tutorialheading:hover {
+  cursor: pointer;
+}
+.textAccSum {
+  width: max-content;
+  max-width: 900px;
+  margin: 0 auto;
+  background: transparent;
+  color: black;
+  padding: 10px 10px;
+  transform: translate(-50%, -50%);
+  animation: zoomAnimation 5s infinite alternate;
+}
+
+#yeserror {
+  border: 1px solid red;
+}
+
+#noerror {
+  border: 1px solid #9d79ff;
+}
+
+.dropdownItem {
+  padding: 8px 12px;
+  cursor: pointer;
+  background: white;
+  color: #8f00ff;
+  width: 150px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  text-align: left;
+  border-bottom: 1px solid #8f00ff;
+}
+
+.dropdown {
+  position: absolute;
+  left: 32px;
+  top: 32px;
+  background-color: transparent;
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown::-webkit-scrollbar {
+  width: 1px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background-color: #5007e3;
+  border-radius: 1px;
+}
+
+.divtocenter {
+  display: flex;
+}
+
+.errormessagep {
+  font-weight: 900;
+  transform: translate(-50%, -50%);
+  animation: zoomAnimation 1.5s infinite alternate;
+}
+
+.deletebutton:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.deletebutton {
+  color: white;
+  opacity: 0.4;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 15px;
+}
+
+#truee {
+  background: linear-gradient(
+    90deg,
+    rgba(68, 9, 205, 0.73) 0%,
+    rgba(140, 62, 250, 0.73) 100%
+  );
+  color: white;
+}
+#truee:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(68, 9, 205, 0.73) 0%,
+    rgba(140, 62, 250, 0.73) 100%
+  );
+  color: white;
+}
+
+.driverpopover01 {
+  color: white !important;
+  background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%) !important;
+}
+@keyframes zoomAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+.eachinputofcreatelist {
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: transparent;
+  margin: 0px 20px;
+}
+.loadtokens {
+  border-radius: 63px;
+  border: 3px solid #fff;
+  padding: 5px 0px;
+}
+.textlistdiv label {
+  font-size: 30px;
+}
+#greenborder {
+  margin-top: -5px;
+  border: 1px solid #173bc5;
+}
+.textlistdiv {
+  border-radius: 35px;
+  /* border: 1px solid #fff; */
+  background: transparent;
+  -webkit-backdrop-filter: blur(30.5px);
+  backdrop-filter: blur(30.5px);
+  margin: 30px 0px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+}
+#fontsize10px {
+  letter-spacing: 1px;
+}
+.textlistdiv textarea {
+  color: aliceblue !important;
+  background-color: transparent !important;
+  border: "none";
+}
+.textlistdiv textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 15px;
+}
+.sendbutton {
+  background: linear-gradient(
+    90deg,
+    rgba(39, 37, 62, 0.73) 0%,
+    rgba(50, 37, 67, 0.73) 100%
+  );
+  border: 0.5px solid #00ffff;
+  border-radius: 40px;
+  color: #00ffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 37px;
+  margin-bottom: 50px;
+  padding: 5px 35px;
+  text-align: center;
+}
+
+.blurbutton {
+  filter: blur(3px); /* Apply blur effect */
+  pointer-events: none;
+  color: red;
+}
+.sendbutton:hover {
+  border: 1px solid white;
+  color: #8d37fb;
+  background: #fff !important;
+  box-shadow: 0 0 14px 0 #fff;
+}
+.disabledButton {
+  background: #0000;
+  border: 1px solid #00ffff;
+  border-radius: 40px;
+  color: #00ffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 37px;
+  cursor: not-allowed;
+  margin-bottom: 50px;
+  padding: 5px 35px;
+  text-align: center;
+  opacity: 0.3;
+}
+
+.buttontoaddformdataunload:hover {
+  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
+  border: 1px solid white;
+}
+.textareatextlist {
+  margin: 10px 0px;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  border-radius: 5px;
+}
+
+.tableheadertextlist {
+  background-color: #8d37fb;
+}
+.tableheadertextlist .tableTr {
+  font-size: 15px;
+}
+.tabletextlist {
+  width: 100%;
+}
+.tabletextlist .tableTr {
+  font-size: 16px;
+  margin: 5px 0px;
+}
+.tabletextlist .tableTh {
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 15px;
+}
+
+.tabletextlist .tableTh,
+.tableTd {
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 15px;
+}
+
+.entertokenaddress {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  gap: 10px;
+}
+
+.entertokenaddress label {
+  margin: 15px;
+}
+
+.inputdiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.rightside {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+}
+
+.tokeninput {
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #9d79ff;
+  padding: 12px 22px;
+  background: transparent;
+}
+
+.tokeninput::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+.tokeninput:hover {
+  box-shadow: 0px 0px 29px 0px rgba(255, 255, 255, 0.25);
+}
+
+.errdiv {
+  color: red;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding-top: 10px;
+}
+
+.addbutton,
+.unloadbutton {
+  border: 1px solid white;
+  background: linear-gradient(
+    90deg,
+    rgba(102, 43, 187, 0.37) 0%,
+    rgba(62, 18, 124, 0.37) 100%
+  );
+  border-radius: 63px;
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  margin: 0 20px;
+  padding: 15px 40px !important;
+}
+.addbutton:hover {
+  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
+  border: 1px solid;
+}
+
+/* .unloadbutton {
+  background: linear-gradient(
+    90deg,
+    rgba(102, 43, 187, 0.37) 0%,
+    rgba(62, 18, 124, 0.37) 100%
+  );
+  padding: 15px 40px !important;
+  border: none;
+} */
+.unloadbutton:hover {
+  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
+  border: 1px solid;
+}
+.showtokentablesametext {
+  width: 100%;
+  /* margin: 5px 0px; */
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 20px !important;
+}
+
+/* css for the sendeth file tables */
+.divforwholetoken {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  backdrop-filter: blur(30.5px);
+  background: transparent;
+  border-radius: 35px;
+}
+.titleforlinupsametext {
+  border-radius: 35px;
+}
+/* .tMargin {
+  margin: 50px 20px;
+} */
+.tablecontainer {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  backdrop-filter: blur(30.5px);
+  background: transparent;
+  border-radius: 35px;
+}
+.titleforaccountsummarytextsame {
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.tableWrapper {
+  overflow: hidden;
+}
+
+.scroll {
+  overflow-x: scroll;
+  overflow-y: auto;
+  max-height: 385px;
+  scrollbar-width: none;
+  border: 1px solid #8d37fb;
+  border-radius: 20px;
+  margin: 50px 20px;
+}
+
+.scrollabletablecontainer {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  scrollbar-width: none;
+}
+.scrollabletablecontainerTbody {
+  scrollbar-width: none;
+}
+/* .scrollabletablecontainerTbody::-webkit-scrollbar {
+  width: 3px;
+  margin-right: 0;
+}
+.scrollabletablecontainerTbody::-webkit-scrollbar {
+  height: 3px; 
+}
+.scrollabletablecontainerTbody::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+.scrollabletablecontainerTbody::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+/* #tableresponsive {
+  margin: 50px 20px;
+  border: 1px solid #8d37fb;
+  border-radius: 20px;
+} */
+
+.tablecontainer table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+.tablecontainer .tableTh,
+.tablecontainer .tableTd {
+  padding: 15px;
+  text-align: center;
+}
+
+#sametextbtnpay:hover {
+  background-color: #173bc5;
+}
+
+#sametextbtnpay {
+  margin: 15px 0px;
+  border-color: greenyellow;
+}
+
+.divtocoversametextdiv {
+  border-radius: 35px;
+
+  margin: 50px 0px;
+  border: 1px solid #fff;
+  padding-bottom: 30px;
+}
+.divtocoversametextdiv {
+  border-radius: 35px;
+  border: none;
+  /* border: 1px solid #fff; */
+  background-color: transparent;
+  backdrop-filter: blur(30.5px);
+  margin: 50px 0px;
+}
+
+.popupbg {
+  background-color: yellow;
+}
+
+.titleforlinupsametext h2 {
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  font-weight: 700;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  letter-spacing: 1.04px;
+  font-size: 15px;
+  margin: 0px;
+  border-radius: 35px 35px 0px 0px;
+}
+.sametextmain {
+  display: flex;
+  padding: 40px 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleloadtokensametext {
+  border-radius: 35px 35px 0px 0px;
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  color: #ca86ff;
+
+  /* padding: 5px 0px; */
+  font-size: 12px;
+}
+.titleloadtokensametext h2 {
+  color: white;
+  font-weight: 300;
+  letter-spacing: 1.04px;
+  margin: 0px;
+  font-size: 15px;
+}
+#backgroundgreen:hover {
+  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
+  border: 1px solid;
+}
+#backgroundgreen {
+  cursor: pointer;
+  padding: 10px 25px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 63px;
+  margin: 0px 20px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.titlesametexttextarea {
+  font-weight: 300;
+  resize: none;
+  font-size: 12px;
+  border-radius: 35px 35px 0px 0px;
+}
+
+.titlesametexttextarea {
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  font-weight: 100;
+  line-height: 154.1%;
+  letter-spacing: 1.04px;
+
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.accountsummarycrosschain {
+  margin-top: 80px;
+}
+
+.titleforaccountsummarytextsame h2 {
+  font-weight: 700;
+  letter-spacing: 1.04px;
+  margin: 0px;
+  font-size: 15px;
+}
+#greenbackground:hover {
+  background-color: transparent;
+}
+
+.importtokendiv {
+  display: flex;
+  align-items: center;
+}
+.accountsummaryth {
+  letter-spacing: 1px;
+  padding: 15px;
+  text-wrap: nowrap;
+}
+.buttontoaddformdata {
+  border: 1px solid white;
+  background: linear-gradient(
+    90deg,
+    rgba(102, 43, 187, 0.37) 0%,
+    rgba(62, 18, 124, 0.37) 100%
+  );
+  border-radius: 63px;
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  margin: 0 20px;
+  padding: 15px 40px;
+}
+.buttontoaddformdata:hover {
+  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
+  border: 1px solid;
+}
+
+.buttontoaddformdataunload {
+  background: linear-gradient(
+    90deg,
+    rgba(102, 43, 187, 0.37) 0%,
+    rgba(62, 18, 124, 0.37) 100%
+  ) !important;
+  border: 1px solid white;
+  border-radius: 63px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  margin: 0 20px;
+  padding: 15px 40px;
+}
+.textareaInput {
+  outline: none;
+}
+.textareaInput::-webkit-scrollbar {
+  width: 2px;
+  margin-right: 0;
+}
+.textareaInput::-webkit-scrollbar-thumb {
+  background: #9657eb;
+}
+.textareaInput::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.accountsummarycreatetitle,
+.selectloadtoke-title,
+.viewaddressdivtitle {
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  font-size: 12px;
+
+  /* padding: 5px 0; */
+}
+
+.popupforpayment {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  /* From https://css.glass */
+  background: rgba(80, 3, 132, 0.61);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(19.5px);
+  -webkit-backdrop-filter: blur(19.5px);
+  border-radius: 30px;
+  box-shadow: 0 0 10px #0000001a;
+  color: #fff;
+  left: 50%;
+  padding: 30px 50px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.popupforpayment h2 {
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.popupforpayment p {
+  letter-spacing: 1px;
+  text-align: center;
+}
+.popupforpayment button {
+  /* From https://css.glass */
+  border: 0.5px solid #00ffff;
+  background: linear-gradient(
+    90deg,
+    rgba(22, 14, 42, 0.73) 0%,
+    rgba(21, 14, 41, 0.73) 100%
+  );
+  color: #00ffff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 15px 20px;
+  width: 100%;
+  cursor: pointer;
+}
+.popupforpayment button:hover {
+  border: 1px solid #b47dfc;
+  background: white;
+  color: #b47dfc;
+}
+
+.c1 {
+  width: 160px;
+  margin-bottom: 0 !important;
+}
+
+.c2 {
+  width: 140px;
+  margin-bottom: 0 !important;
+}
+.c3 {
+  width: 150px;
+  margin-bottom: 0 !important;
+}
+.c4 {
+  width: 200px;
+  margin-bottom: 0 !important;
+}
+.c5 {
+  width: 200px;
+  margin-bottom: 0 !important;
+}
+
+@media screen and (max-width: 1260px) {
+  .tutorialcards {
+    width: 30%;
+  }
+
+  .tutorialcardscontainer {
+    gap: 25px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .tokeninput {
+    padding: 10px 8px !important;
+    margin: 0px 10px !important;
+    font-size: 10px;
+  }
+
+  .addbutton,
+  .unloadbutton {
+    font-size: 10px !important;
+    margin: 0 10px !important;
+    padding: 10px 20px !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .tutorialcards {
+    width: 60%;
+  }
+  .tutorialcardscontainer {
+    gap: 10px;
+    padding: 20px 10px;
+  }
+  .sendethdiv {
+    display: flex;
+    justify-content: center;
+  }
+  /* #tableresponsive {
+    overflow: visible;
+    overflow-x: scroll;
+  } */
+  .titleforaccountsummarytextsame h2 {
+    font-size: 15px !important;
+  }
+  /* #backgroundgreen {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border-radius: 63px;
+    border: none;
+    margin: 10px 15px;
+    font-size: 15px;
+    letter-spacing: 1px;
+  } */
+  .textlistdiv textarea {
+    font-size: 15px !important;
+  }
+  .componentcontainerdashboard {
+    margin: 20px 50px !important;
+  }
+  .eachinputofcreatelist {
+    margin: 10px 20px !important;
+  }
+  .titleloadtokensametext h2 {
+    font-size: 14px !important;
+  }
+  .sametextmain {
+    display: flex !important;
+    font-size: 12px;
+    flex-direction: row;
+  }
+
+  .importtokendiv button {
+    /* margin: 5px; */
+    font-size: 15px;
+    /* width: 100%; */
+  }
+  .importtokendiv {
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+  }
+  /* .buttontoaddformdata {
+    font-size: 15px;
+    width: 100%;
+    margin: 5px;
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent !important;
+    color: white;
+    border-radius: 63px;
+    margin: 0px 20px;
+  } */
+  .accountsummarycreatetitle h2 {
+    font-size: 15px !important;
+  }
+
+  .titlesametexttextarea h2 {
+    font-size: 15px !important;
+  }
+
+  .titleforlinupsametext h2 {
+    font-size: 15px !important;
+  }
+  .c1 {
+    width: 140px;
+  }
+  .c2 {
+    width: 100px;
+  }
+  .c3 {
+    width: 140px;
+  }
+  .c4 {
+    width: 200px;
+  }
+  .c5 {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 682px) {
+  .entertokenaddress label {
+    font-size: 12px;
+    text-align: left;
+    margin: 7px;
+  }
+
+  .rightside {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tokeninput {
+    padding: 12px !important;
+    margin: 0px 12px !important;
+    font-size: 12px;
+  }
+
+  .addbutton,
+  .unloadbutton {
+    font-size: 12px !important;
+    margin: 0 12px !important;
+    padding: 10px 12px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tutorialcards {
+    width: 60%;
+  }
+  .entertokenaddress label {
+    font-size: 10px;
+    text-align: left;
+  }
+
+  .tokeninput {
+    padding: 10px !important;
+    margin: 0px 10px !important;
+    font-size: 10px;
+  }
+
+  .addbutton,
+  .unloadbutton {
+    font-size: 10px !important;
+    margin: 0 10px !important;
+    padding: 8px 10px !important;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .tableTd {
+    font-size: 12px;
+  }
+  .importtokendiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .textAccSum,
+  .fontsize10px {
+    font-size: 10px !important;
+  }
+  /* .buttontoaddformdata {
+    font-size: 15px;
+    width: 100%;
+    margin: 5px;
+    cursor: pointer;
+    padding: 10px 35px;
+    background-color: transparent !important;
+    color: white;
+    border: 1px solid white !important;
+    border-radius: 63px;
+    margin: 0px 20px;
+  } */
+  #fontsize10px {
+    font-size: 10px !important;
+  }
+
+  .tbodytextifyaccsum,
+  .fontsize12px {
+    font-size: 10px !important;
+  }
+  .sametextmain {
+    display: flex !important;
+    font-size: 15px;
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+  .sendethdiv {
+    display: flex;
+    justify-content: center;
+  }
+  .accountsummaryth {
+    font-size: 12px;
+  }
+  .fontsize12px {
+    font-size: 12px !important;
+  }
+
+  /* #tableresponsive {
+    overflow: visible;
+    overflow-x: scroll;
+    margin: 25px 10px;
+  } */
+
+  .componentcontainerdashboard {
+    margin: 20px 20px !important;
+  }
+  .titleloadtokensametext h2 {
+    font-weight: 500;
+    letter-spacing: 1.04px;
+    margin: 0px;
+    font-size: 13px;
+  }
+  .textlistdiv textarea {
+    font-size: 12px;
+    height: 200px;
+  }
+  .tablecontainer {
+    max-height: none;
+  }
+  .tablecontainer th,
+  .tablecontainer td {
+    padding: 6px;
+    font-size: 14px;
+  }
+  .titleforlinupsametext {
+    width: 100%;
+  }
+  /* #backgroundgreen {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border-radius: 63px;
+    margin: 10px 20px;
+    font-size: 15px;
+    width: 70%;
+    letter-spacing: 1px;
+  } */
+  .textlistdiv textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+  }
+  .textlistdiv textarea {
+    font-size: 13px !important;
+    height: 100px;
+  }
+  .titleinline {
+    font-size: 13px;
+  }
+  .titleforlinupsame-text h2 {
+    font-size: 13px;
+  }
+  .tabletextlist tr {
+    font-size: 15px;
+  }
+  .tabletextlist th {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .titledivdashboard h3 {
+    padding-top: -5px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid white;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+  }
+  .menubardashboard button {
+    padding: 10px 7px;
+    font-size: 15px;
+  }
+  /* .scrollabletablecontainer {
+    margin: 25px 10px;
+    max-height: 280px;
+    overflow: auto;
+  } */
+
+  .tableWrapper {
+    margin: 25px 10px;
+  }
+  .sendbutton {
+    border: 0.5px solid #00ffff;
+    font-size: 12px;
+    margin-bottom: 35px;
+    margin-top: 10px;
+  }
+  .popupforpayment {
+    /* From https://css.glass */
+    background: rgba(80, 3, 132, 0.61);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(19.5px);
+    -webkit-backdrop-filter: blur(19.5px);
+    border-radius: 30px;
+    box-shadow: 0 0 10px #0000001a;
+    color: #fff;
+    left: 50%;
+    width: 80%;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  .popupforpayment button {
+    background: #0000;
+    border: 1px solid #1bff76;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 15px;
+    width: 65%;
+    cursor: pointer;
+    margin: 10px 0px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .sendethdiv {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* #backgroundgreen {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border-radius: 63px;
+    margin: 10px 20px;
+    font-size: 15px;
+    width: 85%;
+    letter-spacing: 1px;
+  } */
+  .eachinputofcreatelist {
+    width: auto;
+    margin: 10px 20px !important;
+  }
+}

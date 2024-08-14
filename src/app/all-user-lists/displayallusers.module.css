@@ -1,0 +1,445 @@
+.gobackbtn:hover {
+  cursor: pointer;
+  background-color: #ffffff3c;
+  color: white;
+}
+.linkto:hover {
+  color: white;
+  text-decoration: none;
+}
+.linkto {
+  /* color: white; */
+  text-decoration: none;
+}
+
+.refreshbtn:hover {
+  cursor: pointer;
+}
+.refreshbtn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: underline;
+}
+
+.button1, .button2 {
+  z-index: 1;
+  position: fixed;
+  /* bottom: 50%; */
+  right: 0%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button1{
+  bottom: 50%;
+}
+.button2{
+  bottom: 42%;
+}
+
+.button1 a, 
+.button2 a {
+  transform: translate(160px, 0px);
+  border-radius: 50px 0px 0px 50px;
+  text-align: left;
+  margin: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-family: "Oswald", sans-serif;
+  transition: all 1.2s;
+}
+
+.button1 a:hover,
+.button2 a:hover {
+  color: black;
+  background-color: #00ffff;
+  transform: translate(0px, 0px);
+  font-weight: 600;
+}
+
+.Instagra{
+  background-color: #19153f;
+  color: white;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.maindivofdashboard {
+  font-family: "poppins" !important;
+  background: var(--background);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.samedashmainm {
+  min-height: 65vh;
+}
+
+.dashbgImg1 {
+  width: 347.141px;
+  height: 321.106px;
+  transform: rotate(-61.16deg);
+  flex-shrink: 0;
+  position: absolute;
+  left: -13%;
+  font-family: "poppins" !important;
+  font-weight: 100;
+  right: 24%;
+  opacity: 0;
+}
+.dashbgImg2 {
+  width: 400px;
+  height: 400px;
+  flex-shrink: 0;
+  position: absolute;
+  bottom: -288px;
+  right: 0;
+  opacity: 0;
+
+}
+
+.titledivdashboard {
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.563);
+  border: none;
+  border-radius: 10px;
+  margin: 20px 300px;
+}
+
+.titledivdashboard h3 {
+  padding-top: -5px;
+  padding-bottom: 15px;
+  font-weight: 200;
+  font-family: "poppins" !important;
+  /* border-bottom: 1px solid white; */
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+
+.titledivdashboard h1 {
+  letter-spacing: 1.5px;
+  font-size: 2.2rem;
+  margin: 0px;
+  font-weight: 300;
+  font-family: "poppins" !important;
+}
+
+.imagesinthis img {
+  border-radius: 5px;
+  width: -webkit-fill-available;
+}
+
+.maindivforalloptiondashboard {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.displaytable {
+  /* border-collapse: collapse; */
+  width: 100%;
+  padding: 0px;
+  border: 1px solid white;
+  border-radius: 27px 27px 0px 0px;
+}
+
+.displayheader {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.displayheader:first-child {
+  border-radius: 25px 0px 0px 0px;
+}
+
+.displayheader:last-child {
+  border-radius: 0px 25px 0px 0px;
+}
+
+.displaycell {
+  font-size: 14px;
+  padding: 8px;
+}
+
+.displayevenrow:hover {
+  background-color: #19030310;
+}
+.displayevenrow {
+  border-bottom: 1px solid white;
+}
+
+.displayoddrow:hover {
+  background-color: #1903030d;
+}
+.displayoddrow {
+  border-bottom: 1px solid white;
+}
+
+.displayupdatebutton,
+.displayeditbutton,
+.displaydeletebutton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 24px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.displayupdatebutton:hover,
+.displayeditbutton:hover {
+  padding: 3px 10px;
+  font-size: 28px;
+}
+
+.displayupdatebutton:active,
+.displayeditbutton:active,
+.displaydeletebutton:active {
+  background-color: #0909094e;
+}
+.deleteicon:hover {
+  color: red;
+}
+
+.editinput {
+  background-color: rgba(0, 0, 0, 0.206);
+  color: white;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.displaydatatablewrapper {
+  z-index: 2;
+  position: relative;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.displaydatatablewrapper::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+.displaydatatablewrapper::-webkit-scrollbar-track {
+  background: #f1f1f12f;
+}
+
+.displaydatatablewrapper::-webkit-scrollbar-thumb {
+  background: #6960ef;
+  border-radius: 5px;
+}
+
+.displaydatatablewrapper::-webkit-scrollbar-thumb:hover {
+  background: #6960ef;
+}
+
+@media screen and (max-width: 1150px) {
+  .titledivdashboard h1 {
+    font-size: 2.6vw;
+  }
+}
+
+@media only screen and (max-width: 1032px) {
+  .samedashmainm {
+    min-height: 45vh;
+  }
+  .titledivdashboard {
+    margin: 0 150px;
+    position: relative;
+  }
+
+  .dashbgImg2 {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: -179px;
+    right: 0;
+  }
+  .dashbgImg1 {
+    width: 300px;
+    height: 300px;
+    transform: rotate(-61.16deg);
+    flex-shrink: 0;
+    position: absolute;
+    left: -14%;
+    right: 24%;
+  }
+  .maindivforalloptiondashboard {
+    max-width: 700px;
+  }
+  /* .buttondivgoback {
+    justify-content: center;
+  }
+  .gobackbtn {
+    width: 40%;
+  } */
+}
+@media only screen and (max-width: 778px) {
+  /* .buttondivgoback {
+    justify-content: center;
+  }
+  .gobackbtn {
+    padding: 8px;
+    margin: 5px 10px;
+    width: 27%;
+    font-size: 10px;
+  } */
+  .button {
+    width: 40%;
+  }
+
+  .button a {
+    border-radius: 30px;
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+}
+@media only screen and (max-width: 778px) {
+  .titledivdashboard h1 {
+    letter-spacing: 1.5px;
+    font-size: 5vw;
+    margin: 0px;
+  }
+
+  .titledivdashboard h3 {
+    padding-top: -5px;
+    padding-bottom: 15px;
+    /* border-bottom: 1px solid white; */
+    letter-spacing: 1.5px;
+    font-size: 12px;
+  }
+
+  .displaydatatablewrapper {
+    z-index: 2;
+    position: relative;
+  }
+
+  .displaytable {
+    width: 90%;
+    margin: auto;
+  }
+
+  .titledivdashboard {
+    margin: 0px 100px;
+  }
+  .maindivforalloptiondashboard {
+    max-width: 600px;
+  }
+
+  .displayheader {
+    font-size: 14px;
+  }
+
+  .displaycell {
+    font-size: 12px;
+  }
+
+  .displayupdatebutton,
+  .displayeditbutton,
+  .displaydeletebutton {
+    font-size: 17px;
+  }
+}
+
+.custom-toast {
+  background-color: #6960ef !important;
+}
+
+.custom-toast-body {
+  background-color: #6960ef !important;
+  /* Custom styles for the toast body */
+}
+
+.Toastify__toast-body {
+  background-color: #6960ef !important;
+}
+
+@media only screen and (max-width: 435px) {
+  .maindivofdashboard {
+    height: auto;
+    width: 100%;
+    margin-bottom: auto;
+  }
+  .dashbgImg2 {
+    width: 150px !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+    position: absolute !important;
+    bottom: -60px !important;
+    right: 0 !important;
+  }
+  .dashbgImg1 {
+    width: 150px !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+    position: absolute !important;
+    left: -14%;
+    right: 24%;
+  }
+  .titledivdashboard {
+    margin: 0 30px !important;
+    position: relative;
+  }
+  .titledivdashboard h1 {
+    font-size: 1.5rem !important;
+    margin-top: 40px !important;
+  }
+
+  .titledivdashboard h3 {
+    font-size: 12px;
+  }
+  .maindivforalloptiondashboard {
+    max-width: 350px;
+  }
+  .displayheader {
+    font-size: 10px !important;
+  }
+  .displaycell {
+    font-size: 9px !important;
+    padding: 2px !important;
+  }
+
+  .displaycellbuttons {
+    display: flex !important;
+    padding: 0px !important;
+  }
+
+  .displayupdatebutton,
+  .displayeditbutton,
+  .displaydeletebutton {
+    font-size: 12px !important;
+  }
+
+  .button {
+    width: 40%;
+  }
+
+  .button a {
+    border-radius: 30px;
+    gap: 5px;
+    font-size: 8px;
+    padding: 8px 10px;
+  }
+}

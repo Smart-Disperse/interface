@@ -1,0 +1,872 @@
+.textAccSum {
+  width: max-content;
+  max-width: 900px;
+  margin: 0 auto;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  animation: zoomAnimation 10s infinite alternate;
+}
+.dropdownItem {
+  padding: 8px 12px;
+  cursor: pointer;
+  background: white;
+  color: #8f00ff;
+  width: 150px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  text-align: left;
+  border-bottom: 1px solid #8f00ff;
+}
+.dropdown {
+  position: absolute;
+  left: 32px;
+  top: 32px;
+  background-color: transparent;
+  /* border-radius: 5px; */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.dropdown::-webkit-scrollbar {
+  width: 1px;
+}
+.dropdown::-webkit-scrollbar-thumb {
+  background-color: #5007e3;
+  border-radius: 1px;
+}
+.divtocenter {
+  display: flex;
+}
+.errormessagep {
+  font-weight: 900;
+  transform: translate(-50%, -50%);
+  animation: zoomAnimation 1.5s infinite alternate;
+}
+.deletebutton:hover {
+  cursor: pointer;
+  opacity: 1;
+  /* border-color: red; */
+  /* background-color: rgba(0, 213, 255, 0.019); */
+}
+.deletebutton {
+  color: white;
+  opacity: 0.4;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 15px;
+  margin-left: 20px;
+}
+#truee {
+  background: white !important;
+  color: #924afc;
+}
+.driverpopover01 {
+  color: white !important;
+  background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%) !important;
+}
+@keyframes zoomAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.002);
+  }
+}
+.eachinputofcreatelist {
+  border-radius: 5px;
+  /* border: 1px solid #fff; */
+  background: transparent;
+  padding: 10px 20px;
+  margin: 0px 20px;
+}
+.loadtokens {
+  border-radius: 63px;
+  border: 3px solid #fff;
+  padding: 5px 0px;
+}
+.textlistdiv label {
+  font-size: 30px;
+}
+#greenborder {
+  margin-top: -5px;
+  border: 1px solid #173bc5;
+}
+.textlistdiv {
+  border-radius: 5px;
+}
+#fontsize10px {
+  letter-spacing: 1px;
+}
+.textlistdiv textarea {
+  color: aliceblue !important;
+  background-color: transparent !important;
+  border: "none";
+}
+.textlistdiv textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 15px;
+}
+.sendbutton {
+  background: linear-gradient(
+    90deg,
+    rgba(39, 37, 62, 0.73) 0%,
+    rgba(50, 37, 67, 0.73) 100%
+  );
+  border: 1px solid #00ffff;
+  border-radius: 40px;
+  color: #00ffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 37px;
+  cursor: pointer;
+  margin-bottom: 50px;
+  padding: 5px 35px;
+  text-align: center;
+}
+.sendbutton:hover {
+  /* border: none; */
+  border: 1px solid white;
+  color: #8d37fb;
+  background: #fff !important;
+  box-shadow: 0 0 14px 0 #fff;
+}
+.disabledButton {
+  background: #0000;
+  border: 1px solid #00ffff;
+  border-radius: 40px;
+  color: #00ffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 37px;
+  cursor: not-allowed;
+  margin-bottom: 50px;
+  padding: 5px 35px;
+  text-align: center;
+  opacity: 0.3;
+}
+.copyicon {
+  padding: 0px 10px;
+}
+.copyicon:hover {
+  cursor: pointer;
+  color: #643bdc;
+}
+.buttontoaddformdataunload:hover {
+  box-shadow: rgba(238, 242, 243, 0.553) 0px 5px 15px;
+}
+.textareatextlist {
+  margin: 10px 0px;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  border-radius: 5px;
+}
+.tableheadertextlist {
+  background-color: #8d37fb;
+}
+.tableheadertextlist .tableTr {
+  font-size: 15px;
+}
+.tabletextlist {
+  border-collapse: collapse;
+  width: 100%;
+}
+.tabletextlist .tableTr {
+  font-size: 16px;
+  margin: 5px 0px;
+}
+.tabletextlist .tableTh {
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 15px;
+}
+.tabletextlist .tableTh,
+.tableTd {
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 15px;
+}
+.showtokentablesametext {
+  overflow: hidden;
+  border-radius: inherit;
+  width: 100%;
+  border-collapse: collapse;
+}
+.tablecontainer table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 10px;
+}
+.tablecontainer .tableTh,
+.tablecontainer .tableTd {
+  /* border: 1px solid #ddd; */
+  padding: 15px;
+  text-align: center;
+}
+#sametextbtnpay:hover {
+  background-color: #173bc5;
+}
+#sametextbtnpay {
+  margin: 15px 0px;
+  border-color: greenyellow;
+}
+.divtocoversametextdiv {
+  border-radius: 47px;
+  /* background:linear-gradient(
+    101deg,
+    rgba(255, 255, 255, 0.31) 1.58%,
+    rgba(255, 255, 255, 0.03) 98.15%
+  ); */
+  padding-bottom: 30px;
+  backdrop-filter: blur(30.5px);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px 0px 0px inset;
+  margin: 50px 0px;
+}
+.Overlay {
+  background-color: #007bff !important;
+}
+.titleforlinupsametext {
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  /* color: #ca86ff; */
+  font-weight: 200;
+  letter-spacing: 1.04px;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.sametextmain {
+  padding: 40px 20px;
+}
+.loaderdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+.titleloadtokensametext {
+  border-radius: 47px 47px 0px 0px;
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  text-align: center;
+  font-size: 12px;
+}
+.titleforaccountsummarytextsame {
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  font-size: 12px;
+}
+.titleloadtokensametext h2 {
+  font-weight: 300;
+  letter-spacing: 1.04px;
+  margin: 0px;
+  font-size: 15px;
+}
+.titleforaccountsummarytextsame h2 {
+  font-weight: 700;
+  letter-spacing: 1.04px;
+  margin: 0px;
+  font-size: 15px;
+}
+.tableWrapper {
+  border: 1px solid #8d37fb;
+  border-radius: 20px;
+  margin: 50px 20px;
+  /* max-width: 1000px; */
+  /* max-height: 400px; */
+  overflow: hidden;
+}
+.scroll {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: auto;
+  max-height: 385px;
+  scrollbar-width: none;
+}
+.scrollabletablecontainer {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  scrollbar-width: none;
+}
+.scrollabletablecontainerTbody {
+  scrollbar-width: none;
+}
+/* .scrollabletablecontainerTbody::-webkit-scrollbar {
+  width: 3px;
+  margin-right: 0;
+}
+.scrollabletablecontainerTbody::-webkit-scrollbar {
+  height: 3px; 
+}
+.scrollabletablecontainerTbody::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+.scrollabletablecontainerTbody::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}  */
+#backgroundgreen:hover {
+  box-shadow: rgba(238, 242, 243, 0.553) 0px 5px 15px;
+}
+#backgroundgreen {
+  cursor: pointer;
+  padding: 10px 25px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 63px;
+  margin: 0px 20px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.titlesametexttextarea {
+  background: rgb(24, 26, 83);
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  font-size: 12px;
+}
+.tokeninput::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+.tokeninput:hover {
+  box-shadow: 0px 0px 29px 0px rgba(255, 255, 255, 0.25);
+}
+.titlesametexttextarea {
+  font-weight: 200;
+  line-height: 154.1%;
+  letter-spacing: 1.04px;
+}
+.accountsummarycrosschain {
+  margin-top: 80px;
+}
+#greenbackground:hover {
+  background-color: transparent;
+}
+.importtokendiv {
+  display: flex;
+  align-items: center;
+}
+.accountsummaryth {
+  letter-spacing: 1px;
+  padding: 15px;
+  text-wrap: nowrap;
+}
+.buttontoaddformdata {
+  background-color: initial;
+  border: 1px solid #fff;
+  border-radius: 63px;
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  margin: 0 20px;
+  padding: 15px 40px;
+}
+.buttontoaddformdata:hover {
+  box-shadow: rgba(238, 242, 243, 0.553) 0px 5px 15px;
+}
+.buttontoaddformdataunload {
+  background-color: initial;
+  border: 1px solid #fff;
+  border-radius: 63px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  margin: 0 20px;
+  padding: 15px 40px;
+}
+.textareaInput {
+  outline: none;
+}
+.textareaInput::-webkit-scrollbar {
+  width: 2px;
+  margin-right: 0;
+}
+.textareaInput::-webkit-scrollbar-thumb {
+  background: #9657eb;
+}
+.textareaInput::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#tableresponsive {
+  /* margin: 40px 20px; */
+  /* border: 1px solid #8d37fb; */
+  /* border-radius: 20px; */
+}
+.tbody {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.tablediv {
+  margin: 40px 20px;
+  border: 1px solid #8d37fb;
+  border-radius: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tablediv::-webkit-scrollbar {
+  width: 3px;
+  margin-right: 0;
+}
+.tablediv::-webkit-scrollbar {
+  height: 3px; /* Set the height of the horizontal scrollbar */
+}
+.tablediv::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+.tablediv::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.accountsummarycreatetitle,
+.selectloadtoke-title,
+.viewaddressdivtitle {
+  /* background-color: #fff; */
+  /* color: #8f00ff; */
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+  font-size: 12px;
+  padding: 5px 0;
+}
+.accountsummarycreatetitle {
+  background: transparent !important;
+}
+.accountsummarycreatetitle h2 {
+  background: linear-gradient(
+    160deg,
+    rgba(24, 26, 83, 1) 47%,
+    rgba(46, 13, 90, 1) 100%
+  );
+}
+.popupforpayment {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background: rgba(80, 3, 132, 0.61);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(19.5px);
+  -webkit-backdrop-filter: blur(19.5px);
+  border-radius: 30px;
+  box-shadow: 0 0 10px #0000001a;
+  color: #fff;
+  left: 50%;
+  padding: 30px 50px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.popupforpayment h2 {
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.popupforpayment p {
+  letter-spacing: 1px;
+  text-align: center;
+}
+.popupforpayment button {
+  border-radius: 5px;
+  border-width: 0.5px solid #00ffff;
+  background: #07070e45;
+  color: #00ffff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 15px 20px;
+  width: 100%;
+  cursor: pointer;
+}
+.popupforpayment button:hover {
+  border: 1px solid #b47dfc;
+  color: #070707;
+  /* font-weight: 750; */
+  /* padding: 13px 18px; */
+  background: white;
+  color: #b47dfc;
+}
+/* ....cross chain */
+#blockchainChains {
+  width: 200px; /* Adjust width as needed */
+  padding: 8px;
+  font-size: 16px;
+  color: #00fbfb;
+  border: none;
+  border-radius: 15px;
+  background: #8d37fb;
+}
+/* Style for select options */
+#blockchainChains option {
+  font-size: 16px;
+  /* background:linear-gradient(90deg, rgba(68, 9, 205, 0.432) 0%, rgba(140, 62, 250, 0.417) 100%); */
+  border: 1px solid #19f26f;
+  background-color: #0f042c;
+  color: white;
+}
+/* Style for when the select input is focused */
+#blockchainChains:focus {
+  outline: none;
+  border-color: #007bff; /* Example color, adjust as needed */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Example shadow, adjust as needed */
+}
+#blockchainChains option:hover {
+  background-color: #0f042c; /* Adjust the color as needed */
+  color: white;
+}
+.c1 {
+  width: 160px;
+  margin-bottom: 0 !important;
+}
+.c2 {
+  width: 140px;
+  margin-bottom: 0 !important;
+}
+.c3 {
+  width: 150px;
+  margin-bottom: 0 !important;
+}
+.c4 {
+  width: 200px;
+  margin-bottom: 0 !important;
+}
+.c5 {
+  width: 200px;
+  margin-bottom: 0 !important;
+}
+@media only screen and (max-width: 768px) {
+  .sendethdiv {
+    display: flex;
+    justify-content: center;
+  }
+  #tableresponsive {
+    overflow: visible;
+    overflow-x: scroll;
+  }
+  .titleforaccountsummarytextsame h2 {
+    font-size: 15px !important;
+  }
+  #backgroundgreen {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 63px;
+    margin: 10px 15px;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .textlistdiv textarea {
+    font-size: 15px !important;
+  }
+  .componentcontainerdashboard {
+    margin: 20px 50px !important;
+  }
+  .eachinputofcreatelist {
+    margin: 10px 20px !important;
+  }
+  .titleloadtokensametext h2 {
+    font-size: 14px !important;
+  }
+  .sametextmain {
+    display: flex !important;
+    font-size: 15px;
+    flex-direction: column;
+  }
+  .importtokendiv button {
+    /* margin: 5px; */
+    font-size: 15px;
+    /* width: 100%; */
+  }
+  .importtokendiv {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  .buttontoaddformdata {
+    font-size: 15px;
+    width: 100%;
+    margin: 5px;
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent !important;
+    color: white;
+    border: 1px solid white !important;
+    border-radius: 63px;
+    margin: 0px 20px;
+  }
+  .accountsummarycreatetitle h2 {
+    font-size: 15px !important;
+  }
+  .titlesametexttextarea h2 {
+    font-size: 15px !important;
+  }
+  .tabletextlist .tableTh {
+    text-wrap: nowrap;
+  }
+  .titleforlinupsametext h2 {
+    font-size: 15px !important;
+  }
+  .tabletextlist .tableTr {
+    font-size: 15px;
+  }
+  .tableTd {
+    align-items: center;
+  }
+  .c1 {
+    width: 140px;
+  }
+  .c2 {
+    width: 100px;
+  }
+  .c3 {
+    width: 140px;
+  }
+  .c4 {
+    width: 200px;
+  }
+  .c5 {
+    width: 140px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .tableTd {
+    font-size: 12px;
+  }
+  .importtokendiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .textAccSum,
+  .fontsize10px {
+    font-size: 12px !important;
+  }
+  .buttontoaddformdata {
+    font-size: 15px;
+    width: 100%;
+    margin: 5px;
+    cursor: pointer;
+    padding: 10px 35px;
+    background-color: transparent !important;
+    color: white;
+    border: 1px solid white !important;
+    border-radius: 63px;
+    margin: 0px 20px;
+  }
+  #fontsize10px {
+    font-size: 12px !important;
+  }
+  .tabletextlist .tableTh {
+    font-size: 12px;
+  }
+  .tbodytextifyaccsum,
+  .fontsize12px {
+    font-size: 10px !important;
+  }
+  .sametextmain {
+    display: flex !important;
+    font-size: 15px;
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+  .sendethdiv {
+    display: flex;
+    justify-content: center;
+  }
+  .accountsummaryth {
+    font-size: 12px;
+  }
+  .fontsize12px {
+    font-size: 12px !important;
+  }
+  /* #tableresponsive {
+    overflow: visible;
+    overflow-x: scroll;
+    margin: 25px 10px;
+  } */
+  .componentcontainerdashboard {
+    margin: 20px 20px !important;
+  }
+  .titleloadtokensametext h2 {
+    font-weight: 500;
+    letter-spacing: 1.04px;
+    margin: 0px;
+    font-size: 13px;
+  }
+  .textlistdiv textarea {
+    font-size: 12px;
+    height: 200px;
+  }
+  .tablecontainer {
+    max-height: none;
+  }
+  .tablecontainer th,
+  .tablecontainer td {
+    font-size: 14px;
+  }
+  .titleforlinupsametext {
+    width: 100%;
+  }
+  #backgroundgreen {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 63px;
+    margin: 10px 20px;
+    font-size: 15px;
+    width: 70%;
+    letter-spacing: 1px;
+  }
+  .textlistdiv textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+  }
+  .textlistdiv textarea {
+    font-size: 13px !important;
+    height: 100px;
+  }
+  .titleinline {
+    font-size: 13px;
+  }
+  .titleforlinupsame-text h2 {
+    font-size: 13px;
+  }
+  .tabletextlist tr {
+    font-size: 15px;
+  }
+  .tabletextlist th {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .titledivdashboard h3 {
+    padding-top: -5px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid white;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+  }
+  .menubardashboard button {
+    padding: 10px 7px;
+    font-size: 15px;
+  }
+  .tableWrapper {
+    margin: 25px 10px;
+  }
+  /* .scrollabletablecontainer,
+  .scrollabletablecontainerTbody {
+    margin: 25px 10px;
+    max-height: 280px;
+  } */
+  .tableWrapper {
+    margin: 25px 10px;
+  }
+  .sendbutton {
+    border: 0.5px solid #00ffff;
+    font-size: 12px;
+    margin-bottom: 35px;
+    margin-top: 10px;
+  }
+
+  .popupforpayment {
+    background: linear-gradient(
+      94.24deg,
+      rgb(117 81 230 / 70%) 2.41%,
+      rgb(50 0 113 / 85%) 98.65%
+    );
+    border-radius: 30px;
+    box-shadow: 0 0 10px #0000001a;
+    color: #fff;
+    left: 50%;
+    width: 80%;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+  .popupforpayment button {
+    background: #0000;
+    border: 1px solid #1bff76;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 15px;
+    width: 65%;
+    cursor: pointer;
+    margin: 10px 0px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .sendethdiv {
+    display: flex;
+    justify-content: center;
+  }
+  #backgroundgreen {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 63px;
+    margin: 10px 20px;
+    font-size: 15px;
+    width: 85%;
+    letter-spacing: 1px;
+  }
+  .eachinputofcreatelist {
+    width: auto;
+    margin: 10px 20px !important;
+  }
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  --d: 22px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  color: #8d37fb;
+  box-shadow: calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
+    calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1px,
+    calc(0 * var(--d)) calc(1 * var(--d)) 0 2px,
+    calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 3px,
+    calc(-1 * var(--d)) calc(0 * var(--d)) 0 4px,
+    calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 5px,
+    calc(0 * var(--d)) calc(-1 * var(--d)) 0 6px;
+  animation: l27 1s infinite steps(8);
+}
+@keyframes l27 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
