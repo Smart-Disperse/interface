@@ -247,94 +247,96 @@ function Listify({
   }, [formData.label]);
 
   return (
-    <div className={listStyle.divinsamecreatelisttokenload}>
-      <div className={listStyle.enteraddressdivtitle}>
-        <h2
-          style={{
-            padding: "15px",
-            fontSize: "20px",
-            margin: "0px",
-            letterSpacing: "1px",
-            fontWeight: "300",
-          }}
-          className={listStyle.enteraddressdivtitleh2}
-        >
-          Enter the Recipient Address and Token Amount{" "}
-        </h2>
-      </div>
-      <div className={listStyle.addMain}>
-        <div className={listStyle.inputflexlist}>
-          <label>Enter Name </label>
-          <input
-            className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
-            type="text"
-            name="value"
-            value={formData.label}
-            placeholder="Enter name"
-            onChange={handleNameChange}
-            onKeyDown={handleKeyDown}
-          />
-          {nameSuggestions.length > 0 && (
-            <div ref={dropdownRef} className={listStyle.listdropdown}>
-              {nameSuggestions.map((suggestion, index) => (
-                <div
-                  key={index}
-                  style={{
-                    backgroundColor:
-                      index === selectedIndex ? "#8f00ff" : "#ffffff",
-                    color: index === selectedIndex ? "#ffffff" : "#8f00ff",
-                  }}
-                  className={`${listStyle.listdropdownItem} ${
-                    index === selectedIndex ? listStyle.selected : ""
-                  }`} // Apply selected class if index matches selectedIndex
-                  onClick={() => handleNameSuggestionClick(suggestion)}
-                >
-                  {suggestion}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className={listStyle.inputflexlist}>
-          <label className={listStyle.enteraddressdivtitlelabel}>
-            Enter Receiver Address:{" "}
-          </label>
-          <input
-            // id="blue-div"
-            // className={`each-input-of-create-list token-input ${themeClass}`}
-            className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
-            type="text"
-            name="receiverAddress"
-            value={formData.address}
-            placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
-            onChange={handleReceiverAddressChange}
-          />
-          {!validInput && <p style={{ color: "red" }}>Invalid input</p>}
-        </div>
-        <div className={listStyle.inputflexlist}>
-          <label>Enter Token Amount: </label>
-          <input
-            // style={{ color: "black" }}
-            // className={`each-input-of-create-list token-input ${themeClass}`}
-            className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
-            type="text"
-            name="value"
-            value={formData.value}
-            placeholder="0.50"
-            onChange={handleValueInputChange}
-          />
-        </div>
-
-        <div className={listStyle.inputflexlist}>
-          <button
-            id={listStyle.addtolistbuttonid}
-            // className={`${listStyle["buttontoaddformdata"]} ${listStyle["maddtolist"]}}`}
-            onClick={handleAddClick}
-            style={{ width: "180px", borderRadius: "63px", marginTop: "3px" }}
+    <div>
+      <div className={listStyle.divinsamecreatelisttokenload}>
+        <div className={listStyle.enteraddressdivtitle}>
+          <h2
+            style={{
+              padding: "15px",
+              fontSize: "20px",
+              margin: "0px",
+              letterSpacing: "1px",
+              fontWeight: "300",
+            }}
+            className={listStyle.enteraddressdivtitleh2}
           >
-            Add to List
-          </button>
+            Enter the Recipient Address and Token Amount{" "}
+          </h2>
+        </div>
+        <div className={listStyle.addMain}>
+          <div className={listStyle.inputflexlist}>
+            <label>Enter Name </label>
+            <input
+              className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
+              type="text"
+              name="value"
+              value={formData.label}
+              placeholder="Enter name"
+              onChange={handleNameChange}
+              onKeyDown={handleKeyDown}
+            />
+            {nameSuggestions.length > 0 && (
+              <div ref={dropdownRef} className={listStyle.listdropdown}>
+                {nameSuggestions.map((suggestion, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      backgroundColor:
+                        index === selectedIndex ? "#8f00ff" : "#ffffff",
+                      color: index === selectedIndex ? "#ffffff" : "#8f00ff",
+                    }}
+                    className={`${listStyle.listdropdownItem} ${
+                      index === selectedIndex ? listStyle.selected : ""
+                    }`} // Apply selected class if index matches selectedIndex
+                    onClick={() => handleNameSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className={listStyle.inputflexlist}>
+            <label className={listStyle.enteraddressdivtitlelabel}>
+              Enter Receiver Address:{" "}
+            </label>
+            <input
+              // id="blue-div"
+              // className={`each-input-of-create-list token-input ${themeClass}`}
+              className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
+              type="text"
+              name="receiverAddress"
+              value={formData.address}
+              placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
+              onChange={handleReceiverAddressChange}
+            />
+            {!validInput && <p style={{ color: "red" }}>Invalid input</p>}
+          </div>
+          <div className={listStyle.inputflexlist}>
+            <label>Enter Token Amount: </label>
+            <input
+              // style={{ color: "black" }}
+              // className={`each-input-of-create-list token-input ${themeClass}`}
+              className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
+              type="text"
+              name="value"
+              value={formData.value}
+              placeholder="0.50"
+              onChange={handleValueInputChange}
+            />
+          </div>
+
+          <div className={listStyle.inputflexlist}>
+            <button
+              id={listStyle.addtolistbuttonid}
+              // className={`${listStyle["buttontoaddformdata"]} ${listStyle["maddtolist"]}}`}
+              onClick={handleAddClick}
+              style={{ width: "180px", borderRadius: "63px", marginTop: "3px" }}
+            >
+              Add to List
+            </button>
+          </div>
         </div>
       </div>
       <>

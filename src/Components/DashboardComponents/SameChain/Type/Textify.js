@@ -221,81 +221,75 @@ function Textify({
   };
 
   return (
-    <div style={{ margin: "20px 0px" }}>
-      <div className={textStyle.divtocoversametextdi}>
-        <div>
-          <div id="textify-input" className={textStyle.textlistdiv}>
-            <div className={textStyle.titlesametexttextarea}>
-              <h2
-                style={{
-                  padding: "15px",
-                  fontSize: "20px",
-                  margin: "0px",
-                  letterSpacing: "1px",
-                  fontWeight: "300",
-                  lineHeight: "25px",
-                }}
-              >
-                Enter Recipients and Amount
-              </h2>
-            </div>
-            <div id="tt" style={{ position: "relative", height: "150px" }}>
-              <textarea
-                ref={textareaRef}
-                spellCheck="false"
-                value={textValue}
-                onChange={handleInputChange}
-                style={{
-                  width: "100%",
-                  minHeight: "125px",
-                  padding: "10px",
-                  border: "none",
-                  background: "#e6e6fa",
-                  color: "black",
-                  fontSize: "16px",
-                  fontFamily: "Arial, sans-serif",
-                  boxSizing: "border-box",
-                  resize: "none",
-                }}
-                className={textStyle.textareaInput}
-                placeholder="@Justin/0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421"
-              ></textarea>
-              {suggestions?.length > 0 && (
+    <div>
+      <div id="textify-input" className={textStyle.textlistdiv}>
+        <div className={textStyle.titlesametexttextarea}>
+          <h2
+            style={{
+              padding: "15px",
+              fontSize: "20px",
+              margin: "0px",
+              letterSpacing: "1px",
+              fontWeight: "300",
+              lineHeight: "25px",
+            }}
+          >
+            Enter Recipients and Amount
+          </h2>
+        </div>
+        <div id="tt" style={{ position: "relative", height: "150px" }}>
+          <textarea
+            ref={textareaRef}
+            spellCheck="false"
+            value={textValue}
+            onChange={handleInputChange}
+            style={{
+              width: "100%",
+              minHeight: "125px",
+              padding: "10px",
+              border: "none",
+              background: "#e6e6fa",
+              color: "black",
+              fontSize: "16px",
+              fontFamily: "Arial, sans-serif",
+              boxSizing: "border-box",
+              resize: "none",
+            }}
+            className={textStyle.textareaInput}
+            placeholder="@Justin/0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421"
+          ></textarea>
+          {suggestions?.length > 0 && (
+            <div
+              ref={dropdownRef}
+              className={textStyle.dropdown}
+              style={{ maxHeight: "200px", overflowY: "auto" }}
+            >
+              {suggestions.map((suggestion, index) => (
                 <div
-                  ref={dropdownRef}
-                  className={textStyle.dropdown}
-                  style={{ maxHeight: "200px", overflowY: "auto" }}
+                  key={index}
+                  className={`${textStyle.dropdownItem} ${
+                    index === focusedSuggestionIndex
+                      ? textStyle.dropdownItemActive
+                      : ""
+                  }`}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                  onMouseEnter={() => handleSuggestionMouseEnter(index)}
+                  onMouseLeave={handleSuggestionMouseLeave}
+                  style={{
+                    background:
+                      index === focusedSuggestionIndex ? "#8f00ff" : "white",
+                    color:
+                      index === focusedSuggestionIndex ? "white" : "#8f00ff",
+                  }}
                 >
-                  {suggestions.map((suggestion, index) => (
-                    <div
-                      key={index}
-                      className={`${textStyle.dropdownItem} ${
-                        index === focusedSuggestionIndex
-                          ? textStyle.dropdownItemActive
-                          : ""
-                      }`}
-                      onClick={() => handleSuggestionClick(suggestion)}
-                      onMouseEnter={() => handleSuggestionMouseEnter(index)}
-                      onMouseLeave={handleSuggestionMouseLeave}
-                      style={{
-                        background:
-                          index === focusedSuggestionIndex
-                            ? "#8f00ff"
-                            : "white",
-                        color:
-                          index === focusedSuggestionIndex
-                            ? "white"
-                            : "#8f00ff",
-                      }}
-                    >
-                      {suggestion}
-                    </div>
-                  ))}
+                  {suggestion}
                 </div>
-              )}
+              ))}
             </div>
-          </div>
-          {/* {listData.length > 0 ? null : (
+          )}
+        </div>
+      </div>
+      {/* {listData.length > 0 ? null : (
             <div>
               <div
                 className={textStyle.titlesametexttextarea}
@@ -409,8 +403,6 @@ function Textify({
               ) : null}
             </div>
           )} */}
-        </div>
-      </div>
     </div>
   );
 }

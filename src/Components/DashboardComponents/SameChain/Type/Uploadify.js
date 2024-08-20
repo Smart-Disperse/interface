@@ -1,9 +1,8 @@
 "use client";
-
+import textStyle from "./textify.module.css";
 import React, { useState, useEffect } from "react";
 import uploadStyle from "./uploadify.module.css";
 import { isValidAddress } from "@/Helpers/ValidateInput.js";
-import textStyle from "./textify.module.css";
 import { isValidValue } from "@/Helpers/ValidateInput.js";
 import { isValidTokenValue } from "@/Helpers/ValidateInput.js";
 import { useAccount } from "wagmi";
@@ -177,75 +176,42 @@ function Uploadify({
   }, [csvData]);
 
   return (
-    <div style={{ margin: "20px 0px" }}>
-      {/* Render input fields for each address and value pair */}
-      {/* {csvData.map((rowData, index) => (
-        <div key={index}>
-          <div></div>
-          <input
-            type="text"
-            value={rowData["Receiver Address"]}
-            onChange={(e) =>
-              handleInputChange(index, "Receiver Address", e.target.value)
-            }
-            className={
-              isValidAddress(rowData["Receiver Address"])
-                ? uploadStyle.normal
-                : uploadStyle.red
-            }
-          />
-          <input
-            type="text"
-            value={rowData["Token Amount"]}
-            onChange={(e) =>
-              handleInputChange(index, "Token Amount", e.target.value)
-            }
-            className={
-              tokenDecimal
-                ? isValidTokenValue(rowData["Token Amount"], tokenDecimal)
-                  ? uploadStyle.normal
-                  : uploadStyle.red
-                : isValidValue(rowData["Token Amount"])
-                ? uploadStyle.normal
-                : uploadStyle.red
-            }
-          />
-        </div>
-      ))} */}
-      <div className={uploadStyle.titleforuploadfilecsvsame}>
-        <h2
-          style={{
-            padding: "15px",
-            fontSize: "20px",
-            lineHeight: "28px",
-            margin: "0px",
-            fontWeight: "300",
-            letterSpacing: "1px",
-          }}
-          className={uploadStyle.sametextmain}
-        >
-          Upload your CSV file
-          <a
-            href="/SampleUpload.csv"
-            download="SampleUpload.csv"
-            className={uploadStyle.downloadbtn}
-            style={{ fontSize: "12px", marginLeft: "10px", color: "#00FFFF" }}
+    <div>
+      <div className={textStyle.textlistdiv}>
+        <div className={uploadStyle.titleforuploadfilecsvsame}>
+          <h2
+            style={{
+              padding: "15px",
+              fontSize: "20px",
+              lineHeight: "28px",
+              margin: "0px",
+              fontWeight: "300",
+              letterSpacing: "1px",
+            }}
+            className={uploadStyle.sametextmain}
           >
-            (Download Sample CSV file)
-          </a>
-        </h2>
-      </div>
-      <div className={uploadStyle.uploadordownload}>
-        <div className={uploadStyle.inputdivforcsv}>
-          {/* <label>Upload File</label> &nbsp; &nbsp; */}
-          <input
-            className={uploadStyle.uploadFile}
-            type="file"
-            accept=".csv"
-            onChange={handleFileUpload}
-          />
+            Upload your CSV file
+            <a
+              href="/SampleUpload.csv"
+              download="SampleUpload.csv"
+              className={uploadStyle.downloadbtn}
+              style={{ fontSize: "12px", marginLeft: "10px", color: "#00FFFF" }}
+            >
+              (Download Sample CSV file)
+            </a>
+          </h2>
         </div>
-        {/* <div>
+        <div className={uploadStyle.uploadordownload}>
+          <div className={uploadStyle.inputdivforcsv}>
+            {/* <label>Upload File</label> &nbsp; &nbsp; */}
+            <input
+              className={uploadStyle.uploadFile}
+              type="file"
+              accept=".csv"
+              onChange={handleFileUpload}
+            />
+          </div>
+          {/* <div>
           <div>
             <a
               href="/SampleUpload.csv"
@@ -261,8 +227,8 @@ function Uploadify({
             </a>
           </div>
         </div> */}
-      </div>
-      {/* {listData.length > 0 ? null : (
+        </div>
+        {/* {listData.length > 0 ? null : (
         <div>
           <div
             className={textStyle.titlesametexttextarea}
@@ -366,6 +332,7 @@ function Uploadify({
           ) : null}
         </div>
       )} */}
+      </div>
     </div>
   );
 }

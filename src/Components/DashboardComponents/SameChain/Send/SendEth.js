@@ -617,7 +617,7 @@ function SendEth({ listData, setListData }) {
                 </div>
 
                 <div className={textStyle.tablecontainer}>
-                  <div className={textStyle.titleforaccountsummarytextsame}>
+                  <div className={textStyle.titleforlinupsametext}>
                     <h2
                       style={{
                         padding: "15px",
@@ -702,8 +702,9 @@ function SendEth({ listData, setListData }) {
                                   </p>
                                   <p
                                     style={{
-                                      opacity: "0.4",
+                                      opacity: "0.7",
                                       marginBottom: "0",
+                                      fontSize: "12px",
                                     }}
                                   >
                                     {totalEth

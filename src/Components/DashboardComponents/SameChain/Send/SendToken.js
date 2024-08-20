@@ -322,8 +322,8 @@ function SendToken({ listData, setListData }) {
       <>
         {address ? (
           <>
-            <div>
-              <div className={textStyle.accountsummarycreatetitle}>
+            <div className={textStyle.tablecontainer}>
+              <div className={textStyle.titleforlinupsametext}>
                 <h2
                   style={{
                     padding: "15px",
@@ -336,75 +336,75 @@ function SendToken({ listData, setListData }) {
                   Load Your Token
                 </h2>
               </div>
-            </div>
-            <div
-              className={textStyle.entertokenaddress}
-              // style={{ padding: "20px" }}
-            >
-              <label>Enter Token Address: </label>
-              <div className={textStyle.rightside}>
-                <div
-                  className={textStyle.inputdiv}
-                  // style={{
-                  //   display: "flex",
-                  //   justifyContent: "center",
-                  //   flexDirection: "column",
-                  // }}
-                >
-                  <input
-                    id={erroroccured ? textStyle.yeserror : textStyle.noerror}
-                    type="text"
-                    className={textStyle.tokeninput}
-                    // className={`${textStyle["eachinputofcreatelist"]} ${textStyle["tokeninput"]}`}
-                    placeholder="Enter token Address"
-                    value={customTokenAddress}
-                    onChange={(e) => handleInputTokenAddressChange(e)}
+              <div
+                className={textStyle.entertokenaddress}
+                // style={{ padding: "20px" }}
+              >
+                <label>Enter Token Address: </label>
+                <div className={textStyle.rightside}>
+                  <div
+                    className={textStyle.inputdiv}
                     // style={{
-                    //   borderRadius: "5px",
-                    //   // border: "1px solid #9D79FF",
-                    //   // background:
-                    //   //   "linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
-                    //   padding: "15px 30px",
-                    //   margin: "0px 20px",
-                    //   color: "white",
+                    //   display: "flex",
+                    //   justifyContent: "center",
+                    //   flexDirection: "column",
                     // }}
-                  />
-                  {erroroccured && (
-                    <div
-                      className={textStyle.errdiv}
-                      // style={{ color: "red", fontSize: "12px" }}
+                  >
+                    <input
+                      id={erroroccured ? textStyle.yeserror : textStyle.noerror}
+                      type="text"
+                      className={textStyle.tokeninput}
+                      // className={`${textStyle["eachinputofcreatelist"]} ${textStyle["tokeninput"]}`}
+                      placeholder="Enter token Address"
+                      value={customTokenAddress}
+                      onChange={(e) => handleInputTokenAddressChange(e)}
+                      // style={{
+                      //   borderRadius: "5px",
+                      //   // border: "1px solid #9D79FF",
+                      //   // background:
+                      //   //   "linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
+                      //   padding: "15px 30px",
+                      //   margin: "0px 20px",
+                      //   color: "white",
+                      // }}
+                    />
+                    {erroroccured && (
+                      <div
+                        className={textStyle.errdiv}
+                        // style={{ color: "red", fontSize: "12px" }}
+                      >
+                        {errorMessage}
+                      </div>
+                    )}
+                  </div>
+                  {isTokenLoaded ? (
+                    <button
+                      id={textStyle.backgroundgreen}
+                      className={textStyle.unloadbutton}
+                      onClick={() => {
+                        unloadToken();
+                      }}
                     >
-                      {errorMessage}
-                    </div>
+                      Unload Token
+                    </button>
+                  ) : (
+                    <button
+                      id={textStyle.backgroundgreen}
+                      className={textStyle.addbutton}
+                      onClick={() => {
+                        loadToken();
+                      }}
+                    >
+                      Load Token
+                    </button>
                   )}
                 </div>
-                {isTokenLoaded ? (
-                  <button
-                    id={textStyle.backgroundgreen}
-                    className={textStyle.unloadbutton}
-                    onClick={() => {
-                      unloadToken();
-                    }}
-                  >
-                    Unload Token
-                  </button>
-                ) : (
-                  <button
-                    id={textStyle.backgroundgreen}
-                    className={textStyle.addbutton}
-                    onClick={() => {
-                      loadToken();
-                    }}
-                  >
-                    Load Token
-                  </button>
-                )}
               </div>
             </div>
             {isTokenLoaded ? (
               <>
-                <div>
-                  <div className={textStyle.accountsummarycreatetitle}>
+                <div className={textStyle.tablecontainer}>
+                  <div className={textStyle.titleforlinupsametext}>
                     <h2
                       style={{
                         padding: "15px",
@@ -417,64 +417,70 @@ function SendToken({ listData, setListData }) {
                       Token Details
                     </h2>
                   </div>
-                  <div className={textStyle.tableWrapper}>
-                    <div className={textStyle.scrollabletablecontainerTbody}>
-                      <table className={textStyle.tabletextlist}>
-                        <thead className={textStyle.tableheadertextlist}>
-                          <tr>
-                            <th
-                              className={textStyle.fontsize12px}
-                              style={{
-                                letterSpacing: "1px",
-                                padding: "15px",
-                                textWrap: "nowrap",
-                              }}
-                            >
-                              Name
-                            </th>
-                            <th
-                              className={textStyle.fontsize12px}
-                              style={{
-                                letterSpacing: "1px",
-                                padding: "15px",
-                              }}
-                            >
-                              Symbol
-                            </th>
-                            <th
-                              className={textStyle.fontsize12px}
-                              style={{
-                                letterSpacing: "1px",
-                                padding: "15px",
-                              }}
-                            >
-                              Balance
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr className={textStyle.tableTr}>
-                            <td
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTd}
-                            >
-                              {tokenDetails.name}
-                            </td>
-                            <td
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTd}
-                            >
-                              {tokenDetails.symbol}
-                            </td>
-                            <td className={textStyle.tableTd}>
-                              {ethers.utils.formatUnits(
-                                tokenDetails.balance,
-                                tokenDetails.decimal
-                              )}{" "}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                  <div>
+                    <div className={textStyle.tableWrapper}>
+                      <div className={textStyle.scroll}>
+                        <div
+                          className={textStyle.scrollabletablecontainerTbody}
+                        >
+                          <table className={textStyle.tabletextlist}>
+                            <thead className={textStyle.tableheadertextlist}>
+                              <tr>
+                                <th
+                                  className={textStyle.fontsize12px}
+                                  style={{
+                                    letterSpacing: "1px",
+                                    padding: "15px",
+                                    textWrap: "nowrap",
+                                  }}
+                                >
+                                  Name
+                                </th>
+                                <th
+                                  className={textStyle.fontsize12px}
+                                  style={{
+                                    letterSpacing: "1px",
+                                    padding: "15px",
+                                  }}
+                                >
+                                  Symbol
+                                </th>
+                                <th
+                                  className={textStyle.fontsize12px}
+                                  style={{
+                                    letterSpacing: "1px",
+                                    padding: "15px",
+                                  }}
+                                >
+                                  Balance
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr className={textStyle.tableTr}>
+                                <td
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTd}
+                                >
+                                  {tokenDetails.name}
+                                </td>
+                                <td
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTd}
+                                >
+                                  {tokenDetails.symbol}
+                                </td>
+                                <td className={textStyle.tableTd}>
+                                  {ethers.utils.formatUnits(
+                                    tokenDetails.balance,
+                                    tokenDetails.decimal
+                                  )}{" "}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

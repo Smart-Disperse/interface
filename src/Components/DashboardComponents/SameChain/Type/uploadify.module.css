@@ -125,7 +125,7 @@
   margin-left: 20px;
   opacity: 0.4;
 }
-.deletebutton:hover{
+.deletebutton:hover {
   opacity: 1;
 }
 .eachinputofcreatelist {
@@ -148,7 +148,6 @@
 
 .inputdivforcsv {
   border-radius: 10px;
-  margin: 20px 0px;
   text-align: center;
 }
 .inputdivforcsv label {
@@ -231,7 +230,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 40px 20px;
+  padding: 40px 20px;
 }
 
 .titleforaccountsummarycssvame {
@@ -287,7 +286,7 @@
   background-color: #fff0;
   border-bottom: 1px solid #fff;
 }
-.titleforuploadfilecsvsame {
+.titleforuploadfilecsvsame h2 {
   box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
     rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
@@ -301,6 +300,7 @@
     rgba(24, 26, 83, 1) 47%,
     rgba(46, 13, 90, 1) 100%
   );
+  border-radius: 35px 35px 0px 0px;
 }
 
 .tablewrapper table {
