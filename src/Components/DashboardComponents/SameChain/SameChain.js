@@ -18,15 +18,19 @@ function SameChain() {
   const [listData, setListData] = useState([]);
   const [render, setRender] = useState(1);
   const { address } = useAccount();
-  const [activeButton, setActiveButton] = useState("sendEth");
+  const [activeButton, setActiveButton] = useState(false);
 
   /*
   Funtion : To load SendEth component
   */
   const handleSendEthbuttonClick = () => {
-    setIsSendingEth(true);
-    setIsSendingToken(false);
-    setActiveButton("sendEth");
+    if (address) {
+      setIsSendingEth(true);
+      setIsSendingToken(false);
+      setActiveButton("sendEth");
+    } else {
+      setActiveButton(false);
+    }
   };
 
   /*
@@ -34,12 +38,22 @@ function SameChain() {
   */
 
   const handleImporttokenbuttonClick = () => {
-    setIsSendingToken(true);
-    setListData([]);
-    setIsSendingEth(false);
-    setActiveButton("importToken");
+    if (address) {
+      setIsSendingToken(true);
+      setListData([]);
+      setIsSendingEth(false);
+      setActiveButton("importToken");
+    } else {
+      <div>connect wallet</div>;
+    }
   };
-
+  useEffect(() => {
+    if (address) {
+      setActiveButton("sendEth");
+    } else {
+      setActiveButton(false);
+    }
+  }, [address]);
   return (
     <>
       <div>

@@ -41,6 +41,7 @@ function Listify({
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [validInput, setValidInput] = useState(true);
   const dropdownRef = useRef(null);
+  const inputRef = useRef(null);
   const [isOpen, setIsOpen] = useState(true);
   // Function to close the error modal
   const closeErrorModal = () => {
@@ -246,6 +247,10 @@ function Listify({
     }
   }, [formData.label]);
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   return (
     <div>
       <div className={listStyle.divinsamecreatelisttokenload}>
@@ -274,6 +279,7 @@ function Listify({
               placeholder="Enter name"
               onChange={handleNameChange}
               onKeyDown={handleKeyDown}
+              ref={inputRef}
             />
             {nameSuggestions.length > 0 && (
               <div ref={dropdownRef} className={listStyle.listdropdown}>

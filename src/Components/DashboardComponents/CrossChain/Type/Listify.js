@@ -9,6 +9,7 @@ import Modal from "react-modal";
 import textStyle from "./textify.module.css";
 import oopsimage from "@/Assets/oops.webp";
 import Image from "next/image";
+import { input } from "@nextui-org/react";
 
 function Listify({
   listData,
@@ -36,6 +37,7 @@ function Listify({
     setErrorMessage("");
     // console.log("modal open");
   };
+  const inputRef = useRef(null);
 
   const handleReceiverAddressChange = (event) => {
     const receiverAddress = event.target.value.toLowerCase();
@@ -234,6 +236,10 @@ function Listify({
     }
   }, [formData.label]);
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   return (
     <div className={listStyle.divinsamecreatelisttokenload}>
       <div className={listStyle.enteraddressdivtitle}>
@@ -251,7 +257,7 @@ function Listify({
           Enter the Recipient Address and Token Amount{" "}
         </h2>
       </div>
-      
+
       <div className={listStyle.addMain}>
         <div className={listStyle.inputflexlist}>
           <label>Enter Name </label>
@@ -263,6 +269,7 @@ function Listify({
             placeholder="Enter name"
             onChange={handleNameChange}
             onKeyDown={handleKeyDown}
+            ref={inputRef}
           />
           {nameSuggestions.length > 0 && (
             <div ref={dropdownRef} className={listStyle.listdropdown}>

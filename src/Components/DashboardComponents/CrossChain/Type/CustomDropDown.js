@@ -85,7 +85,7 @@ function CustomDropdown({
         <div className={dropDownStyles.dropdownList}>
           {options.length === 0 ? (
             <div className={dropDownStyles.dropdownItem}>
-              Please select destination chain first
+              Please select destination chain
             </div>
           ) : (
             options.map((option) => (

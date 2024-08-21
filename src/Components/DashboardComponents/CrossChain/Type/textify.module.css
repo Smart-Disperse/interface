@@ -11,7 +11,7 @@
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
   backdrop-filter: blur(30.5px);
   background: transparent;
-  border-radius: 35px;
+  border-radius: 20px;
 }
 .dropdownItem {
   padding: 8px 12px;
@@ -101,13 +101,12 @@
   border: 1px solid #173bc5;
 }
 .textlistdiv {
- 
   margin: 30px 0px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
   -webkit-backdrop-filter: blur(30.5px);
   background: transparent;
-  border-radius: 35px;
+  border-radius: 20px;
   overflow: hidden;
 }
 #fontsize10px {
@@ -214,7 +213,7 @@
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
   -webkit-backdrop-filter: blur(30.5px);
   background: transparent;
-  border-radius: 35px;
+  border-radius: 20px;
   overflow: hidden;
 }
 .tablecontainer table {
@@ -274,11 +273,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
-  padding-top: 20px;
+  margin: 70px 0px;
 }
 .titleloadtokensametext {
-  border-radius: 35px 35px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   background: rgb(24, 26, 83);
   background: linear-gradient(
     160deg,
@@ -467,8 +465,9 @@
   -webkit-backdrop-filter: blur(30.5px);
   /* backdrop-filter: blur(30.5px); */
   background: transparent;
-  border-radius: 35px;
+  border-radius: 20px;
   margin: 30px 0px;
+  overflow: hidden;
 }
 .maindivofsendtokencross {
   margin: 30px 0px;
@@ -479,7 +478,6 @@
     rgba(24, 26, 83, 1) 47%,
     rgba(46, 13, 90, 1) 100%
   );
-  border-radius: 35px 35px 0px 0px;
 }
 .popupforpayment {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,

@@ -305,7 +305,6 @@
   letter-spacing: 1.04px;
   /* padding: 5px 0px; */
 
-  border-radius: 35px 35px 0px 0px;
   font-size: 12px;
   /* margin-bottom: 35px; */
 }
@@ -434,7 +433,7 @@
 }
 
 .divinsamecreatelisttokenload {
-  border-radius: 35px;
+  border-radius: 20px;
   /* border: 1px solid #fff; */
   background: transparent;
   -webkit-backdrop-filter: blur(30.5px);
@@ -442,6 +441,7 @@
   margin: 30px 0px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  overflow: hidden;
 }
 
 .divtocenter {
@@ -515,7 +515,11 @@
 .inputflexlist button {
   cursor: pointer;
   padding: 15px 40px;
-  background-color: #49058e91;
+  background: linear-gradient(
+    90deg,
+    rgba(102, 43, 187, 0.37) 0%,
+    rgba(62, 18, 124, 0.37) 100%
+  );
   color: white;
   border: 1px solid white;
   border-radius: 63px;
@@ -525,7 +529,7 @@
 }
 
 .inputflexlist button:hover {
-  box-shadow: rgba(238, 242, 243, 0.553) 0px 5px 15px;
+  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
 }
 
 .popupforpayment {

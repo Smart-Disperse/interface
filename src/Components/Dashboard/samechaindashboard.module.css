@@ -74,7 +74,7 @@
 .menubardashboard button:not(.active):hover {
   /* box-shadow: 2px 2px 15.7px 3px #00ffffb2 inset;
   color: #00ffff; */
-  border-radius: 15px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
 }
@@ -85,7 +85,7 @@
   border: none;
   background: #0ff;
   color: black;
-  border-radius: 15px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
 }
@@ -95,8 +95,8 @@
   justify-content: space-between;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
-  padding: 10px 10px;
-  border-radius: 20px;
+  padding: 5px;
+  border-radius: 5px;
   /* margin-left: 30px; */
 }
 
@@ -549,7 +549,7 @@
     right: 24%;
   }
   .divtocoversametextdiv {
-    border-radius: 35px;
+    border-radius: 20px;
     /* border: 1px solid #fff; */
     background: linear-gradient(
       101deg,

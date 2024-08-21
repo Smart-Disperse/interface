@@ -62,7 +62,7 @@ function Textify({
     setSuggestions([]);
 
     // Set the cursor position after the inserted address
-    textareaRef.current.focus(); // Ensure the textarea is focused before setting the cursor position
+    // Ensure the textarea is focused before setting the cursor position
     textareaRef.current.setSelectionRange(
       updatedCursorPosition,
       updatedCursorPosition
@@ -192,6 +192,10 @@ function Textify({
   const handleSuggestionMouseLeave = () => {
     setFocusedSuggestionIndex(-1);
   };
+  useEffect(() => {
+    textareaRef.current.focus();
+  }, []);
+
   return (
     <div>
       <div className={textStyle.divtocoversametextdi}>
@@ -208,7 +212,7 @@ function Textify({
                   lineHeight: "25px",
                 }}
               >
-                Enter Recipients and Amount 
+                Enter Recipients and Amount
               </h2>
             </div>
             <div id="tt" style={{ position: "relative", height: "150px" }}>
@@ -267,7 +271,6 @@ function Textify({
               )}
             </div>
           </div>
-         
         </div>
       </div>
     </div>

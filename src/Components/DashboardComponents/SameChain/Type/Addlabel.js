@@ -72,15 +72,12 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
             <br /> receiver's address
           </span>
         }
-        placement="top"
-        color="#ffffff"
+        placement="bottom"
+        color="white"
         overlayInnerStyle={{
-          marginTop: "15px",
-          marginLeft: "40px",
-          color: "#8d37fb",
-
           borderRadius: "8px",
-          fontWeight: "600",
+          lineHeight: "12px",
+          color: "#8d37fb",
         }}
       >
         <Button
