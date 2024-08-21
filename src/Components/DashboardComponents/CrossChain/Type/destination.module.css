@@ -9,17 +9,17 @@
 }
 
 .dropdownHeader {
-  padding: 10px 8px;
+  padding: 11px 15px;
   /* border: 1px solid #9747ff; */
   background-color: #49058e91;
   color: white;
-  font-size: 12px;
+  font-size: 13px;
   border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 63px;
-  /* min-width: 200px; */
+  min-width: 200px;
   overflow: hidden; /* Optional: ensures child elements do not overflow the rounded corners */
 }
 

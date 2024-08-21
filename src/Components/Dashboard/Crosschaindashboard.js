@@ -36,7 +36,7 @@ import {
 import CrosschainNav from "../DashboardComponents/CrossChain/CrosschainNav";
 
 function Crosschaindashboard() {
-  const [activeTab, setActiveTab] = useState("text"); //default tab is textify
+ 
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // State for modal visibility
   const router = useRouter();
   // ...user-analysis
@@ -301,33 +301,6 @@ function Crosschaindashboard() {
 
   return (
     <div className={samechainStyle.maindivofdashboard}>
-      {/* <CrosschainNav /> */}
-
-      <div>
-        <div className={samechainStyle.stickyIcon}>
-          <a href="/same-chain" className={samechainStyle.Instagra}>
-            <FontAwesomeIcon icon={faShare} width={"1em"} height={"1em"} />
-            <div style={{ marginLeft: "25px" }}>Same Chain</div>
-          </a>
-        </div>
-        <div className={samechainStyle.stickyIcon1}>
-          <a href="/cross-analysis" className={samechainStyle.Instagra}>
-            <FontAwesomeIcon
-              icon={faMagnifyingGlassChart}
-              width={"1em"}
-              height={"1em"}
-            />
-            <div style={{ marginLeft: "25px" }}> Spent Analysis</div>
-          </a>
-        </div>
-        <div className={samechainStyle.stickyIcon2}>
-          <a href="/all-user-lists" className={samechainStyle.Instagram}>
-            <FontAwesomeIcon icon={faUser} width={"1em"} height={"1em"} />
-            <div style={{ marginLeft: "25px" }}>Manage Labels</div>
-          </a>
-        </div>
-      </div>
-
       <div
         className={`${samechainStyle["samedashmainm"]} ${
           errorModalIsOpen ? `${homeStyle["blurbackground"]}` : ""
@@ -343,44 +316,10 @@ function Crosschaindashboard() {
             Multi-Network Distribution
           </h3>
         </div>
-        <div className={samechainStyle.maindivforalloptiondashboard}>
-          <div className={samechainStyle.menubardashboard}>
-            <button
-              id="text"
-              className={activeTab === "text" ? `${samechainStyle.active}` : ""}
-              onClick={() => setActiveTab("text")}
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              data-bs-custom-class="color-tooltip"
-            >
-              Textify
-            </button>
-            <button
-              id="list"
-              className={activeTab === "list" ? `${samechainStyle.active}` : ""}
-              onClick={() => setActiveTab("list")}
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              data-bs-custom-class="color-tooltip"
-            >
-              Listify
-            </button>
-            <button
-              id="csv"
-              className={activeTab === "csv" ? `${samechainStyle.active}` : ""}
-              onClick={() => setActiveTab("csv")}
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              data-bs-custom-class="color-tooltip"
-            >
-              Uploadify
-            </button>
-          </div>
-        </div>
+
         <div className={samechainStyle.divtocenterthecomponentrender}>
           <div className={samechainStyle.componentcontainerdashboard}>
             <CrossChain
-              activeTab={activeTab}
               setErrorModalIsOpen={setErrorModalIsOpen}
               errorModalIsOpen={errorModalIsOpen}
             />

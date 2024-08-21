@@ -42,8 +42,7 @@ function SameChain() {
 
   return (
     <>
-    
-      <div >
+      <div>
         <div className={textStyle.divforwholetoken}>
           <div className={textStyle.titleloadtokensametext}>
             <h2

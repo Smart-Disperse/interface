@@ -137,13 +137,15 @@ function DesCustomDropdown({
             Select Destination Chain
             <Tooltip
               title="You can select chain from below options"
-              placement="bottom"
-              color="linear-gradient(160deg, rgba(24, 26, 83, 1) 47%, rgba(46, 13, 90, 1) 100%)"
+              placement="top"
+              color="#ffffff"
               overlayInnerStyle={{
-                marginTop: "10px",
+                marginTop: "15px",
                 marginLeft: "40px",
-                opacity: 0.6,
+                color: "#8d37fb",
+
                 borderRadius: "8px",
+                fontWeight: "600",
               }}
             >
               <InfoCircleOutlined

@@ -72,12 +72,15 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
             <br /> receiver's address
           </span>
         }
-        placement="bottom"
-        color="linear-gradient(160deg, rgba(24, 26, 83, 1) 47%, rgba(46, 13, 90, 1) 100%)"
+        placement="top"
+        color="#ffffff"
         overlayInnerStyle={{
-          opacity: 0.9,
+          marginTop: "15px",
+          marginLeft: "40px",
+          color: "#8d37fb",
+
           borderRadius: "8px",
-          lineHeight: "12px",
+          fontWeight: "600",
         }}
       >
         <Button
