@@ -303,7 +303,7 @@ function Crosschaindashboard() {
     <div className={samechainStyle.maindivofdashboard}>
       {/* <CrosschainNav /> */}
 
-      <div>
+      {/* <div>
         <div className={samechainStyle.stickyIcon}>
           <a href="/same-chain" className={samechainStyle.Instagra}>
             <FontAwesomeIcon icon={faShare} width={"1em"} height={"1em"} />
@@ -326,7 +326,7 @@ function Crosschaindashboard() {
             <div style={{ marginLeft: "25px" }}>Manage Labels</div>
           </a>
         </div>
-      </div>
+      </div> */}
 
       <div
         className={`${samechainStyle["samedashmainm"]} ${

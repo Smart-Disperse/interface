@@ -29,8 +29,20 @@ import { fetchUserLabels } from "@/Helpers/FetchUserLabels";
 import Cookies from "js-cookie";
 import AddLabel from "../Type/Addlabel";
 
+import {
+  faUser,
+  faRotate,
+  faUpload,
+  faCirclePlus,
+ 
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+import HowItWorks from "./HowItWorks";
+
 function SendEth({ listData, setListData }) {
   const [activeTab, setActiveTab] = useState("text");
+  const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
+
   const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null); //store ETH to USD exchange rate
   const [totalEth, setTotalEth] = useState(null); // store total amount of Ether in the transaction
   const [remaining, setRemaining] = useState(null); // store remaining amount after deducting already sent value
@@ -59,6 +71,10 @@ function SendEth({ listData, setListData }) {
 
   const triggerSlide = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleHowItWorks = () => {
+    setIsHowItWorksOpen(!isHowItWorksOpen);
   };
 
   const renderComponent = (tab) => {
@@ -101,6 +117,7 @@ function SendEth({ listData, setListData }) {
         );
     }
   };
+
 
   // For fetching the Exchange rate of ETH to USD to display value in USD
   useEffect(() => {
@@ -339,12 +356,19 @@ function SendEth({ listData, setListData }) {
                   Uploadify
                 </button>
               </div>
+
               <div>
-                <button className={samechainStyle.howWorks}>
+                <button
+                  className={samechainStyle.howWorks}
+                  onClick={toggleHowItWorks}
+                >
                   How its work
                 </button>
               </div>
             </div>
+
+            {/* {isHowItWorksOpen && <HowItWorks activeTab={activeTab} isOpen={isOpen} textStyle={textStyle} />} */}
+
             {renderComponent(activeTab)}
             {listData.length > 0 ? (
               <div>

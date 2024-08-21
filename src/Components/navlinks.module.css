@@ -1,0 +1,102 @@
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: white;
+  padding: 12px;
+  transition: 0.5s;
+  position: relative;
+  font-size: 1vw;
+}
+
+.navlinks a::after {
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  bottom: 5px;
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #00ffff;
+  transition: width 0.5s ease 0s, left 0.5s ease 0s;
+  width: 0;
+}
+.navlinks a:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+.navlinks a:hover {
+  color: #00ffff;
+}
+
+.active {
+  color: #00ffff;
+  margin: 0;
+}
+
+.navlinks .active::after {
+  left: 0;
+  width: 100%;
+}
+
+.text {
+  margin: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .navlinks {
+    gap: 0px;
+    margin-left: -20px;
+  }
+  .navlinks a {
+    font-size: 1.2vw;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .navlinks a {
+    padding: 10px 5px;
+    font-size: 1.1vw;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .navlinks {
+    flex-direction: column;
+    background: linear-gradient(
+      160deg,
+      rgba(24, 26, 83, 0.614) 47%,
+      rgba(46, 13, 90, 0.653) 100%
+    );
+    width: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    backdrop-filter: blur(50px);
+    padding: 80px 120px 80px 40px;
+    margin: 0px auto;
+    z-index: 900;
+  }
+  .navlinks a{
+    font-size: 15px;
+    text-wrap: nowrap;
+  }
+}
+
+/* @media screen and (max-width: 530px) {
+  .navlinks a {
+    font-size: 3vw;
+  }
+} */
