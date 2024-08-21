@@ -296,7 +296,7 @@ export function Providers({ children }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider >
+        <RainbowKitProvider theme={myCustomTheme}>
           <>
             {!isHome ? <Navbar /> : null}
             {children}

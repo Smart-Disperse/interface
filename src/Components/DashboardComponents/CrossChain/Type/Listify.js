@@ -270,6 +270,7 @@ function Listify({
             onChange={handleNameChange}
             onKeyDown={handleKeyDown}
             ref={inputRef}
+            autoComplete="off"
           />
           {nameSuggestions.length > 0 && (
             <div ref={dropdownRef} className={listStyle.listdropdown}>
@@ -305,6 +306,7 @@ function Listify({
             value={formData.address}
             placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
             onChange={handleReceiverAddressChange}
+            autoComplete="off"
           />
         </div>
         <div className={listStyle.inputflexlist}>
@@ -318,6 +320,7 @@ function Listify({
             value={formData.value}
             placeholder="0.50"
             onChange={handleValueInputChange}
+            autoComplete="off"
           />
         </div>
 
