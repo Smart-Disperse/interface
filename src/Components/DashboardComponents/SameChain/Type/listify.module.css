@@ -619,10 +619,10 @@
   .inputflexlist button {
     margin-left: 20px;
   }
-  .light-theme.each-input-of-create-list.token-input {
+  .each-input-of-create-list.token-input {
     width: 90% !important;
   }
-  .dark-theme.each-input-of-create-list.token-input {
+  .each-input-of-create-list.token-input {
     width: 90% !important;
   }
 

@@ -341,7 +341,7 @@ function SendEth({ listData, setListData }) {
               </div>
               <div>
                 <button className={samechainStyle.howWorks}>
-                  How its work
+                  How it works
                 </button>
               </div>
             </div>
