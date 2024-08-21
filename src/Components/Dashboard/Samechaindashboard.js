@@ -34,7 +34,6 @@ import {
 } from "@/Helpers/GetSentTransactions";
 import { useAccount, useChainId, useNetwork, useSwitchChain } from "wagmi";
 import { fetchUserDetails, fetchUserLabels } from "@/Helpers/FetchUserLabels";
-import SamechainNav from "../DashboardComponents/SameChain/SamechainNav";
 
 function Samechaindashboard() {
   const [selectedDate, setSelectedDate] = useState(null);

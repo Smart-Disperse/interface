@@ -10,6 +10,9 @@ import Cookies from "universal-cookie";
 import { useAccount, useChainId, useSignMessage } from "wagmi";
 import { usePathname } from "next/navigation";
 import { createSign } from "@/Utils/UserSignatureAPIAuthentication";
+import NavLinks from "../Navlinks";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { RiCloseFill } from "react-icons/ri";
 
 function Navbar() {
   const { isConnected, address } = useAccount();
@@ -18,10 +21,24 @@ function Navbar() {
   const { signMessageAsync } = useSignMessage();
   const path = usePathname();
   const chainId = useChainId();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const isHome = path === "/";
   const isMilestone = path === "/milestone";
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 1024);
+
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 1024);
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
 
   useEffect(() => {
     const handleAuth = async () => {
@@ -46,17 +63,36 @@ function Navbar() {
     <div className={navStyle.navMainDash}>
       <div className={navStyle.navFixed2}>
         <div className={navStyle.navSub}>
-          <Link href="/">
-            <Image className={navStyle.logo} src={smartlogo} alt="not foundd" />
-          </Link>
+          <div className={navStyle.left}>
+            <Link href="/">
+              <Image
+                className={navStyle.logo}
+                src={smartlogo}
+                alt="not foundd"
+              />
+            </Link>
 
-          {isHome || isMilestone ? (
-            <></>
-          ) : (
-            <div className={navStyle.connectwalletbuttondiv}>
-              <ConnectButtonCustom isMainnet={isMainnet} />
-            </div>
-          )}
+            {!isMobile ? <NavLinks /> : <></>}
+          </div>
+
+          <div className={navStyle.right}>
+            {isHome || isMilestone ? (
+              <></>
+            ) : (
+              <div className={navStyle.connectwalletbuttondiv}>
+                <ConnectButtonCustom isMainnet={isMainnet} />
+              </div>
+            )}
+
+            {isMobile ? (
+              <button className={navStyle.hambutton} onClick={() => setIsOpen(!isOpen)}>
+                {isOpen ? <RiCloseFill /> : <HiOutlineMenuAlt2 />}
+              </button>
+            ) : (
+              <></>
+            )}
+          </div>
+          {isOpen ? <NavLinks /> : <></>}
         </div>
       </div>
     </div>
