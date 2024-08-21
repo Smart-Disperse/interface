@@ -66,22 +66,17 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
   return (
     <>
       <Tooltip
-        title={
-          <span style={{ color: "white", fontSize: "10px" }}>
-            Assign a label to this
-            <br /> receiver's address
-          </span>
-        }
+        title="Assign a label to receiver's address"
         placement="bottom"
-        color="linear-gradient(160deg, rgba(24, 26, 83, 1) 47%, rgba(46, 13, 90, 1) 100%)"
+        color="white"
         overlayInnerStyle={{
-          opacity: 0.9,
           borderRadius: "8px",
-          lineHeight: "12px",
+          fontWeight: "600",
+          color: "#8d38fb",
         }}
       >
         <Button
-          type="primary"
+          type="common"
           shape="circle"
           icon={<PlusOutlined style={{ fill: "black" }} />}
           onClick={() => setIsModalVisible(true)}
@@ -100,13 +95,15 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
             Enter Label
             <Tooltip
               title="You can add a label from here to identify the transaction."
-              placement="bottom"
-              color="linear-gradient(160deg, rgba(24, 26, 83, 1) 47%, rgba(46, 13, 90, 1) 100%)"
+              placement="top"
+              color="#ffffff"
               overlayInnerStyle={{
-                marginTop: "10px",
+                marginTop: "15px",
                 marginLeft: "40px",
-                opacity: 0.6,
+                color: "#8d37fb",
+
                 borderRadius: "8px",
+                fontWeight: "600",
               }}
             >
               <InfoCircleOutlined
@@ -217,7 +214,7 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
             onClick={handleSubmit}
             className="submitLable"
           >
-            Save
+            <span>Save</span>
           </Button>
         </div>
       </Modal>

@@ -73,11 +73,11 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
           </span>
         }
         placement="bottom"
-        color="linear-gradient(160deg, rgba(24, 26, 83, 1) 47%, rgba(46, 13, 90, 1) 100%)"
+        color="white"
         overlayInnerStyle={{
-          opacity: 0.9,
           borderRadius: "8px",
           lineHeight: "12px",
+          color: "#8d37fb",
         }}
       >
         <Button

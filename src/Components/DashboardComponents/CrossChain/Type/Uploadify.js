@@ -228,7 +228,7 @@ function Uploadify({
   }, [csvData]);
 
   return (
-    <div>
+    <div className={uploadStyle.divmainforupload}>
       {/* Render input fields for each address and value pair */}
       {/* {csvData.map((rowData, index) => (
         <div key={index}>
@@ -266,7 +266,7 @@ function Uploadify({
       <div className={uploadStyle.titleforuploadfilecsvsame}>
         <h2
           style={{
-            padding: "10px",
+            padding: "15px",
             fontSize: "20px",
             margin: "0px",
             fontWeight: "300",

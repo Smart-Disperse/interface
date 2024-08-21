@@ -36,14 +36,15 @@ import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import DesCustomDropdown from "../Type/Destinationselect";
 import Addlabel from "../Type/Addlabel";
+import samechainStyle from "../../../Dashboard/samechaindashboard.module.css";
 
 function SendToken({
-  activeTab,
   listData,
   setListData,
   tokenAddress,
   selectedDestinationChain,
 }) {
+  const [activeTab, setActiveTab] = useState("text"); //default tab is textify
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const [errormsg, setErrormsg] = useState("");
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // State for modal visibility
@@ -431,7 +432,7 @@ function SendToken({
     <>
       {address ? (
         <>
-          <div>
+          <div className={textStyle.maindivofSendEth}>
             {Istokenloading ? (
               <div className={textStyle.loaderdiv}>
                 <div className={textStyle.loader}></div>
@@ -453,87 +454,139 @@ function SendToken({
                       Token Details
                     </h2>
                     <div className={textStyle.tablediv}>
-                      <table className={textStyle.tabletextlist}>
-                        <thead className={textStyle.tableheadertextlist}>
-                          <tr className={textStyle.tableTr}>
-                            <th
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTh}
-                            >
-                              Name
-                            </th>
-                            <th
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTh}
-                            >
-                              Symbol
-                            </th>
-                            <th
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTh}
-                            >
-                              Token Address
-                            </th>
-                            <th
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTh}
-                            >
-                              Balance
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr className={textStyle.tableTr}>
-                            <td
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTd}
-                            >
-                              {tokenDetails.name}
-                            </td>
-                            <td
-                              style={{ letterSpacing: "1px" }}
-                              className={textStyle.tableTd}
-                            >
-                              {tokenDetails.symbol}
-                            </td>
-                            <td
-                              style={{
-                                letterSpacing: "1px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                              }}
-                              className={textStyle.tableTd}
-                            >
-                              {`${tokenAddress.slice(
-                                0,
-                                7
-                              )}...${tokenAddress.slice(-4)}`}{" "}
-                              <FontAwesomeIcon
-                                className={textStyle.copyicon}
-                                onClick={() => copyToClipboard(tokenAddress)}
-                                icon={faCopy}
-                              />
-                            </td>
-                            <td className={textStyle.tableTd}>
-                              {ethers.utils.formatUnits(
-                                tokenDetails.balance,
-                                tokenDetails.decimal
-                              )}{" "}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      <div className={textStyle.scroll}>
+                        <div
+                          className={textStyle.scrollabletablecontainerTbody}
+                        >
+                          <table className={textStyle.tabletextlist}>
+                            <thead className={textStyle.tableheadertextlist}>
+                              <tr className={textStyle.tableTr}>
+                                <th
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTh}
+                                >
+                                  Name
+                                </th>
+                                <th
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTh}
+                                >
+                                  Symbol
+                                </th>
+                                <th
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTh}
+                                >
+                                  Token Address
+                                </th>
+                                <th
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTh}
+                                >
+                                  Balance
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr className={textStyle.tableTr}>
+                                <td
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTd}
+                                >
+                                  {tokenDetails.name}
+                                </td>
+                                <td
+                                  style={{ letterSpacing: "1px" }}
+                                  className={textStyle.tableTd}
+                                >
+                                  {tokenDetails.symbol}
+                                </td>
+                                <td
+                                  style={{
+                                    letterSpacing: "1px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                  }}
+                                  className={textStyle.tableTd}
+                                >
+                                  {`${tokenAddress.slice(
+                                    0,
+                                    7
+                                  )}...${tokenAddress.slice(-4)}`}{" "}
+                                  <FontAwesomeIcon
+                                    className={textStyle.copyicon}
+                                    onClick={() =>
+                                      copyToClipboard(tokenAddress)
+                                    }
+                                    icon={faCopy}
+                                  />
+                                </td>
+                                <td className={textStyle.tableTd}>
+                                  {ethers.utils.formatUnits(
+                                    tokenDetails.balance,
+                                    tokenDetails.decimal
+                                  )}{" "}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-                    {/* </div> */}
                   </div>
                 ) : null}
               </div>
             )}
           </div>
-          {isTokenLoaded ? renderComponent(activeTab) : null}
+          {isTokenLoaded ? (
+            <div className={textStyle.maindivofsendtokencross}>
+              <div className={samechainStyle.maindivforalloptiondashboard}>
+                <div className={samechainStyle.menubardashboard}>
+                  <button
+                    id="text"
+                    className={
+                      activeTab === "text" ? `${samechainStyle.active}` : ""
+                    }
+                    onClick={() => setActiveTab("text")}
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-custom-class="color-tooltip"
+                  >
+                    Textify
+                  </button>
+                  <button
+                    id="list"
+                    className={
+                      activeTab === "list" ? `${samechainStyle.active}` : ""
+                    }
+                    onClick={() => setActiveTab("list")}
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-custom-class="color-tooltip"
+                  >
+                    Listify
+                  </button>
+                  <button
+                    id="csv"
+                    className={
+                      activeTab === "csv" ? `${samechainStyle.active}` : ""
+                    }
+                    onClick={() => setActiveTab("csv")}
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-custom-class="color-tooltip"
+                  >
+                    Uploadify
+                  </button>
+                </div>
+              </div>{" "}
+              {isTokenLoaded ? renderComponent(activeTab) : null}
+            </div>
+          ) : null}
+
           {listData.length > 0 ? (
-            <div>
+            <div className={textStyle.maindivofsendtokencross}>
               <div className={textStyle.tablecontainer}>
                 <div
                   className={textStyle.titleforlinupsametext}
@@ -546,6 +599,7 @@ function SendToken({
                       fontSize: "20px",
                       fontWeight: "300",
                       textAlign: "center",
+                      margin: "0px",
                     }}
                   >
                     Your Transaction Lineup{" "}
@@ -968,7 +1022,9 @@ function SendToken({
           </div>
         </>
       ) : (
-        <div style={{ textAlign: "center", paddingTop: "10px" }}>
+        <div
+          style={{ textAlign: "center", padding: "25px 0px", fontSize: "20px" }}
+        >
           Please connect your wallet to proceed
         </div>
       )}

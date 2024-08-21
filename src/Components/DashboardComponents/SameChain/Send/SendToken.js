@@ -30,6 +30,7 @@ function SendToken({ listData, setListData }) {
   const [activeTab, setActiveTab] = useState("text");
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const [errormsg, setErrormsg] = useState("");
+  const inputRef = useRef(null);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // State for modal visibility
   const [nameErrorModalIsOpen, setNameErrorModalIsOpen] = useState(false);
   const [ethToUsdExchangeRate, setEthToUsdExchangeRate] =
@@ -315,6 +316,7 @@ function SendToken({ listData, setListData }) {
   };
   useEffect(() => {
     calculateRemaining();
+    inputRef.current.focus();
   }, []); // Execute once on component mount
 
   return (
@@ -357,6 +359,7 @@ function SendToken({ listData, setListData }) {
                       // className={`${textStyle["eachinputofcreatelist"]} ${textStyle["tokeninput"]}`}
                       placeholder="Enter token Address"
                       value={customTokenAddress}
+                      ref={inputRef}
                       onChange={(e) => handleInputTokenAddressChange(e)}
                       // style={{
                       //   borderRadius: "5px",

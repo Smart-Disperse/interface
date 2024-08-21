@@ -219,7 +219,9 @@ function Textify({
   const handleSuggestionMouseLeave = () => {
     setFocusedSuggestionIndex(-1);
   };
-
+  useEffect(() => {
+    textareaRef.current.focus();
+  }, []);
   return (
     <div>
       <div id="textify-input" className={textStyle.textlistdiv}>

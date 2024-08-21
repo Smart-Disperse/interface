@@ -6,6 +6,13 @@
   transform: translate(-50%, -50%);
   animation: zoomAnimation 10s infinite alternate;
 }
+.divforwholetoken {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  backdrop-filter: blur(30.5px);
+  background: transparent;
+  border-radius: 20px;
+}
 .dropdownItem {
   padding: 8px 12px;
   cursor: pointer;
@@ -94,7 +101,13 @@
   border: 1px solid #173bc5;
 }
 .textlistdiv {
-  border-radius: 5px;
+  margin: 30px 0px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  -webkit-backdrop-filter: blur(30.5px);
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
 }
 #fontsize10px {
   letter-spacing: 1px;
@@ -195,6 +208,14 @@
   width: 100%;
   border-collapse: collapse;
 }
+.tablecontainer {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  -webkit-backdrop-filter: blur(30.5px);
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+}
 .tablecontainer table {
   width: 100%;
   border-collapse: collapse;
@@ -252,11 +273,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
-  padding-top: 20px;
+  margin: 70px 0px;
 }
 .titleloadtokensametext {
-  border-radius: 47px 47px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   background: rgb(24, 26, 83);
   background: linear-gradient(
     160deg,
@@ -293,20 +313,9 @@
   font-size: 15px;
 }
 .tableWrapper {
-  border: 1px solid #8d37fb;
-  border-radius: 20px;
-  margin: 50px 20px;
-  /* max-width: 1000px; */
-  /* max-height: 400px; */
   overflow: hidden;
 }
-.scroll {
-  width: 100%;
-  overflow-x: scroll;
-  overflow-y: auto;
-  max-height: 385px;
-  scrollbar-width: none;
-}
+
 .scrollabletablecontainer {
   position: sticky;
   top: 0;
@@ -353,6 +362,18 @@
 }
 #greenbackground:hover {
   background-color: transparent;
+}
+.scroll {
+  overflow-x: scroll;
+  overflow-y: auto;
+  max-height: 385px;
+  scrollbar-width: none;
+  border: 1px solid #8d37fb;
+  border-radius: 20px;
+  margin: 50px 20px;
+}
+.scrollabletablecontainerTbody {
+  scrollbar-width: none;
 }
 .importtokendiv {
   display: flex;
@@ -409,8 +430,6 @@
   overflow-y: auto;
 }
 .tablediv {
-  margin: 40px 20px;
-  border: 1px solid #8d37fb;
   border-radius: 20px;
   overflow-x: auto;
   scrollbar-width: none;
@@ -439,10 +458,19 @@
     rgba(46, 13, 90, 1) 100%
   );
   font-size: 12px;
-  padding: 5px 0;
 }
 .accountsummarycreatetitle {
-  background: transparent !important;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  -webkit-backdrop-filter: blur(30.5px);
+  /* backdrop-filter: blur(30.5px); */
+  background: transparent;
+  border-radius: 20px;
+  margin: 30px 0px;
+  overflow: hidden;
+}
+.maindivofsendtokencross {
+  margin: 30px 0px;
 }
 .accountsummarycreatetitle h2 {
   background: linear-gradient(
@@ -767,7 +795,7 @@
   .tableWrapper {
     margin: 25px 10px;
   }
- 
+
   .tableWrapper {
     margin: 25px 10px;
   }

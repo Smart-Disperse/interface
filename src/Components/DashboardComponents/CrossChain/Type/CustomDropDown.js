@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import dropDownStyles from "./CustomDropDown.module.css";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { FaChevronDown } from "react-icons/fa"; 
+import { FaChevronDown } from "react-icons/fa";
 
 function CustomDropdown({
   options,
@@ -85,7 +85,7 @@ function CustomDropdown({
         <div className={dropDownStyles.dropdownList}>
           {options.length === 0 ? (
             <div className={dropDownStyles.dropdownItem}>
-              Please select destination chain first
+              Please select destination chain
             </div>
           ) : (
             options.map((option) => (

@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import select from "../../../Assets/select.png";
 import Image from "next/image";
 
-function CrossChain({ activeTab }) {
+function CrossChain() {
   const [listData, setListData] = useState([]);
   const { address } = useAccount();
   const [connectedChain, setConnectedChain] = useState(null);
@@ -96,7 +96,7 @@ function CrossChain({ activeTab }) {
 
   return (
     <>
-      <div className={textStyle.divtocoversametextdiv}>
+      <div>
         <div className={textStyle.divforwholetoken}>
           <div className={textStyle.titleloadtokensametext}>
             <h2
@@ -148,15 +148,13 @@ function CrossChain({ activeTab }) {
               <div className={textStyle.errorMessage}>{errorMessage}</div>
             )}
           </div>
-
-          <SendToken
-            activeTab={activeTab}
-            listData={listData}
-            setListData={setListData}
-            tokenAddress={tokenAddress}
-            selectedDestinationChain={selectedDestinationChain}
-          />
         </div>
+        <SendToken
+          listData={listData}
+          setListData={setListData}
+          tokenAddress={tokenAddress}
+          selectedDestinationChain={selectedDestinationChain}
+        />
       </div>
     </>
   );

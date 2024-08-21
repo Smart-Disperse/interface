@@ -204,7 +204,7 @@
   border: 1px solid #173bc5;
 }
 .textlistdiv {
-  border-radius: 35px;
+  border-radius: 20px;
   /* border: 1px solid #fff; */
   background: transparent;
   -webkit-backdrop-filter: blur(30.5px);
@@ -212,6 +212,7 @@
   margin: 30px 0px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  overflow: hidden;
 }
 #fontsize10px {
   letter-spacing: 1px;
@@ -400,11 +401,9 @@
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
   backdrop-filter: blur(30.5px);
   background: transparent;
-  border-radius: 35px;
+  border-radius: 20px;
 }
-.titleforlinupsametext {
-  border-radius: 35px;
-}
+
 /* .tMargin {
   margin: 50px 20px;
 } */
@@ -413,8 +412,9 @@
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
   backdrop-filter: blur(30.5px);
   background: transparent;
-  border-radius: 35px;
+  border-radius: 20px;
   margin: 30px 0px;
+  overflow: hidden;
 }
 .titleforaccountsummarytextsame {
   background: rgb(24, 26, 83);
@@ -494,14 +494,14 @@
 }
 
 .divtocoversametextdiv {
-  border-radius: 35px;
+  border-radius: 20px;
 
   margin: 50px 0px;
   border: 1px solid #fff;
   padding-bottom: 30px;
 }
 .divtocoversametextdiv {
-  border-radius: 35px;
+  border-radius: 20px;
   border: none;
   /* border: 1px solid #fff; */
   background-color: transparent;
@@ -529,7 +529,6 @@
   letter-spacing: 1.04px;
   font-size: 15px;
   margin: 0px;
-  border-radius: 35px 35px 0px 0px;
 }
 .sametextmain {
   display: flex;
@@ -539,7 +538,7 @@
 }
 
 .titleloadtokensametext {
-  border-radius: 35px 35px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   background: rgb(24, 26, 83);
   background: linear-gradient(
     160deg,
@@ -577,7 +576,7 @@
   font-weight: 300;
   resize: none;
   font-size: 12px;
-  border-radius: 35px 35px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
 }
 
 .titlesametexttextarea {
