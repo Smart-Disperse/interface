@@ -2,14 +2,6 @@
   --background: url("../Assets/Homepage-bg.webp");
   --background1: url("../Assets/dashboard-bg.webp");
 }
-<<<<<<< HEAD
-
-=======
-/* .dark {
-  --background: url("../Assets/Homepage-bg.webp");
-  --background1: url("../Assets/Homepage-bg.webp");
-} */
->>>>>>> 30ce591aeb1b103ac486a3c31c8e2b7e1478d29b
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(180deg, rgb(23 23 72) 0%, rgb(56 13 105) 100%);

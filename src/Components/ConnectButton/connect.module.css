@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  padding: 10px 20px;
+  padding: 12px 30px;
   border-radius: 30px;
   border: 0.5px solid #00ffff;
   background: #2b285445;
@@ -33,7 +33,7 @@
 }
 .connectaccount {
   z-index: 1;
-  padding: 11px 20px;
+  padding: 12px 30px;
   border-radius: 30px;
   border: 0.5px solid #00ffff;
   background: #2b285445;
@@ -61,7 +61,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  padding: 10px 20px;
+  padding: 12px 30px;
   border-radius: 30px;
   border: 0.5px solid #00ffff;
   background: #2b285445;
@@ -75,8 +75,6 @@
   gap: 5px;
   align-items: center;
 }
-
-
 
 .connectchain:hover {
   color: #9747ff;
@@ -136,7 +134,7 @@
   padding: 5px 10px;
   margin: 0 5px;
   border: none;
-color: white;
+  color: white;
   background-color: transparent;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -155,7 +153,7 @@ color: white;
 .ChainDropdownMain {
   position: absolute;
   top: 41px;
-  right: 197px;
+  right: 150px;
   /* cursor: pointer; */
   padding: 30px 0px;
   width: 220px;
@@ -233,16 +231,16 @@ color: white;
   cursor: pointer;
 }
 
-@media screen and (max-width:1180px) {
-  .connectchain{
+@media screen and (max-width: 1180px) {
+  .connectchain {
     padding: 11px 25px;
     font-size: 13px;
   }
 
-  .chainName{
+  .chainName {
     font-size: 13px;
   }
-  .connectaccount{
+  .connectaccount {
     padding: 12px 30px;
     font-size: 13px;
   }
@@ -262,10 +260,10 @@ color: white;
     padding: 9px 12px;
   }
 
-  .chainName{
-    font-size: 10px
+  .chainName {
+    font-size: 10px;
   }
-  .logo{
+  .logo {
     width: 11px;
   }
   .connectchain span {
@@ -326,20 +324,19 @@ color: white;
     border-radius: 22px;
     font-size: 10px;
   }
-
 }
 
-@media screen and (max-width:450px) {
-  .logo{
+@media screen and (max-width: 450px) {
+  .logo {
     width: 10px;
   }
-  .connectchain{
+  .connectchain {
     padding: 8px 8px;
   }
-  .connectaccount{
+  .connectaccount {
     padding: 9px;
   }
-  .chainName{
+  .chainName {
     font-size: 7px;
   }
 }
@@ -353,7 +350,7 @@ color: white;
     width: 250px;
   }
 
-  .connectchain{
+  .connectchain {
     width: 33px;
     overflow: hidden;
     align-items: flex-start;
@@ -362,7 +359,7 @@ color: white;
     padding: 6px 8px;
   }
 
-  .logo{
+  .logo {
     width: 16px;
   }
 }
@@ -374,15 +371,15 @@ color: white;
     font-size: 8px;
   }
 
-  .logo{
+  .logo {
     width: 12px;
   }
 
-  .connectaccount{
+  .connectaccount {
     font-size: 6px;
   }
 
-  .connectchain{
+  .connectchain {
     padding: 6px 10px;
   }
 
