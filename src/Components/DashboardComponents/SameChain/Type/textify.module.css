@@ -753,6 +753,66 @@
   margin-bottom: 0 !important;
 }
 
+/* how it works style */
+
+.line{
+  width: 2px;
+  height: 76%;
+  position: absolute;
+  top: 71px;
+  left: 48px;
+  background: #ffffff5e;
+  z-index: 0;
+}
+.worksitems{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  color: white;
+}
+
+.singlestep{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  z-index: 3;
+}
+
+.icondiv{
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: 63px;
+  background: #8d37fb;
+}
+
+.icon{
+  font-size: 17px;
+}
+
+
+.stepcontent{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stephead{
+  font-weight: 700;
+  text-align: left;
+}
+
+.steptext{
+  text-align: left;
+  font-weight: 400;
+}
+/*  */
+
 @media screen and (max-width: 1260px) {
   .tutorialcards {
     width: 30%;

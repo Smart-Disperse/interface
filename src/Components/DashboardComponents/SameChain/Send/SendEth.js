@@ -72,9 +72,15 @@ function SendEth({ listData, setListData }) {
     setIsOpen(!isOpen);
   };
 
-  const toggleHowItWorks = () => {
-    setIsHowItWorksOpen(!isHowItWorksOpen);
+  const showModal = () => {
+    setIsHowItWorksOpen(true);
   };
+
+  
+  const closeModal = () => {
+    setIsHowItWorksOpen(false);
+  };
+
 
   const renderComponent = (tab) => {
     switch (tab) {
@@ -358,14 +364,21 @@ function SendEth({ listData, setListData }) {
               <div>
                 <button
                   className={samechainStyle.howWorks}
-                  onClick={toggleHowItWorks}
+                  onClick={showModal}
                 >
                   How its work
                 </button>
               </div>
             </div>
 
-            {/* {isHowItWorksOpen && <HowItWorks activeTab={activeTab} isOpen={isOpen} textStyle={textStyle} />} */}
+            {isHowItWorksOpen && (
+              <HowItWorks
+                activeTab={activeTab}
+                isOpen={isHowItWorksOpen}
+                textStyle={textStyle}
+                onClose={closeModal}
+              />
+            )}
 
             {renderComponent(activeTab)}
             {listData.length > 0 ? (
