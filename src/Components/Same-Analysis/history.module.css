@@ -1,7 +1,5 @@
 .maindivofhisotry {
-  width: 70%;
   margin: 0 auto;
-  padding-top: 180px;
   overflow-x: hidden;
 }
 
@@ -15,7 +13,7 @@
 }
 
 .searchdiv {
-  width: 98%;
+  width: 40%;
   margin: auto;
   padding: 10px 0px;
   color: white;
@@ -136,9 +134,8 @@
   cursor: pointer;
 }
 
-.dropdown:hover{
+.dropdown:hover {
   box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
-
 }
 
 .dropdownMenu {

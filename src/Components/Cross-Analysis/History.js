@@ -22,7 +22,7 @@ import chainNameMapping from "@/Helpers/CrosschainHelpers/ChainNameMapping";
 import { LoadTokenForAnalysis } from "@/Helpers/LoadToken";
 import { ethers } from "ethers";
 
-const History = ({ searchQuery, startDate, endDate }) => {
+function History() {
   const { address } = useAccount();
   const chainId = useChainId();
 
@@ -49,6 +49,8 @@ const History = ({ searchQuery, startDate, endDate }) => {
   const [expandedRows, setExpandedRows] = useState({}); // State to manage expanded rows
 
   // State for selected token and dates
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const [selectedTokenSymbol, setSelectedTokenSymbol] = useState("ETH");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -323,140 +325,238 @@ const History = ({ searchQuery, startDate, endDate }) => {
   }, [address, selectedToken]);
 
   return (
-    <div className={histroyStyle.maintablediv}>
-      <div className={histroyStyle.tableandheadingdiv}>
-        <div className={popup.tablediv}>
-          <div className={popup.head}>
-            <table className={popup.table}>
-              <thead>
-                <tr className={popup.row}>
-                  <th className={popup.column1}>Sender</th>
-                  <th className={popup.column2}>Destination Chain</th>
-                  <th className={popup.column3}>Token</th>
-                  <th className={popup.column4}>
-                    Amount
-                    {/* {expandedRows[index] ? (
+    <div className={histroyStyle.maindivofhisotry}>
+      <div className={histroyStyle.searchtablediv}>
+        <div className={histroyStyle.maintablediv}>
+          <div className={histroyStyle.tablediv1}>
+            <div className={histroyStyle.searchdiv}>
+              <input
+                placeholder="Search by address or hash"
+                className={histroyStyle.searchinputbox}
+                onChange={handleSearchChange}
+              />
+              <button className={histroyStyle.searchbtn}>
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  className={histroyStyle.searchicon}
+                />
+              </button>
+            </div>
+            <div className={histroyStyle.filterdiv}>
+              <div style={{ display: "flex", gap: "5px" }}>
+                <input
+                  type="date"
+                  className={histroyStyle.dateInput}
+                  value={startDate}
+                  onChange={handleStartDateChange}
+                  placeholder="Start Date"
+                />
+                <input
+                  type="date"
+                  className={histroyStyle.dateInput}
+                  value={endDate}
+                  onChange={handleEndDateChange}
+                />
+              </div>
+              {/* <select
+                value={selectedToken}
+                onChange={handleTokenChange}
+                className={histroyStyle.dropdown}
+              > */}
+              {/* DROP DOWN FOR SHOWING TOKENS */}
+              {/* <option value="Select" className={histroyStyle.chainOptions}>
+                  Select
+                </option>
+                <option value="USDC" className={histroyStyle.chainOptions}>
+                  USDC
+                </option>
+
+                {tokenListOfUser.length > 0
+                  ? tokenListOfUser.map((token, index) => (
+                      <option
+                        key={index}
+                        value={token.tokenAddress}
+                        className={histroyStyle.chainOptions}
+                      >
+                        {token.symbol}
+                      </option>
+                    ))
+                  : null}
+              </select> */}
+
+              <div className={histroyStyle.dropdownWrapper} ref={dropdownRef}>
+                <div
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className={histroyStyle.dropdown}
+                >
+                  {selectedToken || "Select"}
+                </div>
+                {isDropdownOpen && (
+                  <div className={histroyStyle.dropdownMenu}>
+                    <div
+                      onClick={() => handleTokenChange("Select", "Select")}
+                      className={histroyStyle.chainOptions}
+                    >
+                      Select
+                    </div>
+                    <div
+                      onClick={() => handleTokenChange("Usdc", "USDC")}
+                      className={histroyStyle.chainOptions}
+                    >
+                      USDC
+                    </div>
+                    {tokenListOfUser.length > 0 &&
+                      tokenListOfUser.map((token, index) => (
+                        <div
+                          key={index}
+                          onClick={() =>
+                            handleTokenChange(token.tokenAddress, token.symbol)
+                          }
+                          className={histroyStyle.chainOptions}
+                        >
+                          {token.symbol}
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className={histroyStyle.tableandheadingdiv}>
+            <div className={popup.tablediv}>
+              <div className={popup.head}>
+                <table className={popup.table}>
+                  <thead>
+                    <tr className={popup.row}>
+                      <th className={popup.column1}>Sender</th>
+                      <th className={popup.column2}>Destination Chain</th>
+                      <th className={popup.column3}>Token</th>
+                      <th className={popup.column4}>
+                        Amount
+                        {/* {expandedRows[index] ? (
                                   <FontAwesomeIcon icon={faArrowUp} />
                                 ) : (
                                   <FontAwesomeIcon icon={faArrowDown} />
                                 )} */}
-                  </th>
-                  <th className={popup.column5}>Fees (ETH)</th>
-                  <th className={popup.column6}>Transaction Hash</th>
-                  <th className={popup.column7}>
-                    Date
-                    {sortingByDate ? (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          color: "black",
-                          border: "none",
-                        }}
-                        onClick={dortDate}
-                      >
-                        <FontAwesomeIcon icon={faArrowUp} />
-                      </button>
-                    ) : (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          color: "black",
-                          border: "none",
-                        }}
-                        onClick={sortDate}
-                      >
-                        <FontAwesomeIcon icon={faArrowDown} />
-                      </button>
-                    )}
-                  </th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-
-          {/* Fetching tx data */}
-          {isLoading ? (
-            <div style={{ position: "relative", top: "100px" }}>
-              Fetching transaction History...
-            </div>
-          ) : (
-            <div className={popup.content}>
-              <table className={popup.table}>
-                <tbody>
-                  {!searchLoading &&
-                  filteredTransactions &&
-                  filteredTransactions.length > 0 ? (
-                    filteredTransactions.map((transaction, index) => (
-                      <tr className={popup.row} key={index}>
-                        <td className={popup.column1}>
-                          {`${transaction.sender.slice(
-                            0,
-                            7
-                          )}...${transaction.sender.slice(-4)}`}
-                        </td>
-                        <td className={popup.column2}>
-                          {(chainNameMapping &&
-                            chainNameMapping[
-                              transaction.destinationChainSelector
-                            ]?.chainName) ||
-                            "Unknown Chain"}
-                        </td>
-
-                        <td className={popup.column3}>
-                          {loadTokenForDisplay(transaction.tokenAddress)}
-                        </td>
-                        <td className={popup.column4}>
-                          {transaction.tokenAmount}
-                        </td>
-
-                        <td className={popup.column5}>
-                          {(+ethers.utils.formatEther(
-                            transaction.fees
-                          )).toFixed(4)}
-                        </td>
-                        <td className={popup.column6}>
-                          <a
-                            href={`https://ccip.chain.link/tx/${transaction.transactionHash}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: "white" }}
+                      </th>
+                      <th className={popup.column5}>Fees (ETH)</th>
+                      <th className={popup.column6}>Transaction Hash</th>
+                      <th className={popup.column7}>
+                        Date
+                        {sortingByDate ? (
+                          <button
+                            className={popup.btnhoverpointer}
+                            style={{
+                              background: "transparent",
+                              color: "black",
+                              border: "none",
+                            }}
+                            onClick={dortDate}
                           >
-                            {`${transaction.transactionHash.slice(
-                              0,
-                              7
-                            )}...${transaction.transactionHash.slice(-4)}`}
-                          </a>
-                        </td>
-                        <td className={popup.column7}>
-                          {transaction.blockTimestamp}
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <tr>
-                        <td colSpan="7" className={popup.Nodata}>
-                          No transactions found.
-                        </td>
-                      </tr>
-                    </div>
-                  )}
-                </tbody>
-              </table>
+                            <FontAwesomeIcon icon={faArrowUp} />
+                          </button>
+                        ) : (
+                          <button
+                            className={popup.btnhoverpointer}
+                            style={{
+                              background: "transparent",
+                              color: "black",
+                              border: "none",
+                            }}
+                            onClick={sortDate}
+                          >
+                            <FontAwesomeIcon icon={faArrowDown} />
+                          </button>
+                        )}
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+
+              {/* Fetching tx data */}
+              {isLoading ? (
+                <div style={{ position: "relative", top: "100px" }}>
+                  Fetching transaction History...
+                </div>
+              ) : (
+                <div className={popup.content}>
+                  <table className={popup.table}>
+                    <tbody>
+                      {!searchLoading &&
+                      filteredTransactions &&
+                      filteredTransactions.length > 0 ? (
+                        filteredTransactions.map((transaction, index) => (
+                          <tr className={popup.row} key={index}>
+                            <td className={popup.column1}>
+                              {`${transaction.sender.slice(
+                                0,
+                                7
+                              )}...${transaction.sender.slice(-4)}`}
+                            </td>
+                            <td className={popup.column2}>
+                              {(chainNameMapping &&
+                                chainNameMapping[
+                                  transaction.destinationChainSelector
+                                ]?.chainName) ||
+                                "Unknown Chain"}
+                            </td>
+
+                            <td className={popup.column3}>
+                              {loadTokenForDisplay(transaction.tokenAddress)}
+                            </td>
+                            <td className={popup.column4}>
+                              {transaction.tokenAmount}
+                            </td>
+
+                            <td className={popup.column5}>
+                              {(+ethers.utils.formatEther(
+                                transaction.fees
+                              )).toFixed(4)}
+                            </td>
+                            <td className={popup.column6}>
+                              <a
+                                href={`https://ccip.chain.link/tx/${transaction.transactionHash}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: "white" }}
+                              >
+                                {`${transaction.transactionHash.slice(
+                                  0,
+                                  7
+                                )}...${transaction.transactionHash.slice(-4)}`}
+                              </a>
+                            </td>
+                            <td className={popup.column7}>
+                              {transaction.blockTimestamp}
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <tr>
+                            <td colSpan="7" className={popup.Nodata}>
+                              No transactions found.
+                            </td>
+                          </tr>
+                        </div>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default History;
