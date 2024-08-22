@@ -66,22 +66,17 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
   return (
     <>
       <Tooltip
-        title={
-          <span style={{ color: "white", fontSize: "10px" }}>
-            Assign a label to this
-            <br /> receiver's address
-          </span>
-        }
+        title="Assign a label to receiver's address"
         placement="bottom"
         color="white"
         overlayInnerStyle={{
           borderRadius: "8px",
-          lineHeight: "12px",
-          color: "#8d37fb",
+          fontWeight: "600",
+          color: "#8d38fb",
         }}
       >
         <Button
-          type="primary"
+          type="common"
           shape="circle"
           icon={<PlusOutlined style={{ fill: "black" }} />}
           onClick={() => setIsModalVisible(true)}

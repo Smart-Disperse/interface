@@ -9,8 +9,15 @@
   color: black !important;
 }
 .ant-btn-primary:hover {
-
   color: white !important;
+}
+.ant-btn.ant-btn-icon-only:hover {
+  background-color: #8d37fb;
+  color: white;
+}
+.ant-btn.ant-btn-icon-only {
+  background-color: white;
+  color: black;
 }
 .ant-modal .ant-modal-content {
   background: rgba(80, 3, 132, 0.61) !important;
@@ -74,7 +81,7 @@
   /* margin-left: 7px; */
 }
 .submitLable:hover {
-  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
+  box-shadow: rgb(255 255 255 / 72%) 0px 0px 12px 0px inset;
   border: 1px solid white !important;
 }
 .copyicon {

@@ -73,6 +73,54 @@
   color: white !important;
   background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%) !important;
 }
+/* ...tables */
+
+.tableWrapper {
+  /* border-radius: 20px; */
+  margin: 10px 0px 10px 0px;
+  max-height: 350px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.tableWrapper table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.tableWrapper thead {
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgb(51 53 103 / 49%);
+  color: #607d8bb0;
+}
+
+.tableWrapper tbody {
+  font-size: 15px;
+}
+.tableWrapper tbody tr:hover {
+  background: rgb(51 53 103 / 24%);
+}
+.tableWrapper td {
+  padding: 17px 10px;
+  white-space: nowrap;
+}
+
+.tableWrapper th {
+  padding: 17px 10px;
+  white-space: nowrap;
+}
+
+.tableWrapper tr:last-child td {
+  border-bottom: none;
+}
+
+.sticky {
+  top: 0;
+  z-index: 1;
+}
+
 @keyframes zoomAnimation {
   0% {
     transform: scale(1);
@@ -135,7 +183,7 @@
   letter-spacing: 1px;
   line-height: 37px;
   cursor: pointer;
-  margin-bottom: 50px;
+  margin: 40px 0px;
   padding: 5px 35px;
   text-align: center;
 }
@@ -156,7 +204,7 @@
   letter-spacing: 1px;
   line-height: 37px;
   cursor: not-allowed;
-  margin-bottom: 50px;
+  margin: 40px 0px;
   padding: 5px 35px;
   text-align: center;
   opacity: 0.3;

@@ -239,7 +239,7 @@
   font-weight: 700;
   letter-spacing: 1px;
   line-height: 37px;
-  margin-bottom: 50px;
+  margin: 40px 0px;
   padding: 5px 35px;
   text-align: center;
 }
@@ -265,7 +265,7 @@
   letter-spacing: 1px;
   line-height: 37px;
   cursor: not-allowed;
-  margin-bottom: 50px;
+  margin: 40px 0px;
   padding: 5px 35px;
   text-align: center;
   opacity: 0.3;
@@ -367,7 +367,7 @@
   font-size: 17px;
   cursor: pointer;
   margin: 0 20px;
-  padding: 15px 40px !important;
+  padding: 13px 40px !important;
 }
 .addbutton:hover {
   box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
@@ -431,7 +431,49 @@
 }
 
 .tableWrapper {
-  overflow: hidden;
+  /* border-radius: 20px; */
+  margin: 10px 0px 10px 0px;
+  max-height: 350px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.tableWrapper table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.tableWrapper thead {
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgb(51 53 103 / 49%);
+  color: #607d8bb0;
+}
+
+.tableWrapper tbody {
+  font-size: 15px;
+}
+.tableWrapper tbody tr:hover {
+  background: rgb(51 53 103 / 24%);
+}
+.tableWrapper td {
+  padding: 17px 10px;
+  white-space: nowrap;
+}
+
+.tableWrapper th {
+  padding: 17px 10px;
+  white-space: nowrap;
+}
+
+.tableWrapper tr:last-child td {
+  border-bottom: none;
+}
+
+.sticky {
+  top: 0;
+  z-index: 1;
 }
 
 .scroll {
