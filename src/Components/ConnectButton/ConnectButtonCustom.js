@@ -94,9 +94,8 @@ const ConnectButtonCustom = ({ isMainnet }) => {
       }) => {
         // Note: If your app doesn't use authentication, you
         // can remove all 'authenticationStatus' checks
-        const ready = mounted && authenticationStatus !== "loading";
+
         const connected =
-          ready &&
           account &&
           chain &&
           (!authenticationStatus || authenticationStatus === "authenticated");
@@ -104,16 +103,7 @@ const ConnectButtonCustom = ({ isMainnet }) => {
           console.log("connected", connected);
         }
         return (
-          <div
-            {...(!ready && {
-              "aria-hidden": true,
-              style: {
-                opacity: 0,
-                pointerEvents: "none",
-                userSelect: "none",
-              },
-            })}
-          >
+          <div>
             {(() => {
               if (!connected) {
                 return (

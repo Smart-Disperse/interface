@@ -124,9 +124,9 @@ function Displayallusers() {
     }
   };
 
-  const handleRefreshpage = () => {
-    window.location.reload();
-  };
+  // const handleRefreshpage = () => {
+  //   window.location.reload();
+  // };
 
   return (
     <div className={displayuser.maindivofdashboard}>
@@ -268,8 +268,6 @@ function Displayallusers() {
               <h2>Please connect your wallet</h2>
             </div>
           )}
-
-          
         </div>
       </div>
       <Footer />
