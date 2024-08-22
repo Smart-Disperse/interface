@@ -1,3 +1,96 @@
+.maindivofdashboard {
+  font-family: "poppins" !important;
+  background: var(--background);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.titledivdashboard {
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.563);
+  border: none;
+  border-radius: 10px;
+  margin-top: 120px;
+}
+
+.content {
+  letter-spacing: 1.5px;
+  font-weight: 400;
+  font-size: 15px;
+  margin: 10px !important;
+}
+
+.heading{
+  font-weight: 700;
+  font-size: 2.2rem;
+  background: -webkit-linear-gradient(#00ffff, #5fffbc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.tableWrapper {
+  margin: 50px 0px 10px 0px;
+  min-height: 250px;
+  scrollbar-width: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .4), 0 7px 13px -3px rgba(0, 0, 0, .3), inset 1px 0 0 rgba(0, 0, 0, .2);
+  -webkit-backdrop-filter: blur(30.5px);
+  backdrop-filter: blur(30.5px);
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.tableWrapper table {
+  border-spacing: 0;
+  width: 100%;
+
+}
+
+.tableWrapper thead {
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  background: linear-gradient(160deg,#181a53 47%,#2e0d5a);
+}
+
+
+.tableWrapper tbody {
+  height: 400px;
+  font-size: 15px;
+}
+.tableWrapper tbody tr:hover {
+  background: rgb(51 53 103 / 24%);
+}
+.tableWrapper td {
+  padding: 17px 10px;
+  white-space: nowrap;
+}
+
+.tableWrapper th {
+  padding: 17px 10px;
+  white-space: nowrap;
+}
+
+.tableWrapper tr:last-child td {
+  border-bottom: none;
+}
+
+.sticky {
+  top: 0;
+  z-index: 1;
+}
+
+
+
 .gobackbtn:hover {
   cursor: pointer;
   background-color: #ffffff3c;
@@ -73,22 +166,9 @@
   font-weight: 600;
 }
 
-.maindivofdashboard {
-  font-family: "poppins" !important;
-  background: var(--background);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
-.samedashmainm {
-  min-height: 65vh;
-}
+
+
 
 .dashbgImg1 {
   width: 347.141px;
@@ -113,36 +193,11 @@
 
 }
 
-.titledivdashboard {
-  padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.563);
-  border: none;
-  border-radius: 10px;
-  margin: 20px 300px;
-}
-
-.titledivdashboard h3 {
-  padding-top: -5px;
-  padding-bottom: 15px;
-  font-weight: 200;
-  font-family: "poppins" !important;
-  /* border-bottom: 1px solid white; */
-  letter-spacing: 1.5px;
-  font-size: 15px;
-}
-
-.titledivdashboard h1 {
-  letter-spacing: 1.5px;
-  font-size: 2.2rem;
-  margin: 0px;
-  font-weight: 300;
-  font-family: "poppins" !important;
-}
-
+/* 
 .imagesinthis img {
   border-radius: 5px;
   width: -webkit-fill-available;
-}
+} */
 
 .maindivforalloptiondashboard {
   width: 100%;
@@ -255,19 +310,14 @@
 }
 
 @media screen and (max-width: 1150px) {
-  .titledivdashboard h1 {
+  .heading {
     font-size: 2.6vw;
   }
 }
 
 @media only screen and (max-width: 1032px) {
-  .samedashmainm {
-    min-height: 45vh;
-  }
-  .titledivdashboard {
-    margin: 0 150px;
-    position: relative;
-  }
+
+  
 
   .dashbgImg2 {
     width: 300px;
@@ -317,17 +367,16 @@
   }
 }
 @media only screen and (max-width: 778px) {
-  .titledivdashboard h1 {
+  .titledivdashboard {
+    margin: 0px 100px;
+  }
+  .heading {
     letter-spacing: 1.5px;
     font-size: 5vw;
     margin: 0px;
   }
 
-  .titledivdashboard h3 {
-    padding-top: -5px;
-    padding-bottom: 15px;
-    /* border-bottom: 1px solid white; */
-    letter-spacing: 1.5px;
+  .content{
     font-size: 12px;
   }
 
@@ -341,9 +390,7 @@
     margin: auto;
   }
 
-  .titledivdashboard {
-    margin: 0px 100px;
-  }
+  
   .maindivforalloptiondashboard {
     max-width: 600px;
   }
@@ -402,12 +449,12 @@
     margin: 0 30px !important;
     position: relative;
   }
-  .titledivdashboard h1 {
+  .heading {
     font-size: 1.5rem !important;
     margin-top: 40px !important;
   }
 
-  .titledivdashboard h3 {
+  .content {
     font-size: 12px;
   }
   .maindivforalloptiondashboard {

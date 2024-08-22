@@ -154,14 +154,18 @@
     rgba(62, 18, 124, 0.37) 100%
   ) !important;
   border: 1px solid white;
-  border-radius: 63px;
+  border-radius: 100%;
   color: #fff;
   cursor: pointer;
   font-size: 12px;
   margin: 0 20px;
-  padding: 10px 20px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
 }
-.howWorks button:hover {
+.howWorks:hover {
   box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
   border: 1px solid white;
 }
