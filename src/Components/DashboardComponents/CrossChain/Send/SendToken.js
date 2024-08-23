@@ -592,6 +592,7 @@ function SendToken({
                                       labels={labels}
                                       setLabelValues={setLabelValues}
                                       onAddLabel={onAddLabel}
+                                      
                                       index={0} // Example index, you can dynamically pass different indexes
                                       data={data}
                                     />

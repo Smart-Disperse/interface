@@ -1,0 +1,65 @@
+.skeletonWrapper {
+  margin: 50px 0px 10px 0px;
+  min-height: 250px;
+  scrollbar-width: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 7px 13px -3px rgba(0, 0, 0, 0.3),
+    inset 1px 0 0 rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(30.5px);
+  backdrop-filter: blur(30.5px);
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.skeletonWrapper table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.skeletonRow {
+  animation: pulse 1.5s infinite;
+  background: rgb(51 53 103 / 24%);
+}
+
+.skeletonCell {
+  height: 60px;
+  background: rgb(51 53 103 / 24%);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.skeletonWrapper thead {
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  background: linear-gradient(160deg, #181a53 47%, #2e0d5a);
+}
+
+.skeletonWrapper tbody {
+  height: 300px;
+  font-size: 15px;
+}
+.skeletonWrapper tbody tr {
+  background: rgb(51 53 103 / 24%);
+}
+
+
+.skeletonWrapper th {
+  padding: 17px 10px;
+  white-space: nowrap;
+}
+
+.sticky {
+  top: 0;
+  z-index: 1;
+}

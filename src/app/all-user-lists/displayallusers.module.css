@@ -11,7 +11,6 @@
   justify-content: space-between;
 }
 
-
 .titledivdashboard {
   padding: 5px;
   border: 1px solid rgba(255, 255, 255, 0.563);
@@ -40,13 +39,14 @@
 .tableWrapper {
   margin: 50px 0px 10px 0px;
   min-height: 250px;
+  max-height: 370px;
   scrollbar-width: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .4), 0 7px 13px -3px rgba(0, 0, 0, .3), inset 1px 0 0 rgba(0, 0, 0, .2);
   -webkit-backdrop-filter: blur(30.5px);
   backdrop-filter: blur(30.5px);
   background: transparent;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .tableWrapper table {
@@ -59,12 +59,12 @@
   font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.05em;
-  background: linear-gradient(160deg,#181a53 47%,#2e0d5a);
 }
 
 
 .tableWrapper tbody {
-  height: 400px;
+  height: 300px;
+  overflow: scroll;
   font-size: 15px;
 }
 .tableWrapper tbody tr:hover {
@@ -73,11 +73,13 @@
 .tableWrapper td {
   padding: 17px 10px;
   white-space: nowrap;
+  border-bottom: 1px solid rgb(51 53 103 / 24%);
 }
 
 .tableWrapper th {
   padding: 17px 10px;
   white-space: nowrap;
+  border-bottom: 1px solid rgb(51 53 103 / 24%);
 }
 
 .tableWrapper tr:last-child td {
@@ -85,9 +87,13 @@
 }
 
 .sticky {
+  position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 10000;
+  background: linear-gradient(160deg,#181a53 47%,#2e0d5a);
 }
+
+
 
 
 
@@ -101,13 +107,13 @@
   text-decoration: none;
 }
 .linkto {
-  /* color: white; */
   text-decoration: none;
 }
 
 .refreshbtn:hover {
   cursor: pointer;
 }
+
 .refreshbtn {
   background-color: transparent;
   border: none;
@@ -120,7 +126,6 @@
 .button1, .button2 {
   z-index: 1;
   position: fixed;
-  /* bottom: 50%; */
   right: 0%;
   width: 200px;
   display: flex;
@@ -166,10 +171,6 @@
   font-weight: 600;
 }
 
-
-
-
-
 .dashbgImg1 {
   width: 347.141px;
   height: 321.106px;
@@ -182,6 +183,7 @@
   right: 24%;
   opacity: 0;
 }
+
 .dashbgImg2 {
   width: 400px;
   height: 400px;
@@ -190,14 +192,8 @@
   bottom: -288px;
   right: 0;
   opacity: 0;
-
 }
 
-/* 
-.imagesinthis img {
-  border-radius: 5px;
-  width: -webkit-fill-available;
-} */
 
 .maindivforalloptiondashboard {
   width: 100%;
@@ -206,7 +202,6 @@
 }
 
 .displaytable {
-  /* border-collapse: collapse; */
   width: 100%;
   padding: 0px;
   border: 1px solid white;
@@ -235,9 +230,10 @@
   padding: 8px;
 }
 
-.displayevenrow:hover {
+/* .displayevenrow:hover {
   background-color: #19030310;
 }
+
 .displayevenrow {
   border-bottom: 1px solid white;
 }
@@ -247,7 +243,7 @@
 }
 .displayoddrow {
   border-bottom: 1px solid white;
-}
+} */
 
 .displayupdatebutton,
 .displayeditbutton,
@@ -255,16 +251,10 @@
   background-color: transparent;
   border: none;
   color: white;
-  padding: 8px 16px;
+  padding: 5px;
   text-align: center;
-  font-size: 24px;
-  margin-right: 5px;
+  font-size: 20px;
   cursor: pointer;
-}
-.displayupdatebutton:hover,
-.displayeditbutton:hover {
-  padding: 3px 10px;
-  font-size: 28px;
 }
 
 .displayupdatebutton:active,
@@ -309,53 +299,14 @@
   background: #6960ef;
 }
 
-@media screen and (max-width: 1150px) {
-  .heading {
-    font-size: 2.6vw;
-  }
-}
-
 @media only screen and (max-width: 1032px) {
-
-  
-
-  .dashbgImg2 {
-    width: 300px;
-    height: 300px;
-    flex-shrink: 0;
-    position: absolute;
-    bottom: -179px;
-    right: 0;
-  }
-  .dashbgImg1 {
-    width: 300px;
-    height: 300px;
-    transform: rotate(-61.16deg);
-    flex-shrink: 0;
-    position: absolute;
-    left: -14%;
-    right: 24%;
-  }
   .maindivforalloptiondashboard {
     max-width: 700px;
   }
-  /* .buttondivgoback {
-    justify-content: center;
-  }
-  .gobackbtn {
-    width: 40%;
-  } */
 }
+
+
 @media only screen and (max-width: 778px) {
-  /* .buttondivgoback {
-    justify-content: center;
-  }
-  .gobackbtn {
-    padding: 8px;
-    margin: 5px 10px;
-    width: 27%;
-    font-size: 10px;
-  } */
   .button {
     width: 40%;
   }
@@ -365,15 +316,9 @@
     font-size: 12px;
     padding: 10px 20px;
   }
-}
-@media only screen and (max-width: 778px) {
-  .titledivdashboard {
-    margin: 0px 100px;
-  }
-  .heading {
-    letter-spacing: 1.5px;
-    font-size: 5vw;
-    margin: 0px;
+
+  .heading{
+    font-size: 1.7rem;
   }
 
   .content{
@@ -403,11 +348,11 @@
     font-size: 12px;
   }
 
-  .displayupdatebutton,
+  /* .displayupdatebutton,
   .displayeditbutton,
   .displaydeletebutton {
     font-size: 17px;
-  }
+  } */
 }
 
 .custom-toast {
@@ -416,50 +361,32 @@
 
 .custom-toast-body {
   background-color: #6960ef !important;
-  /* Custom styles for the toast body */
 }
 
 .Toastify__toast-body {
   background-color: #6960ef !important;
 }
 
+@media screen and (max-width:550px) {
+  .titledivdashboard{
+    width: 80%;
+    margin: 130px auto 0px;
+  }
+  .heading{
+    font-size: 1.2rem;
+  }
+}
 @media only screen and (max-width: 435px) {
   .maindivofdashboard {
     height: auto;
     width: 100%;
     margin-bottom: auto;
   }
-  .dashbgImg2 {
-    width: 150px !important;
-    height: auto !important;
-    flex-shrink: 0 !important;
-    position: absolute !important;
-    bottom: -60px !important;
-    right: 0 !important;
-  }
-  .dashbgImg1 {
-    width: 150px !important;
-    height: auto !important;
-    flex-shrink: 0 !important;
-    position: absolute !important;
-    left: -14%;
-    right: 24%;
-  }
-  .titledivdashboard {
-    margin: 0 30px !important;
-    position: relative;
-  }
-  .heading {
-    font-size: 1.5rem !important;
-    margin-top: 40px !important;
-  }
 
-  .content {
-    font-size: 12px;
-  }
   .maindivforalloptiondashboard {
     max-width: 350px;
   }
+
   .displayheader {
     font-size: 10px !important;
   }
@@ -473,11 +400,11 @@
     padding: 0px !important;
   }
 
-  .displayupdatebutton,
+  /* .displayupdatebutton,
   .displayeditbutton,
   .displaydeletebutton {
     font-size: 12px !important;
-  }
+  } */
 
   .button {
     width: 40%;
@@ -488,5 +415,18 @@
     gap: 5px;
     font-size: 8px;
     padding: 8px 10px;
+  }
+}
+
+@media screen and (max-width:360px) {
+  .titledivdashboard{
+    width: 80%;
+    margin: 130px auto 0px;
+  }
+  .heading{
+    font-size: 16px;
+  }
+  .content{
+    font-size: 9px;
   }
 }

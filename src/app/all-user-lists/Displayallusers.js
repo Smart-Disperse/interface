@@ -22,6 +22,8 @@ import notfound from "../../Assets/oops.webp";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
+import SkeletonLoader from "@/Components/skeletons/managelabel";
+import AddLabel from "@/Components/DashboardComponents/CrossChain/Type/Addlabel";
 
 function Displayallusers() {
   const [usersData, setUsersData] = useState([]);
@@ -42,6 +44,7 @@ function Displayallusers() {
       setUsersData(userData);
     } catch (error) {
       console.error("Error fetching user details:", error);
+      setIsLoading(false);
     }
   };
   useEffect(() => {
@@ -128,6 +131,45 @@ function Displayallusers() {
   //   window.location.reload();
   // };
 
+  /*....for back next table.... */
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const rowsPerPage = 5;
+
+  // const staticData = [
+  //   { id: 1, name: "User 1", address: "Address 1" },
+  //   { id: 2, name: "User 2", address: "Address 2" },
+  //   { id: 3, name: "User 3", address: "Address 3" },
+  //   { id: 4, name: "User 4", address: "Address 4" },
+  //   { id: 5, name: "User 5", address: "Address 5" },
+  //   { id: 6, name: "User 6", address: "Address 6" },
+  //   { id: 7, name: "User 7", address: "Address 7" },
+  //   { id: 8, name: "User 8", address: "Address 8" },
+  //   { id: 1, name: "User 1", address: "Address 1" },
+  //   { id: 2, name: "User 2", address: "Address 2" },
+  //   { id: 3, name: "User 3", address: "Address 3" },
+  //   { id: 4, name: "User 4", address: "Address 4" },
+  //   { id: 5, name: "User 5", address: "Address 5" },
+  //   { id: 6, name: "User 6", address: "Address 6" },
+  //   { id: 7, name: "User 7", address: "Address 7" },
+  //   { id: 8, name: "User 8", address: "Address 8" },
+  // ];
+
+  // const handleNextPage = () => {
+  //   if ((currentPage + 1) * rowsPerPage < staticData.length) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
+
+  // const handlePreviousPage = () => {
+  //   if (currentPage > 0) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
+
+  // const startIndex = currentPage * rowsPerPage;
+  // const endIndex = startIndex + rowsPerPage;
+  // const currentRows = staticData.slice(startIndex, endIndex);
+
   return (
     <div className={displayuser.maindivofdashboard}>
       <div className={displayuser.titledivdashboard}>
@@ -142,122 +184,10 @@ function Displayallusers() {
         {address ? (
           isLoading ? (
             <div>
-              <Image src={loader.src} alt="none" width={100} height={100} />
-            </div>
-          ) : usersData?.length === 0 ? (
-            <div>
-              <Image src={notfound} alt="none" width={400} height={300} />
-              <h2>No Data Found!!</h2>
-              <h3>
-                Please try again or{" "}
-                <button
-                  onClick={handleRefreshpage}
-                  className={displayuser.refreshbtn}
-                >
-                  Refresh the page
-                </button>
-              </h3>
+              {/* <Image src={loader.src} alt="none" width={100} height={100} /> */}
+              <SkeletonLoader />
             </div>
           ) : (
-            // <div className={displayuser.displaydatatablewrapper}>
-            //   <table className={displayuser.displaytable}>
-            //     <thead>
-            //       <tr>
-            //         <th className={displayuser.displayheader}>Name</th>
-            //         <th className={displayuser.displayheader}>Address</th>
-            //         <th className={displayuser.displayheader}>Actions</th>
-            //       </tr>
-            //     </thead>
-            //     <tbody>
-            //       {usersData?.map((user, index) => (
-            //         <tr
-            //           style={{ background: "#ffffff1a" }}
-            //           key={index}
-            //           className={
-            //             index % 2 === 0
-            //               ? `${displayuser.displayevenrow}`
-            //               : `${displayuser.displayoddrow}`
-            //           }
-            //         >
-            //           <td className={displayuser.displaycell}>
-            //             {editUserIndex === index ? (
-            //               <input
-            //                 className={displayuser.editinput}
-            //                 type="text"
-            //                 value={editName}
-            //                 onChange={(e) => {
-            //                   const inputValue = e.target.value;
-            //                   // Regular expression to allow only alphanumeric characters without spaces
-            //                   const regex = /^[a-zA-Z0-9]*$/;
-            //                   if (
-            //                     inputValue.length <= 10 &&
-            //                     regex.test(inputValue)
-            //                   ) {
-            //                     setEditName(inputValue);
-            //                   }
-            //                 }}
-            //               />
-            //             ) : (
-            //               user.name
-            //             )}
-            //           </td>
-            //           <td className={displayuser.displaycell}>
-            //             {user.address}
-            //           </td>
-            //           <td
-            //             style={{ display: "flex" }}
-            //             className={displayuser.displaycellbuttons}
-            //           >
-            //             {editUserIndex === index ? (
-            //               <div>
-            //                 <button
-            //                   className={displayuser.displayupdatebutton}
-            //                   onClick={handleUpdate}
-            //                 >
-            //                   <FontAwesomeIcon
-            //                     icon={faCheck}
-            //                     style={{ color: "#f5f9ff" }}
-            //                   />
-            //                 </button>
-            //                 <button
-            //                   className={displayuser.displayupdatebutton}
-            //                   onClick={handleAbortedit}
-            //                 >
-            //                   <FontAwesomeIcon
-            //                     icon={faXmark}
-            //                     style={{ color: "#f5f9ff" }}
-            //                   />
-            //                 </button>
-            //               </div>
-            //             ) : (
-            //               <button
-            //                 className={displayuser.displayeditbutton}
-            //                 onClick={() => handleEdit(index)}
-            //               >
-            //                 <FontAwesomeIcon
-            //                   className={displayuser.editicon}
-            //                   icon={faPenToSquare}
-            //                   // style={{ color: "#ffffff" }}
-            //                 />
-            //               </button>
-            //             )}
-            //             <button
-            //               className={displayuser.displaydeletebutton}
-            //               onClick={() => handleDelete(index)}
-            //             >
-            //               <FontAwesomeIcon
-            //                 className={displayuser.deleteicon}
-            //                 icon={faTrash}
-            //               />
-            //             </button>
-            //           </td>
-            //         </tr>
-            //       ))}
-            //     </tbody>
-            //   </table>
-            //   <ToastContainer />
-            // </div>
-
             <div className={displayuser.tableWrapper}>
               <table>
                 <thead>
@@ -267,17 +197,11 @@ function Displayallusers() {
                     <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                {/* ...tablebody main... */}
+                {/* <tbody>
                   {usersData && usersData.length > 0 ? (
                     usersData.map((user, index) => (
-                      <tr
-                        key={index}
-                        className={
-                          index % 2 === 0
-                            ? `${displayuser.displayevenrow}`
-                            : `${displayuser.displayoddrow}`
-                        }
-                      >
+                      <tr key={index}>
                         <td>
                           {editUserIndex === index ? (
                             <input
@@ -296,7 +220,7 @@ function Displayallusers() {
                               }}
                             />
                           ) : (
-                            user.name
+                            {user.name}
                           )}
                         </td>
                         <td>{user.address}</td>
@@ -330,7 +254,6 @@ function Displayallusers() {
                               <FontAwesomeIcon
                                 className={displayuser.editicon}
                                 icon={faPenToSquare}
-                                // style={{ color: "#ffffff" }}
                               />
                             </button>
                           )}
@@ -353,8 +276,331 @@ function Displayallusers() {
                       </td>
                     </tr>
                   )}
+                </tbody> */}
+
+                <tbody>
+                  <tr>
+                    <td>user.name</td>
+                    <td>user.address</td>
+
+                    <td>
+                      <button
+                        className={displayuser.displayeditbutton}
+                        onClick={() => handleEdit(index)}
+                      >
+                        <FontAwesomeIcon
+                          className={displayuser.editicon}
+                          icon={faPenToSquare}
+                          // style={{ color: "#ffffff" }}
+                        />
+                      </button>
+
+                      <button
+                        className={displayuser.displaydeletebutton}
+                        onClick={() => handleDelete(index)}
+                      >
+                        <FontAwesomeIcon
+                          className={displayuser.deleteicon}
+                          icon={faTrash}
+                        />
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
+                          />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
+
+                {/* tablebody back and next button */}
+
+                {/* <tbody>
+                  {currentRows.map((user) => (
+                    <tr key={user.id}>
+                      <td>{user.name}</td>
+                      <td>{user.address}</td>
+                      <td>
+                        <button className={displayuser.displayeditbutton}>
+                          <FontAwesomeIcon
+                            className={displayuser.editicon}
+                            icon={faPenToSquare}
+                          />
+                        </button>
+                        <button className={displayuser.displaydeletebutton}>
+                          <FontAwesomeIcon
+                            className={displayuser.deleteicon}
+                            icon={faTrash}
+                          />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody> */}
               </table>
+
+              {/* back and next button.... */}
+              {/* <div className={displayuser.paginationButtons}>
+                <button
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 0}
+                >
+                  Back
+                </button>
+                <button
+                  onClick={handleNextPage}
+                  disabled={endIndex >= staticData.length}
+                >
+                  Next
+                </button>
+              </div> */}
             </div>
           )
         ) : (
