@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "@rainbow-me/rainbowkit/styles.css";
+import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 import {
   RainbowKitProvider,
   getDefaultWallets,
@@ -12,6 +13,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import Navbar from "./Components/Navbar/Navbar";
 import { usePathname } from "next/navigation";
+import {
+  rabbyWallet,
+  rainbowWallet,
+  metaMaskWallet,
+  coinbaseWallet,
+  walletConnectWallet,
+  uniswapWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 import { color } from "framer-motion";
 // import { scrollSepolia } from "wagmi/chains";
 const { wallets } = getDefaultWallets();
@@ -223,12 +232,30 @@ export function Providers({ children }) {
     arbitrumSepolia,
     polygonAmoy,
   ];
+
+  const connectors = connectorsForWallets(
+    [
+      {
+        groupName: "Suggested",
+        wallets: [
+          rainbowWallet,
+          metaMaskWallet,
+          coinbaseWallet,
+          walletConnectWallet,
+          rabbyWallet,
+          uniswapWallet,
+        ],
+      },
+    ],
+    { appName: "RainbowKit App", projectId: "YOUR_PROJECT_ID" }
+  );
   const config = getDefaultConfig({
     appName: "RainbowKit demo",
     projectId: "f8a6524307e28135845a9fe5811fcaa2",
     autoConnect: true,
     chains: chains,
     ssr: true,
+    connectors,
   });
   const queryClient = new QueryClient();
   const isHome = path === "/";

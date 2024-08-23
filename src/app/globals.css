@@ -23,7 +23,9 @@ body {
 body::-webkit-scrollbar {
   width: var(--sb-size);
 }
-
+.ant-picker-input input::placeholder {
+  color: red;
+}
 body::-webkit-scrollbar-track {
   background: var(--sb-track-color);
   border-radius: 10px;

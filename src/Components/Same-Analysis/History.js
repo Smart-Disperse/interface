@@ -1,12 +1,19 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import histroyStyle from "./history.module.css";
+import { DatePicker, Space } from "antd";
+import moment from "moment";
 import {
   faArrowDown,
   faArrowUp,
   faCopy,
   faMagnifyingGlass,
-  faCircleCheck,
+  faChevronDown,
+  faChevronUp,
+  faChartColumn,
+  faFilter,
+  faFilterCircleXmark,
+  faLineChart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchUserLabels } from "@/Helpers/FetchUserLabels";
@@ -17,6 +24,7 @@ import {
 } from "@/Helpers/GetSentTransactions";
 import { useAccount, useChainId } from "wagmi";
 import popup from "@/Components/Dashboard/popupTable.module.css";
+import { FaFilter } from "react-icons/fa";
 
 function History() {
   const { address } = useAccount();
@@ -141,15 +149,15 @@ function History() {
   };
 
   // Event handler for changing start date
-  const handleStartDateChange = (event) => {
+  const handleStartDateChange = (date, dateString) => {
     const newStartDate = event.target.value;
-    setStartDate(newStartDate);
+    setStartDate(date);
   };
 
   // Event handler for changing end date
-  const handleEndDateChange = (event) => {
+  const handleEndDateChange = (date) => {
     const newEndDate = event.target.value;
-    setEndDate(newEndDate);
+    setEndDate(date);
   };
 
   useEffect(() => {
@@ -304,6 +312,24 @@ function History() {
       setRender((prev) => prev + 1);
     }
   }, [address, chainId]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <div className={histroyStyle.maindivofhisotry}>
@@ -322,90 +348,118 @@ function History() {
                 />
               </button>
             </div>
-            <div className={histroyStyle.filterdiv}>
-              <div style={{ display: "flex", gap: "5px" }}>
-                <div className={histroyStyle.labeldate}>
-                  {/* Start date: */}
-                  <input
-                    type="date"
-                    className={histroyStyle.dateInput}
-                    value={startDate}
-                    onChange={handleStartDateChange}
-                    placeholder="Start Date"
-                  />
-                </div>
-                <div className={histroyStyle.labeldate}>
-                  {/* End date: */}
-                  <input
-                    type="date"
-                    className={histroyStyle.dateInput}
-                    value={endDate}
-                    onChange={handleEndDateChange}
-                  />
-                </div>
-              </div>
-              {/* <select
-                value={selectedToken}
-                onChange={handleTokenChange}
-                className={histroyStyle.dropdown}
-              > */}
-              {/* DROP DOWN FOR SHOWING TOKENS */}
-              {/* <option value="Select" className={histroyStyle.chainOptions}>
-                  Select
-                </option>
-                <option value="Eth" className={histroyStyle.chainOptions}>
-                  ETH
-                </option>
-
-                {tokenListOfUser.length > 0
-                  ? tokenListOfUser.map((token, index) => (
-                      <option
-                        key={index}
-                        value={token.tokenAddress}
-                        className={histroyStyle.chainOptions}
-                      >
-                        {token.symbol}
-                      </option>
-                    ))
-                  : null}
-              </select> */}
-
-              <div className={histroyStyle.dropdownWrapper} ref={dropdownRef}>
-                <div
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className={histroyStyle.dropdown}
+            <div className={histroyStyle.filterContainer}>
+              <button
+                onClick={toggleOpen}
+                className={`${histroyStyle.filterButton} flex items-center justify-between w-full px-4 py-2 text-left bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200`}
+              >
+                <span>Filter</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mr-2"
                 >
-                  {selectedToken || "Select"}
-                </div>
-                {isDropdownOpen && (
-                  <div className={histroyStyle.dropdownMenu}>
-                    <div
-                      onClick={() => handleTokenChange("Select", "Select")}
-                      className={histroyStyle.chainOptions}
-                    >
-                      Select
+                  <path
+                    d="M2.5 5.83333H17.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M5 10H15"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M8.33333 14.1667H11.6667"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+              {isOpen ? (
+                <div
+                  ref={contentRef}
+                  style={{
+                    maxHeight: isOpen
+                      ? `${contentRef.current?.scrollHeight}px`
+                      : "0",
+
+                    transition: "max-height 0.3s ease-in-out",
+                  }}
+                  className={`${histroyStyle.filterContent} bg-white rounded-b-md shadow-md`}
+                >
+                  <div className={`${histroyStyle.filterdiv} p-4`}>
+                    <div className="flex gap-4 mb-4">
+                      <div className={histroyStyle.labeldate}>
+                        <DatePicker
+                          value={startDate}
+                          className={histroyStyle.dateInput}
+                          onChange={handleStartDateChange}
+                          placeholder="Start Date"
+                        />
+                      </div>
+                      <div className={histroyStyle.labeldate}>
+                        <DatePicker
+                          className={histroyStyle.dateInput}
+                          value={endDate}
+                          onChange={handleEndDateChange}
+                          placeholder="End Date"
+                        />
+                      </div>
                     </div>
                     <div
-                      onClick={() => handleTokenChange("Eth", "ETH")}
-                      className={histroyStyle.chainOptions}
+                      className={histroyStyle.dropdownWrapper}
+                      ref={dropdownRef}
                     >
-                      ETH
-                    </div>
-                    {tokenListOfUser.length > 0 &&
-                      tokenListOfUser.map((token, index) => (
+                      <div
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className={`${histroyStyle.dropdown} cursor-pointer`}
+                      >
+                        {selectedToken || "Select Token"}
+                      </div>
+                      {isDropdownOpen && (
                         <div
-                          key={index}
-                          onClick={() =>
-                            handleTokenChange(token.tokenAddress, token.symbol)
-                          }
-                          className={histroyStyle.chainOptions}
+                          className={`${histroyStyle.dropdownMenu} absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg`}
                         >
-                          {token.symbol}
+                          <div
+                            onClick={() => {
+                              handleTokenChange("Eth", "ETH");
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`${histroyStyle.chainOptions} px-4 py-2 hover:bg-gray-100 cursor-pointer`}
+                          >
+                            ETH
+                          </div>
+                          {tokenListOfUser.length > 0 &&
+                            tokenListOfUser.map((token, index) => (
+                              <div
+                                key={index}
+                                onClick={() => {
+                                  handleTokenChange(
+                                    token.tokenAddress,
+                                    token.symbol
+                                  );
+                                  setIsDropdownOpen(false);
+                                }}
+                                className={`${histroyStyle.chainOptions} px-4 py-2 hover:bg-gray-100 cursor-pointer`}
+                              >
+                                {token.symbol}
+                              </div>
+                            ))}
                         </div>
-                      ))}
+                      )}
+                    </div>
                   </div>
-                )}
-              </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className={histroyStyle.tableandheadingdiv}>
@@ -510,7 +564,6 @@ function History() {
                 </table>
               </div>
 
-              {/* Fetching tx data in */}
               {isLoading ? (
                 <div style={{ position: "relative", top: "100px" }}>
                   Fetching transaction History...
@@ -624,7 +677,6 @@ function History() {
                                 fontWeight: "600",
                               }}
                             >
-                              {/* {transaction.transactionHash} */}
                               {transaction.transactionHash && (
                                 <a
                                   href={`https://${explorerUrl}/tx/${transaction.transactionHash}`}
