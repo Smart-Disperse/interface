@@ -61,12 +61,20 @@
   border-radius: 20px;
   margin-top: 30px;
 }
+.histroyStyle_dateInput input::placeholder {
+  color: #dd2121; /* Replace with your desired color */
+  opacity: 1;
+}
 
+/* Alternatively, target the Ant Design specific class */
+.ant-picker-input input::placeholder {
+  color: #1a004f; /* Replace with your desired color */
+  opacity: 1;
+}
 .tablediv1 {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
 }
 
 .maintablediv {
@@ -86,7 +94,10 @@
 .headingdiv {
   font-weight: 300;
   font-size: 25px;
-  color: #00ffff;
+  background: -webkit-linear-gradient(#00ffff, #5fffbc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: 2px;
 }
 

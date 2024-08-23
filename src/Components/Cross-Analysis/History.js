@@ -25,7 +25,7 @@ import { ethers } from "ethers";
 function History() {
   const { address } = useAccount();
   const chainId = useChainId();
-
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedToken, setSelectedToken] = useState("Select");
   const [tokenListOfUser, setTokenListOfUser] = useState([]);
   const [transactionData, setTransactionData] = useState([]);
@@ -55,7 +55,7 @@ function History() {
   const [selectedTokenSymbol, setSelectedTokenSymbol] = useState("ETH");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const toggleFilter = () => setIsFilterOpen(!isFilterOpen);
   // ***************  FETCHING TRANSACTION DATA FROM GetCrossChainTransactions  *****************
   const fetchCrossChainTransactions = async () => {
     const data = await getCrossChainTransactions(address, chainId);
@@ -329,6 +329,56 @@ function History() {
       <div className={histroyStyle.searchtablediv}>
         <div className={histroyStyle.maintablediv}>
           <div className={histroyStyle.tablediv1}>
+            <div className="relative">
+              <button
+                onClick={toggleFilter}
+                className="flex items-center bg-white px-3 py-2 rounded-lg shadow-sm"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mr-2"
+                >
+                  <path
+                    d="M2.5 5.83333H17.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M5 10H15"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M8.33333 14.1667H11.6667"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <span>Filter</span>
+                {/* <ChevronDown size={20} className="ml-2" /> */}
+              </button>
+
+              {isFilterOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
+                  <div className="p-2 border-b">
+                    <strong>Filter & Sort</strong>
+                  </div>
+                  <div className="p-2">
+                    <div className="mb-2">Sort By</div>
+                    <div className="mb-2">Content</div>
+                    <div>State</div>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className={histroyStyle.searchdiv}>
               <input
                 placeholder="Search by address or hash"

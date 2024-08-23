@@ -81,7 +81,53 @@
   justify-content: space-between;
   align-items: center;
 }
+.filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
 
+.filter-button {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.date-picker-container {
+  padding: 8px 16px;
+}
+.ant-select-outlined:not .ant-select-selector {
+  background: transparent !important;
+}
 .headingdiv {
   font-weight: 300;
   font-size: 2vw;
