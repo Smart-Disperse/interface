@@ -472,7 +472,7 @@ function History() {
               </div>
             </div>
           </div>
-          <div className={histroyStyle.tableandheadingdiv}>
+          {/* <div className={histroyStyle.tableandheadingdiv}>
             <div className={popup.tablediv}>
               <div className={popup.head}>
                 <table className={popup.table}>
@@ -483,11 +483,6 @@ function History() {
                       <th className={popup.column3}>Token</th>
                       <th className={popup.column4}>
                         Amount
-                        {/* {expandedRows[index] ? (
-                                  <FontAwesomeIcon icon={faArrowUp} />
-                                ) : (
-                                  <FontAwesomeIcon icon={faArrowDown} />
-                                )} */}
                       </th>
                       <th className={popup.column5}>Fees (ETH)</th>
                       <th className={popup.column6}>Transaction Hash</th>
@@ -524,7 +519,6 @@ function History() {
                 </table>
               </div>
 
-              {/* Fetching tx data */}
               {isLoading ? (
                 <div style={{ position: "relative", top: "100px" }}>
                   Fetching transaction History...
@@ -602,6 +596,109 @@ function History() {
                 </div>
               )}
             </div>
+          </div> */}
+
+          <div className={histroyStyle.tableWrapper}>
+            <table>
+              <thead>
+                <tr className={histroyStyle.sticky}>
+                  <th>Sender</th>
+                  <th>Destination Chain</th>
+                  <th>Token</th>
+                  <th>Amount</th>
+                  <th>Fees (ETH)</th>
+                  <th>Transaction Hash</th>
+                  <th>
+                    Date
+                    {sortingByDate ? (
+                      <button
+                        className={popup.btnhoverpointer}
+                        style={{
+                          background: "transparent",
+                          color: "black",
+                          border: "none",
+                        }}
+                        onClick={dortDate}
+                      >
+                        <FontAwesomeIcon icon={faArrowUp} />
+                      </button>
+                    ) : (
+                      <button
+                        className={popup.btnhoverpointer}
+                        style={{
+                          background: "transparent",
+                          color: "black",
+                          border: "none",
+                        }}
+                        onClick={sortDate}
+                      >
+                        <FontAwesomeIcon icon={faArrowDown} />
+                      </button>
+                    )}
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {!searchLoading &&
+                filteredTransactions &&
+                filteredTransactions.length > 0 ? (
+                  filteredTransactions.map((transaction, index) => (
+                    <tr key={index}>
+                      <td>
+                        {`${transaction.sender.slice(
+                          0,
+                          7
+                        )}...${transaction.sender.slice(-4)}`}
+                      </td>
+
+                      <td>
+                        {(chainNameMapping &&
+                          chainNameMapping[transaction.destinationChainSelector]
+                            ?.chainName) ||
+                          "Unknown Chain"}
+                      </td>
+
+                      <td>
+                        {loadTokenForDisplay(transaction.tokenAddress)}
+                      </td>
+                      <td>
+                        {transaction.tokenAmount}
+                      </td>
+
+                      <td>
+                        {(+ethers.utils.formatEther(transaction.fees)).toFixed(
+                          4
+                        )}
+                      </td>
+                      <td>
+                        <a
+                          href={`https://ccip.chain.link/tx/${transaction.transactionHash}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "white" }}
+                        >
+                          {`${transaction.transactionHash.slice(
+                            0,
+                            7
+                          )}...${transaction.transactionHash.slice(-4)}`}
+                        </a>
+                      </td>
+                      <td>
+                        {transaction.blockTimestamp}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                 
+                    <tr>
+                      <td colSpan="7">
+                        No transactions found.
+                      </td>
+                    </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
