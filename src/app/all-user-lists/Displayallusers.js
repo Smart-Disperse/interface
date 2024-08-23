@@ -130,53 +130,147 @@ function Displayallusers() {
 
   return (
     <div className={displayuser.maindivofdashboard}>
-      <div style={{ position: "relative" }}>
-        <Image className={displayuser.dashbgImg1} src={img3} alt="none" />
-        <Image className={displayuser.dashbgImg2} src={img4} alt="none" />
+      <div className={displayuser.titledivdashboard}>
+        <div className={displayuser.imagesinthis}></div>
+        <h1 className={displayuser.heading}>Customize Your Connections</h1>
+        <h3 className={displayuser.content}>
+          Edit and Delete Entries in a Snap for Effortless Data Management!"
+        </h3>
       </div>
-      <div className={displayuser.samedashmainm}>
-        <div className={displayuser.titledivdashboard}>
-          <div className={displayuser.imagesinthis}></div>
-          <h1>Customize Your Connections</h1>
-          <h3 className={displayuser.dashpera}>
-            Edit and Delete Entries in a Snap for Effortless Data Management!"
-          </h3>
-        </div>
 
-        <div className={displayuser.maindivforalloptiondashboard}>
-          {address ? (
-            isLoading ? (
-              <div>
-                <Image src={loader.src} alt="none" width={100} height={100} />
-              </div>
-            ) : usersData?.length === 0 ? (
-              <div>
-                <Image src={notfound} alt="none" width={400} height={300} />
-                <h2>No Data Found!!</h2>
-                <h3>
-                  Please try again or{" "}
-                  <button
-                    onClick={handleRefreshpage}
-                    className={displayuser.refreshbtn}
-                  >
-                    Refresh the page
-                  </button>
-                </h3>
-              </div>
-            ) : (
-              <div className={displayuser.displaydatatablewrapper}>
-                <table className={displayuser.displaytable}>
-                  <thead>
-                    <tr>
-                      <th className={displayuser.displayheader}>Name</th>
-                      <th className={displayuser.displayheader}>Address</th>
-                      <th className={displayuser.displayheader}>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {usersData?.map((user, index) => (
+      <div className={displayuser.maindivforalloptiondashboard}>
+        {address ? (
+          isLoading ? (
+            <div>
+              <Image src={loader.src} alt="none" width={100} height={100} />
+            </div>
+          ) : usersData?.length === 0 ? (
+            <div>
+              <Image src={notfound} alt="none" width={400} height={300} />
+              <h2>No Data Found!!</h2>
+              <h3>
+                Please try again or{" "}
+                <button
+                  onClick={handleRefreshpage}
+                  className={displayuser.refreshbtn}
+                >
+                  Refresh the page
+                </button>
+              </h3>
+            </div>
+          ) : (
+            // <div className={displayuser.displaydatatablewrapper}>
+            //   <table className={displayuser.displaytable}>
+            //     <thead>
+            //       <tr>
+            //         <th className={displayuser.displayheader}>Name</th>
+            //         <th className={displayuser.displayheader}>Address</th>
+            //         <th className={displayuser.displayheader}>Actions</th>
+            //       </tr>
+            //     </thead>
+            //     <tbody>
+            //       {usersData?.map((user, index) => (
+            //         <tr
+            //           style={{ background: "#ffffff1a" }}
+            //           key={index}
+            //           className={
+            //             index % 2 === 0
+            //               ? `${displayuser.displayevenrow}`
+            //               : `${displayuser.displayoddrow}`
+            //           }
+            //         >
+            //           <td className={displayuser.displaycell}>
+            //             {editUserIndex === index ? (
+            //               <input
+            //                 className={displayuser.editinput}
+            //                 type="text"
+            //                 value={editName}
+            //                 onChange={(e) => {
+            //                   const inputValue = e.target.value;
+            //                   // Regular expression to allow only alphanumeric characters without spaces
+            //                   const regex = /^[a-zA-Z0-9]*$/;
+            //                   if (
+            //                     inputValue.length <= 10 &&
+            //                     regex.test(inputValue)
+            //                   ) {
+            //                     setEditName(inputValue);
+            //                   }
+            //                 }}
+            //               />
+            //             ) : (
+            //               user.name
+            //             )}
+            //           </td>
+            //           <td className={displayuser.displaycell}>
+            //             {user.address}
+            //           </td>
+            //           <td
+            //             style={{ display: "flex" }}
+            //             className={displayuser.displaycellbuttons}
+            //           >
+            //             {editUserIndex === index ? (
+            //               <div>
+            //                 <button
+            //                   className={displayuser.displayupdatebutton}
+            //                   onClick={handleUpdate}
+            //                 >
+            //                   <FontAwesomeIcon
+            //                     icon={faCheck}
+            //                     style={{ color: "#f5f9ff" }}
+            //                   />
+            //                 </button>
+            //                 <button
+            //                   className={displayuser.displayupdatebutton}
+            //                   onClick={handleAbortedit}
+            //                 >
+            //                   <FontAwesomeIcon
+            //                     icon={faXmark}
+            //                     style={{ color: "#f5f9ff" }}
+            //                   />
+            //                 </button>
+            //               </div>
+            //             ) : (
+            //               <button
+            //                 className={displayuser.displayeditbutton}
+            //                 onClick={() => handleEdit(index)}
+            //               >
+            //                 <FontAwesomeIcon
+            //                   className={displayuser.editicon}
+            //                   icon={faPenToSquare}
+            //                   // style={{ color: "#ffffff" }}
+            //                 />
+            //               </button>
+            //             )}
+            //             <button
+            //               className={displayuser.displaydeletebutton}
+            //               onClick={() => handleDelete(index)}
+            //             >
+            //               <FontAwesomeIcon
+            //                 className={displayuser.deleteicon}
+            //                 icon={faTrash}
+            //               />
+            //             </button>
+            //           </td>
+            //         </tr>
+            //       ))}
+            //     </tbody>
+            //   </table>
+            //   <ToastContainer />
+            // </div>
+
+            <div className={displayuser.tableWrapper}>
+              <table>
+                <thead>
+                  <tr className={displayuser.sticky}>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {usersData && usersData.length > 0 ? (
+                    usersData.map((user, index) => (
                       <tr
-                        style={{ background: "#ffffff1a" }}
                         key={index}
                         className={
                           index % 2 === 0
@@ -184,7 +278,7 @@ function Displayallusers() {
                             : `${displayuser.displayoddrow}`
                         }
                       >
-                        <td className={displayuser.displaycell}>
+                        <td>
                           {editUserIndex === index ? (
                             <input
                               className={displayuser.editinput}
@@ -192,7 +286,6 @@ function Displayallusers() {
                               value={editName}
                               onChange={(e) => {
                                 const inputValue = e.target.value;
-                                // Regular expression to allow only alphanumeric characters without spaces
                                 const regex = /^[a-zA-Z0-9]*$/;
                                 if (
                                   inputValue.length <= 10 &&
@@ -206,13 +299,8 @@ function Displayallusers() {
                             user.name
                           )}
                         </td>
-                        <td className={displayuser.displaycell}>
-                          {user.address}
-                        </td>
-                        <td
-                          style={{ display: "flex" }}
-                          className={displayuser.displaycellbuttons}
-                        >
+                        <td>{user.address}</td>
+                        <td>
                           {editUserIndex === index ? (
                             <div>
                               <button
@@ -257,19 +345,25 @@ function Displayallusers() {
                           </button>
                         </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <ToastContainer />
-              </div>
-            )
-          ) : (
-            <div style={{ fontSize: "18px", fontWeight: "500" }}>
-              <h2>Please connect your wallet</h2>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="3" className={displayuser.nodata}>
+                        No data found
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
-          )}
-        </div>
+          )
+        ) : (
+          <div style={{ fontSize: "18px", fontWeight: "500" }}>
+            <h2>Please connect your wallet</h2>
+          </div>
+        )}
       </div>
+
       <Footer />
     </div>
   );

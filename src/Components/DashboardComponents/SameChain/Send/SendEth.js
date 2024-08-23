@@ -37,6 +37,7 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import HowItWorks from "./HowItWorks";
+import { Tooltip } from "antd";
 
 function SendEth({ listData, setListData }) {
   const [activeTab, setActiveTab] = useState("text");
@@ -76,11 +77,9 @@ function SendEth({ listData, setListData }) {
     setIsHowItWorksOpen(true);
   };
 
-  
   const closeModal = () => {
     setIsHowItWorksOpen(false);
   };
-
 
   const renderComponent = (tab) => {
     switch (tab) {
@@ -362,12 +361,21 @@ function SendEth({ listData, setListData }) {
               </div>
 
               <div>
-                <button
-                  className={samechainStyle.howWorks}
-                  onClick={showModal}
+                <Tooltip
+                  title="How it works"
+                  placement="bottom"
+                  color="white"
+                  overlayInnerStyle={{
+                    borderRadius: "8px",
+                    fontWeight: "600",
+                    color: "#8d38fb",
+                  }}
                 >
-                  How its work
+                  <button className={samechainStyle.howWorks} onClick={showModal}>
+                  ?
                 </button>
+                </Tooltip>
+                
               </div>
             </div>
 
