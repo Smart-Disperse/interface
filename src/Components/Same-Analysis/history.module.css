@@ -13,7 +13,7 @@
 }
 
 .searchdiv {
-  width: 40%;
+  width: 85%;
   margin: auto;
   padding: 10px 0px;
   color: white;
@@ -138,7 +138,15 @@
 .filterdiv {
   display: flex;
   align-items: center;
+  padding: 10px 20px;
+  flex-direction: column;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
   gap: 5px;
+  background-color: #4a058ee1;
+  box-shadow: 0 54px 55px rgba(0, 0, 0, 0.25), 0 -12px 30px rgba(0, 0, 0, 0.12),
+    0 4px 6px rgba(0, 0, 0, 0.12), 0 12px 13px rgba(0, 0, 0, 0.17),
+    0 -3px 5px rgba(0, 0, 0, 0.09);
 }
 
 .labeldate {
@@ -148,9 +156,10 @@
 
 .dateInput {
   border: none;
-  box-shadow: 0px 4px 17.8px 0px rgba(0, 0, 0, 0.18) inset;
-  color: white;
-  background: #694a8c;
+  background-color: #fff;
+  color: #8d37fb;
+  border-radius: 10px;
+
   border-radius: 154px;
   padding: 15px;
   /* margin: 5px; */
@@ -166,6 +175,7 @@
 .dropdownWrapper {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 
 .dropdown {
@@ -183,15 +193,22 @@
 .dropdown:hover {
   box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
 }
-
+.histroyStyle .ant-picker-input input::placeholder {
+  color: red;
+}
 .dropdownMenu {
   position: absolute;
   color: white;
+  left: -43%;
+  top: 54px;
+  border-radius: 10px;
+  padding: 10px;
   width: 100%;
   z-index: 1;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin-top: 4px;
-  background: none;
+  background-color: #4a058ee1;
+  box-shadow: 0 54px 55px rgba(0, 0, 0, 0.25), 0 -12px 30px rgba(0, 0, 0, 0.12),
+    0 4px 6px rgba(0, 0, 0, 0.12), 0 12px 13px rgba(0, 0, 0, 0.17),
+    0 -3px 5px rgba(0, 0, 0, 0.09);
 }
 
 .chainOptions {
@@ -256,7 +273,85 @@
   width: 100%;
   height: auto;
 }
+/* .............Filter css */
+.filterContainer {
+  margin: 0 auto;
+  width: 11%;
+  display: flex;
 
+  position: relative;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.filterButton {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset; */
+  padding: 12px 20px;
+  background-color: #49058e91;
+  color: white;
+  border: none;
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.filter {
+  backdrop-filter: blur(10px);
+  background-color: #4a058ee1;
+}
+.filterContent {
+  max-height: 121px;
+  width: max-content;
+  top: 64px;
+  z-index: 1;
+  position: absolute;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.filterOptions {
+  padding: 20px;
+}
+
+.dateInputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.dateInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.dropdownWrapper {
+  position: relative;
+}
+
+.dropdown {
+  padding: 10px 12px;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chainOption {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.chainOption:hover {
+  background-color: #f0f0f0;
+}
 @media screen and (max-width: 1125px) {
   .dateInput {
     border-radius: 120px;
