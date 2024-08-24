@@ -371,11 +371,13 @@ function SendEth({ listData, setListData }) {
                     color: "#8d38fb",
                   }}
                 >
-                  <button className={samechainStyle.howWorks} onClick={showModal}>
-                  ?
-                </button>
+                  <button
+                    className={samechainStyle.howWorks}
+                    onClick={showModal}
+                  >
+                    ?
+                  </button>
                 </Tooltip>
-                
               </div>
             </div>
 
@@ -465,6 +467,8 @@ function SendEth({ listData, setListData }) {
                                       style={{
                                         opacity: "0.6",
                                         marginBottom: "0",
+                                        marginTop: "2px",
+                                        fontSize: "13px",
                                       }}
                                     >
                                       {`~ $${(
@@ -533,6 +537,8 @@ function SendEth({ listData, setListData }) {
                               style={{
                                 opacity: "0.6",
                                 marginBottom: "0",
+                                marginTop: "2px",
+                                fontSize: "13px",
                               }}
                             >
                               {totalEth
@@ -552,8 +558,7 @@ function SendEth({ listData, setListData }) {
                           </td>
                           <td
                             style={{
-                              background:
-                                remaining < 0 ? "transparent" : "transparent",
+                              background: "transparent",
                               color: remaining < 0 ? "red" : "white",
                             }}
                             className={`showtoken-remaining-balance ${
@@ -564,7 +569,7 @@ function SendEth({ listData, setListData }) {
                           >
                             {remaining === null
                               ? null
-                              : `${(+remaining).toFixed(4)}  `}
+                              : `${Math.max(+remaining, 0).toFixed(0)}  `}
                           </td>
                         </tr>
                       </tbody>

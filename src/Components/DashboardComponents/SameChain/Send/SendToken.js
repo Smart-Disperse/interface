@@ -544,7 +544,9 @@ function SendToken({ listData, setListData }) {
                                     </>
                                   )}
                                 </td>
-                                <td style={{ opacity: "0.6" }}>
+                                <td
+                                  style={{ color: "white", fontWeight: "700" }}
+                                >
                                   {(+ethers.utils.formatUnits(
                                     data.value
                                   )).toFixed(4) +
@@ -593,7 +595,7 @@ function SendToken({ listData, setListData }) {
                           </thead>
                           <tbody>
                             <tr>
-                              <td style={{ opacity: "0.6" }}>
+                              <td style={{ color: "white", fontWeight: "700" }}>
                                 {totalERC20
                                   ? (+ethers.utils.formatUnits(
                                       totalERC20,
@@ -602,7 +604,11 @@ function SendToken({ listData, setListData }) {
                                   : null}{" "}
                               </td>
 
-                              <td>
+                              <td
+                                style={{
+                                  opacity: "0.6",
+                                }}
+                              >
                                 {ERC20Balance
                                   ? (+ethers.utils.formatUnits(
                                       ERC20Balance,
@@ -616,11 +622,16 @@ function SendToken({ listData, setListData }) {
                                     ? "showtoken-remaining-negative"
                                     : ""
                                 }`}
+                                style={{
+                                  color: remaining < 0 ? "red" : "white",
+                                }}
                               >
                                 {remaining === null
                                   ? null
                                   : (+ethers.utils.formatUnits(
-                                      remaining,
+                                      remaining < 0
+                                        ? ethers.BigNumber.from(0)
+                                        : remaining,
                                       tokenDetails.decimal
                                     )).toFixed(4)}
                               </td>

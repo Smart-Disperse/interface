@@ -94,7 +94,7 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
           >
             Enter Label
             <Tooltip
-              title="You can add a label from here to identify the transaction."
+              title="You can add a label from here to identify the receiver."
               placement="top"
               color="#ffffff"
               overlayInnerStyle={{

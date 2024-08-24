@@ -121,7 +121,11 @@ function SwitchChain({ closeAccountModal }) {
     >
       <button
         ref={buttonRef}
-        className={connectStyle.connectchain}
+        className={
+          chain && isChainAvailable(chain.id)
+            ? connectStyle.connectchain
+            : connectStyle.wrongbtn
+        }
         type="button"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -135,13 +139,15 @@ function SwitchChain({ closeAccountModal }) {
               className={connectStyle.logo}
             />
             <span className={connectStyle.chainName}>{chain.name}</span>
+            <FaChevronDown className={connectStyle.chainName} />
           </>
         ) : (
-          <div className={connectStyle.chainName} style={{ color: "red" }}>
+          <div className={connectStyle.wrong}>
             Wrong Network
+            <FaChevronDown className={connectStyle.chainName1} />
           </div>
         )}
-        <FaChevronDown className={connectStyle.chainName} />
+      
       </button>
 
       <div
