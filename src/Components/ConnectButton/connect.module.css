@@ -56,7 +56,28 @@
   background: white;
   text-shadow: none;
 }
+.wrongbtn{
+  color: #9747ff;
+  border: 0.5px solid #9747ff;
+  background: white;
+  text-shadow: none;
+  border: 0.5px solid #9747ff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  padding: 12px 30px;
+  border-radius: 30px;
 
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  
+  line-height: none !important;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
 .connectchain {
   position: relative;
   overflow: hidden;
@@ -75,7 +96,10 @@
   gap: 5px;
   align-items: center;
 }
-
+.wrong{
+  display: flex;
+  align-items: center;
+}
 .connectchain:hover {
   color: #9747ff;
   border: 0.5px solid #9747ff;
@@ -87,7 +111,10 @@
 .connectchain:hover .chainName {
   color: #9747ff;
 }
-
+.chainName1{
+  color: #9747ff;
+  margin-left: 5px;
+}
 .logo {
   background: white;
   border-radius: 15px;

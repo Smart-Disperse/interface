@@ -70,6 +70,7 @@
   font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.05em;
+  color: #999999;
 }
 
 
@@ -77,6 +78,7 @@
   height: 300px;
   overflow: scroll;
   font-size: 15px;
+
 }
 .tableWrapper tbody tr:hover {
   background: rgb(51 53 103 / 24%);

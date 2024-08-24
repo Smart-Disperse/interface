@@ -592,7 +592,6 @@ function SendToken({
                                       labels={labels}
                                       setLabelValues={setLabelValues}
                                       onAddLabel={onAddLabel}
-                                      
                                       index={0} // Example index, you can dynamically pass different indexes
                                       data={data}
                                     />
@@ -610,7 +609,7 @@ function SendToken({
                                   </>
                                 )}
                               </td>
-                              <td>
+                              <td style={{ color: "white", fontWeight: "700" }}>
                                 {(+ethers.utils.formatUnits(
                                   data.value,
                                   tokenDetails.decimal
@@ -681,7 +680,7 @@ function SendToken({
                   </thead>
                   <tbody>
                     <tr>
-                      <td>
+                      <td style={{ color: "white", fontWeight: "700" }}>
                         {totalERC20
                           ? (+ethers.utils.formatUnits(
                               totalERC20,
@@ -714,16 +713,24 @@ function SendToken({
                           : null}
                       </td>
                       <td
+                        className={`showtoken-remaining-balance ${
+                          remaining < 0 ? "showtoken-remaining-negative" : ""
+                        }`}
                         style={{
                           color: remaining < 0 ? "red" : "white",
                         }}
                       >
                         {remaining === null
                           ? null
+                          : +ethers.utils.formatUnits(
+                              remaining,
+                              tokenDetails.decimal
+                            ) <= 0
+                          ? "0"
                           : (+ethers.utils.formatUnits(
                               remaining,
                               tokenDetails.decimal
-                            )).toFixed(4) + " "}
+                            )).toFixed(4)}
                       </td>
                     </tr>
                   </tbody>
