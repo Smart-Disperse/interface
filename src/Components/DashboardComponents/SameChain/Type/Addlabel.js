@@ -26,7 +26,7 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
         setTimeout(() => {
           setIsCopied(false);
         }, 2000); // Reset the copy status after 2 seconds
-        toast.success("Token Address Copied Successfully!");
+        toast.success("Receiver Address Copied Successfully!");
       },
       (err) => {
         console.error("Unable to copy to clipboard:", err);
