@@ -15,20 +15,17 @@
 .searchdiv {
   width: 85%;
   margin: auto;
-  padding: 10px 0px;
+  padding: 8px 0px;
   color: white;
   border: 1.16px solid #6e58ae;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(
-    90.16deg,
-    rgba(125, 69, 215, 0.38) 0.06%,
-    rgba(84, 56, 165, 0.38) 98.57%
-  );
-  border-radius: 203px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background: #49058e91;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
 }
+
 
 .searchinputbox {
   border: none;
@@ -61,7 +58,7 @@
   flex-direction: row;
   height: 30px;
   width: 30px;
-  background: linear-gradient(111.11deg, #b659ff 11.51%, #6977ff 84.76%);
+  background: transparent;
   align-items: center;
   justify-content: center;
   margin-right: 7px;
@@ -84,6 +81,9 @@
 .filter-dropdown {
   position: relative;
   display: inline-block;
+}
+.notfound:hover{
+  background-color: transparent !important;
 }
 
 .filter-button {
@@ -138,6 +138,7 @@
 .filterdiv {
   display: flex;
   align-items: center;
+  border: 1px solid white;
   padding: 10px 20px;
   flex-direction: column;
   border-radius: 10px;
@@ -152,6 +153,7 @@
 .labeldate {
   display: flex;
   flex-direction: column;
+  margin: 10px 0px;
 }
 
 .dateInput {
@@ -179,15 +181,16 @@
 }
 
 .dropdown {
-  border: 1px solid white;
-  box-shadow: 0px 4px 17.8px 0px rgba(0, 0, 0, 0.18) inset;
-  border-radius: 63px;
-  min-width: 60px;
-  padding: 12px 25px;
-  background: transparent;
-  color: white;
-  z-index: 2;
+  padding: 8px 12px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  color: #8d37fb;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdown:hover {
@@ -199,10 +202,10 @@
 .dropdownMenu {
   position: absolute;
   color: white;
-  left: -43%;
+  left: -8%;
   top: 54px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 8px;
   width: 100%;
   z-index: 1;
   background-color: #4a058ee1;
@@ -212,19 +215,20 @@
 }
 
 .chainOptions {
-  padding: 10px;
+  padding: 8px;
   cursor: pointer;
   background-color: #49058e91;
   border-radius: 10px;
   border: 0.5px solid white;
   backdrop-filter: blur(5px);
-  font-size: 12px;
+  font-size: 15px;
+  margin: 8px 0px;
 }
 
 .chainOptions:hover {
   border: 1.16px solid #6e58ae;
   background-color: white;
-  color: #6e58ae;
+  color: #8d37fb;
 }
 
 .tableandheadingdiv {
@@ -288,9 +292,9 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-    rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset; */
-  padding: 12px 20px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
+  padding: 12px 15px;
   background-color: #49058e91;
   color: white;
   border: none;
@@ -335,13 +339,13 @@
   position: relative;
 }
 
-.dropdown {
-  padding: 10px 12px;
-  background-color: transparent;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
+
+.dropdownIcon {
+  margin-left: 8px;
+  margin-top: 1px;
+  font-size: 12px;
 }
+
 
 .chainOption {
   padding: 10px 12px;

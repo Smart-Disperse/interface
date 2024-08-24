@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import histroyStyle from "./history.module.css";
 import { DatePicker, Space } from "antd";
+import { FaChevronDown } from "react-icons/fa";
 import moment from "moment";
 import {
   faArrowDown,
@@ -30,7 +31,7 @@ function History() {
   const { address } = useAccount();
   const chainId = useChainId();
   const [render, setRender] = useState(1);
-  const [selectedToken, setSelectedToken] = useState("Select");
+  const [selectedToken, setSelectedToken] = useState("Select Token");
   const [tokenListOfUser, setTokenListOfUser] = useState([]);
   const [transactionData, setTransactionData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +55,8 @@ function History() {
   // const [selectedToken, setSelectedToken] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const filterContainerRef = useRef(null);
+
 
   const [selectedTokenSymbol, setSelectedTokenSymbol] = useState("ETH");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -150,13 +153,13 @@ function History() {
 
   // Event handler for changing start date
   const handleStartDateChange = (date, dateString) => {
-    const newStartDate = event.target.value;
+    checkAllFieldsFilled();
     setStartDate(date);
   };
 
   // Event handler for changing end date
   const handleEndDateChange = (date) => {
-    const newEndDate = event.target.value;
+    checkAllFieldsFilled();
     setEndDate(date);
   };
 
@@ -179,6 +182,7 @@ function History() {
       setSelectedToken(tokenAddress);
       setSelectedTokenSymbol(tokenSymbol);
       setIsDropdownOpen(false); // Close the dropdown
+      checkAllFieldsFilled();
     } catch (error) {
       console.error("Error fetching token data:", error);
     } finally {
@@ -235,7 +239,12 @@ function History() {
       setTotalAmount(0);
     }
   };
-
+  const checkAllFieldsFilled = () => {
+    if (startDate && endDate && selectedToken) {
+      setIsOpen(false);
+      setIsDropdownOpen(false);
+    }
+  };
   useEffect(() => {
     // Recalculate total amount whenever filtered transactions change
     calculateTotalAmount(filteredTransactions);
@@ -321,6 +330,7 @@ function History() {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
+      
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -328,8 +338,24 @@ function History() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  
 
   const toggleOpen = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (filterContainerRef.current && !filterContainerRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={histroyStyle.maindivofhisotry}>
@@ -348,8 +374,9 @@ function History() {
                 />
               </button>
             </div>
-            <div className={histroyStyle.filterContainer}>
+            <div className={histroyStyle.filterContainer}  >
               <button
+          
                 onClick={toggleOpen}
                 className={`${histroyStyle.filterButton} flex items-center justify-between w-full px-4 py-2 text-left bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200`}
               >
@@ -422,14 +449,21 @@ function History() {
                         className={`${histroyStyle.dropdown} cursor-pointer`}
                       >
                         {selectedToken || "Select Token"}
+                        <FaChevronDown className={histroyStyle.dropdownIcon} />
                       </div>
                       {isDropdownOpen && (
                         <div
                           className={`${histroyStyle.dropdownMenu} absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg`}
                         >
+                          {/* <div
+                      onClick={() => handleTokenChange(" Select Token", " Select Token")}
+                      className={histroyStyle.chainOptions}
+                    >
+                      Select Token
+                   </div> */}
                           <div
                             onClick={() => {
-                              handleTokenChange("Eth", "ETH");
+                              handleTokenChange("ETH", "ETH");
                               setIsDropdownOpen(false);
                             }}
                             className={`${histroyStyle.chainOptions} px-4 py-2 hover:bg-gray-100 cursor-pointer`}
@@ -957,7 +991,7 @@ function History() {
                     </tr>
                   ))
                 ) : (
-                  <tr>
+                  <tr className={histroyStyle.notfound}>
                     <td colSpan="7">No transactions found.</td>
                   </tr>
                 )}

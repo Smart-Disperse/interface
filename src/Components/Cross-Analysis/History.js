@@ -8,6 +8,8 @@ import {
   faMagnifyingGlass,
   faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import { FaChevronDown } from "react-icons/fa";
+import { DatePicker, Space } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchUserLabels } from "@/Helpers/FetchUserLabels";
 import {
@@ -24,9 +26,10 @@ import { ethers } from "ethers";
 
 function History() {
   const { address } = useAccount();
+  const toggleOpen = () => setIsOpen(!isOpen);
   const chainId = useChainId();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [selectedToken, setSelectedToken] = useState("Select");
+  const [selectedToken, setSelectedToken] = useState("Select Token");
   const [tokenListOfUser, setTokenListOfUser] = useState([]);
   const [transactionData, setTransactionData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,6 +58,7 @@ function History() {
   const [selectedTokenSymbol, setSelectedTokenSymbol] = useState("ETH");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
   const toggleFilter = () => setIsFilterOpen(!isFilterOpen);
   // ***************  FETCHING TRANSACTION DATA FROM GetCrossChainTransactions  *****************
   const fetchCrossChainTransactions = async () => {
@@ -168,15 +172,15 @@ function History() {
   };
 
   // Event handler for changing start date
-  const handleStartDateChange = (event) => {
-    const newStartDate = event.target.value;
-    setStartDate(newStartDate);
+  const handleStartDateChange = (date) => {
+    checkAllFieldsFilled()
+        setStartDate(date);
   };
 
   // Event handler for changing end date
-  const handleEndDateChange = (event) => {
-    const newEndDate = event.target.value;
-    setEndDate(newEndDate);
+  const handleEndDateChange = (date) => {
+    checkAllFieldsFilled()  
+      setEndDate(date);
   };
 
   useEffect(() => {
@@ -198,6 +202,7 @@ function History() {
       setSelectedToken(tokenAddress);
       setSelectedTokenSymbol(tokenSymbol);
       setIsDropdownOpen(false); // Close the dropdown
+      checkAllFieldsFilled()
     } catch (error) {
       console.error("Error fetching token data:", error);
     } finally {
@@ -257,7 +262,12 @@ function History() {
       setTotalAmount(0);
     }
   };
-
+  const checkAllFieldsFilled = () => {
+    if (startDate && endDate && selectedToken) {
+      setIsOpen(false);
+      setIsDropdownOpen(false);
+    }
+  };
   useEffect(() => {
     // Recalculate total amount whenever filtered transactions change
     calculateTotalAmount(filteredTransactions);
@@ -324,16 +334,50 @@ function History() {
     fetchData(address);
   }, [address, selectedToken]);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={histroyStyle.maindivofhisotry}>
       <div className={histroyStyle.searchtablediv}>
         <div className={histroyStyle.maintablediv}>
           <div className={histroyStyle.tablediv1}>
-            <div className="relative">
+          
+
+            <div className={histroyStyle.searchdiv}>
+              <input
+                placeholder="Search by address or hash"
+                className={histroyStyle.searchinputbox}
+                onChange={handleSearchChange}
+              />
+              <button className={histroyStyle.searchbtn}>
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  className={histroyStyle.searchicon}
+                />
+              </button>
+            </div>
+            <div className={histroyStyle.filterContainer} >
               <button
-                onClick={toggleFilter}
-                className="flex items-center bg-white px-3 py-2 rounded-lg shadow-sm"
+                ref={dropdownRef}
+                onClick={toggleOpen}
+                className={`${histroyStyle.filterButton} flex items-center justify-between w-full px-4 py-2 text-left bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200`}
               >
+                <span>Filter</span>
                 <svg
                   width="20"
                   height="20"
@@ -361,96 +405,56 @@ function History() {
                     strokeLinecap="round"
                   />
                 </svg>
-                <span>Filter</span>
-                {/* <ChevronDown size={20} className="ml-2" /> */}
               </button>
+              {isOpen ? (
+                <div
+                  ref={contentRef}
+                  style={{
+                    maxHeight: isOpen
+                      ? `${contentRef.current?.scrollHeight}px`
+                      : "0",
 
-              {isFilterOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
-                  <div className="p-2 border-b">
-                    <strong>Filter & Sort</strong>
-                  </div>
-                  <div className="p-2">
-                    <div className="mb-2">Sort By</div>
-                    <div className="mb-2">Content</div>
-                    <div>State</div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className={histroyStyle.searchdiv}>
-              <input
-                placeholder="Search by address or hash"
-                className={histroyStyle.searchinputbox}
-                onChange={handleSearchChange}
-              />
-              <button className={histroyStyle.searchbtn}>
-                <FontAwesomeIcon
-                  icon={faMagnifyingGlass}
-                  className={histroyStyle.searchicon}
-                />
-              </button>
-            </div>
-            <div className={histroyStyle.filterdiv}>
-              <div style={{ display: "flex", gap: "5px" }}>
-                <input
-                  type="date"
-                  className={histroyStyle.dateInput}
-                  value={startDate}
-                  onChange={handleStartDateChange}
-                  placeholder="Start Date"
-                />
-                <input
-                  type="date"
-                  className={histroyStyle.dateInput}
-                  value={endDate}
-                  onChange={handleEndDateChange}
-                />
-              </div>
-              {/* <select
-                value={selectedToken}
-                onChange={handleTokenChange}
-                className={histroyStyle.dropdown}
-              > */}
-              {/* DROP DOWN FOR SHOWING TOKENS */}
-              {/* <option value="Select" className={histroyStyle.chainOptions}>
-                  Select
-                </option>
-                <option value="USDC" className={histroyStyle.chainOptions}>
-                  USDC
-                </option>
-
-                {tokenListOfUser.length > 0
-                  ? tokenListOfUser.map((token, index) => (
-                      <option
-                        key={index}
-                        value={token.tokenAddress}
-                        className={histroyStyle.chainOptions}
-                      >
-                        {token.symbol}
-                      </option>
-                    ))
-                  : null}
-              </select> */}
-
-              <div className={histroyStyle.dropdownWrapper} ref={dropdownRef}>
+                    transition: "max-height 0.3s ease-in-out",
+                  }}
+                  className={`${histroyStyle.filterContent} bg-white rounded-b-md shadow-md`}
+                >
+                  <div className={`${histroyStyle.filterdiv} p-4`}>
+                    <div className="flex gap-4 mb-4">
+                      <div className={histroyStyle.labeldate}>
+                        <DatePicker
+                          value={startDate}
+                          className={histroyStyle.dateInput}
+                          onChange={handleStartDateChange}
+                          placeholder="Start Date"
+                        />
+                      </div>
+                      <div className={histroyStyle.labeldate}>
+                        <DatePicker
+                          className={histroyStyle.dateInput}
+                          value={endDate}
+                          onChange={handleEndDateChange}
+                          placeholder="End Date"
+                        />
+                      </div>
+                    </div>
+                    <div className={histroyStyle.dropdownWrapper} ref={dropdownRef}>
                 <div
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className={histroyStyle.dropdown}
                 >
-                  {selectedToken || "Select"}
+                  {selectedToken || "Select Token"}
+                  <FaChevronDown className={histroyStyle.dropdownIcon} />
                 </div>
                 {isDropdownOpen && (
                   <div className={histroyStyle.dropdownMenu}>
-                    <div
+                    {/* <div
                       onClick={() => handleTokenChange("Select", "Select")}
                       className={histroyStyle.chainOptions}
                     >
                       Select
-                    </div>
+                    </div> */}
                     <div
-                      onClick={() => handleTokenChange("Usdc", "USDC")}
+                      onClick={() => handleTokenChange("USDC", "USDC")}
                       className={histroyStyle.chainOptions}
                     >
                       USDC
@@ -470,134 +474,13 @@ function History() {
                   </div>
                 )}
               </div>
-            </div>
-          </div>
-          {/* <div className={histroyStyle.tableandheadingdiv}>
-            <div className={popup.tablediv}>
-              <div className={popup.head}>
-                <table className={popup.table}>
-                  <thead>
-                    <tr className={popup.row}>
-                      <th className={popup.column1}>Sender</th>
-                      <th className={popup.column2}>Destination Chain</th>
-                      <th className={popup.column3}>Token</th>
-                      <th className={popup.column4}>
-                        Amount
-                      </th>
-                      <th className={popup.column5}>Fees (ETH)</th>
-                      <th className={popup.column6}>Transaction Hash</th>
-                      <th className={popup.column7}>
-                        Date
-                        {sortingByDate ? (
-                          <button
-                            className={popup.btnhoverpointer}
-                            style={{
-                              background: "transparent",
-                              color: "black",
-                              border: "none",
-                            }}
-                            onClick={dortDate}
-                          >
-                            <FontAwesomeIcon icon={faArrowUp} />
-                          </button>
-                        ) : (
-                          <button
-                            className={popup.btnhoverpointer}
-                            style={{
-                              background: "transparent",
-                              color: "black",
-                              border: "none",
-                            }}
-                            onClick={sortDate}
-                          >
-                            <FontAwesomeIcon icon={faArrowDown} />
-                          </button>
-                        )}
-                      </th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
-
-              {isLoading ? (
-                <div style={{ position: "relative", top: "100px" }}>
-                  Fetching transaction History...
+                  </div>
                 </div>
               ) : (
-                <div className={popup.content}>
-                  <table className={popup.table}>
-                    <tbody>
-                      {!searchLoading &&
-                      filteredTransactions &&
-                      filteredTransactions.length > 0 ? (
-                        filteredTransactions.map((transaction, index) => (
-                          <tr className={popup.row} key={index}>
-                            <td className={popup.column1}>
-                              {`${transaction.sender.slice(
-                                0,
-                                7
-                              )}...${transaction.sender.slice(-4)}`}
-                            </td>
-                            <td className={popup.column2}>
-                              {(chainNameMapping &&
-                                chainNameMapping[
-                                  transaction.destinationChainSelector
-                                ]?.chainName) ||
-                                "Unknown Chain"}
-                            </td>
-
-                            <td className={popup.column3}>
-                              {loadTokenForDisplay(transaction.tokenAddress)}
-                            </td>
-                            <td className={popup.column4}>
-                              {transaction.tokenAmount}
-                            </td>
-
-                            <td className={popup.column5}>
-                              {(+ethers.utils.formatEther(
-                                transaction.fees
-                              )).toFixed(4)}
-                            </td>
-                            <td className={popup.column6}>
-                              <a
-                                href={`https://ccip.chain.link/tx/${transaction.transactionHash}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{ color: "white" }}
-                              >
-                                {`${transaction.transactionHash.slice(
-                                  0,
-                                  7
-                                )}...${transaction.transactionHash.slice(-4)}`}
-                              </a>
-                            </td>
-                            <td className={popup.column7}>
-                              {transaction.blockTimestamp}
-                            </td>
-                          </tr>
-                        ))
-                      ) : (
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            flexDirection: "column",
-                          }}
-                        >
-                          <tr>
-                            <td colSpan="7" className={popup.Nodata}>
-                              No transactions found.
-                            </td>
-                          </tr>
-                        </div>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+                ""
               )}
             </div>
-          </div> */}
-
+           </div>
           <div className={histroyStyle.tableWrapper}>
             <table>
               <thead>
@@ -615,7 +498,7 @@ function History() {
                         className={popup.btnhoverpointer}
                         style={{
                           background: "transparent",
-                          color: "black",
+                          color: "#ffffff7a",
                           border: "none",
                         }}
                         onClick={dortDate}
@@ -627,7 +510,7 @@ function History() {
                         className={popup.btnhoverpointer}
                         style={{
                           background: "transparent",
-                          color: "black",
+                          color: "#ffffff7a",
                           border: "none",
                         }}
                         onClick={sortDate}
@@ -691,7 +574,7 @@ function History() {
                   ))
                 ) : (
                  
-                    <tr>
+                    <tr className={histroyStyle.notfound}>
                       <td colSpan="7">
                         No transactions found.
                       </td>
