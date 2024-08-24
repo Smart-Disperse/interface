@@ -430,12 +430,25 @@
     rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
+/* ..tables */
+
+.tableWrapper::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+  margin-right: 0;
+}
+.tableWrapper::-webkit-scrollbar-thumb {
+  background: #9657eb;
+}
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .tableWrapper {
   /* border-radius: 20px; */
   margin: 10px 0px 10px 0px;
   max-height: 350px;
   overflow: auto;
-  scrollbar-width: none;
 }
 
 .tableWrapper table {
