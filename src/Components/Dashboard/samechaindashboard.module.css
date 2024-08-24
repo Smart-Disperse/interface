@@ -513,6 +513,72 @@
   color: white !important;
   background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%) !important;
 }
+
+
+/* how it works style */
+.line {
+  width: 2px;
+  height: 76%;
+  position: absolute;
+  top: 71px;
+  left: 48px;
+  background: #ffffff5e;
+  z-index: 0;
+}
+.worksitems {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  color: white;
+}
+
+.singlestep {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  z-index: 3;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.icondiv {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: 63px;
+  background: #8d37fb;
+  /* position: relative;
+  left: 10px;
+  top: 20px; */
+}
+
+.icon {
+  width: 12px !important;
+  height: auto;
+}
+
+.stepcontent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+}
+
+.stephead {
+  font-weight: 700;
+  text-align: left;
+}
+
+.steptext {
+  text-align: left;
+  font-weight: 400;
+}
+/*  */
+
 @media only screen and (min-width: 1280) {
   .samedashmainm {
     width: 70%;

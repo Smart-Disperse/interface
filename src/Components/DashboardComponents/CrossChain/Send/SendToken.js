@@ -37,6 +37,8 @@ import "driver.js/dist/driver.css";
 import DesCustomDropdown from "../Type/Destinationselect";
 import Addlabel from "../Type/Addlabel";
 import samechainStyle from "../../../Dashboard/samechaindashboard.module.css";
+import { Tooltip } from "antd";
+import HowItWorks from "../../SameChain/Send/HowItWorks";
 
 function SendToken({
   listData,
@@ -89,6 +91,8 @@ function SendToken({
   );
   const [uniqueReceiverAddresses, setUniqueReceiverAddresses] = useState([]);
   const [suffecientBalance, setSuffecientBalance] = useState(true);
+  const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
+
 
   useEffect(() => {
     setSelectedDestinationfinalChains((prevChains) => {
@@ -428,6 +432,15 @@ function SendToken({
     console.log(listData);
   };
 
+
+  const showModal = () => {
+    setIsHowItWorksOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsHowItWorksOpen(false);
+  };
+
   return (
     <>
       {address ? (
@@ -533,6 +546,33 @@ function SendToken({
                   >
                     Uploadify
                   </button>
+                </div>
+                <div>
+                  <Tooltip
+                    title="How it works"
+                    placement="bottom"
+                    color="white"
+                    overlayInnerStyle={{
+                      borderRadius: "8px",
+                      fontWeight: "600",
+                      color: "#8d38fb",
+                    }}
+                  >
+                    <button
+                      className={samechainStyle.howWorks}
+                      onClick={showModal}
+                    >
+                      ?
+                    </button>
+                  </Tooltip>
+                  {isHowItWorksOpen && (
+                    <HowItWorks
+                      activeTab={activeTab}
+                      isOpen={isHowItWorksOpen}
+                      textStyle={samechainStyle}
+                      onClose={closeModal}
+                    />
+                  )}
                 </div>
               </div>{" "}
               {isTokenLoaded ? renderComponent(activeTab) : null}
