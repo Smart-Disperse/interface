@@ -40,6 +40,9 @@ const modeTestnet = {
     public: { http: ["https://sepolia.mode.network/"] },
     default: { http: ["https://sepolia.mode.network/"] },
   },
+  blockExplorers: {
+    default: { name: "Mode Testnet Explorer", url: "https://sepolia.mode.network/explorer" },
+  },
 };
 
 const modeMainnet = {
@@ -57,6 +60,9 @@ const modeMainnet = {
     public: { http: ["https://mainnet.mode.network/"] },
     default: { http: ["https://mainnet.mode.network/"] },
   },
+  blockExplorers: {
+    default: { name: "Mode Mainnet Explorer", url: "https://mainnet.mode.network/explorer" },
+  },
 };
 const Base = {
   id: 8453,
@@ -72,6 +78,9 @@ const Base = {
   rpcUrls: {
     public: { http: ["https://base.llamarpc.com"] },
     default: { http: ["https://base.llamarpc.com"] },
+  },
+  blockExplorers: {
+    default: { name: "BaseScan", url: "https://basescan.org" },
   },
 };
 
@@ -91,6 +100,9 @@ const baseSepolia = {
     public: { http: ["wss://base-sepolia-rpc.publicnode.com"] },
     default: { http: ["wss://base-sepolia-rpc.publicnode.com"] },
   },
+  blockExplorers: {
+    default: { name: "BaseScan", url: "https://sepolia.basescan.org" },
+  },
 };
 const optimism = {
   id: 10,
@@ -106,6 +118,9 @@ const optimism = {
   rpcUrls: {
     public: { http: ["https://optimism.llamarpc.com"] },
     default: { http: ["https://optimism.llamarpc.com"] },
+  },
+  blockExplorers: {
+    default: { name: "Etherscan", url: "https://optimistic.etherscan.io" },
   },
 };
 const optimismSepolia = {
@@ -124,6 +139,9 @@ const optimismSepolia = {
     public: { http: ["https://sepolia.optimism.io"] },
     default: { http: ["https://sepolia.optimism.io"] },
   },
+  blockExplorers: {
+    default: { name: "Etherscan", url: "https://sepolia-optimistic.etherscan.io" },
+  },
 };
 const scroll = {
   id: 534352,
@@ -139,6 +157,9 @@ const scroll = {
   rpcUrls: {
     public: { http: ["https://scroll.drpc.org"] },
     default: { http: ["https://scroll.drpc.org"] },
+  },
+  blockExplorers: {
+    default: { name: "ScrollScan", url: "https://scrollscan.com" },
   },
 };
 const scrollSepolia = {
@@ -156,6 +177,9 @@ const scrollSepolia = {
     public: { http: ["https://scroll-sepolia.blockpi.network/v1/rpc/public"] },
     default: { http: ["https://scroll-sepolia.blockpi.network/v1/rpc/public"] },
   },
+  blockExplorers: {
+    default: { name: "ScrollScan", url: "https://sepolia.scrollscan.com" },
+  },
 };
 const sepolia = {
   dropdownchainName: "sepolia",
@@ -172,6 +196,9 @@ const sepolia = {
   rpcUrls: {
     public: { http: ["https://rpc-sepolia.rockx.com"] },
     default: { http: ["https://rpc-sepolia.rockx.com"] },
+  },
+  blockExplorers: {
+    default: { name: "Etherscan", url: "https://sepolia.etherscan.io" },
   },
 };
 
@@ -194,6 +221,9 @@ const arbitrumSepolia = {
     default: {
       http: ["https://arbitrum-sepolia.blockpi.network/v1/rpc/public"],
     },
+    blockExplorers: {
+      default: { name: "Arbiscan", url: "https://sepolia.arbiscan.io" },
+    },
   },
 };
 
@@ -212,6 +242,9 @@ const polygonAmoy = {
   rpcUrls: {
     public: { http: ["https://rpc-amoy.polygon.technology"] },
     default: { http: ["https://rpc-amoy.polygon.technology"] },
+  },
+  blockExplorers: {
+    default: { name: "PolygonScan", url: "https://amoy.polygonscan.com" },
   },
 };
 

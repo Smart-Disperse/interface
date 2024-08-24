@@ -84,7 +84,10 @@ function SwitchChain({ closeAccountModal }) {
     // Clean up function to avoid memory leaks
     return () => {};
   }, []);
+
   useEffect(() => {
+    console.log( "erroe is ",error);
+    
     if (error && error.code !== "UNSUPPORTED_CHAIN") {
       toast.error("Failed to change Network: User rejected the Request");
     }
@@ -98,6 +101,7 @@ function SwitchChain({ closeAccountModal }) {
     setDropdownVisible(true);
     closeAccountModal();
   };
+
   const isChainAvailable = (chainId) => {
     const allAvailableChains = [
       ...mainnetChains,

@@ -137,6 +137,18 @@ button {
   border: 1px solid #ccc;
   z-index: 1000; /* Ensure it appears above other content */
 }
+
 input[type="date"]::placeholder {
   content: "date";
+}
+
+
+.ant-picker-input input::placeholder {
+  color: #8D37FB !important;
+  opacity: 0.7 !important; 
+}
+
+.ant-picker-suffix{
+  color: #8D37FB !important;
+  opacity: 0.7 !important; 
 }

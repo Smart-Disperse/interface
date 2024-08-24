@@ -127,49 +127,6 @@ function Displayallusers() {
     }
   };
 
-  // const handleRefreshpage = () => {
-  //   window.location.reload();
-  // };
-
-  /*....for back next table.... */
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const rowsPerPage = 5;
-
-  // const staticData = [
-  //   { id: 1, name: "User 1", address: "Address 1" },
-  //   { id: 2, name: "User 2", address: "Address 2" },
-  //   { id: 3, name: "User 3", address: "Address 3" },
-  //   { id: 4, name: "User 4", address: "Address 4" },
-  //   { id: 5, name: "User 5", address: "Address 5" },
-  //   { id: 6, name: "User 6", address: "Address 6" },
-  //   { id: 7, name: "User 7", address: "Address 7" },
-  //   { id: 8, name: "User 8", address: "Address 8" },
-  //   { id: 1, name: "User 1", address: "Address 1" },
-  //   { id: 2, name: "User 2", address: "Address 2" },
-  //   { id: 3, name: "User 3", address: "Address 3" },
-  //   { id: 4, name: "User 4", address: "Address 4" },
-  //   { id: 5, name: "User 5", address: "Address 5" },
-  //   { id: 6, name: "User 6", address: "Address 6" },
-  //   { id: 7, name: "User 7", address: "Address 7" },
-  //   { id: 8, name: "User 8", address: "Address 8" },
-  // ];
-
-  // const handleNextPage = () => {
-  //   if ((currentPage + 1) * rowsPerPage < staticData.length) {
-  //     setCurrentPage(currentPage + 1);
-  //   }
-  // };
-
-  // const handlePreviousPage = () => {
-  //   if (currentPage > 0) {
-  //     setCurrentPage(currentPage - 1);
-  //   }
-  // };
-
-  // const startIndex = currentPage * rowsPerPage;
-  // const endIndex = startIndex + rowsPerPage;
-  // const currentRows = staticData.slice(startIndex, endIndex);
-
   return (
     <div className={displayuser.maindivofdashboard}>
       <div className={displayuser.titledivdashboard}>
@@ -276,9 +233,108 @@ function Displayallusers() {
                       </td>
                     </tr>
                   )}
+                </tbody>  */}
+
+                {/* <tbody>
+                  {usersData && usersData.length > 0 ? (
+                    usersData.map((user, index) => (
+                      <tr key={index}>
+                        <td> {user.name} </td>
+
+
+
+                        <td>{user.address}</td>
+                        
+                        <td>
+                        <button
+                              className={displayuser.displayeditbutton}
+                              onClick={() => handleEdit(index)}
+                            >
+                              <FontAwesomeIcon
+                                className={displayuser.editicon}
+                                icon={faPenToSquare}
+                              />
+                            </button>
+
+                            <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="3" className={displayuser.nodata}>
+                        No data found
+                      </td>
+                    </tr>
+                  )}
                 </tbody> */}
 
                 <tbody>
+                  <tr>
+                    <td> user.name </td>
+
+                    {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
+
+                          )} */}
+
+                    <td>user.address</td>
+
+                    <td>
+                      <div style={{
+                        display: "flex",
+                        alignItems: 'center',
+                        justifyContent: "center",
+                        gap: "14px"
+                      }}>
+                    <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                      {/* here we need to replace index 0 to index for loop */}
+                      <button
+                        className={displayuser.displaydeletebutton}
+                        onClick={() => handleDelete(index)}
+                      >
+                        <FontAwesomeIcon
+                          className={displayuser.deleteicon}
+                          icon={faTrash}
+                        />
+                      </button>
+                      </div>
+
+                    </td>
+                  </tr>
+                </tbody>
+
+                {/* <tbody>
                   <tr>
                     <td>user.name</td>
                     <td>user.address</td>
@@ -291,7 +347,6 @@ function Displayallusers() {
                         <FontAwesomeIcon
                           className={displayuser.editicon}
                           icon={faPenToSquare}
-                          // style={{ color: "#ffffff" }}
                         />
                       </button>
 
@@ -321,51 +376,14 @@ function Displayallusers() {
 
                     <td>
                       <div>
-                        <button
-                          className={displayuser.displayupdatebutton}
-                          onClick={handleUpdate}
-                        >
-                          <FontAwesomeIcon
-                            icon={faCheck}
-                            style={{ color: "#f5f9ff" }}
-                          />
-                        </button>
-                        <button
-                          className={displayuser.displayupdatebutton}
-                          onClick={handleAbortedit}
-                        >
-                          <FontAwesomeIcon
-                            icon={faXmark}
-                            style={{ color: "#f5f9ff" }}
-                          />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <AddLabel
-                        labels={editName}
-                        setLabelValues={setEditName}
-                        onAddLabel={handleUpdate}
-                        index={0}
-                        data={usersData}
-                      />
-                    </td>
-
-                    <td>user.address</td>
-
-                    <td>
-                      <div>
-                        <button
-                          className={displayuser.displayupdatebutton}
-                          onClick={handleUpdate}
-                        >
-                          <FontAwesomeIcon
-                            icon={faCheck}
-                            style={{ color: "#f5f9ff" }}
-                          />
-                        </button>
+                        <AddLabel
+                          labels={editName}
+                          setLabelValues={setEditName}
+                          onAddLabel={handleUpdate}
+                          index={0}
+                          data={usersData}
+                          isAllUserListsPage={true}
+                        />
                         <button
                           className={displayuser.displayupdatebutton}
                           onClick={handleAbortedit}
@@ -558,49 +576,44 @@ function Displayallusers() {
                       </div>
                     </td>
                   </tr>
-                </tbody>
+                  <tr>
+                    <td>
+                      <AddLabel
+                        labels={editName}
+                        setLabelValues={setEditName}
+                        onAddLabel={handleUpdate}
+                        index={0}
+                        data={usersData}
+                      />
+                    </td>
 
-                {/* tablebody back and next button */}
+                    <td>user.address</td>
 
-                {/* <tbody>
-                  {currentRows.map((user) => (
-                    <tr key={user.id}>
-                      <td>{user.name}</td>
-                      <td>{user.address}</td>
-                      <td>
-                        <button className={displayuser.displayeditbutton}>
+                    <td>
+                      <div>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleUpdate}
+                        >
                           <FontAwesomeIcon
-                            className={displayuser.editicon}
-                            icon={faPenToSquare}
+                            icon={faCheck}
+                            style={{ color: "#f5f9ff" }}
                           />
                         </button>
-                        <button className={displayuser.displaydeletebutton}>
+                        <button
+                          className={displayuser.displayupdatebutton}
+                          onClick={handleAbortedit}
+                        >
                           <FontAwesomeIcon
-                            className={displayuser.deleteicon}
-                            icon={faTrash}
+                            icon={faXmark}
+                            style={{ color: "#f5f9ff" }}
                           />
                         </button>
-                      </td>
-                    </tr>
-                  ))}
+                      </div>
+                    </td>
+                  </tr>
                 </tbody> */}
               </table>
-
-              {/* back and next button.... */}
-              {/* <div className={displayuser.paginationButtons}>
-                <button
-                  onClick={handlePreviousPage}
-                  disabled={currentPage === 0}
-                >
-                  Back
-                </button>
-                <button
-                  onClick={handleNextPage}
-                  disabled={endIndex >= staticData.length}
-                >
-                  Next
-                </button>
-              </div> */}
             </div>
           )
         ) : (

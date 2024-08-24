@@ -16,7 +16,7 @@
   border: 1px solid rgba(255, 255, 255, 0.563);
   border: none;
   border-radius: 10px;
-  margin-top: 120px;
+  margin-top: 150px;
 }
 
 .content {
@@ -50,7 +50,7 @@
 
 .tableWrapper {
   margin: 50px 0px 10px 0px;
-  min-height: 250px;
+  min-height: 300px;
   max-height: 370px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .4), 0 7px 13px -3px rgba(0, 0, 0, .3), inset 1px 0 0 rgba(0, 0, 0, .2);
   -webkit-backdrop-filter: blur(30.5px);
@@ -74,7 +74,6 @@
 
 
 .tableWrapper tbody {
-  height: 300px;
   overflow: scroll;
   font-size: 15px;
 }
@@ -258,13 +257,23 @@
 
 .displayupdatebutton,
 .displayeditbutton,
-.displaydeletebutton {
+/* .displaydeletebutton {
   background-color: transparent;
   border: none;
   color: white;
   padding: 5px;
   text-align: center;
   font-size: 20px;
+  cursor: pointer;
+} */
+
+.displaydeletebutton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  font-size: 28px;
   cursor: pointer;
 }
 
