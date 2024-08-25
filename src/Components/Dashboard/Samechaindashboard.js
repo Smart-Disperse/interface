@@ -83,55 +83,55 @@ function Samechaindashboard() {
 
   /******************************Driver.JS Code Starts Here******************************* */
   //Function to start the tour
-  useEffect(() => {
-    const hasVisitedBefore = document.cookie.includes("visited=true"); //Checks if user has visited the page
-    if (!hasVisitedBefore) {
-      document.cookie = "visited=true; max-age=31536000"; // Max age is set to 1 year in seconds
-      const driverObj = driver({
-        overlayColor: "#00000094",
-        popoverClass: ` ${samechainStyle.driverpopover01}`,
-        showProgress: true,
-        steps: [
-          {
-            element: "#text",
-            popover: {
-              title: "Textify",
-              description:
-                "Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry",
-              side: "right",
-              align: "start",
-            },
-          },
-          {
-            element: "#list",
-            popover: {
-              title: "Listify",
-              description:
-                "Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form",
-              side: "right",
-              align: "start",
-            },
-          },
-          {
-            element: "#csv",
-            popover: {
-              title: "Uploadify",
-              description:
-                "Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform",
-              side: "right",
-              align: "start",
-            },
-          },
-        ],
-      });
-      driverObj.drive();
-    }
+  // useEffect(() => {
+  //   const hasVisitedBefore = document.cookie.includes("visited=true"); //Checks if user has visited the page
+  //   if (!hasVisitedBefore) {
+  //     document.cookie = "visited=true; max-age=31536000"; // Max age is set to 1 year in seconds
+  //     const driverObj = driver({
+  //       overlayColor: "#00000094",
+  //       popoverClass: ` ${samechainStyle.driverpopover01}`,
+  //       showProgress: true,
+  //       steps: [
+  //         {
+  //           element: "#text",
+  //           popover: {
+  //             title: "Textify",
+  //             description:
+  //               "Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry",
+  //             side: "right",
+  //             align: "start",
+  //           },
+  //         },
+  //         {
+  //           element: "#list",
+  //           popover: {
+  //             title: "Listify",
+  //             description:
+  //               "Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form",
+  //             side: "right",
+  //             align: "start",
+  //           },
+  //         },
+  //         {
+  //           element: "#csv",
+  //           popover: {
+  //             title: "Uploadify",
+  //             description:
+  //               "Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform",
+  //             side: "right",
+  //             align: "start",
+  //           },
+  //         },
+  //       ],
+  //     });
+  //     driverObj.drive();
+  //   }
 
-    const getExplorer = async () => {
-      setExplorerUrl(contracts[chainId]["block-explorer"]);
-    };
-    getExplorer();
-  }, []);
+  //   const getExplorer = async () => {
+  //     setExplorerUrl(contracts[chainId]["block-explorer"]);
+  //   };
+  //   getExplorer();
+  // }, []);
 
   const calculateTotalAmount = async (transactions) => {
     if (transactions) {

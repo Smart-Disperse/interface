@@ -39,7 +39,7 @@ import {
 import HowItWorks from "./HowItWorks";
 import { Tooltip } from "antd";
 
-function SendEth({ listData, setListData }) {
+function SendEth({ listData, setListData,tokenDetails }) {
   const [activeTab, setActiveTab] = useState("text");
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
 
@@ -508,9 +508,9 @@ function SendEth({ listData, setListData }) {
                       }}
                     >
                       Account Summary{" "}
-                      {/* <span style={{ opacity: "0.5", fontSize: "14px" }}>
+                      <span style={{ opacity: "0.5", fontSize: "14px" }}>
                       ({tokenDetails.symbol})
-                    </span> */}
+                    </span>
                     </h2>
                   </div>
 
