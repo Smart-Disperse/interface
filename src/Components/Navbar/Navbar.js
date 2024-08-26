@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import navStyle from "../NewHomePage/navbar/navbar.module.css";
 import smartlogo from "../../Assets/logo.png";
@@ -23,6 +23,7 @@ function Navbar() {
   const chainId = useChainId();
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const navbarRef = useRef(null);
 
   const isHome = path === "/";
   const isMilestone = path === "/milestone";
@@ -39,6 +40,20 @@ function Navbar() {
       return () => window.removeEventListener("resize", handleResize);
     }
   }, []);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (isMobile && isOpen && navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [isMobile, isOpen]);
 
   useEffect(() => {
     const handleAuth = async () => {
@@ -59,9 +74,15 @@ function Navbar() {
     }
   }, [isConnected]);
 
+  const handleNavLinkClick = useCallback(() => {
+    if (isMobile) {
+      setIsOpen(false);
+    }
+  }, [isMobile]);
+
   return (
     <div className={navStyle.navMainDash}>
-      <div className={navStyle.navFixed2}>
+      <div className={navStyle.navFixed2} ref={navbarRef}>
         <div className={navStyle.navSub}>
           <div className={navStyle.left}>
             <Link href="/">
@@ -72,7 +93,7 @@ function Navbar() {
               />
             </Link>
 
-            {!isMobile ? <NavLinks /> : <></>}
+            {!isMobile ? <NavLinks onLinkClick={handleNavLinkClick} /> : <></>}
           </div>
 
           <div className={navStyle.right}>
@@ -92,7 +113,7 @@ function Navbar() {
               <></>
             )}
           </div>
-          {isOpen ? <NavLinks /> : <></>}
+          {isOpen ? <NavLinks onLinkClick={handleNavLinkClick} /> : <></>}
         </div>
       </div>
     </div>
