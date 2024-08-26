@@ -57,7 +57,6 @@ function History() {
   const [endDate, setEndDate] = useState("");
   const filterContainerRef = useRef(null);
 
-
   const [selectedTokenSymbol, setSelectedTokenSymbol] = useState("ETH");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -330,7 +329,6 @@ function History() {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
-      
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -338,12 +336,14 @@ function History() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
 
   const toggleOpen = () => setIsOpen(!isOpen);
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (filterContainerRef.current && !filterContainerRef.current.contains(event.target)) {
+      if (
+        filterContainerRef.current &&
+        !filterContainerRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -374,9 +374,8 @@ function History() {
                 />
               </button>
             </div>
-            <div className={histroyStyle.filterContainer}  >
+            <div className={histroyStyle.filterContainer}>
               <button
-          
                 onClick={toggleOpen}
                 className={`${histroyStyle.filterButton} flex items-center justify-between w-full px-4 py-2 text-left bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200`}
               >
@@ -785,218 +784,221 @@ function History() {
               )}
             </div>
           </div> */}
+          <div className={histroyStyle.parentDivofTable}>
+            <div className={histroyStyle.tableWrapper}>
+              <table>
+                <thead>
+                  <tr className={histroyStyle.sticky}>
+                    <th>Recipient Address</th>
+                    <th>
+                      Amount
+                      {sortingByAmount ? (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            color: "#ffffff7a",
+                          }}
+                          onClick={dortAmount}
+                        >
+                          <FontAwesomeIcon icon={faArrowUp} />
+                        </button>
+                      ) : (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            color: "#ffffff7a",
+                          }}
+                          onClick={sortAmount}
+                        >
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        </button>
+                      )}
+                    </th>
 
-          <div className={histroyStyle.tableWrapper}>
-            <table>
-              <thead>
-                <tr className={histroyStyle.sticky}>
-                  <th>Recipient Address</th>
-                  <th>
-                    Amount
-                    {sortingByAmount ? (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          border: "none",
-                          color: "#ffffff7a"
-                        }}
-                        onClick={dortAmount}
-                      >
-                        <FontAwesomeIcon icon={faArrowUp} />
-                      </button>
-                    ) : (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          border: "none",
-                          color: "#ffffff7a"
-                        }}
-                        onClick={sortAmount}
-                      >
-                        <FontAwesomeIcon icon={faArrowDown} />
-                      </button>
-                    )}
-                  </th>
+                    <th>Chain</th>
+                    <th>Token</th>
+                    <th>
+                      Label
+                      {sortingByLabel ? (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            color: "#ffffff7a",
+                          }}
+                          onClick={dortLabels}
+                        >
+                          <FontAwesomeIcon icon={faArrowUp} />
+                        </button>
+                      ) : (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            color: "#ffffff7a",
+                          }}
+                          onClick={sortLabels}
+                        >
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        </button>
+                      )}
+                    </th>
 
-                  <th>Chain</th>
-                  <th>Token</th>
-                  <th>
-                    Label
-                    {sortingByLabel ? (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          border: "none",
-                          color: "#ffffff7a"
-                        }}
-                        onClick={dortLabels}
-                      >
-                        <FontAwesomeIcon icon={faArrowUp} />
-                      </button>
-                    ) : (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          border: "none",
-                          color: "#ffffff7a"
-                        }}
-                        onClick={sortLabels}
-                      >
-                        <FontAwesomeIcon icon={faArrowDown} />
-                      </button>
-                    )}
-                  </th>
+                    <th>
+                      Date
+                      {sortingByDate ? (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            color: "#ffffff7a",
+                            border: "none",
+                          }}
+                          onClick={dortDate}
+                        >
+                          <FontAwesomeIcon icon={faArrowUp} />
+                        </button>
+                      ) : (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            color: "#ffffff7a",
+                          }}
+                          onClick={sortDate}
+                        >
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        </button>
+                      )}
+                    </th>
 
-                  <th>
-                    Date
-                    {sortingByDate ? (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          color: "#ffffff7a",
-                          border: "none",
-                        }}
-                        onClick={dortDate}
-                      >
-                        <FontAwesomeIcon icon={faArrowUp} />
-                      </button>
-                    ) : (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          border: "none",
-                          color: "#ffffff7a"
-                        }}
-                        onClick={sortDate}
-                      >
-                        <FontAwesomeIcon icon={faArrowDown} />
-                      </button>
-                    )}
-                  </th>
-
-                  <th>Transaction Hash</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {filteredTransactions.length > 0 ? (
-                  filteredTransactions.map((transaction, index) => (
-                    <tr key={index}>
-                      <td>
-                        {`${transaction.recipient.substring(
-                          0,
-                          3
-                        )}...${transaction.recipient.substring(
-                          transaction.recipient.length - 5
-                        )}`}
-                        {isCopied && isCopiedAddressIndex === index ? (
-                          <FontAwesomeIcon
-                            icon={faCircleCheck}
-                            size="sm"
-                            alt="Check Icon"
-                            style={{
-                              margin: "0px 10px",
-                              cursor: "pointer",
-                              color: "#ffffff",
-                            }}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faCopy}
-                            size="sm"
-                            alt="Copy Icon"
-                            onClick={() =>
-                              copyToClipboard(transaction.recipient, index)
-                            }
-                            style={{
-                              margin: "0px 10px",
-                              cursor: "pointer",
-                              color: "#ffffff",
-                            }}                          />
-                        )}
-                      </td>
-                      <td>
-                        {`${transaction.value.substring(
-                          0,
-                          3
-                        )}...${transaction.value.substring(
-                          transaction.value.length - 5
-                        )}`}
-                      </td>
-                      <td>{transaction.chainName}</td>
-                      <td>{transaction.tokenName || "ETH"}</td>
-                      <td>{transaction.label ? transaction.label : "---"}</td>
-                      <td>
-                        {new Date(
-                          transaction.blockTimestamp
-                        ).toLocaleDateString("en-US", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })}
-                      </td>
-                      <td>
-                        {transaction.transactionHash && (
-                          <a
-                            href={`https://${explorerUrl}/tx/${transaction.transactionHash}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              color: "#FFFFFF",
-                              textDecoration: "none",
-                            }}
-                          >
-                            {`${transaction.transactionHash.substring(
-                              0,
-                              3
-                            )}...${transaction.transactionHash.substring(
-                              transaction.transactionHash.length - 5
-                            )}`}
-                          </a>
-                        )}
-
-                        {isCopiedHash && isCopiedAddressIndexHash === index ? (
-                          <FontAwesomeIcon
-                            icon={faCircleCheck}
-                            size="sm"
-                            alt="Check Icon"
-                            style={{
-                              margin: "0px 10px",
-                              cursor: "pointer",
-
-                              color: "#ffffff",
-                            }}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faCopy}
-                            size="2xs"
-                            alt="Copy Icon"
-                            onClick={() =>
-                              copyToClipboardHash(
-                                transaction.transactionHash,
-                                index
-                              )
-                            }
-                            className={popup.copyIcon}
-                          />
-                        )}
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr className={histroyStyle.notfound}>
-                    <td colSpan="7">No transactions found.</td>
+                    <th>Transaction Hash</th>
                   </tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+
+                <tbody>
+                  {filteredTransactions.length > 0 ? (
+                    filteredTransactions.map((transaction, index) => (
+                      <tr key={index}>
+                        <td>
+                          {`${transaction.recipient.substring(
+                            0,
+                            3
+                          )}...${transaction.recipient.substring(
+                            transaction.recipient.length - 5
+                          )}`}
+                          {isCopied && isCopiedAddressIndex === index ? (
+                            <FontAwesomeIcon
+                              icon={faCircleCheck}
+                              size="sm"
+                              alt="Check Icon"
+                              style={{
+                                margin: "0px 10px",
+                                cursor: "pointer",
+                                color: "#ffffff",
+                              }}
+                            />
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faCopy}
+                              size="sm"
+                              alt="Copy Icon"
+                              onClick={() =>
+                                copyToClipboard(transaction.recipient, index)
+                              }
+                              style={{
+                                margin: "0px 10px",
+                                cursor: "pointer",
+                                color: "#ffffff",
+                              }}
+                            />
+                          )}
+                        </td>
+                        <td>
+                          {`${transaction.value.substring(
+                            0,
+                            3
+                          )}...${transaction.value.substring(
+                            transaction.value.length - 5
+                          )}`}
+                        </td>
+                        <td>{transaction.chainName}</td>
+                        <td>{transaction.tokenName || "ETH"}</td>
+                        <td>{transaction.label ? transaction.label : "---"}</td>
+                        <td>
+                          {new Date(
+                            transaction.blockTimestamp
+                          ).toLocaleDateString("en-US", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </td>
+                        <td>
+                          {transaction.transactionHash && (
+                            <a
+                              href={`https://${explorerUrl}/tx/${transaction.transactionHash}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: "#FFFFFF",
+                                textDecoration: "none",
+                              }}
+                            >
+                              {`${transaction.transactionHash.substring(
+                                0,
+                                3
+                              )}...${transaction.transactionHash.substring(
+                                transaction.transactionHash.length - 5
+                              )}`}
+                            </a>
+                          )}
+
+                          {isCopiedHash &&
+                          isCopiedAddressIndexHash === index ? (
+                            <FontAwesomeIcon
+                              icon={faCircleCheck}
+                              size="sm"
+                              alt="Check Icon"
+                              style={{
+                                margin: "0px 10px",
+                                cursor: "pointer",
+
+                                color: "#ffffff",
+                              }}
+                            />
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faCopy}
+                              size="2xs"
+                              alt="Copy Icon"
+                              onClick={() =>
+                                copyToClipboardHash(
+                                  transaction.transactionHash,
+                                  index
+                                )
+                              }
+                              className={popup.copyIcon}
+                            />
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className={histroyStyle.notfound}>
+                      <td colSpan="7">No transactions found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

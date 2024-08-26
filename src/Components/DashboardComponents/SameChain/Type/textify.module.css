@@ -687,6 +687,7 @@
   cursor: pointer;
   margin: 0 20px;
   padding: 15px 40px;
+  text-wrap: nowrap;
 }
 .buttontoaddformdata:hover {
   box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
@@ -706,6 +707,7 @@
   font-size: 17px;
   margin: 0 20px;
   padding: 15px 40px;
+  text-wrap: nowrap;
 }
 .textareaInput {
   outline: none;
@@ -898,6 +900,13 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .tableWrapper thead,
+  .tableWrapper tbody {
+    font-size: 14px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .tutorialcards {
     width: 60%;
@@ -1021,6 +1030,14 @@
   }
 }
 
+@media screen and (max-width:580px) {
+  .buttontoaddformdata,
+  .buttontoaddformdataunload{
+    padding: 10px 20px !important;
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .tutorialcards {
     width: 60%;
@@ -1050,6 +1067,11 @@
   .importtokendiv {
     display: flex;
     flex-direction: column;
+  }
+
+  .buttontoaddformdata,
+  .buttontoaddformdataunload{
+    width: 150px;
   }
   .textAccSum,
   .fontsize10px {

@@ -481,6 +481,8 @@ function History() {
               )}
             </div>
            </div>
+           <div className={histroyStyle.parentDivofTable}>
+
           <div className={histroyStyle.tableWrapper}>
             <table>
               <thead>
@@ -582,6 +584,7 @@ function History() {
                 )}
               </tbody>
             </table>
+          </div>
           </div>
         </div>
       </div>

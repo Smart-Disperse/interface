@@ -671,6 +671,18 @@
   }
 }
 
+@media screen and (max-width:768px) {
+  .inputflexlist label{
+    font-size: 14px !important;
+  }
+  .inputflexlist input::placeholder{
+    font-size: 13px !important;
+  }
+  .inputflexlist button{
+    font-size: 13px !important
+  }
+}
+
 @media only screen and (max-width: 520px) {
   .inputflexlist label {
     width: 100%;

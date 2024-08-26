@@ -145,17 +145,18 @@ function Displayallusers() {
               <SkeletonLoader />
             </div>
           ) : (
-            <div className={displayuser.tableWrapper}>
-              <table>
-                <thead>
-                  <tr className={displayuser.sticky}>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                {/* ...tablebody main... */}
-                {/* <tbody>
+            <div className={displayuser.parentDivofTable}>
+              <div className={displayuser.tableWrapper}>
+                <table>
+                  <thead>
+                    <tr className={displayuser.sticky}>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  {/* ...tablebody main... */}
+                  {/* <tbody>
                   {usersData && usersData.length > 0 ? (
                     usersData.map((user, index) => (
                       <tr key={index}>
@@ -235,7 +236,7 @@ function Displayallusers() {
                   )}
                 </tbody>  */}
 
-                {/* <tbody>
+                  {/* <tbody>
                   {usersData && usersData.length > 0 ? (
                     usersData.map((user, index) => (
                       <tr key={index}>
@@ -278,11 +279,11 @@ function Displayallusers() {
                   )}
                 </tbody> */}
 
-                <tbody>
-                  <tr>
-                    <td> user.name </td>
+                  <tbody>
+                    <tr>
+                      <td> user.name </td>
 
-                    {/* {editUserIndex === index ? (
+                      {/* {editUserIndex === index ? (
                             <input
                               className={displayuser.editinput}
                               type="text"
@@ -302,39 +303,418 @@ function Displayallusers() {
 
                           )} */}
 
-                    <td>user.address</td>
+                      <td>user.address</td>
 
-                    <td>
-                      <div style={{
-                        display: "flex",
-                        alignItems: 'center',
-                        justifyContent: "center",
-                        gap: "14px"
-                      }}>
-                    <AddLabel
-                        labels={editName}
-                        setLabelValues={setEditName}
-                        onAddLabel={handleUpdate}
-                        index={0}
-                        data={usersData}
-                      />
-                      {/* here we need to replace index 0 to index for loop */}
-                      <button
-                        className={displayuser.displaydeletebutton}
-                        onClick={() => handleDelete(index)}
-                      >
-                        <FontAwesomeIcon
-                          className={displayuser.deleteicon}
-                          icon={faTrash}
-                        />
-                      </button>
-                      </div>
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> user.name </td>
 
-                    </td>
-                  </tr>
-                </tbody>
+                      {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
 
-                {/* <tbody>
+                          )} */}
+
+                      <td>user.address</td>
+
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> user.name </td>
+
+                      {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
+
+                          )} */}
+
+                      <td>user.address</td>
+
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> user.name </td>
+
+                      {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
+
+                          )} */}
+
+                      <td>user.address</td>
+
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> user.name </td>
+
+                      {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
+
+                          )} */}
+
+                      <td>user.address</td>
+
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> user.name </td>
+
+                      {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
+
+                          )} */}
+
+                      <td>user.address</td>
+
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> user.name </td>
+
+                      {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
+
+                          )} */}
+
+                      <td>user.address</td>
+
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> user.name </td>
+
+                      {/* {editUserIndex === index ? (
+                            <input
+                              className={displayuser.editinput}
+                              type="text"
+                              value={editName}
+                              onChange={(e) => {
+                                const inputValue = e.target.value;
+                                const regex = /^[a-zA-Z0-9]*$/;
+                                if (
+                                  inputValue.length <= 10 &&
+                                  regex.test(inputValue)
+                                ) {
+                                  setEditName(inputValue);
+                                }
+                              }}
+                            />
+                          ) : (
+
+                          )} */}
+
+                      <td>user.address</td>
+
+                      <td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "14px",
+                          }}
+                        >
+                          <AddLabel
+                            labels={editName}
+                            setLabelValues={setEditName}
+                            onAddLabel={handleUpdate}
+                            index={0}
+                            data={usersData}
+                          />
+                          {/* here we need to replace index 0 to index for loop */}
+                          <button
+                            className={displayuser.displaydeletebutton}
+                            onClick={() => handleDelete(index)}
+                          >
+                            <FontAwesomeIcon
+                              className={displayuser.deleteicon}
+                              icon={faTrash}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                  {/* <tbody>
                   <tr>
                     <td>user.name</td>
                     <td>user.address</td>
@@ -613,7 +993,8 @@ function Displayallusers() {
                     </td>
                   </tr>
                 </tbody> */}
-              </table>
+                </table>
+              </div>
             </div>
           )
         ) : (

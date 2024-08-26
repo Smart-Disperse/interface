@@ -509,7 +509,7 @@ function SendEth({ listData, setListData,tokenDetails }) {
                     >
                       Account Summary{" "}
                       <span style={{ opacity: "0.5", fontSize: "14px" }}>
-                      ({tokenDetails.symbol})
+                      {/* ({tokenDetails.symbol}) */}
                     </span>
                     </h2>
                   </div>

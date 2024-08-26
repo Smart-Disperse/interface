@@ -493,6 +493,13 @@
   background: linear-gradient(269deg, #0ff 2.32%, #1bff76 98.21%);
 }
 
+@media screen and (max-width: 768px) {
+  .tableWrapper thead,
+  .tableWrapper tbody {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 768px) {
   #tableresponsive {
     overflow: visible;

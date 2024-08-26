@@ -26,7 +26,7 @@
   margin: 10px !important;
 }
 
-.heading{
+.heading {
   font-weight: 700;
   font-size: 2.2rem;
   background: -webkit-linear-gradient(#00ffff, #5fffbc);
@@ -48,11 +48,20 @@
   background: #555;
 }
 
-.tableWrapper {
+.parentDivofTable {
+  overflow: hidden;
   margin: 50px 0px 10px 0px;
+  min-height: 250px;
+  max-height: 370px;
+  border-radius: 20px;
+}
+
+.tableWrapper {
+  /* margin: 50px 0px 10px 0px; */
   min-height: 300px;
   max-height: 370px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .4), 0 7px 13px -3px rgba(0, 0, 0, .3), inset 1px 0 0 rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 7px 13px -3px rgba(0, 0, 0, 0.3),
+    inset 1px 0 0 rgba(0, 0, 0, 0.2);
   -webkit-backdrop-filter: blur(30.5px);
   backdrop-filter: blur(30.5px);
   background: transparent;
@@ -63,7 +72,6 @@
 .tableWrapper table {
   border-spacing: 0;
   width: 100%;
-
 }
 
 .tableWrapper thead {
@@ -73,11 +81,9 @@
   color: #999999;
 }
 
-
 .tableWrapper tbody {
   overflow: scroll;
   font-size: 15px;
-
 }
 .tableWrapper tbody tr:hover {
   background: rgb(51 53 103 / 24%);
@@ -102,12 +108,8 @@
   position: sticky;
   top: 0;
   z-index: 10000;
-  background: linear-gradient(160deg,#181a53 47%,#2e0d5a);
+  background: linear-gradient(160deg, #181a53 47%, #2e0d5a);
 }
-
-
-
-
 
 .gobackbtn:hover {
   cursor: pointer;
@@ -135,7 +137,8 @@
   text-decoration: underline;
 }
 
-.button1, .button2 {
+.button1,
+.button2 {
   z-index: 1;
   position: fixed;
   right: 0%;
@@ -144,14 +147,14 @@
   flex-direction: column;
 }
 
-.button1{
+.button1 {
   bottom: 50%;
 }
-.button2{
+.button2 {
   bottom: 42%;
 }
 
-.button1 a, 
+.button1 a,
 .button2 a {
   transform: translate(160px, 0px);
   border-radius: 50px 0px 0px 50px;
@@ -176,7 +179,7 @@
   font-weight: 600;
 }
 
-.Instagra{
+.Instagra {
   background-color: #19153f;
   color: white;
   margin-left: 10px;
@@ -205,7 +208,6 @@
   right: 0;
   opacity: 0;
 }
-
 
 .maindivforalloptiondashboard {
   width: 100%;
@@ -327,7 +329,12 @@
   }
 }
 
-
+@media screen and (max-width: 768px) {
+  .tableWrapper thead,
+  .tableWrapper tbody {
+    font-size: 14px;
+  }
+}
 @media only screen and (max-width: 778px) {
   .button {
     width: 40%;
@@ -339,11 +346,11 @@
     padding: 10px 20px;
   }
 
-  .heading{
+  .heading {
     font-size: 1.7rem;
   }
 
-  .content{
+  .content {
     font-size: 12px;
   }
 
@@ -357,7 +364,6 @@
     margin: auto;
   }
 
-  
   .maindivforalloptiondashboard {
     max-width: 600px;
   }
@@ -389,12 +395,12 @@
   background-color: #6960ef !important;
 }
 
-@media screen and (max-width:550px) {
-  .titledivdashboard{
+@media screen and (max-width: 550px) {
+  .titledivdashboard {
     width: 80%;
     margin: 130px auto 0px;
   }
-  .heading{
+  .heading {
     font-size: 1.2rem;
   }
 }
@@ -440,15 +446,15 @@
   }
 }
 
-@media screen and (max-width:360px) {
-  .titledivdashboard{
+@media screen and (max-width: 360px) {
+  .titledivdashboard {
     width: 80%;
     margin: 130px auto 0px;
   }
-  .heading{
+  .heading {
     font-size: 16px;
   }
-  .content{
+  .content {
     font-size: 9px;
   }
 }
