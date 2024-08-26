@@ -30,12 +30,17 @@ function Navbar() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setIsMobile(window.innerWidth < 1024);
-
       const handleResize = () => {
-        setIsMobile(window.innerWidth < 1024);
+        const isNowMobile = window.innerWidth < 1024;
+        setIsMobile(isNowMobile);
+
+        // Close mobile menu when switching to desktop
+        if (!isNowMobile) {
+          setIsOpen(false);
+        }
       };
 
+      handleResize();
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
     }
@@ -93,13 +98,11 @@ function Navbar() {
               />
             </Link>
 
-            {!isMobile ? <NavLinks onLinkClick={handleNavLinkClick} /> : <></>}
+            {!isMobile ? <NavLinks onLinkClick={handleNavLinkClick} /> : null}
           </div>
 
           <div className={navStyle.right}>
-            {isHome || isMilestone ? (
-              <></>
-            ) : (
+            {isHome || isMilestone ? null : (
               <div className={navStyle.connectwalletbuttondiv}>
                 <ConnectButtonCustom isMainnet={isMainnet} />
               </div>
@@ -109,11 +112,9 @@ function Navbar() {
               <button className={navStyle.hambutton} onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <RiCloseFill /> : <HiOutlineMenuAlt2 />}
               </button>
-            ) : (
-              <></>
-            )}
+            ) : null}
           </div>
-          {isOpen ? <NavLinks onLinkClick={handleNavLinkClick} /> : <></>}
+          {isOpen ? <NavLinks onLinkClick={handleNavLinkClick} /> : null}
         </div>
       </div>
     </div>
