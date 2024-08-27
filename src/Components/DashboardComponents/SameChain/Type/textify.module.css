@@ -905,6 +905,11 @@
   .tableWrapper tbody {
     font-size: 14px;
   }
+
+  .disabledButton,
+  .sendbutton{
+    font-size: 14px;
+  }
 }
 
 @media only screen and (max-width: 768px) {

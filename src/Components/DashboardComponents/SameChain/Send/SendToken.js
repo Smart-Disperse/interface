@@ -25,6 +25,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchUserLabels } from "@/Helpers/FetchUserLabels";
 import AddLabel from "../Type/Addlabel";
+import { Tooltip } from "antd";
+import HowItWorks from "./HowItWorks";
 
 function SendToken({ listData, setListData }) {
   const [activeTab, setActiveTab] = useState("text");
@@ -62,7 +64,17 @@ function SendToken({ listData, setListData }) {
   const [allNames, setAllNames] = useState([]);
   const [allAddresses, setAllAddresses] = useState([]);
   const [tokenDetails, setTokenDetails] =
-    useState(defaultTokenDetails); /*Details of the selected token to be sent*/
+    useState(defaultTokenDetails); 
+
+  const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
+
+  const showModal = () => {
+    setIsHowItWorksOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsHowItWorksOpen(false);
+  };
 
   const renderComponent = (tab) => {
     switch (tab) {
@@ -484,7 +496,34 @@ function SendToken({ listData, setListData }) {
                       Uploadify
                     </button>
                   </div>
+                  <div>
+                    <Tooltip
+                      title="How it works"
+                      placement="bottom"
+                      color="white"
+                      overlayInnerStyle={{
+                        borderRadius: "8px",
+                        fontWeight: "600",
+                        color: "#8d38fb",
+                      }}
+                    >
+                      <button
+                        className={samechainStyle.howWorks}
+                        onClick={showModal}
+                      >
+                        ?
+                      </button>
+                    </Tooltip>
+                  </div>
                 </div>
+                {isHowItWorksOpen && (
+                  <HowItWorks
+                    activeTab={activeTab}
+                    isOpen={isHowItWorksOpen}
+                    textStyle={textStyle}
+                    onClose={closeModal}
+                  />
+                )}
                 {renderComponent(activeTab)}{" "}
                 {listData.length > 0 ? (
                   <div>

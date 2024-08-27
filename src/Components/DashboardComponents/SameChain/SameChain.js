@@ -112,6 +112,7 @@ function SameChain() {
             </div>
           </div>
         </div>
+        
         {render && isSendingEth ? (
           <SendEth listData={listData} setListData={setListData} />
         ) : null}

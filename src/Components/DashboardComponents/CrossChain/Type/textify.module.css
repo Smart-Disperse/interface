@@ -635,6 +635,11 @@
   .tableWrapper tbody {
     font-size: 14px;
   }
+
+  .disabledButton,
+  .sendbutton{
+    font-size: 14px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -855,9 +860,9 @@
     padding: 10px 7px;
     font-size: 15px;
   }
-  .tableWrapper {
+  /* .tableWrapper {
     margin: 25px 10px;
-  }
+  } */
 
 
   .sendbutton {

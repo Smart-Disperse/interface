@@ -19,13 +19,20 @@
   color: white;
   border: 1.16px solid #6e58ae;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background: #49058e91;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px 0px, rgba(0, 0, 0, 0.2) 1px 0px 0px inset;
 }
-
+.tablediv1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px !important;
+}
 
 .searchinputbox {
   border: none;
@@ -72,12 +79,6 @@
   padding: 20px 0px;
 }
 
-.tablediv1 {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 .filter-dropdown {
   position: relative;
   display: inline-block;
@@ -127,12 +128,6 @@
 }
 .ant-select-outlined:not .ant-select-selector {
   background: transparent !important;
-}
-.headingdiv {
-  font-weight: 300;
-  font-size: 2vw;
-  color: #00ffff;
-  letter-spacing: 2px;
 }
 
 .filterdiv {
@@ -451,41 +446,55 @@
     border-radius: 120px;
     padding: 9px;
   }
+
+  .searchdiv{
+    width: 83%;
+  }
+
+  .filterContainer{
+    width: 110px;
+  }
 }
 
-@media only screen and (max-width: 1025px) {
+/* @media only screen and (max-width: 1025px) {
   .maindivofhisotry {
     width: 80%;
   }
-}
+} */
 
 @media screen and (max-width: 790px) {
-  .maindivofhisotry {
-    width: 85%;
-  }
-
-  .tablediv1 {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .headingdiv {
-    font-size: 15px;
-  }
 
   .dateInput {
-    border-radius: 100px;
-    padding: 10px 17px;
-    font-size: 12px;
-    width: 120px !important;
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 10px;
     display: flex;
     align-items: center !important;
   }
 
   .dropdown {
-    border-radius: 120px;
-    padding: 9px;
+    border-radius: 20px;
+    padding: 8px 12px;
     font-size: 10px;
+  }
+
+  .searchdiv{
+    border-radius: 10px;
+    padding: 4px 0px;
+  }
+
+  .filterButton{
+    padding: 9px 12px;
+  }
+
+  .searchinputbox,
+  .searchinputbox::placeholder{
+    font-size: 13px;
+  }
+
+  .maintablediv{
+    margin: 10px auto;
+    padding: 0px;
   }
 }
 
@@ -497,7 +506,7 @@
 }
 
 @media screen and (max-width: 560px) {
-  .dateInput {
+  /* .dateInput {
     border-radius: 100px;
     padding: 9px 15px;
     font-size: 10px;
@@ -506,18 +515,23 @@
 
   .dropdown {
     padding: 6px;
-  }
+  } */
 
-  .headingdiv {
-    font-size: 14px;
-  }
 }
 
 @media screen and (max-width: 426px) {
   .searchdiv {
     padding: 5px 0px;
     border: 1px solid #6e58ae;
-    border-radius: 180px;
+  }
+
+  .filterContainer{
+    width: 70px;
+  }
+
+  .filterButton{
+    padding: 5px 7px;
+    font-size: 10px;
   }
 
   .searchinputbox {
@@ -537,7 +551,7 @@
     margin-right: 7px;
   }
 
-  .dateInput {
+  /* .dateInput {
     border-radius: 70px;
     padding: 7px 10px;
     font-size: 6px;
@@ -546,5 +560,5 @@
 
   .dropdown {
     font-size: 6px;
-  }
+  } */
 }

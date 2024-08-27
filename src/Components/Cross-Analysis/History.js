@@ -64,8 +64,14 @@ function History() {
   const fetchCrossChainTransactions = async () => {
     const data = await getCrossChainTransactions(address, chainId);
     console.log("Tx data: ", data);
-    setTransactionData(data);
-    setFilteredTransactions(data);
+    if (Array.isArray(data)) {
+      setTransactionData(data);
+      setFilteredTransactions(data);
+    } else {
+      console.error("Fetched data is not an array:", data);
+      setTransactionData([]);
+      setFilteredTransactions([]);
+    }
   };
 
   useEffect(() => {
@@ -173,14 +179,16 @@ function History() {
 
   // Event handler for changing start date
   const handleStartDateChange = (date) => {
-    checkAllFieldsFilled()
-        setStartDate(date);
+    checkAllFieldsFilled();
+    setStartDate(date);
   };
 
   // Event handler for changing end date
   const handleEndDateChange = (date) => {
-    checkAllFieldsFilled()  
-      setEndDate(date);
+    console.log("End date changed:", date);
+
+    checkAllFieldsFilled();
+    setEndDate(date);
   };
 
   useEffect(() => {
@@ -202,7 +210,7 @@ function History() {
       setSelectedToken(tokenAddress);
       setSelectedTokenSymbol(tokenSymbol);
       setIsDropdownOpen(false); // Close the dropdown
-      checkAllFieldsFilled()
+      checkAllFieldsFilled();
     } catch (error) {
       console.error("Error fetching token data:", error);
     } finally {
@@ -274,8 +282,12 @@ function History() {
   }, [filteredTransactions]);
 
   useEffect(() => {
+    console.log("Effect triggered. transactionData:", transactionData);
+    console.log("startDate:", startDate);
+    console.log("endDate:", endDate);
+
     let filtered = transactionData;
-    if (startDate && endDate) {
+    if (Array.isArray(filtered) && startDate && endDate) {
       // Filter by date range
       filtered = filtered.filter((transaction) => {
         const transactionDate = new Date(transaction.blockTimestamp);
@@ -288,7 +300,7 @@ function History() {
       });
     }
     setFilteredTransactions(filtered);
-  }, [startDate, endDate]);
+  }, [startDate, endDate, transactionData]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -336,29 +348,50 @@ function History() {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isSelectingDate, setIsSelectingDate] = useState(false);
+
   const contentRef = useRef(null);
+  const datepickerRef = useRef(null);
+  const datePickerRefs = useRef([]);
+  const filterbuttonref = useRef([]);
+
+
+
+  const handleClickOutside = (event) => {
+    if (isSelectingDate) {
+      return;
+    }
+    if (
+      filterbuttonref.current &&
+      !filterbuttonref.current.contains(event.target) &&
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target) &&
+      contentRef.current &&
+      !contentRef.current.contains(event.target)
+    ) {
+      setIsOpen(false);
+      setIsDropdownOpen(false);
+    }
+  };
+
+  const handleDatePicker = () => {
+    setIsSelectingDate(!isSelectingDate);
+  };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isSelectingDate]);
 
   return (
     <div className={histroyStyle.maindivofhisotry}>
       <div className={histroyStyle.searchtablediv}>
         <div className={histroyStyle.maintablediv}>
-          <div className={histroyStyle.tablediv1}>
-          
-
-            <div className={histroyStyle.searchdiv}>
+        <div className={histroyStyle.tablediv1}>
+          <div className={histroyStyle.searchdiv}>
               <input
                 placeholder="Search by address or hash"
                 className={histroyStyle.searchinputbox}
@@ -371,10 +404,10 @@ function History() {
                 />
               </button>
             </div>
-            <div className={histroyStyle.filterContainer} >
+            <div className={histroyStyle.filterContainer}>
               <button
-                ref={dropdownRef}
-                onClick={toggleOpen}
+              ref={filterbuttonref}
+              onClick={toggleOpen}
                 className={`${histroyStyle.filterButton} flex items-center justify-between w-full px-4 py-2 text-left bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200`}
               >
                 <span>Filter</span>
@@ -406,6 +439,7 @@ function History() {
                   />
                 </svg>
               </button>
+
               {isOpen ? (
                 <div
                   ref={contentRef}
@@ -426,6 +460,7 @@ function History() {
                           className={histroyStyle.dateInput}
                           onChange={handleStartDateChange}
                           placeholder="Start Date"
+                          onOpenChange={handleDatePicker}
                         />
                       </div>
                       <div className={histroyStyle.labeldate}>
@@ -434,157 +469,149 @@ function History() {
                           value={endDate}
                           onChange={handleEndDateChange}
                           placeholder="End Date"
+                          onOpenChange={handleDatePicker}
                         />
                       </div>
                     </div>
-                    <div className={histroyStyle.dropdownWrapper} ref={dropdownRef}>
-                <div
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className={histroyStyle.dropdown}
-                >
-                  {selectedToken || "Select Token"}
-                  <FaChevronDown className={histroyStyle.dropdownIcon} />
-                </div>
-                {isDropdownOpen && (
-                  <div className={histroyStyle.dropdownMenu}>
-                    {/* <div
-                      onClick={() => handleTokenChange("Select", "Select")}
-                      className={histroyStyle.chainOptions}
-                    >
-                      Select
-                    </div> */}
                     <div
-                      onClick={() => handleTokenChange("USDC", "USDC")}
-                      className={histroyStyle.chainOptions}
+                      className={histroyStyle.dropdownWrapper}
+                      ref={dropdownRef}
                     >
-                      USDC
-                    </div>
-                    {tokenListOfUser.length > 0 &&
-                      tokenListOfUser.map((token, index) => (
-                        <div
-                          key={index}
-                          onClick={() =>
-                            handleTokenChange(token.tokenAddress, token.symbol)
-                          }
-                          className={histroyStyle.chainOptions}
-                        >
-                          {token.symbol}
+                      <div
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className={histroyStyle.dropdown}
+                      >
+                        {selectedToken || "Select Token"}
+                        <FaChevronDown className={histroyStyle.dropdownIcon} />
+                      </div>
+                      {isDropdownOpen && (
+                        <div className={histroyStyle.dropdownMenu}>
+                          <div
+                            onClick={() => handleTokenChange("USDC", "USDC")}
+                            className={histroyStyle.chainOptions}
+                          >
+                            USDC
+                          </div>
+                          {tokenListOfUser.length > 0 &&
+                            tokenListOfUser.map((token, index) => (
+                              <div
+                                key={index}
+                                onClick={() =>
+                                  handleTokenChange(
+                                    token.tokenAddress,
+                                    token.symbol
+                                  )
+                                }
+                                className={histroyStyle.chainOptions}
+                              >
+                                {token.symbol}
+                              </div>
+                            ))}
                         </div>
-                      ))}
-                  </div>
-                )}
-              </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ) : (
                 ""
               )}
             </div>
-           </div>
-           <div className={histroyStyle.parentDivofTable}>
-
-          <div className={histroyStyle.tableWrapper}>
-            <table>
-              <thead>
-                <tr className={histroyStyle.sticky}>
-                  <th>Sender</th>
-                  <th>Destination Chain</th>
-                  <th>Token</th>
-                  <th>Amount</th>
-                  <th>Fees (ETH)</th>
-                  <th>Transaction Hash</th>
-                  <th>
-                    Date
-                    {sortingByDate ? (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          color: "#ffffff7a",
-                          border: "none",
-                        }}
-                        onClick={dortDate}
-                      >
-                        <FontAwesomeIcon icon={faArrowUp} />
-                      </button>
-                    ) : (
-                      <button
-                        className={popup.btnhoverpointer}
-                        style={{
-                          background: "transparent",
-                          color: "#ffffff7a",
-                          border: "none",
-                        }}
-                        onClick={sortDate}
-                      >
-                        <FontAwesomeIcon icon={faArrowDown} />
-                      </button>
-                    )}
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {!searchLoading &&
-                filteredTransactions &&
-                filteredTransactions.length > 0 ? (
-                  filteredTransactions.map((transaction, index) => (
-                    <tr key={index}>
-                      <td>
-                        {`${transaction.sender.slice(
-                          0,
-                          7
-                        )}...${transaction.sender.slice(-4)}`}
-                      </td>
-
-                      <td>
-                        {(chainNameMapping &&
-                          chainNameMapping[transaction.destinationChainSelector]
-                            ?.chainName) ||
-                          "Unknown Chain"}
-                      </td>
-
-                      <td>
-                        {loadTokenForDisplay(transaction.tokenAddress)}
-                      </td>
-                      <td>
-                        {transaction.tokenAmount}
-                      </td>
-
-                      <td>
-                        {(+ethers.utils.formatEther(transaction.fees)).toFixed(
-                          4
-                        )}
-                      </td>
-                      <td>
-                        <a
-                          href={`https://ccip.chain.link/tx/${transaction.transactionHash}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ color: "white" }}
+        </div>
+          <div className={histroyStyle.parentDivofTable}>
+            <div className={histroyStyle.tableWrapper}>
+              <table>
+                <thead>
+                  <tr className={histroyStyle.sticky}>
+                    <th>Sender</th>
+                    <th>Destination Chain</th>
+                    <th>Token</th>
+                    <th>Amount</th>
+                    <th>Fees (ETH)</th>
+                    <th>Transaction Hash</th>
+                    <th>
+                      Date
+                      {sortingByDate ? (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            color: "#ffffff7a",
+                            border: "none",
+                          }}
+                          onClick={dortDate}
                         >
-                          {`${transaction.transactionHash.slice(
+                          <FontAwesomeIcon icon={faArrowUp} />
+                        </button>
+                      ) : (
+                        <button
+                          className={popup.btnhoverpointer}
+                          style={{
+                            background: "transparent",
+                            color: "#ffffff7a",
+                            border: "none",
+                          }}
+                          onClick={sortDate}
+                        >
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        </button>
+                      )}
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {!searchLoading &&
+                  filteredTransactions &&
+                  filteredTransactions.length > 0 ? (
+                    filteredTransactions.map((transaction, index) => (
+                      <tr key={index}>
+                        <td>
+                          {`${transaction.sender.slice(
                             0,
                             7
-                          )}...${transaction.transactionHash.slice(-4)}`}
-                        </a>
-                      </td>
-                      <td>
-                        {transaction.blockTimestamp}
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                 
+                          )}...${transaction.sender.slice(-4)}`}
+                        </td>
+
+                        <td>
+                          {(chainNameMapping &&
+                            chainNameMapping[
+                              transaction.destinationChainSelector
+                            ]?.chainName) ||
+                            "Unknown Chain"}
+                        </td>
+
+                        <td>{loadTokenForDisplay(transaction.tokenAddress)}</td>
+                        <td>{transaction.tokenAmount}</td>
+
+                        <td>
+                          {(+ethers.utils.formatEther(
+                            transaction.fees
+                          )).toFixed(4)}
+                        </td>
+                        <td>
+                          <a
+                            href={`https://ccip.chain.link/tx/${transaction.transactionHash}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: "white" }}
+                          >
+                            {`${transaction.transactionHash.slice(
+                              0,
+                              7
+                            )}...${transaction.transactionHash.slice(-4)}`}
+                          </a>
+                        </td>
+                        <td>{transaction.blockTimestamp}</td>
+                      </tr>
+                    ))
+                  ) : (
                     <tr className={histroyStyle.notfound}>
-                      <td colSpan="7">
-                        No transactions found.
-                      </td>
+                      <td colSpan="7">No transactions found.</td>
                     </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

@@ -38,8 +38,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import HowItWorks from "./HowItWorks";
 import { Tooltip } from "antd";
+import { LoadToken } from "@/Helpers/LoadToken";
 
-function SendEth({ listData, setListData,tokenDetails }) {
+function SendEth({ listData, setListData }) {
   const [activeTab, setActiveTab] = useState("text");
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
 
@@ -57,6 +58,7 @@ function SendEth({ listData, setListData,tokenDetails }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [suffecientBalance, setSuffecientBalance] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
+
 
   useEffect(() => {
     const firstVisit = Cookies.get("firstVisit");
@@ -509,8 +511,9 @@ function SendEth({ listData, setListData,tokenDetails }) {
                     >
                       Account Summary{" "}
                       <span style={{ opacity: "0.5", fontSize: "14px" }}>
-                      {/* ({tokenDetails.symbol}) */}
-                    </span>
+                        {/* ({tokenDetails.symbol}) */}
+                        (ETH)
+                      </span>
                     </h2>
                   </div>
 

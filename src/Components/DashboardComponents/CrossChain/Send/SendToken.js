@@ -81,6 +81,7 @@ function SendToken({
   const [allAddresses, setAllAddresses] = useState([]);
   const [tokenDetails, setTokenDetails] =
     useState(defaultTokenDetails); /*Details of the selected token to be sent*/
+    
   const chainId = useChainId();
   const [destinationFinalChainsOptions, setDestinationFinalChainsOptions] =
     useState([]);

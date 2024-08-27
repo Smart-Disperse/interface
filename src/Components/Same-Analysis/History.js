@@ -251,7 +251,7 @@ function History() {
 
   useEffect(() => {
     let filtered = transactionData;
-    if (startDate && endDate) {
+    if (Array.isArray(filtered) && startDate && endDate) {
       // Filter by date range
       filtered = filtered.filter((transaction) => {
         const transactionDate = new Date(transaction.blockTimestamp);
@@ -264,7 +264,8 @@ function History() {
       });
     }
     setFilteredTransactions(filtered);
-  }, [startDate, endDate]);
+  }, [startDate, endDate, transactionData]);
+
   useEffect(() => {
     console.log("fetchinggg");
     const fetchData = async () => {
@@ -338,24 +339,39 @@ function History() {
   }, []);
 
   const toggleOpen = () => setIsOpen(!isOpen);
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        filterContainerRef.current &&
-        !filterContainerRef.current.contains(event.target)
-      ) {
-        setIsOpen(false);
-      }
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
+  const filterbuttonref = useRef([]);
 
+
+  const [isSelectingDate, setIsSelectingDate] = useState(false);
+
+  const handleClickOutside = (event) => {
+    if (isSelectingDate) {
+      return;
+    }
+    if (
+      filterbuttonref.current &&
+      !filterbuttonref.current.contains(event.target) &&
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target) &&
+      contentRef.current &&
+      !contentRef.current.contains(event.target)
+    ) {
+      setIsOpen(false);
+      setIsDropdownOpen(false);
+    }
+  };
+
+  const handleDatePicker = () => {
+    setIsSelectingDate(!isSelectingDate);
+  };
+
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isSelectingDate]);
 
   return (
     <div className={histroyStyle.maindivofhisotry}>
@@ -376,6 +392,7 @@ function History() {
             </div>
             <div className={histroyStyle.filterContainer}>
               <button
+                ref={filterbuttonref}
                 onClick={toggleOpen}
                 className={`${histroyStyle.filterButton} flex items-center justify-between w-full px-4 py-2 text-left bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200`}
               >
@@ -428,6 +445,7 @@ function History() {
                           className={histroyStyle.dateInput}
                           onChange={handleStartDateChange}
                           placeholder="Start Date"
+                          onOpenChange={handleDatePicker}
                         />
                       </div>
                       <div className={histroyStyle.labeldate}>
@@ -436,6 +454,7 @@ function History() {
                           value={endDate}
                           onChange={handleEndDateChange}
                           placeholder="End Date"
+                          onOpenChange={handleDatePicker}
                         />
                       </div>
                     </div>
