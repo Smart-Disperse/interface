@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Modal, Button, Tooltip } from "antd";
 import "antd/dist/reset.css";
 import { PlusOutlined, InfoCircleOutlined } from "@ant-design/icons";
@@ -18,6 +18,14 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isCopied, setIsCopied] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (isModalVisible && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [isModalVisible]);
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(
@@ -173,6 +181,7 @@ const AddLabel = ({ labels, setLabelValues, onAddLabel, index, data }) => {
             Add Label:{" "}
           </strong>
           <input
+            ref={inputRef}
             type="text"
             value={labels[index] ? labels[index] : ""}
             style={{

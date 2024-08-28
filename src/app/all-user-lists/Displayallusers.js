@@ -25,8 +25,30 @@ import Link from "next/link";
 import SkeletonLoader from "@/Components/skeletons/managelabel";
 import AddLabel from "@/Components/DashboardComponents/CrossChain/Type/Addlabel";
 
+//
+const dummyUsersData = [
+  {
+    name: "Alice Smith",
+    address: "0x1234567890123456789012345678901234567890",
+  },
+  {
+    name: "Bob Johnson",
+    address: "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+  },
+  {
+    name: "Charlie Brown",
+    address: "0x9876543210987654321098765432109876543210",
+  },
+];
+//
+
 function Displayallusers() {
-  const [usersData, setUsersData] = useState([]);
+  // const [usersData, setUsersData] = useState([]);
+  
+  // 
+  const [labels, setLabels] = useState(dummyUsersData.map(user => user.name));
+  const [usersData, setUsersData] = useState(dummyUsersData);
+  // 
   const [editUserIndex, setEditUserIndex] = useState(null);
   const [editName, setEditName] = useState("");
   const [editAddress, setEditAddress] = useState("");
@@ -65,66 +87,91 @@ function Displayallusers() {
     setEditAddress("");
   };
 
-  const handleUpdate = async (index) => {
-    try {
-      const result = await fetch(`api/all-user-data?address=${address}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: editName,
-          address: editAddress,
-        }),
-      });
+  // const handleUpdate = async (index) => {
+  //   try {
+  //     const result = await fetch(`api/all-user-data?address=${address}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         name: editName,
+  //         address: editAddress,
+  //       }),
+  //     });
 
-      if (result.ok) {
-        toast.success("Name updated successfully");
-        const updatedUsersData = [...usersData];
-        updatedUsersData[index] = {
-          ...updatedUsersData[index],
-          name: editName,
-          address: editAddress,
-        };
-        setUsersData(updatedUsersData);
-        // Clear edit state
-        setEditUserIndex(null);
-        setEditName("");
-        setEditAddress("");
-        fetchUserDetails();
-      } else {
-        console.error("Error updating user:", result.statusText);
-        toast.error("Failed to update data");
-      }
-    } catch (error) {
-      console.error("Error updating user:", error);
-      toast.error("An error occurred while updating data");
-    }
+  //     if (result.ok) {
+  //       toast.success("Name updated successfully");
+  //       const updatedUsersData = [...usersData];
+  //       updatedUsersData[index] = {
+  //         ...updatedUsersData[index],
+  //         name: editName,
+  //         address: editAddress,
+  //       };
+  //       setUsersData(updatedUsersData);
+  //       // Clear edit state
+  //       setEditUserIndex(null);
+  //       setEditName("");
+  //       setEditAddress("");
+  //       fetchUserDetails();
+  //     } else {
+  //       console.error("Error updating user:", result.statusText);
+  //       toast.error("Failed to update data");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating user:", error);
+  //     toast.error("An error occurred while updating data");
+  //   }
+  // };
+
+  const handleUpdate = (index, address) => {
+    const updatedUsersData = [...usersData];
+    updatedUsersData[index] = {
+      ...updatedUsersData[index],
+      name: labels[index]
+    };
+    setUsersData(updatedUsersData);
   };
 
-  const handleDelete = async (index) => {
-    try {
-      const addressToDelete = usersData[index].address;
-      const result = await fetch(`api/all-user-data?address=${address}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ address: addressToDelete }),
-      });
-      if (result.ok) {
-        toast.success("Name deleted successfully");
-        const updatedUsersData = [...usersData];
-        updatedUsersData.splice(index, 1);
-        setUsersData(updatedUsersData);
-      } else {
-        console.error("Failed to delete data");
-        toast.error("Failed to delete data");
-      }
-    } catch (error) {
-      console.error("Error deleting user:", error);
-      toast.error("An error occurred while deleting data");
-    }
+  // const handleDelete = async (index) => {
+  //   try {
+  //     const addressToDelete = usersData[index].address;
+  //     const result = await fetch(`api/all-user-data?address=${address}`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ address: addressToDelete }),
+  //     });
+  //     if (result.ok) {
+  //       toast.success("Name deleted successfully");
+  //       const updatedUsersData = [...usersData];
+  //       updatedUsersData.splice(index, 1);
+  //       setUsersData(updatedUsersData);
+  //     } else {
+  //       console.error("Failed to delete data");
+  //       toast.error("Failed to delete data");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error deleting user:", error);
+  //     toast.error("An error occurred while deleting data");
+  //   }
+  // };
+
+  const handleDelete = (index) => {
+    const updatedUsersData = [...usersData];
+    updatedUsersData.splice(index, 1);
+    setUsersData(updatedUsersData);
+    
+    const updatedLabels = [...labels];
+    updatedLabels.splice(index, 1);
+    setLabels(updatedLabels);
+  };
+
+  const setLabelValues = (index, value) => {
+    const updatedLabels = [...labels];
+    updatedLabels[index] = value;
+    setLabels(updatedLabels);
   };
 
   return (
@@ -146,7 +193,7 @@ function Displayallusers() {
             </div>
           ) : (
             <div className={displayuser.parentDivofTable}>
-              <div className={displayuser.tableWrapper}>
+              {/* <div className={displayuser.tableWrapper}>
                 <table>
                   <thead>
                     <tr className={displayuser.sticky}>
@@ -201,42 +248,56 @@ function Displayallusers() {
                       </tr>
                     )}
                   </tbody>
+                </table>
+              </div> */}
 
-                  {/* <tbody>
-                    <tr>
-                      <td> user.name </td>
-
-                      <td>user.address</td>
-
-                      <td>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "14px",
-                          }}
-                        >
-                          <AddLabel
-                            labels={editName}
-                            setLabelValues={setEditName}
-                            onAddLabel={handleUpdate}
-                            index={0}
-                            data={usersData}
-                          />
-                          <button
-                            className={displayuser.displaydeletebutton}
-                            onClick={() => handleDelete(index)}
-                          >
-                            <FontAwesomeIcon
-                              className={displayuser.deleteicon}
-                              icon={faTrash}
-                            />
-                          </button>
-                        </div>
-                      </td>
+              <div className={displayuser.tableWrapper}>
+                <table>
+                  <thead>
+                    <tr className={displayuser.sticky}>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>Actions</th>
                     </tr>
-                  </tbody> */}
+                  </thead>
+
+                  <tbody>
+                    {usersData.map((user, index) => (
+                      <tr key={index}>
+                        <td>{user.name}</td>
+
+                        <td>{user.address}</td>
+
+                        <td>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "14px",
+                            }}
+                          >
+                            <AddLabel
+                              labels={labels}
+                              setLabelValues={setLabelValues}
+                              onAddLabel={handleUpdate}
+                              index={index}
+                              data={user}
+                            />
+                            <button
+                              className={displayuser.displaydeletebutton}
+                              onClick={() => handleDelete(index)}
+                            >
+                              <FontAwesomeIcon
+                                className={displayuser.deleteicon}
+                                icon={faTrash}
+                              />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
               </div>
             </div>

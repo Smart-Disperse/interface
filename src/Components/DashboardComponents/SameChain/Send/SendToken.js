@@ -584,7 +584,7 @@ function SendToken({ listData, setListData }) {
                                   )}
                                 </td>
                                 <td
-                                  style={{ color: "white", fontWeight: "700" }}
+                                  style={{ color: "white" }}
                                 >
                                    {(+ethers.utils.formatUnits(
                                         data.value,
