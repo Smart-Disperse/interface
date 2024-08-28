@@ -1011,8 +1011,8 @@ function History() {
                       </tr>
                     ))
                   ) : (
-                    <tr className={histroyStyle.notfound}>
-                      <td colSpan="7">No transactions found.</td>
+                    <tr>
+                      <td colSpan="7" style={{height: "270px"}}>No transactions found.</td>
                     </tr>
                   )}
                 </tbody>

@@ -17,6 +17,9 @@
   border: none;
   border-radius: 10px;
   margin-top: 150px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 150px;
 }
 
 .content {
@@ -50,10 +53,11 @@
 
 .parentDivofTable {
   overflow: hidden;
-  margin: 50px 0px 10px 0px;
+  margin: 10px 0px 10px 0px;
   min-height: 250px;
   max-height: 370px;
   border-radius: 20px;
+  width: 100%;
 }
 
 .tableWrapper {
@@ -210,8 +214,8 @@
 }
 
 .maindivforalloptiondashboard {
-  width: 100%;
-  max-width: 1000px;
+  width: 90%;
+  /* max-width: 1000px; */
   margin: 0 auto;
 }
 
@@ -324,9 +328,9 @@
 }
 
 @media only screen and (max-width: 1032px) {
-  .maindivforalloptiondashboard {
+  /* .maindivforalloptiondashboard {
     max-width: 700px;
-  }
+  } */
 }
 
 @media screen and (max-width: 768px) {

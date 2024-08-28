@@ -33,7 +33,7 @@ function MainHistory() {
               data-bs-placement="top"
               data-bs-custom-class="color-tooltip"
             >
-              Cross Chain
+              Cross Analysis
             </button>
             <button
               id="sameAnalysis"
@@ -45,7 +45,7 @@ function MainHistory() {
               data-bs-placement="top"
               data-bs-custom-class="color-tooltip"
             >
-              Same Chain
+              Same Analysis
             </button>
           </div>
         </div>
