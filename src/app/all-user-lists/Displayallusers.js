@@ -44,11 +44,11 @@ const dummyUsersData = [
 
 function Displayallusers() {
   // const [usersData, setUsersData] = useState([]);
-  
-  // 
-  const [labels, setLabels] = useState(dummyUsersData.map(user => user.name));
+
+  //
+  const [labels, setLabels] = useState(dummyUsersData.map((user) => user.name));
   const [usersData, setUsersData] = useState(dummyUsersData);
-  // 
+  //
   const [editUserIndex, setEditUserIndex] = useState(null);
   const [editName, setEditName] = useState("");
   const [editAddress, setEditAddress] = useState("");
@@ -128,7 +128,7 @@ function Displayallusers() {
     const updatedUsersData = [...usersData];
     updatedUsersData[index] = {
       ...updatedUsersData[index],
-      name: labels[index]
+      name: labels[index],
     };
     setUsersData(updatedUsersData);
   };
@@ -162,7 +162,7 @@ function Displayallusers() {
     const updatedUsersData = [...usersData];
     updatedUsersData.splice(index, 1);
     setUsersData(updatedUsersData);
-    
+
     const updatedLabels = [...labels];
     updatedLabels.splice(index, 1);
     setLabels(updatedLabels);
@@ -262,41 +262,49 @@ function Displayallusers() {
                   </thead>
 
                   <tbody>
-                    {usersData.map((user, index) => (
-                      <tr key={index}>
-                        <td>{user.name}</td>
+                    {usersData && usersData.length > 0 ? (
+                      usersData.map((user, index) => (
+                        <tr key={index}>
+                          <td>{user.name}</td>
 
-                        <td>{user.address}</td>
+                          <td>{user.address}</td>
 
-                        <td>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              gap: "14px",
-                            }}
-                          >
-                            <AddLabel
-                              labels={labels}
-                              setLabelValues={setLabelValues}
-                              onAddLabel={handleUpdate}
-                              index={index}
-                              data={user}
-                            />
-                            <button
-                              className={displayuser.displaydeletebutton}
-                              onClick={() => handleDelete(index)}
+                          <td>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "14px",
+                              }}
                             >
-                              <FontAwesomeIcon
-                                className={displayuser.deleteicon}
-                                icon={faTrash}
+                              <AddLabel
+                                labels={labels}
+                                setLabelValues={setLabelValues}
+                                onAddLabel={handleUpdate}
+                                index={index}
+                                data={user}
                               />
-                            </button>
-                          </div>
+                              <button
+                                className={displayuser.displaydeletebutton}
+                                onClick={() => handleDelete(index)}
+                              >
+                                <FontAwesomeIcon
+                                  className={displayuser.deleteicon}
+                                  icon={faTrash}
+                                />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="3" style={{ height: "270px" }}>
+                          No data found
                         </td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>
