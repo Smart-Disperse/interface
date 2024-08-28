@@ -59,7 +59,6 @@ function SendEth({ listData, setListData }) {
   const [suffecientBalance, setSuffecientBalance] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
 
-
   useEffect(() => {
     const firstVisit = Cookies.get("firstVisit");
     if (firstVisit === undefined) {

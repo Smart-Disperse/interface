@@ -586,11 +586,14 @@ function SendToken({ listData, setListData }) {
                                 <td
                                   style={{ color: "white", fontWeight: "700" }}
                                 >
-                                  {(+ethers.utils.formatUnits(
-                                    data.value
-                                  )).toFixed(4) +
-                                    " " +
-                                    tokenDetails.symbol}
+                                   {(+ethers.utils.formatUnits(
+                                        data.value,
+                                        tokenDetails.decimal
+                                      )).toFixed(4)}{" "}
+
+                                      <span style={{opacity: "0.6", fontWeight: "400"}}>{" "}{tokenDetails.symbol} </span>
+                                  
+                                  
                                 </td>
                                 <td>
                                   <button
