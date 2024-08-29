@@ -23,7 +23,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import SkeletonLoader from "@/Components/skeletons/managelabel";
-import AddLabel from "@/Components/DashboardComponents/CrossChain/Type/Addlabel";
+import AddLabel from "./Addlabel";
 
 //
 const dummyUsersData = [
@@ -275,7 +275,7 @@ function Displayallusers() {
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                gap: "14px",
+                                gap: "0px",
                               }}
                             >
                               <AddLabel
