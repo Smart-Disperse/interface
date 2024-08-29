@@ -115,6 +115,10 @@
   opacity: 1;
 }
 
+.editicon svg{
+  height: 22px !important;
+  width: 22px !important;
+}
 /* @media only screen and (max-width: 425px) {
   .recAdd2 {
     width: 100%;

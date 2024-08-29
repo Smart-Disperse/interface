@@ -100,7 +100,6 @@ function SameChain() {
                 style={{
                   backgroundColor: isSendingToken ? "" : " white",
                   color: isSendingToken ? "" : "white",
-                  // border: "none",
                 }}
                 className={`${textStyle.buttontoaddformdataunload} ${
                   activeButton === "importToken" ? textStyle.activeButton : ""

@@ -9,13 +9,10 @@
   box-sizing: content-box !important;
 }
 
-.buttontoaddformdataunload button.active {
-  background-color: red;
-}
-
 .activeButton {
-  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
-  border: 1px solid white;
+  box-shadow: rgba(118, 225, 255, 0.72) 1px 1px 18px 0px inset;
+  border: 1px solid rgba(118, 225, 255, 0.72);
+  color: rgba(118, 225, 255, 0.72);
 }
 
 .tutorialcardscontainer {
@@ -271,10 +268,7 @@
   opacity: 0.3;
 }
 
-.buttontoaddformdataunload:hover {
-  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
-  border: 1px solid white;
-}
+
 .textareatextlist {
   margin: 10px 0px;
   background-color: rgba(255, 255, 255, 0);
@@ -682,16 +676,18 @@
     rgba(62, 18, 124, 0.37) 100%
   );
   border-radius: 63px;
-  color: #fff;
   font-size: 17px;
   cursor: pointer;
   margin: 0 20px;
   padding: 15px 40px;
   text-wrap: nowrap;
+  opacity: 0.8;
 }
 .buttontoaddformdata:hover {
-  box-shadow: rgb(255 255 255 / 72%) 1px 1px 18px 0px inset;
-  border: 1px solid;
+  box-shadow: rgba(118, 225, 255, 0.72) 1px 1px 18px 0px inset;
+  border: 1px solid rgba(118, 225, 255, 0.72);
+  color: #00ffff;
+  opacity: 1 !important;
 }
 
 .buttontoaddformdataunload {
@@ -702,13 +698,28 @@
   ) !important;
   border: 1px solid white;
   border-radius: 63px;
-  color: #fff;
   cursor: pointer;
   font-size: 17px;
   margin: 0 20px;
   padding: 15px 40px;
   text-wrap: nowrap;
+  opacity: 0.8;
 }
+
+.buttontoaddformdataunload:hover {
+  box-shadow: rgba(118, 225, 255, 0.72) 1px 1px 18px 0px inset;
+  border: 1px solid rgba(118, 225, 255, 0.72);
+  color: #00ffff !important;
+  opacity: 1 !important;
+}
+
+.activeButton {
+  box-shadow: rgba(118, 225, 255, 0.72) 1px 1px 18px 0px inset;
+  border: 2.2px solid #00ffff !important;
+  color: #00ffff !important;
+  opacity: 1 !important;
+}
+
 .textareaInput {
   outline: none;
 }
