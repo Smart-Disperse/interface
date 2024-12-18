@@ -23,12 +23,17 @@ function SwitchChain({ closeAccountModal }) {
   const isCrosschainPage = path === "/cross-chain";
   const isSamePage = path === "/same-chain";
 
-  const mainnetChains = [34443, 534352, 8453, 10];
-  const testnetChains = [11155111, 534351, 11155420, 919, 84532];
+  // const mainnetChains = [34443, 534352, 8453, 10];
+  const mainnetChains = [901, 902];
+  // const testnetChains = [901, 902, 11155111, 534351, 11155420, 919, 84532,];
+  const testnetChains = [901, 902];
   const crossChainMainnet = ["Available Soon"];
-  const crossChainTestnet = [11155111, 11155420, 84532, 421614, 80002];
-  const sameChainMainnet = [10, 8453, 534352, 34443];
-  const sameChainTestnet = [11155111, 534351, 11155420, 919, 84532];
+  // const crossChainTestnet = [11155111, 11155420, 84532, 421614, 80002, 901, 902];
+  const crossChainTestnet = [901, 902];
+  // const sameChainMainnet = [10, 8453, 534352, 34443];
+  const sameChainMainnet = [901, 902];
+  // const sameChainTestnet = [11155111, 534351, 11155420, 919, 84532, 901, 902];
+  const sameChainTestnet = [901, 902];
 
   let displayChains = isMainnet
     ? chains.filter((chain) => mainnetChains.includes(chain.id))
@@ -82,12 +87,12 @@ function SwitchChain({ closeAccountModal }) {
     getIsMainnetFromCookies();
 
     // Clean up function to avoid memory leaks
-    return () => {};
+    return () => { };
   }, []);
 
   useEffect(() => {
-    console.log( "erroe is ",error);
-    
+    console.log("erroe is ", error);
+
     if (error && error.code !== "UNSUPPORTED_CHAIN") {
       toast.error("Failed to change Network: User rejected the Request");
     }
@@ -147,7 +152,7 @@ function SwitchChain({ closeAccountModal }) {
             <FaChevronDown className={connectStyle.chainName1} />
           </div>
         )}
-      
+
       </button>
 
       <div
@@ -165,17 +170,15 @@ function SwitchChain({ closeAccountModal }) {
               }}
             >
               <button
-                className={`${connectStyle.networkButton} ${
-                  isMainnet ? connectStyle.active : ""
-                }`}
+                className={`${connectStyle.networkButton} ${isMainnet ? connectStyle.active : ""
+                  }`}
                 onClick={() => handleNetworkChange(true)}
               >
                 Mainnet
               </button>
               <button
-                className={`${connectStyle.networkButton} ${
-                  !isMainnet ? connectStyle.active : ""
-                }`}
+                className={`${connectStyle.networkButton} ${!isMainnet ? connectStyle.active : ""
+                  }`}
                 onClick={() => handleNetworkChange(false)}
               >
                 Testnet

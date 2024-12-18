@@ -248,6 +248,48 @@ const polygonAmoy = {
   },
 };
 
+const Supersim1 = {
+  dropdownchainName: "SUPERSIM1",
+  id: 901,
+  name: "Supersim1",
+  network: "Supersim1",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
+  nativeCurrency: {
+    decimals: 18,
+    name: "ETH",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["http://127.0.0.1:9545"] },
+    default: { http: ["http://127.0.0.1:9545"] },
+  },
+  blockExplorers: {
+    default: { name: "PolygonScan", url: "https://amoy.polygonscan.com" },
+  },
+};
+
+const Supersim2 = {
+  dropdownchainName: "SUPERSIM2",
+  id: 902,
+  name: "Supersim2",
+  network: "Supersim2",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+  nativeCurrency: {
+    decimals: 18,
+    name: "ETH",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["http://127.0.0.1:9546"] },
+    default: { http: ["http://127.0.0.1:9546"] },
+  },
+  blockExplorers: {
+    default: { name: "PolygonScan", url: "https://amoy.polygonscan.com" },
+  },
+};
+
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 
 export function Providers({ children }) {
@@ -264,6 +306,8 @@ export function Providers({ children }) {
     optimism,
     arbitrumSepolia,
     polygonAmoy,
+    Supersim1,
+    Supersim2,
   ];
 
   const connectors = connectorsForWallets(
