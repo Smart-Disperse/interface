@@ -1,5 +1,7 @@
 import smartDisperseABI from "@/artifacts/contracts/SmartDisperse.sol/SmartDisperse.json";
 import smartDisperseNew from "@/artifacts/contracts/CrossSender.sol/CrossSender.json";
+import smartDisperseLatest from "@/artifacts/contracts/SmartDisperseLatest.sol/SmartDisperse.json";
+
 
 const contracts = {
   919: {
@@ -81,6 +83,22 @@ const contracts = {
     chainDisplayName: "Optimism Mainnet",
     chainName: "optimism-mainnet",
   },
+  901: {
+    address: "0x1Af155Fb7e3460c3FdA97ffE7b6E990327BebC30",//need to change every time
+    description: "SMART_DISPERSE_ADDRESS_SUPERSIM_1",
+    "block-explorer": "optimism-testnet.etherscan.io",
+    Abi: smartDisperseLatest,
+    chainDisplayName: "SuperSim 1",
+    chainName: "SuperSim 1",
+  },
+  902: {
+    address: "0x1Af155Fb7e3460c3FdA97ffE7b6E990327BebC30",//need to change every time
+    description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
+    "block-explorer": "optimism-testnet.etherscan.io",
+    Abi: smartDisperseLatest,
+    chainDisplayName: "SuperSim 2",
+    chainName: "SuperSim 2",
+  }
 };
 
 export default contracts;

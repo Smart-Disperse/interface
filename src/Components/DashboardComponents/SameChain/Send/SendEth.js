@@ -145,14 +145,32 @@ function SendEth({ listData, setListData }) {
    */
   const getEthBalance = async () => {
     const { ethereum } = window;
+    console.log("window", window);
+
     if (!ethBalance) {
-      const provider = new ethers.providers.Web3Provider(ethereum);
+
+      console.log("Ethereum:", ethereum);
+      // const provider = new ethers.providers.Web3Provider(ethereum);
+      const rpcUrl = "http://127.0.0.1:9545"; // Replace with your RPC URL
+      const provider = new ethers.providers.JsonRpcProvider(rpcUrl); // Use JsonRpcProvider
+      console.log("Provider:", provider);
       if (address) {
+        console.log("get balance for:", address);
         let ethBalance = await provider.getBalance(address);
+        console.log("ethBalance:", ethBalance);
         setEthBalance(ethBalance);
       }
     }
   };
+
+  // useEffect(async () => {
+  //   const { ethereum } = window;
+  //   const provider = new ethers.providers.Web3Provider(ethereum);
+  //   let ethBalance = await provider.getBalance(address)
+  //   console.log("ethBalanceeeeeeeeeeeee:", ethBalance);
+
+  // }, [address]);
+
 
   const handleDeleteRow = (index) => {
     const updatedList = [...listData];
@@ -181,9 +199,10 @@ function SendEth({ listData, setListData }) {
 
   /* for getting values on render */
   useEffect(() => {
-    // console.log(listData);
+    console.log('listData', listData);
+    console.log('address', address);
     getEthBalance();
-  });
+  }, [address]);
 
   useEffect(() => {
     calculateRemaining();
@@ -205,6 +224,7 @@ function SendEth({ listData, setListData }) {
 
   const fetchUserDetails = async () => {
     try {
+      console.log("addressss", address);
       const { allNames, allAddress } = await fetchUserLabels(address);
       console.log(allAddress);
       setAllNames(allNames);
@@ -218,6 +238,7 @@ function SendEth({ listData, setListData }) {
 
   useEffect(() => {
     if (address) {
+      console.log("Fetching user details...");
       fetchUserDetails();
     }
   }, [address]);
@@ -308,6 +329,7 @@ function SendEth({ listData, setListData }) {
 
     await fetchUserDetails();
     await setListData(updatedListData);
+    console.log('updatedListData', updatedListData);
 
     // Log the updated address-label mapping
     console.log("Address-Label Mapping:", addressLabelMap);
@@ -392,220 +414,223 @@ function SendEth({ listData, setListData }) {
             )}
 
             {renderComponent(activeTab)}
-            {listData.length > 0 ? (
-              <div>
-                <div className={textStyle.tablecontainer}>
-                  <div
-                    className={textStyle.titleforlinupsametext}
-                    // style={{ padding: "5px 0px" }}
-                  >
-                    <h2
-                      style={{
-                        padding: "15px",
-                        letterSpacing: "1px",
-                        fontSize: "20px",
-                        fontWeight: "300",
-                      }}
-                    >
-                      Your Transaction Lineup{" "}
-                      <span style={{ opacity: "0.5", fontSize: "14px" }}>
-                        ({listData.length})
-                      </span>
-                    </h2>
-                  </div>
-                  <div className={textStyle.tMargin}>
-                    <div className={textStyle.tableWrapper}>
-                      <table>
-                        <thead>
-                          <tr className={textStyle.sticky}>
-                            <th>Receiver Address</th>
-                            <th>Label</th>
-                            <th>Amount</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {listData.length > 0
-                            ? listData.map((data, index) => (
-                                <tr key={index}>
-                                  <td>
-                                    {data.address.substr(0, 7)}...
-                                    {data.address.substr(-5)}
-                                  </td>
-                                  <td>
-                                    {data.label ? (
-                                      data.label
-                                    ) : (
-                                      <>
-                                        <AddLabel
-                                          labels={labels}
-                                          setLabelValues={setLabelValues}
-                                          onAddLabel={onAddLabel}
-                                          index={0}
-                                          data={data}
-                                        />
-                                        {errorMessage && (
-                                          <p
-                                            style={{
-                                              color: "red",
-                                              margin: "0px",
-                                              fontSize: "13px",
-                                            }}
-                                          >
-                                            {errorMessage}
-                                          </p>
-                                        )}
-                                      </>
-                                    )}
-                                  </td>
-                                  <td>
-                                    <p style={{ marginBottom: "2px" }}>
-                                      {`${(+ethers.utils.formatEther(
-                                        data.value
-                                      )).toFixed(4)} ETH`}
-                                    </p>
-                                    <p
-                                      style={{
-                                        opacity: "0.6",
-                                        marginBottom: "0",
-                                        marginTop: "2px",
-                                        fontSize: "13px",
-                                      }}
-                                    >
-                                      {`~ $${(
-                                        ethers.utils.formatUnits(
-                                          data.value,
-                                          18
-                                        ) * ethToUsdExchangeRate
-                                      ).toFixed(2)}`}
-                                    </p>
-                                  </td>
 
-                                  <td>
-                                    <button
-                                      className={textStyle.deletebutton}
-                                      onClick={() => handleDeleteRow(index)}
-                                    >
-                                      <FontAwesomeIcon icon={faTrashAlt} />
-                                    </button>
-                                  </td>
-                                </tr>
-                              ))
-                            : null}
-                        </tbody>
-                      </table>
+            {
+              listData.length > 0 ?
+                (
+                  <div>
+                    <div className={textStyle.tablecontainer}>
+                      <div
+                        className={textStyle.titleforlinupsametext}
+                      // style={{ padding: "5px 0px" }}
+                      >
+                        <h2
+                          style={{
+                            padding: "15px",
+                            letterSpacing: "1px",
+                            fontSize: "20px",
+                            fontWeight: "300",
+                          }}
+                        >
+                          Your Transaction Lineup{" "}
+                          <span style={{ opacity: "0.5", fontSize: "14px" }}>
+                            ({listData.length})
+                          </span>
+                        </h2>
+                      </div>
+                      <div className={textStyle.tMargin}>
+                        <div className={textStyle.tableWrapper}>
+                          <table>
+                            <thead>
+                              <tr className={textStyle.sticky}>
+                                <th>Receiver Address</th>
+                                <th>Label</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {listData.length > 0
+                                ? listData.map((data, index) => (
+                                  <tr key={index}>
+                                    <td>
+                                      {data.address.substr(0, 7)}...
+                                      {data.address.substr(-5)}
+                                    </td>
+                                    <td>
+                                      {data.label ? (
+                                        data.label
+                                      ) : (
+                                        <>
+                                          <AddLabel
+                                            labels={labels}
+                                            setLabelValues={setLabelValues}
+                                            onAddLabel={onAddLabel}
+                                            index={0}
+                                            data={data}
+                                          />
+                                          {errorMessage && (
+                                            <p
+                                              style={{
+                                                color: "red",
+                                                margin: "0px",
+                                                fontSize: "13px",
+                                              }}
+                                            >
+                                              {errorMessage}
+                                            </p>
+                                          )}
+                                        </>
+                                      )}
+                                    </td>
+                                    <td>
+                                      <p style={{ marginBottom: "2px" }}>
+                                        {`${(+ethers.utils.formatEther(
+                                          data.value
+                                        )).toFixed(4)} ETH`}
+                                      </p>
+                                      <p
+                                        style={{
+                                          opacity: "0.6",
+                                          marginBottom: "0",
+                                          marginTop: "2px",
+                                          fontSize: "13px",
+                                        }}
+                                      >
+                                        {`~ $${(
+                                          ethers.utils.formatUnits(
+                                            data.value,
+                                            18
+                                          ) * ethToUsdExchangeRate
+                                        ).toFixed(2)}`}
+                                      </p>
+                                    </td>
+
+                                    <td>
+                                      <button
+                                        className={textStyle.deletebutton}
+                                        onClick={() => handleDeleteRow(index)}
+                                      >
+                                        <FontAwesomeIcon icon={faTrashAlt} />
+                                      </button>
+                                    </td>
+                                  </tr>
+                                ))
+                                : null}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={textStyle.tablecontainer}>
+                      <div className={textStyle.titleforlinupsametext}>
+                        <h2
+                          style={{
+                            padding: "15px",
+                            letterSpacing: "1px",
+                            fontSize: "20px",
+                            fontWeight: "300",
+                          }}
+                        >
+                          Account Summary{" "}
+                          <span style={{ opacity: "0.5", fontSize: "14px" }}>
+                            {/* ({tokenDetails.symbol}) */}
+                            (ETH)
+                          </span>
+                        </h2>
+                      </div>
+
+                      <div className={textStyle.tableWrapper}>
+                        <table>
+                          <thead>
+                            <tr className={textStyle.sticky}>
+                              <th>Total Amount</th>
+                              <th>Your Balance</th>
+                              <th>Remaining Balance</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <p style={{ marginBottom: "1px" }}>
+                                  {totalEth
+                                    ? `${(+ethers.utils.formatEther(
+                                      totalEth
+                                    )).toFixed(4)}  `
+                                    : null}
+                                </p>
+                                <p
+                                  style={{
+                                    opacity: "0.6",
+                                    marginBottom: "0",
+                                    marginTop: "2px",
+                                    fontSize: "13px",
+                                  }}
+                                >
+                                  {totalEth
+                                    ? `~ $${(
+                                      ethers.utils.formatUnits(totalEth, 18) *
+                                      ethToUsdExchangeRate
+                                    ).toFixed(2)}`
+                                    : null}
+                                </p>
+                              </td>
+                              <td style={{ opacity: "0.6" }}>
+                                {ethBalance
+                                  ? `${(+ethers.utils.formatEther(
+                                    ethBalance
+                                  )).toFixed(4)}  `
+                                  : null}
+                              </td>
+                              <td
+                                style={{
+                                  background: "transparent",
+                                  color: remaining < 0 ? "red" : "white",
+                                }}
+                                className={`showtoken-remaining-balance ${remaining < 0
+                                  ? "showtoken-remaining-negative"
+                                  : ""
+                                  }`}
+                              >
+                                {remaining === null
+                                  ? null
+                                  : `${Math.max(+remaining, 0).toFixed(0)}  `}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <Modal
+                        id={textStyle.popupwarning}
+                        className={textStyle.popupforpayment}
+                        isOpen={errorModalIsOpen}
+                        onRequestClose={() => setErrorModalIsOpen(false)}
+                        contentLabel="Error Modal"
+                      >
+                        <Image src={warning} alt="none" width={100} height={100} />
+                        <h2>Warning!</h2>
+                        <p>{errormsg}</p>
+                        <p>Please try different name</p>
+                        <button onClick={() => setErrorModalIsOpen(false)}>
+                          Close
+                        </button>
+                      </Modal>
+                    </div>
+
+                    <div>
+                      <ExecuteEth
+                        listData={listData}
+                        setListData={setListData}
+                        ethBalance={ethBalance}
+                        totalEth={totalEth}
+                        suffecientBalance={suffecientBalance}
+                      />
                     </div>
                   </div>
-                </div>
-
-                <div className={textStyle.tablecontainer}>
-                  <div className={textStyle.titleforlinupsametext}>
-                    <h2
-                      style={{
-                        padding: "15px",
-                        letterSpacing: "1px",
-                        fontSize: "20px",
-                        fontWeight: "300",
-                      }}
-                    >
-                      Account Summary{" "}
-                      <span style={{ opacity: "0.5", fontSize: "14px" }}>
-                        {/* ({tokenDetails.symbol}) */}
-                        (ETH)
-                      </span>
-                    </h2>
-                  </div>
-
-                  <div className={textStyle.tableWrapper}>
-                    <table>
-                      <thead>
-                        <tr className={textStyle.sticky}>
-                          <th>Total Amount</th>
-                          <th>Your Balance</th>
-                          <th>Remaining Balance</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <p style={{ marginBottom: "1px" }}>
-                              {totalEth
-                                ? `${(+ethers.utils.formatEther(
-                                    totalEth
-                                  )).toFixed(4)}  `
-                                : null}
-                            </p>
-                            <p
-                              style={{
-                                opacity: "0.6",
-                                marginBottom: "0",
-                                marginTop: "2px",
-                                fontSize: "13px",
-                              }}
-                            >
-                              {totalEth
-                                ? `~ $${(
-                                    ethers.utils.formatUnits(totalEth, 18) *
-                                    ethToUsdExchangeRate
-                                  ).toFixed(2)}`
-                                : null}
-                            </p>
-                          </td>
-                          <td style={{ opacity: "0.6" }}>
-                            {ethBalance
-                              ? `${(+ethers.utils.formatEther(
-                                  ethBalance
-                                )).toFixed(4)}  `
-                              : null}
-                          </td>
-                          <td
-                            style={{
-                              background: "transparent",
-                              color: remaining < 0 ? "red" : "white",
-                            }}
-                            className={`showtoken-remaining-balance ${
-                              remaining < 0
-                                ? "showtoken-remaining-negative"
-                                : ""
-                            }`}
-                          >
-                            {remaining === null
-                              ? null
-                              : `${Math.max(+remaining, 0).toFixed(0)}  `}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <Modal
-                    id={textStyle.popupwarning}
-                    className={textStyle.popupforpayment}
-                    isOpen={errorModalIsOpen}
-                    onRequestClose={() => setErrorModalIsOpen(false)}
-                    contentLabel="Error Modal"
-                  >
-                    <Image src={warning} alt="none" width={100} height={100} />
-                    <h2>Warning!</h2>
-                    <p>{errormsg}</p>
-                    <p>Please try different name</p>
-                    <button onClick={() => setErrorModalIsOpen(false)}>
-                      Close
-                    </button>
-                  </Modal>
-                </div>
-
-                <div>
-                  <ExecuteEth
-                    listData={listData}
-                    setListData={setListData}
-                    ethBalance={ethBalance}
-                    totalEth={totalEth}
-                    suffecientBalance={suffecientBalance}
-                  />
-                </div>
-              </div>
-            ) : null}
+                ) : null
+            }
           </div>
         </>
       ) : (

@@ -66,8 +66,13 @@ function ExecuteEth(props) {
 
     try {
       const con = await smartDisperseInstance(chainId);
+      console.log('contract will call is', con);
       console.log(recipients, values, props.totalEth);
-      const txsendPayment = await con.disperseEther(recipients, values, {
+      // const txsendPayment = await con.disperseEther(recipients, values, {
+      //   value: props.totalEth,
+      // });
+  
+      const txsendPayment = await con.disperseNative(recipients, values, {
         value: props.totalEth,
       });
 
@@ -78,7 +83,8 @@ function ExecuteEth(props) {
         <div
           className={textStyle.Link}
           dangerouslySetInnerHTML={{
-            __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank "   style={{ color: "white", textDecoration: "none" }}>here</a> for details.`,
+            // __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank "   style={{ color: "white", textDecoration: "none" }}>here</a> for details.`,
+            __html: `Your Transaction was successful. for details.`,
           }}
         />
       );
@@ -172,11 +178,11 @@ function ExecuteEth(props) {
         </Modal>
       </div>
       <Modal
-       style={{
-        overlay: {
-          backgroundColor: "transparent"
-        },
-      }}
+        style={{
+          overlay: {
+            backgroundColor: "transparent"
+          },
+        }}
         className={textStyle.popupforpayment}
         isOpen={executionStatusmodal}
         onRequestClose={() => setExecutionStatusmodal(false)}

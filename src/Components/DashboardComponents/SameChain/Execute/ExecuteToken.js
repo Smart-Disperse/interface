@@ -63,11 +63,12 @@ function ExecuteToken(props) {
     if (isTokenApproved) {
       try {
         const con = await smartDisperseInstance(chainId);
+        console.log("contract when send weth", con);
 
-        const txsendPayment = await con.disperseToken(
-          props.customTokenAddress,
+        const txsendPayment = await con.disperseTokens(
           recipients,
-          values
+          values,
+          props.customTokenAddress
         );
 
         const receipt = await txsendPayment.wait();
@@ -77,7 +78,8 @@ function ExecuteToken(props) {
           <div
             className={textStyle.Link}
             dangerouslySetInnerHTML={{
-              __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+              __html: `Your Transaction was successful.`,
+              // __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
             }}
           />
         );
@@ -159,11 +161,10 @@ function ExecuteToken(props) {
       {" "}
       <button
         id={textStyle.greenbackground}
-        className={`${
-          !props.suffecientBalance
-            ? textStyle.disabledButton
-            : textStyle.sendbutton
-        }`}
+        className={`${!props.suffecientBalance
+          ? textStyle.disabledButton
+          : textStyle.sendbutton
+          }`}
         onClick={() => {
           execute();
         }}

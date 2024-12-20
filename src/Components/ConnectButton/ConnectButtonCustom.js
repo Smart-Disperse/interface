@@ -101,6 +101,7 @@ const ConnectButtonCustom = ({ isMainnet }) => {
           (!authenticationStatus || authenticationStatus === "authenticated");
         {
           console.log("connected", connected);
+          console.log("account", account);
         }
         return (
           <div>

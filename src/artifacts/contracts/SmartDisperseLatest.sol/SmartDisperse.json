@@ -1,0 +1,234 @@
+{
+    "abi": [
+        {
+            "type": "function",
+            "name": "disperseNative",
+            "inputs": [
+                {
+                    "name": "recipients",
+                    "type": "address[]",
+                    "internalType": "address[]"
+                },
+                {
+                    "name": "values",
+                    "type": "uint256[]",
+                    "internalType": "uint256[]"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "payable"
+        },
+        {
+            "type": "function",
+            "name": "disperseTokens",
+            "inputs": [
+                {
+                    "name": "recipients",
+                    "type": "address[]",
+                    "internalType": "address[]"
+                },
+                {
+                    "name": "values",
+                    "type": "uint256[]",
+                    "internalType": "uint256[]"
+                },
+                {
+                    "name": "token",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "receiveTokens",
+            "inputs": [
+                {
+                    "name": "_message",
+                    "type": "tuple",
+                    "internalType": "struct SmartDisperse.TransferMessage",
+                    "components": [
+                        {
+                            "name": "recipients",
+                            "type": "address[]",
+                            "internalType": "address[]"
+                        },
+                        {
+                            "name": "amounts",
+                            "type": "uint256[]",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "name": "tokenAddress",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "totalAmount",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ]
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "transferTokensTo",
+            "inputs": [
+                {
+                    "name": "_toChainId",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "_recipients",
+                    "type": "address[]",
+                    "internalType": "address[]"
+                },
+                {
+                    "name": "_amounts",
+                    "type": "uint256[]",
+                    "internalType": "uint256[]"
+                },
+                {
+                    "name": "_token",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "event",
+            "name": "NativeTokensDispersed",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "recipients",
+                    "type": "address[]",
+                    "indexed": true,
+                    "internalType": "address[]"
+                },
+                {
+                    "name": "values",
+                    "type": "uint256[]",
+                    "indexed": false,
+                    "internalType": "uint256[]"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "TokensDispersed",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "recipients",
+                    "type": "address[]",
+                    "indexed": true,
+                    "internalType": "address[]"
+                },
+                {
+                    "name": "values",
+                    "type": "uint256[]",
+                    "indexed": false,
+                    "internalType": "uint256[]"
+                },
+                {
+                    "name": "token",
+                    "type": "address",
+                    "indexed": false,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "TokensReceived",
+            "inputs": [
+                {
+                    "name": "fromChainId",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "toChainId",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "totalAmount",
+                    "type": "uint256",
+                    "indexed": false,
+                    "internalType": "uint256"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "TokensSent",
+            "inputs": [
+                {
+                    "name": "fromChainId",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "toChainId",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "totalAmount",
+                    "type": "uint256",
+                    "indexed": false,
+                    "internalType": "uint256"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "error",
+            "name": "CallerNotL2ToL2CrossDomainMessenger",
+            "inputs": []
+        },
+        {
+            "type": "error",
+            "name": "InvalidAmount",
+            "inputs": []
+        },
+        {
+            "type": "error",
+            "name": "InvalidCrossDomainSender",
+            "inputs": []
+        },
+        {
+            "type": "error",
+            "name": "TransferFailed",
+            "inputs": []
+        }
+    ]
+}
