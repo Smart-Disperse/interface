@@ -248,11 +248,11 @@ const polygonAmoy = {
   },
 };
 
-const Supersim1 = {
-  dropdownchainName: "SUPERSIM1",
+const OPChainA = {
+  dropdownchainName: "OPChainA",
   id: 901,
-  name: "Supersim1",
-  network: "Supersim1",
+  name: "OPChainA",
+  network: "OPChainA",
   iconUrl:
     "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
   nativeCurrency: {
@@ -269,11 +269,11 @@ const Supersim1 = {
   },
 };
 
-const Supersim2 = {
-  dropdownchainName: "SUPERSIM2",
+const OPChainB = {
+  dropdownchainName: "OPChainB",
   id: 902,
-  name: "Supersim2",
-  network: "Supersim2",
+  name: "OPChainB",
+  network: "OPChainB",
   iconUrl:
     "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
   nativeCurrency: {
@@ -306,8 +306,8 @@ export function Providers({ children }) {
     optimism,
     arbitrumSepolia,
     polygonAmoy,
-    Supersim1,
-    Supersim2,
+    OPChainA,
+    OPChainB,
   ];
 
   const connectors = connectorsForWallets(

@@ -181,9 +181,9 @@ const allchains = {
   //     chainSelector: "16281711391670634445",
   //   },
   901: {
-    chainName: "Supersim1",
+    chainName: "OPChainA",
     destinationChains: {
-      Supersim2: {
+      OPChainB: {
         // chainSelector: "",
         tokens: {
           WETH: "0x4200000000000000000000000000000000000024",
@@ -196,9 +196,9 @@ const allchains = {
     chainSelector: "16281711391670634445",
   },
   902: {
-    chainName: "Supersim2",
+    chainName: "OPChainB",
     destinationChains: {
-      Supersim1: {
+      OPChainA: {
         // chainSelector: "",
         tokens: {
           WETH: "0x4200000000000000000000000000000000000024",
