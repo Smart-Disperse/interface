@@ -84,20 +84,20 @@ const contracts = {
     chainName: "optimism-mainnet",
   },
   901: {
-    address: "0x1Af155Fb7e3460c3FdA97ffE7b6E990327BebC30",//need to change every time
+    address: "0xf58b98Ce66aF91510EF7b250Dce871Bc9ac43fC8",//need to change every time
     description: "SMART_DISPERSE_ADDRESS_SUPERSIM_1",
     "block-explorer": "optimism-testnet.etherscan.io",
     Abi: smartDisperseLatest,
-    chainDisplayName: "SuperSim 1",
-    chainName: "SuperSim 1",
+    chainDisplayName: "OPChainA",
+    chainName: "OPChainA",
   },
   902: {
-    address: "0x1Af155Fb7e3460c3FdA97ffE7b6E990327BebC30",//need to change every time
+    address: "0xf58b98Ce66aF91510EF7b250Dce871Bc9ac43fC8",//need to change every time
     description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
     "block-explorer": "optimism-testnet.etherscan.io",
     Abi: smartDisperseLatest,
-    chainDisplayName: "SuperSim 2",
-    chainName: "SuperSim 2",
+    chainDisplayName: "OPChainB",
+    chainName: "OPChainB",
   }
 };
 
