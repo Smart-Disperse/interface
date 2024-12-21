@@ -55,7 +55,7 @@ function SendToken({
     useState(null); /*/USD/ETH exchange rate */
   const [totalERC20, setTotalERC20] =
     useState(null); /* Total ERC20 tokens in wallet */
-  const [remaining, setRemaining] = useState(null); // store remaining amount after deducting already sent value
+  const [remaining, setRemaining] = useState(null); // store remaining amount after deducting already sent value  
   const [ERC20Balance, setERC20Balance] =
     useState(null); /* User's ERC20 token balance */
   const { address } = useAccount(); /*/User's Ethereum Address*/

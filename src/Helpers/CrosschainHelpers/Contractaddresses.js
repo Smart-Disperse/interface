@@ -1,4 +1,7 @@
 import SmartDisperseCrossChain from "@/artifacts/crosschain/MultipleDestinationABI.json";
+import SmartDisperseCrossChainLatest from "@/artifacts/crosschain/SmartDisperseCrossChain.json";
+
+
 
 const crossContracts = {
   11155111: {
@@ -16,16 +19,16 @@ const crossContracts = {
     Abi: SmartDisperseCrossChain,
     chainDisplayName: "Optimism Sepolia",
     chainName: "opSepolia",
-    APIURL : "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
+    APIURL: "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
   },
   84532: {
-    address: "0xc8b9945C14996501212f289f57009e4e73ebD7a5",  
+    address: "0xc8b9945C14996501212f289f57009e4e73ebD7a5",
     description: "SMART_DISPERSE_ADDRESS_TEST_BASE_SEPOLIA",
     "block-explorer": "base-sepolia.blockscout.com",
     Abi: SmartDisperseCrossChain,
     chainDisplayName: "Base Sepolia",
     chainName: "baseSepolia",
-    APIURL : "https://api.studio.thegraph.com/query/76606/basesepolia-multichain/version/latest"
+    APIURL: "https://api.studio.thegraph.com/query/76606/basesepolia-multichain/version/latest"
   },
   421614: {
     address: "0x49Ecf740b68473191569a2308Bf34a3F56CE5923",
@@ -34,7 +37,7 @@ const crossContracts = {
     Abi: SmartDisperseCrossChain,
     chainDisplayName: "Arbitrum Sepolia",
     chainName: "arbSepolia",
-    APIURL : "https://api.studio.thegraph.com/query/76606/arbsepolia-multichain/version/latest"
+    APIURL: "https://api.studio.thegraph.com/query/76606/arbsepolia-multichain/version/latest"
   },
   80002: {
     address: "0xB886ec515BB2BEf33508561804C144BA785b876c",
@@ -43,8 +46,24 @@ const crossContracts = {
     Abi: SmartDisperseCrossChain,
     chainDisplayName: "Polygon Amoy",
     chainName: "amoy",
-    APIURL : "https://api.studio.thegraph.com/query/76606/amoy-multichain/version/latest"
+    APIURL: "https://api.studio.thegraph.com/query/76606/amoy-multichain/version/latest"
   },
+  901: {
+    address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",//need to change every time
+    description: "SMART_DISPERSE_ADDRESS_SUPERSIM_1",
+    "block-explorer": "optimism-testnet.etherscan.io",
+    Abi: SmartDisperseCrossChainLatest,
+    chainDisplayName: "OPChainA",
+    chainName: "OPChainA",
+  },
+  902: {
+    address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",//need to change every time
+    description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
+    "block-explorer": "optimism-testnet.etherscan.io",
+    Abi: SmartDisperseCrossChainLatest,
+    chainDisplayName: "OPChainB",
+    chainName: "OPChainB",
+  }
 };
 
 export default crossContracts;

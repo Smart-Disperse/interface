@@ -98,23 +98,23 @@ function CrossChainTransfer(props) {
       console.log(" Amounts:", amounts);
       console.log(" Addresses:", addresses);
       console.log(props.tokenAddress);
-      const con = await smartDisperseCrossChainInstance(chainId);
-      const paymentData = {
-        paymentReceivers: addresses,
-        amounts: amounts,
-      };
-      try {
-        const estimatedfees = await con.getEstimatedFees(
-          chainSelectors,
-          receiverAddresses,
-          paymentData,
-          props.tokenAddress
-        );
-        console.log("estimated fees:", estimatedfees);
-        props.setshowestimatedgasprice(estimatedfees);
-      } catch (error) {
-        console.log("error:", error);
-      }
+      // const con = await smartDisperseCrossChainInstance(chainId);
+      // const paymentData = {
+      //   paymentReceivers: addresses,
+      //   amounts: amounts,
+      // };
+      // try {
+      //   const estimatedfees = await con.getEstimatedFees(
+      //     chainSelectors,
+      //     receiverAddresses,
+      //     paymentData,
+      //     props.tokenAddress
+      //   );
+      //   console.log("estimated fees:", estimatedfees);
+      //   props.setshowestimatedgasprice(estimatedfees);
+      // } catch (error) {
+      //   console.log("error:", error);
+      // }
     };
 
     calculateGasFees();
@@ -128,8 +128,7 @@ function CrossChainTransfer(props) {
         `Insufficient Token balance. Your Token Balance is ${(+ethers.utils.formatUnits(
           props.ERC20Balance,
           props.tokenDetails.decimal
-        )).toFixed(4)} ${
-          props.tokenDetails.symbol
+        )).toFixed(4)} ${props.tokenDetails.symbol
         }   and you total sending Token amount is ${(+ethers.utils.formatUnits(
           props.totalERC20,
           props.tokenDetails.decimal
@@ -161,7 +160,7 @@ function CrossChainTransfer(props) {
         }
       });
 
-      console.log(mergedData);
+      console.log('mergedData', mergedData);
       const receiverAddresses = [];
       const chainSelectors = [];
       const amounts = [];
@@ -184,15 +183,11 @@ function CrossChainTransfer(props) {
           addresses.push(addressArr);
         }
       }
-
-      console.log(" Chain Selectors:", chainSelectors);
-      console.log(" Receiver Addresses:", receiverAddresses);
       console.log(" Amounts:", amounts);
-      console.log(" Addresses:", addresses);
-      console.log(props.tokenAddress);
-      console.log(props.totalERC20);
+      console.log(" Addresses:", addresses[0]);
 
       const con = await smartDisperseCrossChainInstance(chainId);
+      console.log('contract in corss chain');
       console.log(chainId);
       try {
         const isTokenApproved = await approveToken(
@@ -210,28 +205,24 @@ function CrossChainTransfer(props) {
         paymentReceivers: addresses,
         amounts: amounts,
       };
+
+      console.log("payment receivers:", paymentData.paymentReceivers);
+      console.log("payment amounts:", paymentData.amounts);
+      console.log("props.tokenAddress", props.tokenAddress);
+      console.log("props.totalERC20", props.totalERC20);
       try {
-        const estimatedfees = await con.getEstimatedFees(
-          chainSelectors,
-          receiverAddresses,
-          paymentData,
-          props.tokenAddress
-        );
-        console.log("estimated fees:", estimatedfees);
-        console.log(props.totalERC20);
-        console.log("Transaction Started");
-        const txsendPayment = await con.sendMessagePayNative(
-          chainSelectors,
-          receiverAddresses,
-          paymentData,
+
+        console.log("calling crossChainDisperseNative...");
+        const txsendPayment = await con.crossChainDisperseNative(
+          902,
+          addresses[0],
+          amounts[0],
           props.tokenAddress,
-          {
-            value: estimatedfees,
-          }
+          { value: props.totalERC20 }
         );
         console.log("Transaction Successful");
         const receipt = await txsendPayment.wait();
-        console.log(receipt);
+        console.log('receipt', receipt);
 
         let blockExplorerURL = await getExplorer();
         setMessage(
@@ -307,11 +298,10 @@ function CrossChainTransfer(props) {
       {" "}
       <button
         id={textStyle.greenbackground}
-        className={`${
-          !props.suffecientBalance
-            ? textStyle.disabledButton
-            : textStyle.sendbutton
-        }`}
+        className={`${!props.suffecientBalance
+          ? textStyle.disabledButton
+          : textStyle.sendbutton
+          }`}
         onClick={() => {
           execute();
         }}

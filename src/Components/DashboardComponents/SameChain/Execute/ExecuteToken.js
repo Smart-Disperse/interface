@@ -65,7 +65,7 @@ function ExecuteToken(props) {
         const con = await smartDisperseInstance(chainId);
         console.log("contract when send weth", con);
 
-        const txsendPayment = await con.disperseTokens(
+        const txsendPayment = await con.disperseERC20(
           recipients,
           values,
           props.customTokenAddress

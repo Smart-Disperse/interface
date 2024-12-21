@@ -11,11 +11,12 @@ export const smartDisperseCrossChainInstance = async (chainId) => {
 
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
+    console.log("Signer", signer);
 
     const contract = new ethers.Contract(
       crossContracts[chainId]["address"],
       crossContracts[chainId]["Abi"].abi,
-      signer
+      signer  
     );
 
     console.log("contract instance", contract);

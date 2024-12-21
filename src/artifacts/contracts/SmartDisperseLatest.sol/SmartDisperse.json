@@ -2,17 +2,55 @@
     "abi": [
         {
             "type": "function",
-            "name": "disperseNative",
+            "name": "crossChainDisperseERC20",
             "inputs": [
                 {
-                    "name": "recipients",
+                    "name": "_toChainId",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "_recipients",
                     "type": "address[]",
                     "internalType": "address[]"
                 },
                 {
-                    "name": "values",
+                    "name": "_amounts",
                     "type": "uint256[]",
                     "internalType": "uint256[]"
+                },
+                {
+                    "name": "_token",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "crossChainDisperseNative",
+            "inputs": [
+                {
+                    "name": "_toChainId",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "_recipients",
+                    "type": "address[]",
+                    "internalType": "address[]"
+                },
+                {
+                    "name": "_amounts",
+                    "type": "uint256[]",
+                    "internalType": "uint256[]"
+                },
+                {
+                    "name": "_token",
+                    "type": "address",
+                    "internalType": "address"
                 }
             ],
             "outputs": [],
@@ -20,15 +58,15 @@
         },
         {
             "type": "function",
-            "name": "disperseTokens",
+            "name": "disperseERC20",
             "inputs": [
                 {
-                    "name": "recipients",
+                    "name": "_recipients",
                     "type": "address[]",
                     "internalType": "address[]"
                 },
                 {
-                    "name": "values",
+                    "name": "_amounts",
                     "type": "uint256[]",
                     "internalType": "uint256[]"
                 },
@@ -40,6 +78,24 @@
             ],
             "outputs": [],
             "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "disperseNative",
+            "inputs": [
+                {
+                    "name": "_recipients",
+                    "type": "address[]",
+                    "internalType": "address[]"
+                },
+                {
+                    "name": "_amounts",
+                    "type": "uint256[]",
+                    "internalType": "uint256[]"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "payable"
         },
         {
             "type": "function",
@@ -77,32 +133,29 @@
             "stateMutability": "nonpayable"
         },
         {
-            "type": "function",
-            "name": "transferTokensTo",
+            "type": "event",
+            "name": "ERC20TokensSent",
             "inputs": [
                 {
-                    "name": "_toChainId",
+                    "name": "fromChainId",
                     "type": "uint256",
+                    "indexed": true,
                     "internalType": "uint256"
                 },
                 {
-                    "name": "_recipients",
-                    "type": "address[]",
-                    "internalType": "address[]"
+                    "name": "toChainId",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
                 },
                 {
-                    "name": "_amounts",
-                    "type": "uint256[]",
-                    "internalType": "uint256[]"
-                },
-                {
-                    "name": "_token",
-                    "type": "address",
-                    "internalType": "address"
+                    "name": "totalAmount",
+                    "type": "uint256",
+                    "indexed": false,
+                    "internalType": "uint256"
                 }
             ],
-            "outputs": [],
-            "stateMutability": "nonpayable"
+            "anonymous": false
         },
         {
             "type": "event",
@@ -125,6 +178,31 @@
                     "type": "uint256[]",
                     "indexed": false,
                     "internalType": "uint256[]"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "NativeTokensSent",
+            "inputs": [
+                {
+                    "name": "fromChainId",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "toChainId",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "totalAmount",
+                    "type": "uint256",
+                    "indexed": false,
+                    "internalType": "uint256"
                 }
             ],
             "anonymous": false
@@ -186,31 +264,6 @@
             "anonymous": false
         },
         {
-            "type": "event",
-            "name": "TokensSent",
-            "inputs": [
-                {
-                    "name": "fromChainId",
-                    "type": "uint256",
-                    "indexed": true,
-                    "internalType": "uint256"
-                },
-                {
-                    "name": "toChainId",
-                    "type": "uint256",
-                    "indexed": true,
-                    "internalType": "uint256"
-                },
-                {
-                    "name": "totalAmount",
-                    "type": "uint256",
-                    "indexed": false,
-                    "internalType": "uint256"
-                }
-            ],
-            "anonymous": false
-        },
-        {
             "type": "error",
             "name": "CallerNotL2ToL2CrossDomainMessenger",
             "inputs": []
@@ -222,12 +275,12 @@
         },
         {
             "type": "error",
-            "name": "InvalidCrossDomainSender",
+            "name": "InvalidArrayLength",
             "inputs": []
         },
         {
             "type": "error",
-            "name": "TransferFailed",
+            "name": "InvalidCrossDomainSender",
             "inputs": []
         }
     ]

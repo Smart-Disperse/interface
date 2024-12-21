@@ -163,15 +163,6 @@ function SendEth({ listData, setListData }) {
     }
   };
 
-  // useEffect(async () => {
-  //   const { ethereum } = window;
-  //   const provider = new ethers.providers.Web3Provider(ethereum);
-  //   let ethBalance = await provider.getBalance(address)
-  //   console.log("ethBalanceeeeeeeeeeeee:", ethBalance);
-
-  // }, [address]);
-
-
   const handleDeleteRow = (index) => {
     const updatedList = [...listData];
     updatedList.splice(index, 1);
@@ -199,8 +190,6 @@ function SendEth({ listData, setListData }) {
 
   /* for getting values on render */
   useEffect(() => {
-    console.log('listData', listData);
-    console.log('address', address);
     getEthBalance();
   }, [address]);
 
@@ -224,7 +213,6 @@ function SendEth({ listData, setListData }) {
 
   const fetchUserDetails = async () => {
     try {
-      console.log("addressss", address);
       const { allNames, allAddress } = await fetchUserLabels(address);
       console.log(allAddress);
       setAllNames(allNames);
@@ -238,7 +226,6 @@ function SendEth({ listData, setListData }) {
 
   useEffect(() => {
     if (address) {
-      console.log("Fetching user details...");
       fetchUserDetails();
     }
   }, [address]);
@@ -329,7 +316,6 @@ function SendEth({ listData, setListData }) {
 
     await fetchUserDetails();
     await setListData(updatedListData);
-    console.log('updatedListData', updatedListData);
 
     // Log the updated address-label mapping
     console.log("Address-Label Mapping:", addressLabelMap);
