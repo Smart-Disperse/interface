@@ -31,11 +31,12 @@ function CrossChain() {
         throw new Error(`Chain details for chainId ${chainId} are undefined.`);
       }
 
-      console.log(chainDetails);
+      console.log("chain details", chainDetails);
       const options = Object.entries(chainDetails.destinationChains).map(
         ([name, details]) => ({
           name,
           iconUrl: details.iconUrl,
+          chainId: details.chainID,
         })
       );
       setDestinationChainsOptions(options);
@@ -54,42 +55,81 @@ function CrossChain() {
     }
   }, [address, chainId]);
 
+  // const handleDestinationChainChange = (selectedChain) => {
+  //   console.log(selectedChain);
+  //   setTokenAddress("");
+  //   setSelectedToken(null);
+  //   const selectedChainName = selectedChain.name;
+  //   const chainDetails = allchains[chainId];
+  //   const selectedChainDetails =
+  //     chainDetails.destinationChains[selectedChainName];
+
+  //   setSelectedDestinationChain(selectedChain);
+
+  //   console.log(selectedChainDetails);
+
+  //   if (selectedChainDetails) {
+  //     setErrorMessage("");
+  //     const tokenOptions = Object.entries(selectedChainDetails.tokens).map(
+  //       ([key, value]) => ({
+  //         name: key,
+  //         address: value,
+  //         iconUrl:
+  //           "https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png",
+  //       })
+  //     );
+
+  //     setTokenOptions(tokenOptions);
+  //   } else {
+  //     setTokenOptions([]);
+  //   }
+  // };
+
   const handleDestinationChainChange = (selectedChain) => {
-    console.log(selectedChain);
+    console.log("selected chains", selectedChain);
     setTokenAddress("");
     setSelectedToken(null);
+  
     const selectedChainName = selectedChain.name;
     const chainDetails = allchains[chainId];
     const selectedChainDetails =
       chainDetails.destinationChains[selectedChainName];
-
+  
     setSelectedDestinationChain(selectedChain);
-
+  
     console.log(selectedChainDetails);
-
+  
     if (selectedChainDetails) {
       setErrorMessage("");
+  
+      // Map tokens from the destination chain
       const tokenOptions = Object.entries(selectedChainDetails.tokens).map(
         ([key, value]) => ({
           name: key,
           address: value,
           iconUrl:
-            "https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png",
+            key === "ETH"
+              ? "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+              : "https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png",
         })
       );
-
+  
       setTokenOptions(tokenOptions);
     } else {
       setTokenOptions([]);
     }
   };
+  
 
   const handleDestinationTokenChange = (selectedToken) => {
     if (!selectedDestinationChain) {
       setErrorMessage("Please select a destination chain first.");
     } else {
       setSelectedToken(selectedToken);
-      setTokenAddress(selectedToken.address);
+      // Set tokenAddress to "ETH" for ETH, otherwise use the token's address
+      setTokenAddress(
+        selectedToken.name === "ETH" ? "ETH" : selectedToken.address
+      );
       setErrorMessage(""); // Clear error message when a token is selected
     }
   };

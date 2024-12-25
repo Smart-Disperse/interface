@@ -7,38 +7,32 @@ import textStyle from "../Type/textify.module.css";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ExecuteToken from "../Execute/CrossChainTransfer";
 import { LoadToken } from "@/Helpers/LoadToken.js";
 import {
-  faCircleExclamation,
   faTrashAlt,
-  faExclamationTriangle,
-  faTriangleExclamation,
   faCopy,
   faGasPump,
 } from "@fortawesome/free-solid-svg-icons";
-import homeStyle from "@/Components/Homepage/landingpage.module.css";
 import Modal from "react-modal";
 import warning from "@/Assets/warning.webp";
 import Image from "next/image";
 import oopsimage from "@/Assets/oops.webp";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchUserLabels } from "@/Helpers/FetchUserLabels";
 import CrossChainTransfer from "../Execute/CrossChainTransfer";
-import loaderimg from "@/Assets/loader.gif";
 import loadjson from "@/Assets/tokenload.json";
 import allchains from "@/Helpers/CrosschainHelpers/ChainSelector";
 import { useChainId } from "wagmi";
-import CustomDropdown from "../Type/CustomDropDown";
-import { text } from "@fortawesome/fontawesome-svg-core";
-import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import DesCustomDropdown from "../Type/Destinationselect";
 import Addlabel from "../Type/Addlabel";
 import samechainStyle from "../../../Dashboard/samechaindashboard.module.css";
 import { Tooltip } from "antd";
 import HowItWorks from "../../SameChain/Send/HowItWorks";
+
+import { useBalance } from "wagmi";
+
 
 function SendToken({
   listData,
@@ -55,7 +49,7 @@ function SendToken({
     useState(null); /*/USD/ETH exchange rate */
   const [totalERC20, setTotalERC20] =
     useState(null); /* Total ERC20 tokens in wallet */
-  const [remaining, setRemaining] = useState(null); // store remaining amount after deducting already sent value  
+  const [remaining, setRemaining] = useState(null); // store remaining amount after deducting already sent value
   const [ERC20Balance, setERC20Balance] =
     useState(null); /* User's ERC20 token balance */
   const { address } = useAccount(); /*/User's Ethereum Address*/
@@ -81,7 +75,7 @@ function SendToken({
   const [allAddresses, setAllAddresses] = useState([]);
   const [tokenDetails, setTokenDetails] =
     useState(defaultTokenDetails); /*Details of the selected token to be sent*/
-    
+
   const chainId = useChainId();
   const [destinationFinalChainsOptions, setDestinationFinalChainsOptions] =
     useState([]);
@@ -94,6 +88,9 @@ function SendToken({
   const [suffecientBalance, setSuffecientBalance] = useState(true);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
 
+  const { data: ethBalance } = useBalance({
+    address: address,
+  });
 
   useEffect(() => {
     setSelectedDestinationfinalChains((prevChains) => {
@@ -214,44 +211,93 @@ function SendToken({
   };
 
   // Function to load token details
+  // const loadTokenDetails = async (_tokenAddress) => {
+  //   setIstokenloading(true);
+  //   setTokenLoaded(false);
+  //   setRemaining(null);
+  //   setTotalERC20(null);
+  //   setListData([]);
+  //   console.log(_tokenAddress);
+
+  //   setTokenDetails(defaultTokenDetails);
+  //   console.log(address);
+  //   const tokenDetails = await LoadToken(_tokenAddress, address);
+  //   console.log(tokenDetails);
+  //   setIstokenloading(false);
+  //   if (tokenDetails) {
+  //     setTokenDetails(tokenDetails);
+  //     setERC20Balance(tokenDetails.balance);
+  //     setTokenLoaded(true);
+  //   } else {
+  //     // toast.error("Token details not found");
+  //     console.log("error-Token not found");
+  //     // Throw error if token details are not found
+  //   }
+  // };
   const loadTokenDetails = async (_tokenAddress) => {
     setIstokenloading(true);
     setTokenLoaded(false);
     setRemaining(null);
     setTotalERC20(null);
     setListData([]);
-    console.log(_tokenAddress);
-
-    setTokenDetails(defaultTokenDetails);
-    console.log(address);
-    const tokenDetails = await LoadToken(_tokenAddress, address);
-    console.log(tokenDetails);
-    setIstokenloading(false);
-    if (tokenDetails) {
-      setTokenDetails(tokenDetails);
-      setERC20Balance(tokenDetails.balance);
+    
+    if (_tokenAddress === "ETH") {
+      // Handle ETH case
+      const ethTokenDetails = {
+        name: "Ethereum",
+        symbol: "ETH",
+        balance: ethBalance ? ethers.utils.parseEther(ethBalance.formatted) : ethers.constants.Zero,
+        decimal: 18
+      };
+      setTokenDetails(ethTokenDetails);
+      setERC20Balance(ethTokenDetails.balance);
       setTokenLoaded(true);
+      setIstokenloading(false);
     } else {
-      // toast.error("Token details not found");
-      console.log("error-Token not found");
-      // Throw error if token details are not found
+      // Existing ERC20 token handling
+      setTokenDetails(defaultTokenDetails);
+      const tokenDetails = await LoadToken(_tokenAddress, address);
+      if (tokenDetails) {
+        setTokenDetails(tokenDetails);
+        setERC20Balance(tokenDetails.balance);
+        setTokenLoaded(true);
+      }
+      setIstokenloading(false);
     }
   };
 
-  useEffect(() => {
-    const loadSelectedToken = async () => {
-      if (tokenAddress) {
-        if (tokenAddress === "") {
-          setTokenLoaded(false);
-        } else {
-          await loadTokenDetails(tokenAddress);
-        }
-      } else {
+  // Modify the table display for token address
+  const renderTokenAddress = () => {
+    if (tokenAddress === "ETH") {
+      return "Native ETH";
+    }
+    return (
+      <>
+        {`${tokenAddress.slice(0, 7)}...${tokenAddress.slice(-4)}`}{" "}
+        <FontAwesomeIcon
+          className={textStyle.copyicon}
+          onClick={() => copyToClipboard(tokenAddress)}
+          icon={faCopy}
+        />
+      </>
+    );
+  };
+
+// Update useEffect for loading token details
+useEffect(() => {
+  const loadSelectedToken = async () => {
+    if (tokenAddress) {
+      if (tokenAddress === "") {
         setTokenLoaded(false);
+      } else {
+        await loadTokenDetails(tokenAddress);
       }
-    };
-    loadSelectedToken();
-  }, [tokenAddress]);
+    } else {
+      setTokenLoaded(false);
+    }
+  };
+  loadSelectedToken();
+}, [tokenAddress, ethBalance]); // Add ethBalance as dependency
 
   // Function to close the error modal
   const closeErrorModal = () => {
@@ -340,11 +386,7 @@ function SendToken({
     if (ERC20Balance && totalERC20) {
       const remaining = ERC20Balance.sub(totalERC20);
       setRemaining(remaining);
-      if (remaining < 0) {
-        setSuffecientBalance(false);
-      } else {
-        setSuffecientBalance(true);
-      }
+      setSuffecientBalance(remaining.gte(0));
     } else {
       setRemaining(null);
     }
@@ -433,7 +475,6 @@ function SendToken({
     console.log(listData);
   };
 
-
   const showModal = () => {
     setIsHowItWorksOpen(true);
   };
@@ -481,17 +522,7 @@ function SendToken({
                           <tr>
                             <td>{tokenDetails.name}</td>
                             <td>{tokenDetails.symbol}</td>
-                            <td>
-                              {`${tokenAddress.slice(
-                                0,
-                                7
-                              )}...${tokenAddress.slice(-4)}`}{" "}
-                              <FontAwesomeIcon
-                                className={textStyle.copyicon}
-                                onClick={() => copyToClipboard(tokenAddress)}
-                                icon={faCopy}
-                              />
-                            </td>
+                            <td>{renderTokenAddress()}</td>
                             <td>
                               {ethers.utils.formatUnits(
                                 tokenDetails.balance,
@@ -835,7 +866,6 @@ function SendToken({
                 alt="not found"
               />
             </div>
-            {/* <p>{errorMessage}</p> */}
             <p className={textStyle.errormessagep}>{errorMessage}</p>
 
             <div className={textStyle.divtocenter}>

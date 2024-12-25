@@ -15,7 +15,7 @@ function CustomDropdown({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  console.log(options);
+  console.log("frommm", options);
   const handleSelect = (value) => {
     onSelect(value, index);
     setIsOpen(false);

@@ -184,9 +184,11 @@ const allchains = {
     chainName: "OPChainA",
     destinationChains: {
       OPChainB: {
+        chainID: 902,
         // chainSelector: "",
         tokens: {
           WETH: "0x4200000000000000000000000000000000000024",
+          ETH: "ETH",
         },
         // receiverAddress: "0x568ABafeCaB14144D63357D694d9c3155F6e8b3b",
         iconUrl:
@@ -199,9 +201,11 @@ const allchains = {
     chainName: "OPChainB",
     destinationChains: {
       OPChainA: {
+        chainID: 901,
         // chainSelector: "",
         tokens: {
           WETH: "0x4200000000000000000000000000000000000024",
+          ETH: "ETH", 
         },
         // receiverAddress: "0x568ABafeCaB14144D63357D694d9c3155F6e8b3b",
         iconUrl:
@@ -210,6 +214,5 @@ const allchains = {
     },
     chainSelector: "16281711391670634445",
   },
-
 };
 export default allchains;
