@@ -129,8 +129,7 @@ function CrossChainTransfer(props) {
         `Insufficient Token balance. Your Token Balance is ${(+ethers.utils.formatUnits(
           props.ERC20Balance,
           props.tokenDetails.decimal
-        )).toFixed(4)} ${
-          props.tokenDetails.symbol
+        )).toFixed(4)} ${props.tokenDetails.symbol
         }   and you total sending Token amount is ${(+ethers.utils.formatUnits(
           props.totalERC20,
           props.tokenDetails.decimal
@@ -215,7 +214,7 @@ function CrossChainTransfer(props) {
       console.log("props.totalERC20", props.totalERC20);
 
       try {
-        console.log("calling crossChainDisperseNative...");
+        console.log("calling function for disperse...");
         let txsendPayment;
 
         const destinationChain = props.selectedDestinationfinalChains?.[0];
@@ -232,7 +231,7 @@ function CrossChainTransfer(props) {
             dynamicChainId, // Use dynamic chainId
             addresses[0],
             amounts[0],
-            props.tokenAddress,
+            "0x4200000000000000000000000000000000000024", // WETH address
             { value: props.totalERC20 }
           );
         } else {
@@ -323,15 +322,14 @@ function CrossChainTransfer(props) {
       {" "}
       <button
         id={textStyle.greenbackground}
-        className={`${
-          !props.suffecientBalance
-            ? textStyle.disabledButton
-            : textStyle.sendbutton
-        }`}
+        className={`${!props.suffecientBalance
+          ? textStyle.disabledButton
+          : textStyle.sendbutton
+          }`}
         onClick={() => {
           execute();
         }}
-        // disabled={!props.suffecientBalance}
+      // disabled={!props.suffecientBalance}
       >
         <>
           {props.suffecientBalance ? "Begin payment" : "Insufficient balance"}
