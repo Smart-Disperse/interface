@@ -1,5 +1,5 @@
 {
-  "abi": [
+    "abi": [
         {
             "type": "function",
             "name": "crossChainDisperseERC20",
@@ -46,11 +46,36 @@
                     "name": "_amounts",
                     "type": "uint256[]",
                     "internalType": "uint256[]"
-                },
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "payable"
+        },
+        {
+            "type": "function",
+            "name": "crossChainDisperseNativeMultiChain",
+            "inputs": [
                 {
-                    "name": "_token",
-                    "type": "address",
-                    "internalType": "address"
+                    "name": "transfers",
+                    "type": "tuple[]",
+                    "internalType": "struct SmartDisperse.CrossChainTransfer[]",
+                    "components": [
+                        {
+                            "name": "chainId",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "recipients",
+                            "type": "address[]",
+                            "internalType": "address[]"
+                        },
+                        {
+                            "name": "amounts",
+                            "type": "uint256[]",
+                            "internalType": "uint256[]"
+                        }
+                    ]
                 }
             ],
             "outputs": [],
@@ -99,6 +124,19 @@
         },
         {
             "type": "function",
+            "name": "owner",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
             "name": "receiveTokens",
             "inputs": [
                 {
@@ -127,6 +165,57 @@
                             "internalType": "uint256"
                         }
                     ]
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "renounceOwnership",
+            "inputs": [],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "transferOwnership",
+            "inputs": [
+                {
+                    "name": "newOwner",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "withdrawERC20",
+            "inputs": [
+                {
+                    "name": "_token",
+                    "type": "address",
+                    "internalType": "address"
+                },
+                {
+                    "name": "_to",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "withdrawNative",
+            "inputs": [
+                {
+                    "name": "_to",
+                    "type": "address",
+                    "internalType": "address payable"
                 }
             ],
             "outputs": [],
@@ -209,6 +298,25 @@
         },
         {
             "type": "event",
+            "name": "OwnershipTransferred",
+            "inputs": [
+                {
+                    "name": "previousOwner",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "newOwner",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
             "name": "TokensDispersed",
             "inputs": [
                 {
@@ -282,7 +390,11 @@
             "type": "error",
             "name": "InvalidCrossDomainSender",
             "inputs": []
+        },
+        {
+            "type": "error",
+            "name": "TransferFailed",
+            "inputs": []
         }
     ]
 }
-

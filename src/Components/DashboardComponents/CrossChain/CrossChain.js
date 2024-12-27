@@ -31,12 +31,12 @@ function CrossChain() {
         throw new Error(`Chain details for chainId ${chainId} are undefined.`);
       }
 
-      console.log("chain details", chainDetails);
+      console.log("chain detailsssssss", chainDetails);
       const options = Object.entries(chainDetails.destinationChains).map(
         ([name, details]) => ({
           name,
           iconUrl: details.iconUrl,
-          chainId: details.chainID,
+          chainId: details.chainId,
         })
       );
       setDestinationChainsOptions(options);
@@ -86,6 +86,7 @@ function CrossChain() {
   // };
 
   const handleDestinationChainChange = (selectedChain) => {
+    console.log("seeeeeeeeeeeeelected... ", selectedChain);
     console.log("selected chains", selectedChain);
     setTokenAddress("");
     setSelectedToken(null);

@@ -46,80 +46,80 @@ function CrossChainTransfer(props) {
     window.open(twitterUrl, "_blank");
   };
 
-  useEffect(() => {
-    const calculateGasFees = async () => {
-      const mergedData = {};
-      props.listData.forEach((item, index) => {
-        const chainName = props.selectedDestinationfinalChains[index]?.name;
-        if (chainName) {
-          const receiverAddress =
-            allchains[chainId]["destinationChains"][chainName].receiverAddress;
-          const chainSelector =
-            allchains[chainId]["destinationChains"][chainName].chainSelector;
+  // useEffect(() => {
+  //   const calculateGasFees = async () => {
+  //     const mergedData = {};
+  //     props.listData.forEach((item, index) => {
+  //       const chainName = props.selectedDestinationfinalChains[index]?.name;
+  //       if (chainName) {
+  //         const receiverAddress =
+  //           allchains[chainId]["destinationChains"][chainName].receiverAddress;
+  //         const chainSelector =
+  //           allchains[chainId]["destinationChains"][chainName].chainSelector;
 
-          if (!mergedData[chainName]) {
-            mergedData[chainName] = {
-              receiverAddress,
-              chainSelector,
-              list: [],
-            };
-          }
+  //         if (!mergedData[chainName]) {
+  //           mergedData[chainName] = {
+  //             receiverAddress,
+  //             chainSelector,
+  //             list: [],
+  //           };
+  //         }
 
-          mergedData[chainName].list.push(item);
-        }
-      });
+  //         mergedData[chainName].list.push(item);
+  //       }
+  //     });
 
-      console.log(mergedData);
-      const receiverAddresses = [];
-      const chainSelectors = [];
-      const amounts = [];
-      const addresses = [];
+  //     console.log(mergedData);
+  //     const receiverAddresses = [];
+  //     const chainSelectors = [];
+  //     const amounts = [];
+  //     const addresses = [];
 
-      for (const chainName in mergedData) {
-        if (Object.hasOwnProperty.call(mergedData, chainName)) {
-          const chainData = mergedData[chainName];
-          receiverAddresses.push(chainData.receiverAddress);
-          chainSelectors.push(chainData.chainSelector);
+  //     for (const chainName in mergedData) {
+  //       if (Object.hasOwnProperty.call(mergedData, chainName)) {
+  //         const chainData = mergedData[chainName];
+  //         receiverAddresses.push(chainData.receiverAddress);
+  //         chainSelectors.push(chainData.chainSelector);
 
-          // Extracting amounts and addresses
-          const amountArr = [];
-          const addressArr = [];
-          chainData.list.forEach((item) => {
-            amountArr.push(item.value);
-            addressArr.push(item.address);
-          });
-          amounts.push(amountArr);
-          addresses.push(addressArr);
-        }
-      }
+  //         // Extracting amounts and addresses
+  //         const amountArr = [];
+  //         const addressArr = [];
+  //         chainData.list.forEach((item) => {
+  //           amountArr.push(item.value);
+  //           addressArr.push(item.address);
+  //         });
+  //         amounts.push(amountArr);
+  //         addresses.push(addressArr);
+  //       }
+  //     }
 
-      console.log(" Chain Selectors:", chainSelectors);
-      console.log(" Receiver Addresses:", receiverAddresses);
-      console.log(" Amounts:", amounts);
-      console.log(" Addresses:", addresses);
-      console.log(props.tokenAddress);
+  //     console.log(" Chain Selectors:", chainSelectors);
+  //     console.log(" Receiver Addresses:", receiverAddresses);
+  //     console.log(" Amounts:", amounts);
+  //     console.log(" Addresses:", addresses);
+  //     console.log(props.tokenAddress);
 
-      // const con = await smartDisperseCrossChainInstance(chainId);
-      // const paymentData = {
-      //   paymentReceivers: addresses,
-      //   amounts: amounts,
-      // };
-      // try {
-      //   const estimatedfees = await con.getEstimatedFees(
-      //     chainSelectors,
-      //     receiverAddresses,
-      //     paymentData,
-      //     props.tokenAddress
-      //   );
-      //   console.log("estimated fees:", estimatedfees);
-      //   props.setshowestimatedgasprice(estimatedfees);
-      // } catch (error) {
-      //   console.log("error:", error);
-      // }
-    };
+  //     // const con = await smartDisperseCrossChainInstance(chainId);
+  //     // const paymentData = {
+  //     //   paymentReceivers: addresses,
+  //     //   amounts: amounts,
+  //     // };
+  //     // try {
+  //     //   const estimatedfees = await con.getEstimatedFees(
+  //     //     chainSelectors,
+  //     //     receiverAddresses,
+  //     //     paymentData,
+  //     //     props.tokenAddress
+  //     //   );
+  //     //   console.log("estimated fees:", estimatedfees);
+  //     //   props.setshowestimatedgasprice(estimatedfees);
+  //     // } catch (error) {
+  //     //   console.log("error:", error);
+  //     // }
+  //   };
 
-    calculateGasFees();
-  }, [props.totalERC20]);
+  //   calculateGasFees();
+  // }, [props.totalERC20]);
 
   const execute = async () => {
     setLoadermodal(true);
@@ -151,7 +151,6 @@ function CrossChainTransfer(props) {
 
           if (!mergedData[chainName]) {
             mergedData[chainName] = {
-              receiverAddress,
               chainSelector,
               list: [],
             };
@@ -191,16 +190,19 @@ function CrossChainTransfer(props) {
       console.log("contract in corss chain");
       console.log(chainId);
 
-      try {
-        const isTokenApproved = await approveToken(
-          props.totalERC20,
-          props.tokenAddress,
-          chainId
-        );
-        console.log(isTokenApproved);
-        console.log("Token Approved");
-      } catch (error) {
-        console.log("error:", error);
+      if(props.tokenAddress !== "ETH"){
+        try {
+          const isTokenApproved = await approveToken(
+            props.totalERC20,
+            props.tokenAddress,
+            chainId
+          );
+          console.log(isTokenApproved);
+          console.log("Token Approved");
+        } catch (error) {
+          console.log("error:", error);
+        }
+
       }
 
       const paymentData = {
@@ -219,29 +221,31 @@ function CrossChainTransfer(props) {
 
         const destinationChain = props.selectedDestinationfinalChains?.[0];
         const dynamicChainId = destinationChain?.chainId;
+        console.log("dynamicChainId ..", destinationChain);
         if (!dynamicChainId) {
           throw new Error("Chain ID is missing or undefined.");
         }
 
-        console.log(`Dynamic Chain ID: ${dynamicChainId}`);
-
+        console.log("totalERC20: ", props.totalERC20);
+        console.log("addresses: ", addresses[0]);
+        console.log("amounts: ", amounts[0]);
         if (props.tokenAddress === "ETH") {
           console.log("Token is ETH. Calling crossChainDisperseNative...");
           txsendPayment = await con.crossChainDisperseNative(
             dynamicChainId, // Use dynamic chainId
             addresses[0],
             amounts[0],
-            "0x4200000000000000000000000000000000000024", // WETH address
-            { value: props.totalERC20 }
+            { value: props.totalERC20 },
           );
         } else {
+          
           console.log("Token is not ETH. Calling crossChainDisperseERC20...");
           txsendPayment = await con.crossChainDisperseERC20(
             dynamicChainId, // Use dynamic chainId
             addresses[0],
             amounts[0],
             props.tokenAddress
-          );
+          ); 
         }
 
         console.log("Transaction Successful");

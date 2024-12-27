@@ -37,8 +37,8 @@ const modeTestnet = {
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["https://sepolia.mode.network/"] },
-    default: { http: ["https://sepolia.mode.network/"] },
+    public: { http: ["http://127.0.0.1:9547"] },
+    default: { http: ["http://127.0.0.1:9547"] },
   },
   blockExplorers: {
     default: { name: "Mode Testnet Explorer", url: "https://sepolia.mode.network/explorer" },
@@ -97,8 +97,8 @@ const baseSepolia = {
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["wss://base-sepolia-rpc.publicnode.com"] },
-    default: { http: ["wss://base-sepolia-rpc.publicnode.com"] },
+    public: { http: ["http://127.0.0.1:9546"] },
+    default: { http: ["http://127.0.0.1:9546"] },
   },
   blockExplorers: {
     default: { name: "BaseScan", url: "https://sepolia.basescan.org" },
@@ -136,13 +136,14 @@ const optimismSepolia = {
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["https://sepolia.optimism.io"] },
-    default: { http: ["https://sepolia.optimism.io"] },
+    public: { http: ["http://127.0.0.1:9545"] },
+    default: { http: ["http://127.0.0.1:9545"] },
   },
   blockExplorers: {
     default: { name: "Etherscan", url: "https://sepolia-optimistic.etherscan.io" },
   },
 };
+
 const scroll = {
   id: 534352,
   name: "Scroll",
@@ -297,11 +298,11 @@ export function Providers({ children }) {
   const chains = [
     modeMainnet,
     scroll,
-    modeTestnet,
     scrollSepolia,
     sepolia,
     optimismSepolia,
     baseSepolia,
+    modeTestnet,
     Base,
     optimism,
     arbitrumSepolia,
