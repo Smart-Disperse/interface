@@ -244,7 +244,7 @@ function CrossChainTransfer(props) {
           );
         }
 
-        console.log("Transaction Successful");
+        console.log("Transaction Successful...");
         const receipt = await txsendPayment.wait();
         console.log("receipt", receipt);
 
