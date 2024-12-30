@@ -65,19 +65,21 @@ function ExecuteEth(props) {
     }
 
     try {
+      console.log("chain id is...", chainId)
       const con = await smartDisperseInstance(chainId);
       console.log('contract will call is', con);
       console.log(recipients, values, props.totalEth);
       // const txsendPayment = await con.disperseEther(recipients, values, {
       //   value: props.totalEth,
       // });
-  
+
       const txsendPayment = await con.disperseNative(recipients, values, {
         value: props.totalEth,
       });
 
       const receipt = await txsendPayment.wait();
       console.log(receipt);
+
       let blockExplorerURL = await getExplorer();
       setMessage(
         <div
@@ -91,6 +93,7 @@ function ExecuteEth(props) {
       setExecutionStatusmodal(true);
       setSuccess(true);
     } catch (error) {
+      console.log(error)
       setMessage(error);
       setExecutionStatusmodal(true);
       setSuccess(false);
