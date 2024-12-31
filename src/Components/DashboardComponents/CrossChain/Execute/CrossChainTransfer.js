@@ -231,7 +231,6 @@ function CrossChainTransfer(props) {
             dynamicChainId, // Use dynamic chainId
             addresses[0],
             amounts[0],
-            "0x4200000000000000000000000000000000000024", // WETH address
             { value: props.totalERC20 }
           );
         } else {

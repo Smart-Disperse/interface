@@ -49,7 +49,7 @@ const crossContracts = {
     APIURL: "https://api.studio.thegraph.com/query/76606/amoy-multichain/version/latest"
   },
   901: {
-    address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",//need to change every time
+    address: "0x45C5381B349400959900ec235527a946fcc435D4",//need to change every time
     description: "SMART_DISPERSE_ADDRESS_SUPERSIM_1",
     "block-explorer": "optimism-testnet.etherscan.io",
     Abi: SmartDisperseCrossChainLatest,
@@ -57,7 +57,7 @@ const crossContracts = {
     chainName: "OPChainA",
   },
   902: {
-    address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",//need to change every time
+    address: "0x45C5381B349400959900ec235527a946fcc435D4",//need to change every time
     description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
     "block-explorer": "optimism-testnet.etherscan.io",
     Abi: SmartDisperseCrossChainLatest,
