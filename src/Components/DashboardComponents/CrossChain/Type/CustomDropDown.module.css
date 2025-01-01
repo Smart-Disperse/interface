@@ -28,6 +28,13 @@
 .selectedItem {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.flexstyle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon {

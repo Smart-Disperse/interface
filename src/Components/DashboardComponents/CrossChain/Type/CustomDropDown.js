@@ -63,19 +63,19 @@ function CustomDropdown({
         onClick={handleTokendropdown}
       >
         {Array.isArray(selectedValue) && selectedValue.length > 0 ? (
-          <div className={dropDownStyles.selectedItem}>
-            {selectedValue.map((chain, index) => (
-              <React.Fragment key={chain.name}>
-                <img
-                  src={chain.iconUrl}
-                  alt={chain.name}
-                  className={dropDownStyles.icon}
-                />
-                {/* {chain.name} */}
-                {index < selectedValue.length - 1 && ", "}
-              </React.Fragment>
-            ))}
-          </div>
+            <div className={dropDownStyles.selectedItem}>
+              {selectedValue.map((chain, index) => (
+                <div key={chain.name} className={dropDownStyles.flexstyle}>
+                  <img
+                    src={chain.iconUrl}
+                    alt={chain.name}
+                    className={dropDownStyles.icon}
+                  />
+                  {chain.name}
+                  {/* {index < selectedValue.length - 1 && ", "} */}
+                </div>
+              ))}
+            </div>
         ) : !Array.isArray(selectedValue) && selectedValue?.name ? (
           <div className={dropDownStyles.selectedItem}>
             {selectedValue.iconUrl && (
