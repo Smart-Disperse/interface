@@ -1,4 +1,5 @@
 import Base from "antd/es/typography/Base";
+import { baseSepolia } from "viem/chains";
 
 // all chains
 const allchains = {
@@ -299,12 +300,12 @@ const allchains = {
   //   },
   // },
 
-  10: {
-    chainName: "optimism",
-    chainId: "10",
+  11155420: {
+    chainName: "optimismSepolia",
+    chainId: "11155420",
     destinationChains: {
-      Base: {
-        chainId: "8453",
+      baseSepolia: {
+        chainId: "84532",
         tokens: {
           SuperChainWETH: "0x4200000000000000000000000000000000000024",
           ETH: "ETH",
@@ -313,8 +314,8 @@ const allchains = {
         iconUrl:
           "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
       },
-      Zora: {
-        chainId: "7777777",
+      modeSepolia: {
+        chainId: "919",
         tokens: {
           SuperChainWETH: "0x4200000000000000000000000000000000000024",
           ETH: "ETH",
@@ -325,12 +326,12 @@ const allchains = {
     },
   },
 
-  8453: {
-    chainName: "Base",
-    chainId: "8453",
+  84532: {
+    chainName: "baseSepolia",
+    chainId: "84532",
     destinationChains: {
-      optimism: {
-        chainId: "10",
+      optimismSepolia: {
+        chainId: "11155420",
         tokens: {
           SuperChainWETH: "0x4200000000000000000000000000000000000024",
           ETH: "ETH",
@@ -339,8 +340,8 @@ const allchains = {
         iconUrl:
           "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
       },
-      Zora: {
-        chainId: "7777777",
+      modeSepolia: {
+        chainId: "919",
         tokens: {
           SuperChainWETH: "0x4200000000000000000000000000000000000024",
           ETH: "ETH",
@@ -351,12 +352,12 @@ const allchains = {
     },
   },
 
-  7777777: {
-    chainName: "Zora",
-    chainId: "7777777",
+  919: {
+    chainName: "modeSepolia",
+    chainId: "919",
     destinationChains: {
-      Base: {
-        chainId: "8453",
+      baseSepolia: {
+        chainId: "84532",
         tokens: {
           SuperChainWETH: "0x4200000000000000000000000000000000000024",
           ETH: "ETH",
@@ -365,8 +366,8 @@ const allchains = {
         iconUrl:
           "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
       },
-      optimism: {
-        chainId: "10",
+      optimismSepolia: {
+        chainId: "11155420",
         tokens: {
           SuperChainWETH: "0x4200000000000000000000000000000000000024",
           ETH: "ETH",

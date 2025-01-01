@@ -8,44 +8,6 @@ import "driver.js/dist/driver.css";
 
 import { FaChevronDown } from "react-icons/fa";
 
-// function NestedDropdown({ options, onSelect, placeholder }) {
-//   const [isNestedOpen, setIsNestedOpen] = useState(false);
-
-//   const handleNestedSelect = (value) => {
-//     onSelect(value);
-//     setIsNestedOpen(false);
-//   };
-
-//   return (
-//     <div className={dropDownStyles.dropdown}>
-//       <div
-//         className={dropDownStyles.dropdownHeader}
-//         onClick={() => setIsNestedOpen(!isNestedOpen)}
-//       >
-//         <span>{placeholder} ▾</span>
-//       </div>
-//       {isNestedOpen && (
-//         <div className={dropDownStyles.dropdownList}>
-//           {options.map((option) => (
-//             <div
-//               key={option.name}
-//               className={dropDownStyles.dropdownItem}
-//               onClick={() => handleNestedSelect(option)}
-//             >
-//               <img
-//                 src={option.iconUrl}
-//                 alt={option.name}
-//                 className={dropDownStyles.icon}
-//               />
-//               {option.name}
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
 function DesCustomDropdown({
   options,
   onSelect,

@@ -65,10 +65,10 @@ const { wallets } = getDefaultWallets();
 //   },
 // };
 
-const Base = {
-  id: 8453,
-  name: "Base",
-  network: "Base",
+const baseSepolia = {
+  id: 84532,
+  name: "Base Sepolia",
+  network: "Base Sepolia",
   iconUrl:
     "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
   nativeCurrency: {
@@ -85,10 +85,10 @@ const Base = {
   },
 };
 
-const optimism = {
-  id: 10,
-  name: "OP",
-  network: "OP Mainnet",
+const optimismSepolia = {
+  id: 11155420,
+  name: "OP sepolia",
+  network: "OP Sepolia",
   iconUrl:
     "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
   nativeCurrency: {
@@ -105,10 +105,10 @@ const optimism = {
   },
 };
 
-const Zora = {
-  id: 7777777,
-  name: "Zora",
-  network: "Zora",
+const modeSepolia = {
+  id: 919,
+  name: "Mode Sepolia",
+  network: "Mode Sepolia",
   iconUrl: "https://zora.co/favicon.ico",
   nativeCurrency: {
     decimals: 18,
@@ -348,9 +348,9 @@ export function Providers({ children }) {
     // optimismSepolia,
     // baseSepolia,
     // modeTestnet,
-    Base,
-    optimism,
-    Zora,
+    baseSepolia,
+    optimismSepolia,
+    modeSepolia,
     // arbitrumSepolia,
     // polygonAmoy,
     // OPChainA,

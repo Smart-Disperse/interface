@@ -99,29 +99,31 @@ const contracts = {
   //   chainDisplayName: "OPChainB",
   //   chainName: "OPChainB",
   // }
-  10: {
+  11155420: {
     address: "0x45C5381B349400959900ec235527a946fcc435D4",//need to change every time
     description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
     "block-explorer": "optimism-testnet.etherscan.io",
     Abi: smartDisperseLatest,
-    chainDisplayName: "OP",
-    chainName: "OP",
+    chainDisplayName: "OP Sepolia",
+    chainName: "optimismSepolia",
   },
-  8453: {
+
+  
+  84532: {
     address: "0x45C5381B349400959900ec235527a946fcc435D4",//need to change every time
     description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
     "block-explorer": "optimism-testnet.etherscan.io",
     Abi: smartDisperseLatest,
-    chainDisplayName: "Base",
-    chainName: "Base",
+    chainDisplayName: "Base Sepolia",
+    chainName: "baseSepolia",
   },
-  7777777: {
+  919: {
     address: "0x45C5381B349400959900ec235527a946fcc435D4",//need to change every time
     description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
     "block-explorer": "optimism-testnet.etherscan.io",
     Abi: smartDisperseLatest,
-    chainDisplayName: "Zora",
-    chainName: "Zora",
+    chainDisplayName: "Mode Sepolia",
+    chainName: "modeSepolia",
   }
 };
 

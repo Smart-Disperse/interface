@@ -13,7 +13,7 @@ function SwitchChain({ closeAccountModal }) {
   // useChainChangeReload(); // Call this hook on every render to ensure the page reloads when chain changes
   const { chain } = useAccount();
   const path = usePathname();
-  const [isMainnet, setIsMainnet] = useState(true);
+  const [isMainnet, setIsMainnet] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const cookie = new Cookies();
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // State for modal visibility
@@ -27,7 +27,7 @@ function SwitchChain({ closeAccountModal }) {
   const mainnetChains = ["Available Soon"];
   // const testnetChains = [901, 902, 11155111, 534351, 11155420, 919, 84532,];
   // const testnetChains = [11155420, 84532, 919];
-  const testnetChains = [10, 8453, 7777777]
+  const testnetChains = [11155420, 84532, 919]
 
   const crossChainMainnet = ["Available Soon"];
   // const crossChainTestnet = [11155111, 11155420, 84532, 421614, 80002, 901, 902];

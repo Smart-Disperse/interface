@@ -4,31 +4,31 @@ import SmartDisperseCrossChainLatest from "@/artifacts/crosschain/SmartDisperseC
 
 
 const crossContracts = {
-  10: {
+  11155420: {
     address: "0x45C5381B349400959900ec235527a946fcc435D4",
     description: "SMART_DISPERSE_ADDRESS_TEST_OP",
     "block-explorer": "optimism-sepolia.blockscout.com",
     Abi: SmartDisperseCrossChainLatest,
-    chainDisplayName: "Optimism",
-    chainName: "optimism",
+    chainDisplayName: "OP Sepolia",
+    chainName: "optimismSepolia",
     APIURL: "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
   },
-  8453: {
+  84532: {
     address: "0x45C5381B349400959900ec235527a946fcc435D4",
     description: "SMART_DISPERSE_ADDRESS_TEST_BASE",
     "block-explorer": "optimism-sepolia.blockscout.com",
     Abi: SmartDisperseCrossChainLatest,
-    chainDisplayName: "Base",
-    chainName: "Base",
+    chainDisplayName: "Base Sepolia",
+    chainName: "baseSepolia",
     APIURL: "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
   },
-  7777777: {
+  919: {
     address: "0x45C5381B349400959900ec235527a946fcc435D4",
     description: "SMART_DISPERSE_ADDRESS_TEST_ZORA",
     "block-explorer": "optimism-sepolia.blockscout.com",
     Abi: SmartDisperseCrossChainLatest,
-    chainDisplayName: "Zora",
-    chainName: "Zora",
+    chainDisplayName: "Mode Sepolia",
+    chainName: "modeSepolia",
     APIURL: "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
   },
   // 11155111: {
