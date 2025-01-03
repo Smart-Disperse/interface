@@ -13,7 +13,7 @@ function SwitchChain({ closeAccountModal }) {
   // useChainChangeReload(); // Call this hook on every render to ensure the page reloads when chain changes
   const { chain } = useAccount();
   const path = usePathname();
-  const [isMainnet, setIsMainnet] = useState(true);
+  const [isMainnet, setIsMainnet] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const cookie = new Cookies();
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // State for modal visibility

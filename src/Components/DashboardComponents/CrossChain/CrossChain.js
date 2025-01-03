@@ -5,18 +5,13 @@ import SendToken from "./Send/SendToken";
 import allchains from "@/Helpers/CrosschainHelpers/ChainSelector";
 import { useAccount, useChainId } from "wagmi";
 import CustomDropdown from "./Type/CustomDropDown";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import select from "../../../Assets/select.png";
-import Image from "next/image";
+
 
 function CrossChain() {
   const [listData, setListData] = useState([]);
   const { address } = useAccount();
-  const [connectedChain, setConnectedChain] = useState(null);
   const [destinationChainsOptions, setDestinationChainsOptions] = useState([]);
-  const [selectedDestinationChain, setSelectedDestinationChain] =
-    useState(null);
+  const [selectedDestinationChains, setSelectedDestinationChains] = useState([]);
   const [tokenOptions, setTokenOptions] = useState([]);
   const [selectedToken, setSelectedToken] = useState(null);
   const [tokenAddress, setTokenAddress] = useState("");
@@ -30,8 +25,6 @@ function CrossChain() {
       if (!chainDetails) {
         throw new Error(`Chain details for chainId ${chainId} are undefined.`);
       }
-
-      console.log("chain detailsssssss", chainDetails);
       const options = Object.entries(chainDetails.destinationChains).map(
         ([name, details]) => ({
           name,
@@ -55,75 +48,35 @@ function CrossChain() {
     }
   }, [address, chainId]);
 
-  // const handleDestinationChainChange = (selectedChain) => {
-  //   console.log(selectedChain);
-  //   setTokenAddress("");
-  //   setSelectedToken(null);
-  //   const selectedChainName = selectedChain.name;
-  //   const chainDetails = allchains[chainId];
-  //   const selectedChainDetails =
-  //     chainDetails.destinationChains[selectedChainName];
-
-  //   setSelectedDestinationChain(selectedChain);
-
-  //   console.log(selectedChainDetails);
-
-  //   if (selectedChainDetails) {
-  //     setErrorMessage("");
-  //     const tokenOptions = Object.entries(selectedChainDetails.tokens).map(
-  //       ([key, value]) => ({
-  //         name: key,
-  //         address: value,
-  //         iconUrl:
-  //           "https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png",
-  //       })
-  //     );
-
-  //     setTokenOptions(tokenOptions);
-  //   } else {
-  //     setTokenOptions([]);
-  //   }
-  // };
-
-  const handleDestinationChainChange = (selectedChain) => {
-    console.log("seeeeeeeeeeeeelected... ", selectedChain);
-    console.log("selected chains", selectedChain);
+  const handleDestinationChainChange = (selectedChains) => {
     setTokenAddress("");
     setSelectedToken(null);
+    setSelectedDestinationChains(selectedChains);
   
-    const selectedChainName = selectedChain.name;
     const chainDetails = allchains[chainId];
-    const selectedChainDetails =
-      chainDetails.destinationChains[selectedChainName];
-  
-    setSelectedDestinationChain(selectedChain);
-  
-    console.log(selectedChainDetails);
-  
-    if (selectedChainDetails) {
-      setErrorMessage("");
-  
-      // Map tokens from the destination chain
-      const tokenOptions = Object.entries(selectedChainDetails.tokens).map(
-        ([key, value]) => ({
-          name: key,
-          address: value,
-          iconUrl:
-            key === "ETH"
+    const allTokenOptions = new Set();
+
+    selectedChains.forEach((selectedChain) => {
+      const selectedChainDetails = chainDetails.destinationChains[selectedChain.name];
+      if (selectedChainDetails) {
+        Object.entries(selectedChainDetails.tokens).forEach(([key, value]) => {
+          allTokenOptions.add(JSON.stringify({
+            name: key,
+            address: value,
+            iconUrl: key === "ETH"
               ? "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
               : "https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png",
-        })
-      );
-  
-      setTokenOptions(tokenOptions);
-    } else {
-      setTokenOptions([]);
-    }
+          }));
+        });
+      }
+    });
+
+    setTokenOptions(Array.from(allTokenOptions).map(JSON.parse));
+    setErrorMessage("");
   };
-  
 
   const handleDestinationTokenChange = (selectedToken) => {
-    if (!selectedDestinationChain) {
+    if (selectedDestinationChains.length === 0) {
       setErrorMessage("Please select a destination chain first.");
     } else {
       setSelectedToken(selectedToken);
@@ -133,6 +86,12 @@ function CrossChain() {
       );
       setErrorMessage(""); // Clear error message when a token is selected
     }
+  };
+
+  const removeSelectedChain = (chainToRemove) => {
+    setSelectedDestinationChains(prevChains => 
+      prevChains.filter(chain => chain.name !== chainToRemove.name)
+    );
   };
 
   return (
@@ -166,11 +125,11 @@ function CrossChain() {
                 className={textStyle.dropdownbtn}
                 options={destinationChainsOptions}
                 onSelect={handleDestinationChainChange}
-                selectedValue={selectedDestinationChain}
+                selectedValue={selectedDestinationChains}
                 placeholder="Select destination chain "
                 disabled={!isMetaMaskConnected}
+                multiple={true}
               />
-              {/* <Image src={select} style={{position:"absolute", left:"10%"}}/> */}
             </div>
 
             <div className={textStyle.importtokendiv}>
@@ -180,10 +139,9 @@ function CrossChain() {
                 options={tokenOptions}
                 onSelect={handleDestinationTokenChange}
                 selectedValue={selectedToken}
-                placeholder="Select token "
+                placeholder="Select token"
                 disabled={!isMetaMaskConnected}
               />
-              {/* <Image src={select} style={{position:"relative", right:"20%"}}/> */}
             </div>
             {errorMessage && (
               <div className={textStyle.errorMessage}>{errorMessage}</div>
@@ -194,7 +152,7 @@ function CrossChain() {
           listData={listData}
           setListData={setListData}
           tokenAddress={tokenAddress}
-          selectedDestinationChain={selectedDestinationChain}
+          selectedDestinationChain={selectedDestinationChains}
         />
       </div>
     </>

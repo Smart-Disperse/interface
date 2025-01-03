@@ -37,6 +37,8 @@ function CrossChainTransfer(props) {
   const [tweetModalIsOpen, setTweetModalIsOpen] = useState(false); // New state for tweet modal
   const chainId = useChainId();
 
+  console.log("final Dataa!!", props.finalData);
+ 
   const sendTweet = () => {
     console.log("tweeting");
     const tweetContent = `Just used @SmartDisperse to transfer to multiple accounts simultaneously across the same chain! Transferring to multiple accounts simultaneously has never been easier. Check out Smart Disperse at https://smartdisperse.xyz?utm_source=twitter_tweet&utm_medium=social&utm_campaign=smart_disperse&utm_id=002 and simplify your crypto transfers today!`;
@@ -190,7 +192,7 @@ function CrossChainTransfer(props) {
       console.log("contract in corss chain");
       console.log(chainId);
 
-      if(props.tokenAddress !== "ETH"){
+      if (props.tokenAddress !== "ETH") {
         try {
           const isTokenApproved = await approveToken(
             props.totalERC20,
@@ -220,9 +222,11 @@ function CrossChainTransfer(props) {
         let txsendPayment;
 
         const destinationChain = props.selectedDestinationfinalChains?.[0];
+        console.log("selectedDestinationChain", props.selectedDestinationChain);
+
         const dynamicChainId = destinationChain?.chainId;
         console.log("dynamicChainId ..", destinationChain);
-        if (!dynamicChainId) {
+        if (props.finalData.length === 1 && !props.finalData[0].chainId) {
           throw new Error("Chain ID is missing or undefined.");
         }
 
@@ -231,21 +235,31 @@ function CrossChainTransfer(props) {
         console.log("amounts: ", amounts[0]);
         if (props.tokenAddress === "ETH") {
           console.log("Token is ETH. Calling crossChainDisperseNative...");
-          txsendPayment = await con.crossChainDisperseNative(
-            dynamicChainId, // Use dynamic chainId
-            addresses[0],
-            amounts[0],
-            { value: props.totalERC20 },
-          );
+          if (props.finalData.length === 1) {
+            console.log("for single cross chain..."); 
+            txsendPayment = await con.crossChainDisperseNative(
+              props.finalData[0].chainId, // Use dynamic chainId
+              addresses[0],
+              amounts[0],
+              { value: props.totalERC20 },
+            );
+          } else {
+            console.log("I am here");
+            console.log("and data is for crossmuliichain is ", props.finalData);
+            txsendPayment = await con.crossChainDisperseNativeMultiChain(
+              props.finalData,
+              { value: props.totalERC20 },
+            );
+          }
         } else {
-          
+
           console.log("Token is not ETH. Calling crossChainDisperseERC20...");
           txsendPayment = await con.crossChainDisperseERC20(
             dynamicChainId, // Use dynamic chainId
             addresses[0],
             amounts[0],
             props.tokenAddress
-          ); 
+          );
         }
 
         console.log("Transaction Successful");

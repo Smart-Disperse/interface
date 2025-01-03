@@ -30,9 +30,7 @@ import Addlabel from "../Type/Addlabel";
 import samechainStyle from "../../../Dashboard/samechaindashboard.module.css";
 import { Tooltip } from "antd";
 import HowItWorks from "../../SameChain/Send/HowItWorks";
-
 import { useBalance } from "wagmi";
-
 
 function SendToken({
   listData,
@@ -88,24 +86,43 @@ function SendToken({
   const [suffecientBalance, setSuffecientBalance] = useState(true);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
 
+  
   const { data: ethBalance } = useBalance({
     address: address,
   });
 
+  console.log("in send token", selectedDestinationChain);
+
+  const findChainOption = (chainName, options) => {
+    // Convert both strings to lowercase for case-insensitive comparison
+    return options.find(option => 
+      option.name.toLowerCase() === chainName?.toLowerCase()
+    );
+  };
+  
+  // Update the useEffect for selectedDestinationfinalChains
   useEffect(() => {
     setSelectedDestinationfinalChains((prevChains) => {
-      // Create a copy of the previous array
-      const updatedChains = [...prevChains];
-      // Ensure the updated array has the correct length
-      for (let i = 0; i < listData.length; i++) {
-        // Only update the index if it doesn't already have a value
-        if (updatedChains[i] === undefined || updatedChains[i] === null) {
-          updatedChains[i] = selectedDestinationChain;
+      const updatedChains = new Array(listData.length).fill(null);
+      
+      listData.forEach((item, index) => {
+        if (item.chainName) {
+          // Find the matching option object from destinationFinalChainsOptions
+          const chainOption = findChainOption(item.chainName, destinationFinalChainsOptions);
+          if (chainOption) {
+            updatedChains[index] = chainOption;
+          }
+        } else {
+          // If no chainName in listData, use selectedDestinationChain
+          const defaultOption = findChainOption(selectedDestinationChain, destinationFinalChainsOptions);
+          updatedChains[index] = defaultOption || null;
         }
-      }
+      });
+      
       return updatedChains;
     });
-  }, [listData.length, selectedDestinationChain]);
+  }, [listData, selectedDestinationChain, destinationFinalChainsOptions]);
+  
 
   // const driverObj = driver({
   //   overlayColor: "#00000094",
@@ -141,6 +158,7 @@ function SendToken({
             tokenDecimal={tokenDetails.decimal}
             allNames={allNames}
             allAddresses={allAddresses}
+            selectedDestinationChain={selectedDestinationChain}
           />
         );
       case "list":
@@ -151,6 +169,7 @@ function SendToken({
             tokenDecimal={tokenDetails.decimal}
             allNames={allNames}
             allAddresses={allAddresses}
+            selectedDestinationChain={selectedDestinationChain}
           />
         );
       case "csv":
@@ -161,6 +180,7 @@ function SendToken({
             tokenDecimal={tokenDetails.decimal}
             allNames={allNames}
             allAddresses={allAddresses}
+            selectedDestinationChain={selectedDestinationChain}
           />
         );
       default:
@@ -171,6 +191,7 @@ function SendToken({
             tokenDecimal={tokenDetails.decimal}
             allNames={allNames}
             allAddresses={allAddresses}
+            selectedDestinationChain={selectedDestinationChain}
           />
         );
     }
@@ -210,44 +231,22 @@ function SendToken({
     toast.success("Transaction deleted successfully");
   };
 
-  // Function to load token details
-  // const loadTokenDetails = async (_tokenAddress) => {
-  //   setIstokenloading(true);
-  //   setTokenLoaded(false);
-  //   setRemaining(null);
-  //   setTotalERC20(null);
-  //   setListData([]);
-  //   console.log(_tokenAddress);
-
-  //   setTokenDetails(defaultTokenDetails);
-  //   console.log(address);
-  //   const tokenDetails = await LoadToken(_tokenAddress, address);
-  //   console.log(tokenDetails);
-  //   setIstokenloading(false);
-  //   if (tokenDetails) {
-  //     setTokenDetails(tokenDetails);
-  //     setERC20Balance(tokenDetails.balance);
-  //     setTokenLoaded(true);
-  //   } else {
-  //     // toast.error("Token details not found");
-  //     console.log("error-Token not found");
-  //     // Throw error if token details are not found
-  //   }
-  // };
   const loadTokenDetails = async (_tokenAddress) => {
     setIstokenloading(true);
     setTokenLoaded(false);
     setRemaining(null);
     setTotalERC20(null);
     setListData([]);
-    
+
     if (_tokenAddress === "ETH") {
       // Handle ETH case
       const ethTokenDetails = {
         name: "Ethereum",
         symbol: "ETH",
-        balance: ethBalance ? ethers.utils.parseEther(ethBalance.formatted) : ethers.constants.Zero,
-        decimal: 18
+        balance: ethBalance
+          ? ethers.utils.parseEther(ethBalance.formatted)
+          : ethers.constants.Zero,
+        decimal: 18,
       };
       setTokenDetails(ethTokenDetails);
       setERC20Balance(ethTokenDetails.balance);
@@ -283,21 +282,21 @@ function SendToken({
     );
   };
 
-// Update useEffect for loading token details
-useEffect(() => {
-  const loadSelectedToken = async () => {
-    if (tokenAddress) {
-      if (tokenAddress === "") {
-        setTokenLoaded(false);
+  // Update useEffect for loading token details
+  useEffect(() => {
+    const loadSelectedToken = async () => {
+      if (tokenAddress) {
+        if (tokenAddress === "") {
+          setTokenLoaded(false);
+        } else {
+          await loadTokenDetails(tokenAddress);
+        }
       } else {
-        await loadTokenDetails(tokenAddress);
+        setTokenLoaded(false);
       }
-    } else {
-      setTokenLoaded(false);
-    }
-  };
-  loadSelectedToken();
-}, [tokenAddress, ethBalance]); // Add ethBalance as dependency
+    };
+    loadSelectedToken();
+  }, [tokenAddress, ethBalance]); // Add ethBalance as dependency
 
   // Function to close the error modal
   const closeErrorModal = () => {
@@ -461,18 +460,26 @@ useEffect(() => {
     getChainsForFinalDropDown();
   }, [address, chainId, selectedDestinationChain]);
 
-  const handleDestinationFinalChainChange = (selectedChain, index) => {
-    console.log(selectedChain);
-    // setSelectedDestinationfinalChains(selectedChain);
+  const handleDestinationFinalChainChange = (selectedOption, index) => {
+    console.log("Selected option:", selectedOption, "for index:", index);
+    
     setSelectedDestinationfinalChains((prevChains) => {
-      // Create a copy of the previous array
       const updatedChains = [...prevChains];
-      // Update the specific index
-      updatedChains[index] = selectedChain;
+      updatedChains[index] = selectedOption;
       return updatedChains;
     });
-
-    console.log(listData);
+  
+    // Update listData with the new chain selection
+    setListData(prevData => {
+      const newData = [...prevData];
+      if (newData[index]) {
+        newData[index] = {
+          ...newData[index],
+          chainName: selectedOption.name
+        };
+      }
+      return newData;
+    });
   };
 
   const showModal = () => {
@@ -481,6 +488,31 @@ useEffect(() => {
 
   const closeModal = () => {
     setIsHowItWorksOpen(false);
+  };
+
+  const processTransferData = (listData) => {
+    // First, group transactions by chainId
+    const groupedTransfers = listData.reduce((acc, item) => {
+      const chainId = item.chainId;
+      if (!acc[chainId]) {
+        acc[chainId] = {
+          recipients: [],
+          amounts: []
+        };
+      }
+      acc[chainId].recipients.push(item.address);
+      acc[chainId].amounts.push(item.value);
+      return acc;
+    }, {});
+  
+    // Convert to array of CrossChainTransfer objects
+    const crossChainTransfers = Object.entries(groupedTransfers).map(([chainId, data]) => ({
+      chainId: chainId, // Convert to BigInt for uint256 compatibility
+      recipients: data.recipients,
+      amounts: data.amounts
+    }));
+  
+    return crossChainTransfers;
   };
 
   return (
@@ -538,6 +570,7 @@ useEffect(() => {
               </div>
             )}
           </div>
+
           {isTokenLoaded ? (
             <div className={textStyle.maindivofsendtokencross}>
               <div className={samechainStyle.maindivforalloptiondashboard}>
@@ -610,6 +643,8 @@ useEffect(() => {
               {isTokenLoaded ? renderComponent(activeTab) : null}
             </div>
           ) : null}
+
+          {console.log("listdataaaaa", listData)}
 
           {listData.length > 0 ? (
             <div className={textStyle.maindivofsendtokencross}>
@@ -692,9 +727,7 @@ useEffect(() => {
                                   id="text"
                                   options={destinationFinalChainsOptions}
                                   onSelect={handleDestinationFinalChainChange}
-                                  selectedValue={
-                                    selectedDestinationfinalChains[index]
-                                  }
+                                  selectedValue={selectedDestinationfinalChains[index]}
                                   placeholder="Select destination chain"
                                   index={index}
                                   style={{ fontSize: "15px" }}
@@ -822,6 +855,7 @@ useEffect(() => {
                 tokenAddress={tokenAddress}
                 selectedDestinationfinalChains={selectedDestinationfinalChains}
                 suffecientBalance={suffecientBalance}
+                finalData={processTransferData(listData)}
               />
             ) : null}
           </div>
