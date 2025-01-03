@@ -77,7 +77,7 @@ function CustomDropdown({
               ))}
             </div>
         ) : !Array.isArray(selectedValue) && selectedValue?.name ? (
-          <div className={dropDownStyles.selectedItem}>
+          <div className={dropDownStyles.flexstyle}>
             {selectedValue.iconUrl && (
               <img
                 src={selectedValue.iconUrl}

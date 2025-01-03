@@ -5,9 +5,9 @@ import uploadStyle from "./uploadify.module.css";
 import { isValidAddress } from "@/Helpers/ValidateInput.js";
 import { isValidValue } from "@/Helpers/ValidateInput.js";
 import { isValidTokenValue } from "@/Helpers/ValidateInput.js";
-// import SendEth from "../Send/SendEth";
 import { fetchUserLabels } from "@/Helpers/FetchUserLabels";
 import { useAccount } from "wagmi";
+import { ethers } from "ethers";
 
 function Uploadify({
   listData,
@@ -15,19 +15,16 @@ function Uploadify({
   tokenDecimal,
   allNames,
   allAddresses,
+  selectedDestinationChain,
 }) {
-  const [csvData, setCsvData] = useState([]); // Stores the parsed CSV data
-  const [isCsvDataEmpty, setIsCsvDataEmpty] =
-    useState(true); /*True if csvData array is empty */
+  const [csvData, setCsvData] = useState([]);
+  const [isCsvDataEmpty, setIsCsvDataEmpty] = useState(true);
   const [allnames, setAllNames] = useState([]);
   const [alladdresses, setAllAddresses] = useState([]);
   const [matchedData, setMatchedData] = useState([]);
   const [labels, setLabels] = useState([]);
 
   const { address } = useAccount();
-  const isValidEthereumAddress = (str) => {
-    return str.startsWith("0x");
-  };
 
   useEffect(() => {
     if (address) {
@@ -35,7 +32,6 @@ function Uploadify({
     }
   }, [address]);
 
-  // Fetching all names and addresses stored in the database
   const fetchUserDetails = async () => {
     try {
       const { allNames, allAddress } = await fetchUserLabels(address);
@@ -45,7 +41,7 @@ function Uploadify({
       console.error("Error fetching user details:", error);
     }
   };
-  /* Parses a given string content into an array of objects and returns it.*/
+
   const parseCSV = (content) => {
     const rows = content.split("\n");
     if (rows.length < 2) {
@@ -71,21 +67,22 @@ function Uploadify({
     return data;
   };
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = (chain) => (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = async (e) => {
       const content = e.target.result;
-      // console.log(content);
       try {
         const parsedData = parseCSV(content);
 
         if (parsedData) {
-          // setCsvData(parsedData);
-          // setIsCsvDataEmpty(parsedData.length === 0);
-          console.log(parsedData);
-          const listData = [];
+          // Get existing data for other chains
+          const existingData = listData?.filter(
+            (item) => item.chainId !== chain.chainId
+          ) || [];
+
+          const newEntries = [];
           for (let i = 0; i < parsedData.length; i++) {
             if (tokenDecimal) {
               var validValue = isValidTokenValue(
@@ -100,34 +97,50 @@ function Uploadify({
               isValidAddress(parsedData[i]["Receiver Address"]) &&
               validValue
             ) {
-              console.log("going in if");
               const recipientAddressFormatted =
                 parsedData[i]["Receiver Address"].toLowerCase();
               const index = allAddresses.indexOf(recipientAddressFormatted);
-              listData.push({
-                address: parsedData[i]["Receiver Address"],
-                value: validValue,
+              
+              // Convert the value to BigNumber
+              const valueBigNumber = ethers.utils.parseUnits(
+                parsedData[i]["Token Amount"],
+                tokenDecimal || 18
+              );
+
+              newEntries.push({
+                address: recipientAddressFormatted,
+                value: valueBigNumber,
                 label: allNames[index] ? allNames[index] : "",
+                chainId: chain.chainId,
+                chainName: chain.name
               });
             } else if (
               !isValidAddress(parsedData[i]["Receiver Address"]) &&
               validValue
             ) {
-              console.log("going in else if");
               const index = allNames.indexOf(parsedData[i]["Receiver Address"]);
               if (index !== -1) {
                 let recAddress = allAddresses[index];
-                listData.push({
+                
+                // Convert the value to BigNumber
+                const valueBigNumber = ethers.utils.parseUnits(
+                  parsedData[i]["Token Amount"],
+                  tokenDecimal || 18
+                );
+
+                newEntries.push({
                   address: recAddress,
-                  value: validValue,
+                  value: valueBigNumber,
                   label: parsedData[i]["Receiver Address"],
+                  chainId: chain.chainId,
+                  chainName: chain.name
                 });
               }
             }
           }
-          // console.log(listData);
-          setListData(listData);
-          // console.log("list data is set");
+          
+          // Combine existing data with new entries
+          setListData([...existingData, ...newEntries]);
         } else {
           console.error("Parsed data is empty.");
         }
@@ -139,177 +152,55 @@ function Uploadify({
     reader.readAsText(file);
   };
 
-  /* Validates all fields in each object of csvData array. Returns true if all are valid or false otherwise.*/
-  // const handleFileUpload = (event) => {
-  //   const file = event.target.files[0];
-
-  //   if (file) {
-  //     const reader = new FileReader();
-
-  //     reader.onload = async (e) => {
-  //       const content = e.target.result;
-  //       // console.log(content);
-  //       try {
-  //         const parsedData = parseCSV(content);
-
-  //         if (parsedData) {
-  //           setCsvData(parsedData);
-  //           setIsCsvDataEmpty(parsedData.length === 0);
-  //           // console.log(parsedData);
-  //           const listData = [];
-  //           for (let i = 0; i < parsedData.length; i++) {
-  //             if (tokenDecimal) {
-  //               var validValue = isValidTokenValue(
-  //                 parsedData[i]["Token Amount"],
-  //                 tokenDecimal
-  //               );
-  //             } else {
-  //               var validValue = isValidValue(parsedData[i]["Token Amount"]);
-  //             }
-
-  //             if (
-  //               isValidAddress(parsedData[i]["Receiver Address"]) &&
-  //               validValue
-  //             ) {
-  //               listData.push({
-  //                 address: parsedData[i]["Receiver Address"],
-  //                 value: validValue,
-  //               });
-  //             }
-  //           }
-  //           // console.log(listData);
-  //           setListData(listData);
-  //           // console.log("list data is set");
-  //         } else {
-  //           console.error("Parsed data is empty.");
-  //         }
-  //       } catch (error) {
-  //         console.error("Error parsing CSV data:", error);
-  //       }
-  //     };
-
-  //     reader.readAsText(file);
-  //   }
-  // };
-
-  // Function to handle form submission after validation checks
-  const handleInputChange = (index, field, value) => {
-    const updatedCsvData = [...csvData];
-    updatedCsvData[index][field] = value;
-    setListData(updatedCsvData);
-  };
-
-  // Add a new row to the csvData array and reset the input fields
-  const updateListData = () => {
-    const newListData = [];
-    for (let i = 0; i < csvData.length; i++) {
-      if (tokenDecimal) {
-        var validValue = isValidTokenValue(
-          csvData[i]["Token Amount"],
-          tokenDecimal
-        );
-      } else {
-        var validValue = isValidValue(csvData[i]["Token Amount"]);
-      }
-
-      if (isValidAddress(csvData[i]["Receiver Address"]) && validValue) {
-        newListData.push({
-          address: csvData[i]["Receiver Address"],
-          value: validValue,
-        });
-      }
-    }
-    setListData(newListData);
-  };
-
-  // Update listData whenever csvData changes
-  useEffect(() => {
-    updateListData();
-  }, [csvData]);
-
   return (
     <div className={uploadStyle.divmainforupload}>
-      {/* Render input fields for each address and value pair */}
-      {/* {csvData.map((rowData, index) => (
-        <div key={index}>
-          <div>yoooooooooooooooooooooooooooooooooo</div>
-          <input
-            type="text"
-            value={rowData["Receiver Address"]}
-            onChange={(e) =>
-              handleInputChange(index, "Receiver Address", e.target.value)
-            }
-            className={
-              isValidAddress(rowData["Receiver Address"])
-                ? uploadStyle.normal
-                : uploadStyle.red
-            }
-          />
-          <input
-            type="text"
-            value={rowData["Token Amount"]}
-            onChange={(e) =>
-              handleInputChange(index, "Token Amount", e.target.value)
-            }
-            className={
-              tokenDecimal
-                ? isValidTokenValue(rowData["Token Amount"], tokenDecimal)
-                  ? uploadStyle.normal
-                  : uploadStyle.red
-                : isValidValue(rowData["Token Amount"])
-                ? uploadStyle.normal
-                : uploadStyle.red
-            }
-          />
-        </div>
-      ))} */}
-      <div className={uploadStyle.titleforuploadfilecsvsame}>
-        <h2
-          style={{
-            padding: "15px",
-            fontSize: "20px",
-            margin: "0px",
-            fontWeight: "300",
-            lineHeight: "28px",
-            letterSpacing: "1px",
-          }}
-          className={uploadStyle.sametextmain}
-        >
-          Upload your CSV file
-          <a
-            href="/SampleUpload.csv"
-            download="SampleUpload.csv"
-            className={uploadStyle.downloadbtn}
-            style={{ fontSize: "12px", marginLeft: "10px", color: "#00FFFF" }}
-          >
-            (Download Sample CSV file)
-          </a>
-        </h2>
-      </div>
-      <div className={uploadStyle.uploadordownload}>
-        <div className={uploadStyle.inputdivforcsv}>
-          {/* <label>Upload File</label> &nbsp; &nbsp; */}
-          <input
-            className={uploadStyle.uploadFile}
-            type="file"
-            accept=".csv"
-            onChange={handleFileUpload}
-          />
-        </div>
-        {/* <div>
-          <div>
-            <a
-              href="/SampleUpload.csv"
-              download="SampleUpload.csv"
-              className={uploadStyle.downloadbtn}
+      {selectedDestinationChain.map((chain) => (
+        <div key={chain.chainId} className="mb-6">
+          <div className={uploadStyle.titleforuploadfilecsvsame}>
+            <h2
+              style={{
+                padding: "15px",
+                fontSize: "20px",
+                margin: "0px",
+                fontWeight: "300",
+                lineHeight: "28px",
+                letterSpacing: "1px",
+              }}
+              className={uploadStyle.sametextmain}
             >
-              <button style={{ cursor: "pointer" }}>
-                Download sample CSV file
-              </button>
-            </a>
+              <img 
+                src={chain.iconUrl} 
+                alt={chain.name}
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  marginRight: "10px",
+                  verticalAlign: "middle"
+                }}
+              />
+              Upload your CSV file for {chain.name}
+              <a
+                href="/SampleUpload.csv"
+                download="SampleUpload.csv"
+                className={uploadStyle.downloadbtn}
+                style={{ fontSize: "12px", marginLeft: "10px", color: "#00FFFF" }}
+              >
+                (Download Sample CSV file)
+              </a>
+            </h2>
           </div>
-        </div> */}
-      </div>
+          <div className={uploadStyle.uploadordownload}>
+            <div className={uploadStyle.inputdivforcsv}>
+              <input
+                className={uploadStyle.uploadFile}
+                type="file"
+                accept=".csv"
+                onChange={handleFileUpload(chain)}
+              />
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -9,7 +9,6 @@ import Modal from "react-modal";
 import textStyle from "./textify.module.css";
 import oopsimage from "@/Assets/oops.webp";
 import Image from "next/image";
-import { input } from "@nextui-org/react";
 
 function Listify({
   listData,
@@ -17,16 +16,29 @@ function Listify({
   tokenDecimal,
   allNames,
   allAddresses,
+  selectedDestinationChain,
 }) {
-  const [formData, setFormData] = useState({
-    address: "",
-    value: "",
-    label: "",
-  });
+  // Initialize form data for each chain
+  const [chainForms, setChainForms] = useState(
+    selectedDestinationChain.reduce(
+      (acc, chain) => ({
+        ...acc,
+        [chain.chainId]: {
+          address: "",
+          value: "",
+          label: "",
+          chainId: chain.chainId,
+          chainName: chain.name,
+        },
+      }),
+      {}
+    )
+  );
+  const [activeChainId, setActiveChainId] = useState(
+    selectedDestinationChain[0]?.chainId
+  );
   const [errorMessage, setErrorMessage] = useState(""); //error in model
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); //model switch
-  // const [LabelModelIsOpen, setLabelModelIsOpen] = useState(false); //model switch
-  // const [label, setLabel] = useState(""); //model switch
   const [nameSuggestions, setNameSuggestions] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const dropdownRef = useRef(null);
@@ -37,91 +49,100 @@ function Listify({
     setErrorMessage("");
     // console.log("modal open");
   };
-  const inputRef = useRef(null);
 
-  const handleReceiverAddressChange = (event) => {
+  console.log("selected chain in listify", selectedDestinationChain);
+
+  useEffect(() => {
+    Object.keys(chainForms).forEach((chainId) => {
+      const label = chainForms[chainId].label;
+      const index = allNames.findIndex(
+        (name) => name.toLowerCase() === label.toLowerCase()
+      );
+      if (index !== -1) {
+        setChainForms((prev) => ({
+          ...prev,
+          [chainId]: {
+            ...prev[chainId],
+            address: allAddresses[index],
+          },
+        }));
+      }
+    });
+  }, [chainForms, allNames, allAddresses]);
+
+  const handleReceiverAddressChange = (chainId, event) => {
     const receiverAddress = event.target.value.toLowerCase();
-
     const index = allAddresses.findIndex((n) => n === receiverAddress);
-    if (index !== -1) {
-      setFormData({
-        ...formData,
+
+    setChainForms((prev) => ({
+      ...prev,
+      [chainId]: {
+        ...prev[chainId],
         address: receiverAddress,
-        label: allNames[index],
-      });
-    } else {
-      setFormData({
-        ...formData,
-        address: receiverAddress,
-        label: "",
-      });
-    }
+        label: index !== -1 ? allNames[index] : prev[chainId].label,
+      },
+    }));
   };
 
-  const handleValueInputChange = (e) => {
-    const { name, value } = e.target;
-
-    // Regular expression to allow numeric and decimal values
+  const handleValueInputChange = (chainId, e) => {
+    const { value } = e.target;
     const validInputRegex = /^\d*\.?\d*$/;
 
     if (validInputRegex.test(value)) {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
+      setChainForms((prev) => ({
+        ...prev,
+        [chainId]: {
+          ...prev[chainId],
+          value: value,
+        },
       }));
     }
   };
 
-  const handleNameChange = (e) => {
+  const handleNameChange = (chainId, e) => {
     const enteredName = e.target.value.toLowerCase();
-    console.log(enteredName); // Convert entered name to lowercase
-    // Find suggestions based on the entered name
     const filteredSuggestions = allNames.filter((name) =>
       name.toLowerCase().includes(enteredName)
     );
     setNameSuggestions(filteredSuggestions);
-    // Find the index of the entered name in the allNames array (case-insensitive)
-    const index = allNames.findIndex((n) => n === enteredName);
-    if (index !== -1) {
-      setFormData({
-        ...formData,
-        address: allAddresses[index],
-        // address: enteredName,
+
+    setChainForms((prev) => ({
+      ...prev,
+      [chainId]: {
+        ...prev[chainId],
         label: enteredName,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        label: enteredName,
-        address: "",
-      }); // Only reset the address if the name is not found
-    }
+      },
+    }));
   };
 
-  const handleNameSuggestionClick = (suggestion) => {
-    setFormData({
-      ...formData,
-      label: suggestion,
-    });
+  const handleNameSuggestionClick = (chainId, suggestion) => {
+    setChainForms((prev) => ({
+      ...prev,
+      [chainId]: {
+        ...prev[chainId],
+        label: suggestion,
+      },
+    }));
     setNameSuggestions([]);
   };
 
-  const validateFormData = async () => {
-    var address = formData.address;
-    var amount = formData.value;
+  const validateFormData = async (chainId) => {
+    const formData = chainForms[chainId];
+    const address = formData.address;
+    let amount = formData.value;
+
     if (!/^\d/.test(amount)) {
       amount = amount.slice(1);
     }
 
     if (!isValidValue(amount) && !isValidAddress(address)) {
-      // console.log("Invalid address");
       setErrorMessage("Incorrect details");
       setErrorModalIsOpen(true);
       return false;
     }
 
     if (!isValidValue(amount)) {
-      setErrorMessage("Invalid Eth Value");
+      setErrorMessage("Invalid Value");
       setErrorModalIsOpen(true);
       return false;
     }
@@ -135,7 +156,6 @@ function Listify({
     } else {
       formData.value = isValidValue(amount);
     }
-    // console.log("here");
     return true;
   };
 
@@ -187,7 +207,7 @@ function Listify({
     }
   }, [selectedIndex]);
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (chainId, e) => {
     if (nameSuggestions.length > 0) {
       if (e.key === "ArrowUp") {
         e.preventDefault();
@@ -200,61 +220,67 @@ function Listify({
           prevIndex < nameSuggestions.length - 1 ? prevIndex + 1 : 0
         );
       } else if (e.key === "Enter" && selectedIndex !== -1) {
-        handleNameSuggestionClick(nameSuggestions[selectedIndex]);
+        e.preventDefault();
+        handleNameSuggestionClick(chainId, nameSuggestions[selectedIndex]);
       }
     }
   };
-  const handleAddClick = async () => {
-    // console.log("checking");
-    const isvalid = await validateFormData();
-    console.log(formData);
+
+  const handleAddClick = async (chainId) => {
+    const isvalid = await validateFormData(chainId);
     if (isvalid) {
-      setListData([...listData, formData]);
-      setFormData({
-        address: "",
-        value: "",
-        label: "",
-      });
-      localStorage.removeItem("address");
-      localStorage.removeItem("value");
-      localStorage.removeItem("label");
+      const formDataToAdd = chainForms[chainId];
+      console.log("form data", formDataToAdd);
+      setListData([...listData, formDataToAdd]);
+
+      // Reset only the form for this chain
+      setChainForms((prev) => ({
+        ...prev,
+        [chainId]: {
+          ...prev[chainId],
+          address: "",
+          value: "",
+          label: "",
+        },
+      }));
     }
   };
 
-  useEffect(() => {
-    const index = allNames.findIndex((name) => name === formData.label);
-    if (index !== -1) {
-      setFormData({
-        ...formData,
-        address: allAddresses[index],
-      });
-    } else {
-      setFormData({
-        ...formData,
-        address: "",
-      });
-    }
-  }, [formData.label]);
+  const renderChainForm = (chain) => (
+    <div key={chain.chainId} className={listStyle.chainFormContainer}>
+      {/* <div className={listStyle.chainHeader}>
+        <img 
+          src={chain.iconUrl} 
+          alt={chain.name} 
+          className={listStyle.chainIcon} 
+          width={24} 
+          height={24}
+        />
+        <h3>{chain.name}</h3>
+      </div> */}
 
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
-  return (
-    <div className={listStyle.divinsamecreatelisttokenload}>
       <div className={listStyle.enteraddressdivtitle}>
         <h2
+          className={listStyle.enteraddressdivtitleh2}
           style={{
             padding: "15px",
             fontSize: "20px",
-
             margin: "0px",
             letterSpacing: "1px",
             fontWeight: "300",
           }}
-          className={listStyle.enteraddressdivtitleh2}
         >
-          Enter the Recipient Address and Token Amount{" "}
+          <img
+            src={chain.iconUrl}
+            alt={chain.name}
+            style={{
+              width: "24px",
+              height: "24px",
+              marginRight: "8px",
+              verticalAlign: "middle",
+            }}
+          />
+          Enter the Recipient Address and Token Amount for {chain.name}
         </h2>
       </div>
 
@@ -264,12 +290,10 @@ function Listify({
           <input
             className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
             type="text"
-            name="value"
-            value={formData.label}
+            value={chainForms[chain.chainId].label}
             placeholder="Enter name"
-            onChange={handleNameChange}
-            onKeyDown={handleKeyDown}
-            ref={inputRef}
+            onChange={(e) => handleNameChange(chain.chainId, e)}
+            onKeyDown={(e) => handleKeyDown(chain.chainId, e)}
             autoComplete="off"
           />
           {nameSuggestions.length > 0 && (
@@ -277,14 +301,16 @@ function Listify({
               {nameSuggestions.map((suggestion, index) => (
                 <div
                   key={index}
+                  className={`${listStyle.listdropdownItem} ${
+                    index === selectedIndex ? listStyle.selected : ""
+                  }`}
                   style={{
                     backgroundColor:
                       index === selectedIndex ? "#49058eed" : "#49058e91",
                   }}
-                  className={`${listStyle.listdropdownItem} ${
-                    index === selectedIndex ? listStyle.selected : ""
-                  }`} // Apply selected class if index matches selectedIndex
-                  onClick={() => handleNameSuggestionClick(suggestion)}
+                  onClick={() =>
+                    handleNameSuggestionClick(chain.chainId, suggestion)
+                  }
                 >
                   {suggestion}
                 </div>
@@ -294,75 +320,65 @@ function Listify({
         </div>
 
         <div className={listStyle.inputflexlist}>
-          <label className={listStyle.enteraddressdivtitlelabel}>
-            Enter Receiver Address:{" "}
-          </label>
+          <label>Enter Receiver Address: </label>
           <input
-            // id="blue-div"
-            // className={`each-input-of-create-list token-input ${themeClass}`}
             className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
             type="text"
-            name="receiverAddress"
-            value={formData.address}
+            value={chainForms[chain.chainId].address}
             placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
-            onChange={handleReceiverAddressChange}
-            autoComplete="off"
-          />
-        </div>
-        <div className={listStyle.inputflexlist}>
-          <label>Enter Token Amount: </label>
-          <input
-            // style={{ color: "black" }}
-            // className={`each-input-of-create-list token-input ${themeClass}`}
-            className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
-            type="text"
-            name="value"
-            value={formData.value}
-            placeholder="0.50"
-            onChange={handleValueInputChange}
+            onChange={(e) => handleReceiverAddressChange(chain.chainId, e)}
             autoComplete="off"
           />
         </div>
 
         <div className={listStyle.inputflexlist}>
-          {/* <label></label> */}
+          <label>Enter Token Amount: </label>
+          <input
+            className={`${listStyle["eachinputofcreatelist"]} ${listStyle["tokeninput"]}`}
+            type="text"
+            name="value"
+            value={chainForms[chain.chainId].value}
+            placeholder="0.50"
+            onChange={(e) => handleValueInputChange(chain.chainId, e)}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className={listStyle.inputflexlist}>
           <button
-            id={listStyle.addtolistbuttonid}
-            // className={`${listStyle["buttontoaddformdata"]} ${listStyle["maddtolist"]}}`}
-            onClick={handleAddClick}
+            className={listStyle.addtolistbuttonid}
+            onClick={() => handleAddClick(chain.chainId)}
             style={{ width: "180px", borderRadius: "63px", marginTop: "3px" }}
           >
             Add to List
           </button>
         </div>
       </div>
-      <>
-        <Modal
-          className={textStyle.popupforpayment}
-          isOpen={errorModalIsOpen}
-          onRequestClose={() => setErrorModalIsOpen(false)}
-          contentLabel="Error Modal"
-        >
-          <>
-            <h2>Oops...</h2>
-            <p>Something went Wrong,</p>
-            <div>
-              {/* <Image src={oopsimage} alt="not found" /> */}
-              <Image
-                height={150}
-                width={150}
-                src={oopsimage.src}
-                alt="not found"
-              />
-            </div>
-            <p className={textStyle.errormessagep}>{errorMessage}</p>
+    </div>
+  );
 
-            <div className={textStyle.divtocenter}>
-              <button onClick={closeErrorModal}>Close</button>
-            </div>
-          </>
-        </Modal>
-      </>
+  return (
+    <div className={listStyle.divinsamecreatelisttokenload}>
+      <div className={listStyle.chainFormsContainer}>
+        {selectedDestinationChain.map((chain) => renderChainForm(chain))}
+      </div>
+
+      <Modal
+        className={textStyle.popupforpayment}
+        isOpen={errorModalIsOpen}
+        onRequestClose={() => setErrorModalIsOpen(false)}
+        contentLabel="Error Modal"
+      >
+        <h2>Oops...</h2>
+        <p>Something went Wrong</p>
+        <div>
+          <Image height={150} width={150} src={oopsimage.src} alt="not found" />
+        </div>
+        <p className={textStyle.errormessagep}>{errorMessage}</p>
+        <div className={textStyle.divtocenter}>
+          <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
+        </div>
+      </Modal>
     </div>
   );
 }

@@ -28,7 +28,7 @@ const ConfettiScript = () => (
   </Head>
 );
 
-function CrossChainTransfer(props) {
+function  CrossChainTransfer(props) {
   const [message, setMessage] = useState("");
   const [executionStatusmodal, setExecutionStatusmodal] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -36,6 +36,8 @@ function CrossChainTransfer(props) {
   const [limitexceed, setLimitexceed] = useState(null);
   const [tweetModalIsOpen, setTweetModalIsOpen] = useState(false); // New state for tweet modal
   const chainId = useChainId();
+
+  console.log("final Dataa!!", props.finalData)
 
   const sendTweet = () => {
     console.log("tweeting");
@@ -231,12 +233,19 @@ function CrossChainTransfer(props) {
         console.log("amounts: ", amounts[0]);
         if (props.tokenAddress === "ETH") {
           console.log("Token is ETH. Calling crossChainDisperseNative...");
-          txsendPayment = await con.crossChainDisperseNative(
-            dynamicChainId, // Use dynamic chainId
-            addresses[0],
-            amounts[0],
-            { value: props.totalERC20 },
-          );
+          if (props.finalData.length === 1) {
+            txsendPayment = await con.crossChainDisperseNative(
+              dynamicChainId, // Use dynamic chainId
+              addresses[0],
+              amounts[0],
+              { value: props.totalERC20 },
+            );
+          } else {
+            txsendPayment = await con.crossChainDisperseNativeMultiChain(
+              props.finalData,
+              { value: props.totalERC20 },
+            );
+          }
         } else {
           
           console.log("Token is not ETH. Calling crossChainDisperseERC20...");

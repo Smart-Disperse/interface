@@ -169,6 +169,7 @@ function SendToken({
             tokenDecimal={tokenDetails.decimal}
             allNames={allNames}
             allAddresses={allAddresses}
+            selectedDestinationChain={selectedDestinationChain}
           />
         );
       case "csv":
@@ -179,6 +180,7 @@ function SendToken({
             tokenDecimal={tokenDetails.decimal}
             allNames={allNames}
             allAddresses={allAddresses}
+            selectedDestinationChain={selectedDestinationChain}
           />
         );
       default:
@@ -189,6 +191,7 @@ function SendToken({
             tokenDecimal={tokenDetails.decimal}
             allNames={allNames}
             allAddresses={allAddresses}
+            selectedDestinationChain={selectedDestinationChain}
           />
         );
     }
@@ -485,6 +488,31 @@ function SendToken({
 
   const closeModal = () => {
     setIsHowItWorksOpen(false);
+  };
+
+  const processTransferData = (listData) => {
+    // First, group transactions by chainId
+    const groupedTransfers = listData.reduce((acc, item) => {
+      const chainId = item.chainId;
+      if (!acc[chainId]) {
+        acc[chainId] = {
+          recipients: [],
+          amounts: []
+        };
+      }
+      acc[chainId].recipients.push(item.address);
+      acc[chainId].amounts.push(item.value);
+      return acc;
+    }, {});
+  
+    // Convert to array of CrossChainTransfer objects
+    const crossChainTransfers = Object.entries(groupedTransfers).map(([chainId, data]) => ({
+      chainId: chainId, // Convert to BigInt for uint256 compatibility
+      recipients: data.recipients,
+      amounts: data.amounts
+    }));
+  
+    return crossChainTransfers;
   };
 
   return (
@@ -827,6 +855,7 @@ function SendToken({
                 tokenAddress={tokenAddress}
                 selectedDestinationfinalChains={selectedDestinationfinalChains}
                 suffecientBalance={suffecientBalance}
+                finalData={processTransferData(listData)}
               />
             ) : null}
           </div>
