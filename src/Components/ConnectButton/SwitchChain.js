@@ -26,8 +26,7 @@ function SwitchChain({ closeAccountModal }) {
   // const mainnetChains = [34443, 534352, 8453, 10];
   const mainnetChains = ["Available Soon"];
   // const testnetChains = [901, 902, 11155111, 534351, 11155420, 919, 84532,];
-  // const testnetChains = [11155420, 84532, 919];
-  const testnetChains = [10, 8453, 7777777]
+  const testnetChains = [11155420, 84532, 919];
 
   const crossChainMainnet = ["Available Soon"];
   // const crossChainTestnet = [11155111, 11155420, 84532, 421614, 80002, 901, 902];

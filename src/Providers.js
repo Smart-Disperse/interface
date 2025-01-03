@@ -25,25 +25,25 @@ import { color } from "framer-motion";
 // import { scrollSepolia } from "wagmi/chains";
 const { wallets } = getDefaultWallets();
 
-// const modeTestnet = {
-//   id: 919,
-//   name: "Mode Testnet",
-//   network: "Mode",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/QmXwYGzbYduEyX6uwaLRXxJ2YtBqLSzACubqMjqP1PAuSQ",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Mode Testnet",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["http://127.0.0.1:9547"] },
-//     default: { http: ["http://127.0.0.1:9547"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "Mode Testnet Explorer", url: "https://sepolia.mode.network/explorer" },
-//   },
-// };
+const modeTestnet = {
+  id: 919,
+  name: "Mode Testnet",
+  network: "Mode",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmXwYGzbYduEyX6uwaLRXxJ2YtBqLSzACubqMjqP1PAuSQ",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Mode Testnet",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["http://127.0.0.1:9547"] },
+    default: { http: ["http://127.0.0.1:9547"] },
+  },
+  blockExplorers: {
+    default: { name: "Mode Testnet Explorer", url: "https://sepolia.mode.network/explorer" },
+  },
+};
 
 // const modeMainnet = {
 //   id: 34443,
@@ -145,47 +145,47 @@ const Zora = {
 //   },
 // };
 
-// const baseSepolia = {
-//   dropdownchainName: "baseSepolia",
-//   id: 84532,
-//   name: "Base Sepolia",
-//   network: "Base Sepolia",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Base Sepolia",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["http://127.0.0.1:9546"] },
-//     default: { http: ["http://127.0.0.1:9546"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "BaseScan", url: "https://sepolia.basescan.org" },
-//   },
-// };
+const baseSepolia = {
+  dropdownchainName: "baseSepolia",
+  id: 84532,
+  name: "Base Sepolia",
+  network: "Base Sepolia",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Base Sepolia",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["http://127.0.0.1:9546"] },
+    default: { http: ["http://127.0.0.1:9546"] },
+  },
+  blockExplorers: {
+    default: { name: "BaseScan", url: "https://sepolia.basescan.org" },
+  },
+};
 
-// const optimismSepolia = {
-//   dropdownchainName: "opSepolia",
-//   id: 11155420,
-//   name: "OP Sepolia",
-//   network: "OP Sepolia",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "OP Sepolia",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["http://127.0.0.1:9545"] },
-//     default: { http: ["http://127.0.0.1:9545"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "Etherscan", url: "https://sepolia-optimistic.etherscan.io" },
-//   },
-// };
+const optimismSepolia = {
+  dropdownchainName: "opSepolia",
+  id: 11155420,
+  name: "OP Sepolia",
+  network: "OP Sepolia",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+  nativeCurrency: {
+    decimals: 18,
+    name: "OP Sepolia",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["http://127.0.0.1:9545"] },
+    default: { http: ["http://127.0.0.1:9545"] },
+  },
+  blockExplorers: {
+    default: { name: "Etherscan", url: "https://sepolia-optimistic.etherscan.io" },
+  },
+};
 
 // const scroll = {
 //   id: 534352,
@@ -345,12 +345,12 @@ export function Providers({ children }) {
     // scroll,
     // scrollSepolia,
     // sepolia,
-    // optimismSepolia,
-    // baseSepolia,
-    // modeTestnet,
-    Base,
-    optimism,
-    Zora,
+    optimismSepolia,
+    baseSepolia,
+    modeTestnet,
+    // Base,
+    // optimism,
+    // Zora,
     // arbitrumSepolia,
     // polygonAmoy,
     // OPChainA,
