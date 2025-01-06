@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Smart-Disperse
 
-## Getting Started
+Smart-Disperse is a cross-chain token dispersal solution that enables the seamless transfer of tokens between different chains using a user-friendly interface.
 
-First, run the development server:
+---
+
+## Table of Contents
+
+1. [Overview](#overview)  
+2. [Prerequisites](#prerequisites)  
+3. [Setup](#setup)  
+   - [Setting Up the Interface](#setting-up-the-interface)  
+4. [Additional Information](#additional-information)  
+
+---
+
+## Overview
+
+This project consists of a single component:
+
+1. **Interface**: A front-end interface for interacting with the Smart-Disperse functionality.
+
+---
+
+## Prerequisites
+
+Ensure the following are installed on your system:
+
+- [Foundry](https://book.getfoundry.sh/getting-started/installation)  
+- [Supersim](https://supersim.pages.dev/)
+  
+---
+
+## Setup
+
+### Cloning the Repository
+
+Start by cloning the interface repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Smart-Disperse/interface
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Setting Up the Interface
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Install Dependencies**:  
+   Navigate to the `interface` directory and run:
 
-## Learn More
+   ```bash
+   yarn install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Run Supersim with Testnet Forks**:  
+   Run the following command in the terminal:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   supersim fork --network=sepolia --chains=op,base,mode --interop.autorelay
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Set RPC URLs in Metamask**:  
+   Add the following RPC URLs in your Metamask wallet:
 
-## Deploy on Vercel
+   - **Optimism Sepolia** (Chain 9545):  
+     - **RPC URL**: `http://127.0.0.1:9545`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - **Base Sepolia** (Chain 9546):  
+     - **RPC URL**: `http://127.0.0.1:9546`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   - **Mode Testnet** (Chain 9547):  
+     - **RPC URL**: `http://127.0.0.1:9547`
+
+4. **Run the Interface**:  
+   Start the development server:
+
+   ```bash
+   yarn run dev
+   ```
+
+---
+
+## Additional Information
+
+- Keep the terminal running the Supersim node active at all times.  
+- The interface provides all functionalities for token dispersal and cross-chain operations.  
+- Test functionalities thoroughly to ensure smooth operation.  
+
+---
+
+Feel free to contribute or raise issues in the repository! 😊
+```
