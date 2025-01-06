@@ -30,7 +30,7 @@ This project consists of two components:
 Ensure the following are installed on your system:
 
 - [Foundry](https://book.getfoundry.sh/getting-started/installation)  
-- [Supersim](https://supersim-docs-link-here) (Replace this with the correct documentation link for Supersim.)
+- [Supersim](https://supersim.pages.dev/)
 
 ---
 
@@ -94,7 +94,7 @@ git clone https://github.com/Smart-Disperse/interface
    Navigate to the `interface` directory and run:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 2. **Update Contract Addresses**:  
@@ -104,7 +104,7 @@ git clone https://github.com/Smart-Disperse/interface
    Start the development server:
 
    ```bash
-   npm run dev
+   yarn run dev
    ```
 
 4. **Set RPC URLs in Metamask**:  
