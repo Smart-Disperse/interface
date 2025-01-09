@@ -52,13 +52,13 @@ git clone https://github.com/Smart-Disperse/interface
 3. **Set RPC URLs in Metamask**:  
    Add the following RPC URLs in your Metamask wallet:
 
-   - **Optimism Sepolia** (Chain 9545):  
+   - **Optimism Sepolia** (Chain 11155420):  
      - **RPC URL**: `https://superchain.smartdisperse.xyz/op`
 
-   - **Base Sepolia** (Chain 9546):  
+   - **Base Sepolia** (Chain 84532):  
      - **RPC URL**: `https://superchain.smartdisperse.xyz/base`
 
-   - **Mode Testnet** (Chain 9547):  
+   - **Mode Testnet** (Chain 919):  
      - **RPC URL**: `https://superchain.smartdisperse.xyz/mode`
        
 4. **Run the Interface**:  
