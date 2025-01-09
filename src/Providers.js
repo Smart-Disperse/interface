@@ -54,15 +54,15 @@ const baseSepolia = {
     "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
   nativeCurrency: {
     decimals: 18,
-    name: "Base Mainnet",
+    name: "Base Sepolia",
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["http://127.0.0.1:9546"] },
-    default: { http: ["http://127.0.0.1:9546"] },
+    public: { http: ["https://superchain.smartdisperse.xyz/base"] },
+    default: { http: ["https://superchain.smartdisperse.xyz/base"] },
   },
   blockExplorers: {
-    default: { name: "BaseScan", url: "https://basescan.org" },
+    default: { name: "BaseScan", url: "https://sepolia.basescan.org" },
   },
 };
 
@@ -74,12 +74,12 @@ const optimismSepolia = {
     "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
   nativeCurrency: {
     decimals: 18,
-    name: "OP Mainnet",
+    name: "OP Sepolia",
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["http://127.0.0.1:9545"] },
-    default: { http: ["http://127.0.0.1:9545"] },
+    public: { http: ["https://superchain.smartdisperse.xyz/op"] },
+    default: { http: ["https://superchain.smartdisperse.xyz/op"] },
   },
   blockExplorers: {
     default: { name: "Etherscan", url: "https://optimistic.etherscan.io" },
@@ -89,19 +89,19 @@ const optimismSepolia = {
 const modeSepolia = {
   id: 919,
   name: "Mode Sepolia",
-  network: "Mode Sepolia",
-  iconUrl: "https://zora.co/favicon.ico",
+    network: "Mode Sepolia",
+    iconUrl: "https://avatars.githubusercontent.com/u/139873699?s=200&v=4",
   nativeCurrency: {
     decimals: 18,
-    name: "ETH",
+    name: "Mode Sepolia",
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["http://127.0.0.1:9547"] },
-    default: { http: ["http://127.0.0.1:9547"] },
+    public: { http: ["https://superchain.smartdisperse.xyz/mode"] },
+    default: { http: ["https://superchain.smartdisperse.xyz/mode"] },
   },
   blockExplorers: {
-    default: { name: "Etherscan", url: "https://optimistic.etherscan.io" },
+    default: { name: "Blockscout", url: "https://sepolia.explorer.mode.network" },
   },
 };
 
