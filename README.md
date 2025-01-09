@@ -78,4 +78,3 @@ git clone https://github.com/Smart-Disperse/interface
 ---
 
 Feel free to contribute or raise issues in the repository! 😊
-```
