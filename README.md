@@ -6,11 +6,10 @@ Smart-Disperse is a cross-chain token dispersal solution that enables the seamle
 
 ## Table of Contents
 
-1. [Overview](#overview)  
-2. [Prerequisites](#prerequisites)  
-3. [Setup](#setup)  
+1. [Overview](#overview)   
+2. [Setup](#setup)  
    - [Setting Up the Interface](#setting-up-the-interface)  
-4. [Additional Information](#additional-information)  
+3. [Additional Information](#additional-information)  
 
 ---
 
@@ -20,15 +19,6 @@ This project consists of a single component:
 
 1. **Interface**: A front-end interface for interacting with the Smart-Disperse functionality.
 
----
-
-## Prerequisites
-
-Ensure the following are installed on your system:
-
-- [Foundry](https://book.getfoundry.sh/getting-started/installation)  
-- [Supersim](https://supersim.pages.dev/)
-  
 ---
 
 ## Setup
@@ -63,14 +53,14 @@ git clone https://github.com/Smart-Disperse/interface
    Add the following RPC URLs in your Metamask wallet:
 
    - **Optimism Sepolia** (Chain 9545):  
-     - **RPC URL**: `http://127.0.0.1:9545`
+     - **RPC URL**: `https://superchain.smartdisperse.xyz/op`
 
    - **Base Sepolia** (Chain 9546):  
-     - **RPC URL**: `http://127.0.0.1:9546`
+     - **RPC URL**: `https://superchain.smartdisperse.xyz/base`
 
    - **Mode Testnet** (Chain 9547):  
-     - **RPC URL**: `http://127.0.0.1:9547`
-
+     - **RPC URL**: `https://superchain.smartdisperse.xyz/mode`
+       
 4. **Run the Interface**:  
    Start the development server:
 
@@ -81,8 +71,7 @@ git clone https://github.com/Smart-Disperse/interface
 ---
 
 ## Additional Information
-
-- Keep the terminal running the Supersim node active at all times.  
+ 
 - The interface provides all functionalities for token dispersal and cross-chain operations.  
 - Test functionalities thoroughly to ensure smooth operation.  
 
