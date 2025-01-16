@@ -1,14 +1,23 @@
-import React from "react";
+// import React from "react";
 
-import Home from "../Components/Homepage/Home";
+// import Home from "../Components/Homepage/Home";
 
-export default function page({ children }) {
-  return (
-    <main>
-      <Home />
-    </main>
-  );
+// export default function page({ children }) {
+//   return (
+//     <main>
+//       <Home />
+//     </main>
+//   );
+// }
+
+import { redirect } from "next/navigation";
+
+export default function Page() {
+  // Redirects the user to the /cross-chain page immediately
+  redirect("/cross-chain");
 }
+
+
 export const metadata = {
   metadataBase: new URL("https://smartdisperse.xyz/"),
   title: "Home Page",
