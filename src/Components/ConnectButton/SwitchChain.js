@@ -13,7 +13,7 @@ function SwitchChain({ closeAccountModal }) {
   // useChainChangeReload(); // Call this hook on every render to ensure the page reloads when chain changes
   const { chain } = useAccount();
   const path = usePathname();
-  const [isMainnet, setIsMainnet] = useState(true);
+  const [isMainnet, setIsMainnet] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const cookie = new Cookies();
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false); // State for modal visibility
@@ -24,14 +24,15 @@ function SwitchChain({ closeAccountModal }) {
   const isSamePage = path === "/same-chain";
 
   // const mainnetChains = [34443, 534352, 8453, 10];
-  const mainnetChains = [901, 902, 34443, 534352, 8453, 10];
+  const mainnetChains = ["Available Soon"];
   // const testnetChains = [901, 902, 11155111, 534351, 11155420, 919, 84532,];
-  const testnetChains = [901, 902,11155111];
+  const testnetChains = [11155420, 84532, 919];
+
   const crossChainMainnet = ["Available Soon"];
   // const crossChainTestnet = [11155111, 11155420, 84532, 421614, 80002, 901, 902];
-  const crossChainTestnet = [901, 902];
+  const crossChainTestnet = [11155420, 84532, 919];
   // const sameChainMainnet = [10, 8453, 534352, 34443];
-  const sameChainMainnet = [901, 902, 34443, 534352, 8453, 10];
+  const sameChainMainnet = [34443, 534352, 8453, 10];
   // const sameChainTestnet = [11155111, 534351, 11155420, 919, 84532, 901, 902];
   const sameChainTestnet = [901, 902];
 
@@ -39,17 +40,18 @@ function SwitchChain({ closeAccountModal }) {
     ? chains.filter((chain) => mainnetChains.includes(chain.id))
     : chains.filter((chain) => testnetChains.includes(chain.id));
 
-  if (isCrosschainPage) {
-    displayChains = isMainnet
-      ? displayChains.filter((chain) => crossChainMainnet.includes(chain.id))
-      : displayChains.filter((chain) => crossChainTestnet.includes(chain.id));
-  }
+  // if (isCrosschainPage) {
+  //   displayChains = isMainnet
+  //     ? displayChains.filter((chain) => crossChainMainnet.includes(chain.id))
+  //     : displayChains.filter((chain) => crossChainTestnet.includes(chain.id));
+  // }
 
-  if (isSamePage) {
-    displayChains = isMainnet
-      ? displayChains.filter((chain) => sameChainMainnet.includes(chain.id))
-      : displayChains.filter((chain) => sameChainTestnet.includes(chain.id));
-  }
+  // if (isSamePage) {
+  //   displayChains = isMainnet
+  //     ? displayChains.filter((chain) => sameChainMainnet.includes(chain.id))
+  //     : displayChains.filter((chain) => sameChainTestnet.includes(chain.id));
+  // }
+
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const buttonRef = useRef(null);
@@ -211,7 +213,7 @@ function SwitchChain({ closeAccountModal }) {
                 </div>
               </button>
             ))}
-            {isMainnet && displayChains.length === 0 && isCrosschainPage ? (
+            {isMainnet && displayChains.length === 0 ? (
               <>
                 <button className={connectStyle.networkoption}>
                   <div className={connectStyle.icon2}>

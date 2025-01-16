@@ -27,7 +27,14 @@
 
 .selectedItem {
   display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 17px;
+}
+.flexstyle{
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .icon {
@@ -67,7 +74,7 @@
 }
 
 .dropdownIcon {
-  margin-left: 8px;
+  margin-left: 20px;
   margin-top: 1px;
   font-size: 12px;
 }

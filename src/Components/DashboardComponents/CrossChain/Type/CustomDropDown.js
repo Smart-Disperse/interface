@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import dropDownStyles from "./CustomDropDown.module.css";
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 import { FaChevronDown } from "react-icons/fa";
 
 function CustomDropdown({
@@ -11,14 +9,26 @@ function CustomDropdown({
   placeholder,
   index,
   disabled,
+  multiple = false,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  console.log("frommm", options);
   const handleSelect = (value) => {
-    onSelect(value, index);
-    setIsOpen(false);
+    if (multiple) {
+      const updatedSelection = Array.isArray(selectedValue)
+        ? selectedValue.some((item) => item.name === value.name)
+          ? selectedValue.filter((item) => item.name !== value.name)
+          : [...selectedValue, value]
+        : [value];
+      onSelect(updatedSelection, index);
+    } else {
+      onSelect([value], index);
+    }
+    if (!multiple) {
+      onSelect(value, index);
+      setIsOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -34,30 +44,16 @@ function CustomDropdown({
     };
   }, []);
 
-  const driverObj = driver({
-    overlayColor: "#00000094",
-    // popoverClass: ` ${samechainStyle.driverpopover01}`,
-    showProgress: true,
-    steps: [
-      {
-        element: "#finaldropdown",
-        popover: {
-          title: "Textify",
-          description:
-            "Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry",
-          side: "right",
-          align: "start",
-        },
-      },
-    ],
-  });
+  useEffect(() => {
+    console.log("selectedValue changed:", selectedValue);
+  }, [selectedValue]);
 
   const handleTokendropdown = () => {
     if (!disabled) {
       setIsOpen((prev) => !prev);
-      // driverObj.drive();
     }
   };
+
   return (
     <div className={dropDownStyles.dropdown} ref={dropdownRef}>
       <div
@@ -66,14 +62,29 @@ function CustomDropdown({
         }`}
         onClick={handleTokendropdown}
       >
-        {console.log(selectedValue)}
-        {selectedValue ? (
-          <div className={dropDownStyles.selectedItem}>
-            <img
-              src={selectedValue.iconUrl}
-              alt={selectedValue.name}
-              className={dropDownStyles.icon}
-            />
+        {Array.isArray(selectedValue) && selectedValue.length > 0 ? (
+            <div className={dropDownStyles.selectedItem}>
+              {selectedValue.map((chain, index) => (
+                <div key={chain.name} className={dropDownStyles.flexstyle}>
+                  <img
+                    src={chain.iconUrl}
+                    alt={chain.name}
+                    className={dropDownStyles.icon}
+                  />
+                  {chain.name}
+                  {/* {index < selectedValue.length - 1 && ", "} */}
+                </div>
+              ))}
+            </div>
+        ) : !Array.isArray(selectedValue) && selectedValue?.name ? (
+          <div className={dropDownStyles.flexstyle}>
+            {selectedValue.iconUrl && (
+              <img
+                src={selectedValue.iconUrl}
+                alt={selectedValue.name}
+                className={dropDownStyles.icon}
+              />
+            )}
             {selectedValue.name}
           </div>
         ) : (
@@ -91,7 +102,12 @@ function CustomDropdown({
             options.map((option) => (
               <div
                 key={option.name}
-                className={dropDownStyles.dropdownItem}
+                className={`${dropDownStyles.dropdownItem} ${
+                  Array.isArray(selectedValue) &&
+                  selectedValue.some((item) => item.name === option.name)
+                    ? dropDownStyles.selected
+                    : ""
+                }`}
                 onClick={() => handleSelect(option)}
               >
                 <img

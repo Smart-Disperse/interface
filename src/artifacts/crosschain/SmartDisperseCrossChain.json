@@ -1,5 +1,5 @@
 {
-  "abi": [
+    "abi": [
         {
             "type": "function",
             "name": "crossChainDisperseERC20",
@@ -398,4 +398,3 @@
         }
     ]
 }
-

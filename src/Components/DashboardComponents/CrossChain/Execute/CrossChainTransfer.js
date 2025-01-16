@@ -37,6 +37,8 @@ function CrossChainTransfer(props) {
   const [tweetModalIsOpen, setTweetModalIsOpen] = useState(false); // New state for tweet modal
   const chainId = useChainId();
 
+  console.log("final Dataa!!", props.finalData);
+ 
   const sendTweet = () => {
     console.log("tweeting");
     const tweetContent = `Just used @SmartDisperse to transfer to multiple accounts simultaneously across the same chain! Transferring to multiple accounts simultaneously has never been easier. Check out Smart Disperse at https://smartdisperse.xyz?utm_source=twitter_tweet&utm_medium=social&utm_campaign=smart_disperse&utm_id=002 and simplify your crypto transfers today!`;
@@ -46,80 +48,80 @@ function CrossChainTransfer(props) {
     window.open(twitterUrl, "_blank");
   };
 
-  useEffect(() => {
-    const calculateGasFees = async () => {
-      const mergedData = {};
-      props.listData.forEach((item, index) => {
-        const chainName = props.selectedDestinationfinalChains[index]?.name;
-        if (chainName) {
-          const receiverAddress =
-            allchains[chainId]["destinationChains"][chainName].receiverAddress;
-          const chainSelector =
-            allchains[chainId]["destinationChains"][chainName].chainSelector;
+  // useEffect(() => {
+  //   const calculateGasFees = async () => {
+  //     const mergedData = {};
+  //     props.listData.forEach((item, index) => {
+  //       const chainName = props.selectedDestinationfinalChains[index]?.name;
+  //       if (chainName) {
+  //         const receiverAddress =
+  //           allchains[chainId]["destinationChains"][chainName].receiverAddress;
+  //         const chainSelector =
+  //           allchains[chainId]["destinationChains"][chainName].chainSelector;
 
-          if (!mergedData[chainName]) {
-            mergedData[chainName] = {
-              receiverAddress,
-              chainSelector,
-              list: [],
-            };
-          }
+  //         if (!mergedData[chainName]) {
+  //           mergedData[chainName] = {
+  //             receiverAddress,
+  //             chainSelector,
+  //             list: [],
+  //           };
+  //         }
 
-          mergedData[chainName].list.push(item);
-        }
-      });
+  //         mergedData[chainName].list.push(item);
+  //       }
+  //     });
 
-      console.log(mergedData);
-      const receiverAddresses = [];
-      const chainSelectors = [];
-      const amounts = [];
-      const addresses = [];
+  //     console.log(mergedData);
+  //     const receiverAddresses = [];
+  //     const chainSelectors = [];
+  //     const amounts = [];
+  //     const addresses = [];
 
-      for (const chainName in mergedData) {
-        if (Object.hasOwnProperty.call(mergedData, chainName)) {
-          const chainData = mergedData[chainName];
-          receiverAddresses.push(chainData.receiverAddress);
-          chainSelectors.push(chainData.chainSelector);
+  //     for (const chainName in mergedData) {
+  //       if (Object.hasOwnProperty.call(mergedData, chainName)) {
+  //         const chainData = mergedData[chainName];
+  //         receiverAddresses.push(chainData.receiverAddress);
+  //         chainSelectors.push(chainData.chainSelector);
 
-          // Extracting amounts and addresses
-          const amountArr = [];
-          const addressArr = [];
-          chainData.list.forEach((item) => {
-            amountArr.push(item.value);
-            addressArr.push(item.address);
-          });
-          amounts.push(amountArr);
-          addresses.push(addressArr);
-        }
-      }
+  //         // Extracting amounts and addresses
+  //         const amountArr = [];
+  //         const addressArr = [];
+  //         chainData.list.forEach((item) => {
+  //           amountArr.push(item.value);
+  //           addressArr.push(item.address);
+  //         });
+  //         amounts.push(amountArr);
+  //         addresses.push(addressArr);
+  //       }
+  //     }
 
-      console.log(" Chain Selectors:", chainSelectors);
-      console.log(" Receiver Addresses:", receiverAddresses);
-      console.log(" Amounts:", amounts);
-      console.log(" Addresses:", addresses);
-      console.log(props.tokenAddress);
+  //     console.log(" Chain Selectors:", chainSelectors);
+  //     console.log(" Receiver Addresses:", receiverAddresses);
+  //     console.log(" Amounts:", amounts);
+  //     console.log(" Addresses:", addresses);
+  //     console.log(props.tokenAddress);
 
-      // const con = await smartDisperseCrossChainInstance(chainId);
-      // const paymentData = {
-      //   paymentReceivers: addresses,
-      //   amounts: amounts,
-      // };
-      // try {
-      //   const estimatedfees = await con.getEstimatedFees(
-      //     chainSelectors,
-      //     receiverAddresses,
-      //     paymentData,
-      //     props.tokenAddress
-      //   );
-      //   console.log("estimated fees:", estimatedfees);
-      //   props.setshowestimatedgasprice(estimatedfees);
-      // } catch (error) {
-      //   console.log("error:", error);
-      // }
-    };
+  //     // const con = await smartDisperseCrossChainInstance(chainId);
+  //     // const paymentData = {
+  //     //   paymentReceivers: addresses,
+  //     //   amounts: amounts,
+  //     // };
+  //     // try {
+  //     //   const estimatedfees = await con.getEstimatedFees(
+  //     //     chainSelectors,
+  //     //     receiverAddresses,
+  //     //     paymentData,
+  //     //     props.tokenAddress
+  //     //   );
+  //     //   console.log("estimated fees:", estimatedfees);
+  //     //   props.setshowestimatedgasprice(estimatedfees);
+  //     // } catch (error) {
+  //     //   console.log("error:", error);
+  //     // }
+  //   };
 
-    calculateGasFees();
-  }, [props.totalERC20]);
+  //   calculateGasFees();
+  // }, [props.totalERC20]);
 
   const execute = async () => {
     setLoadermodal(true);
@@ -151,7 +153,6 @@ function CrossChainTransfer(props) {
 
           if (!mergedData[chainName]) {
             mergedData[chainName] = {
-              receiverAddress,
               chainSelector,
               list: [],
             };
@@ -191,16 +192,19 @@ function CrossChainTransfer(props) {
       console.log("contract in corss chain");
       console.log(chainId);
 
-      try {
-        const isTokenApproved = await approveToken(
-          props.totalERC20,
-          props.tokenAddress,
-          chainId
-        );
-        console.log(isTokenApproved);
-        console.log("Token Approved");
-      } catch (error) {
-        console.log("error:", error);
+      if (props.tokenAddress !== "ETH") {
+        try {
+          const isTokenApproved = await approveToken(
+            props.totalERC20,
+            props.tokenAddress,
+            chainId
+          );
+          console.log(isTokenApproved);
+          console.log("Token Approved");
+        } catch (error) {
+          console.log("error:", error);
+        }
+
       }
 
       const paymentData = {
@@ -218,22 +222,37 @@ function CrossChainTransfer(props) {
         let txsendPayment;
 
         const destinationChain = props.selectedDestinationfinalChains?.[0];
+        console.log("selectedDestinationChain", props.selectedDestinationChain);
+
         const dynamicChainId = destinationChain?.chainId;
-        if (!dynamicChainId) {
+        console.log("dynamicChainId ..", destinationChain);
+        if (props.finalData.length === 1 && !props.finalData[0].chainId) {
           throw new Error("Chain ID is missing or undefined.");
         }
 
-        console.log(`Dynamic Chain ID: ${dynamicChainId}`);
-
+        console.log("totalERC20: ", props.totalERC20);
+        console.log("addresses: ", addresses[0]);
+        console.log("amounts: ", amounts[0]);
         if (props.tokenAddress === "ETH") {
           console.log("Token is ETH. Calling crossChainDisperseNative...");
-          txsendPayment = await con.crossChainDisperseNative(
-            dynamicChainId, // Use dynamic chainId
-            addresses[0],
-            amounts[0],
-            { value: props.totalERC20 }
-          );
+          if (props.finalData.length === 1) {
+            console.log("for single cross chain..."); 
+            txsendPayment = await con.crossChainDisperseNative(
+              props.finalData[0].chainId, // Use dynamic chainId
+              addresses[0],
+              amounts[0],
+              { value: props.totalERC20 },
+            );
+          } else {
+            console.log("I am here");
+            console.log("and data is for crossmuliichain is ", props.finalData);
+            txsendPayment = await con.crossChainDisperseNativeMultiChain(
+              props.finalData,
+              { value: props.totalERC20 },
+            );
+          }
         } else {
+
           console.log("Token is not ETH. Calling crossChainDisperseERC20...");
           txsendPayment = await con.crossChainDisperseERC20(
             dynamicChainId, // Use dynamic chainId
