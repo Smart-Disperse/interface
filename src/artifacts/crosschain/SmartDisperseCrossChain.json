@@ -30,6 +30,41 @@
         },
         {
             "type": "function",
+            "name": "crossChainDisperseERC20MultiChain",
+            "inputs": [
+                {
+                    "name": "transfers",
+                    "type": "tuple[]",
+                    "internalType": "struct SmartDisperse.CrossChainTransfer[]",
+                    "components": [
+                        {
+                            "name": "chainId",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "recipients",
+                            "type": "address[]",
+                            "internalType": "address[]"
+                        },
+                        {
+                            "name": "amounts",
+                            "type": "uint256[]",
+                            "internalType": "uint256[]"
+                        }
+                    ]
+                },
+                {
+                    "name": "_token",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
             "name": "crossChainDisperseNative",
             "inputs": [
                 {
@@ -220,6 +255,31 @@
             ],
             "outputs": [],
             "stateMutability": "nonpayable"
+        },
+        {
+            "type": "event",
+            "name": "ERC20TokensDispersed",
+            "inputs": [
+                {
+                    "name": "sourceChainId",
+                    "type": "uint256",
+                    "indexed": false,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "totalAmount",
+                    "type": "uint256",
+                    "indexed": false,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "numTransfers",
+                    "type": "uint256",
+                    "indexed": false,
+                    "internalType": "uint256"
+                }
+            ],
+            "anonymous": false
         },
         {
             "type": "event",

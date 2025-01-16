@@ -244,7 +244,6 @@ function CrossChainTransfer(props) {
               { value: props.totalERC20 },
             );
           } else {
-            console.log("I am here");
             console.log("and data is for crossmuliichain is ", props.finalData);
             txsendPayment = await con.crossChainDisperseNativeMultiChain(
               props.finalData,
@@ -252,14 +251,23 @@ function CrossChainTransfer(props) {
             );
           }
         } else {
+          if (props.finalData.length === 1){
 
-          console.log("Token is not ETH. Calling crossChainDisperseERC20...");
-          txsendPayment = await con.crossChainDisperseERC20(
-            dynamicChainId, // Use dynamic chainId
-            addresses[0],
-            amounts[0],
-            props.tokenAddress
-          );
+            console.log("Calling crossChainDisperseERC20...");
+            txsendPayment = await con.crossChainDisperseERC20(
+              dynamicChainId, // Use dynamic chainId
+              addresses[0],
+              amounts[0],
+              props.tokenAddress
+            );
+          }
+          else {
+            console.log("Calling crossChainDisperseERC20MultiChain...");
+            txsendPayment = await con.crossChainDisperseERC20MultiChain(
+              props.finalData,
+              props.tokenAddress
+            );
+          }
         }
 
         console.log("Transaction Successful...");

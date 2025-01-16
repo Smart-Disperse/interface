@@ -1,8 +1,6 @@
 import SmartDisperseCrossChain from "@/artifacts/crosschain/MultipleDestinationABI.json";
 import SmartDisperseCrossChainLatest from "@/artifacts/crosschain/SmartDisperseCrossChain.json";
 
-
-
 const crossContracts = {
   // 10: {
   //   address: "0x45C5381B349400959900ec235527a946fcc435D4",
@@ -58,7 +56,8 @@ const crossContracts = {
   //   APIURL: "https://api.studio.thegraph.com/query/76606/amoy-multichain/version/latest"
   // },
   11155420: {
-    address: "0x45C5381B349400959900ec235527a946fcc435D4",
+    // address: "0x45C5381B349400959900ec235527a946fcc435D4",
+    address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
     description: "SMART_DISPERSE_ADDRESS_TEST_OP_SEPOLIA",
     "block-explorer": "optimism-sepolia.blockscout.com",
     Abi: SmartDisperseCrossChainLatest,
@@ -67,7 +66,7 @@ const crossContracts = {
     APIURL: "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
   },
   84532: {
-    address: "0x45C5381B349400959900ec235527a946fcc435D4",
+    address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
     description: "SMART_DISPERSE_ADDRESS_TEST_BASE_SEPOLIA",
     "block-explorer": "base-sepolia.blockscout.com",
     Abi: SmartDisperseCrossChainLatest,
@@ -76,7 +75,7 @@ const crossContracts = {
     APIURL: "https://api.studio.thegraph.com/query/76606/basesepolia-multichain/version/latest"
   },
   919: {
-    address: "0x45C5381B349400959900ec235527a946fcc435D4",
+    address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
     description: "SMART_DISPERSE_ADDRESS_TEST_MODE",
     "block-explorer": "sepolia.explorer.mode.network",
     Abi: SmartDisperseCrossChainLatest,
