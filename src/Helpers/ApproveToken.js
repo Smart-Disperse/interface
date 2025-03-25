@@ -15,6 +15,7 @@ export const approveToken = async (amount, tokenContractAddress, chainId) => {
         ERC20ABI.abi,
         signer
       );
+      
       const tx = await tokenContract.approve(
         contracts[chainId]["address"],
         amount

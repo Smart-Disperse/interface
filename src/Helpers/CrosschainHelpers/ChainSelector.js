@@ -3,6 +3,41 @@ import { baseSepolia } from "viem/chains";
 
 // all chains
 const allchains = {
+
+  420120000: {
+    chainName: "Devnet0",
+    chainId: "420120000",
+    destinationChains: {
+      Devnet1: {
+        chainId: "420120001",
+        tokens: {
+          SuperChainWETH: "0x4200000000000000000000000000000000000024",
+          ETH: "ETH",
+        },
+        receiverAddress: "0x2AfB4AE8eE6C0C518CaF9F602601766BD47b3B38",
+        iconUrl:
+          "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+      },
+    },
+  },
+
+  420120001: {
+    chainName: "Devnet1",
+    chainId: "420120001",
+    destinationChains: {
+      Devnet0: {
+        chainId: "420120000",
+        tokens: {
+          SuperChainWETH: "0x4200000000000000000000000000000000000024",
+          ETH: "ETH",
+        },
+        receiverAddress: "0x2AfB4AE8eE6C0C518CaF9F602601766BD47b3B38",
+        iconUrl:
+          "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+      },
+    },
+  }, 
+
   //   11155111: {
   //     chainName: "Sepolia",
   //     destinationChains: {
@@ -299,84 +334,84 @@ const allchains = {
   //   },
   // },
 
-  11155420: {
-    chainName: "optimismSepolia",
-    chainId: "11155420",
-    destinationChains: {
-      baseSepolia: {
-        chainId: "84532",
-        tokens: {
-          SuperChainWETH: "0x4200000000000000000000000000000000000024",
-          ETH: "ETH",
-        },
-        receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
-        iconUrl:
-          "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
-      },
-      modeSepolia: {
-        chainId: "919",
-        tokens: {
-          SuperChainWETH: "0x4200000000000000000000000000000000000024",
-          ETH: "ETH",
-        },
-        receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
-        iconUrl: "https://avatars.githubusercontent.com/u/139873699?s=200&v=4",
-      },
-    },
-  },
+  // 11155420: {
+  //   chainName: "optimismSepolia",
+  //   chainId: "11155420",
+  //   destinationChains: {
+  //     baseSepolia: {
+  //       chainId: "84532",
+  //       tokens: {
+  //         SuperChainWETH: "0x4200000000000000000000000000000000000024",
+  //         ETH: "ETH",
+  //       },
+  //       receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
+  //       iconUrl:
+  //         "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
+  //     },
+  //     modeSepolia: {
+  //       chainId: "919",
+  //       tokens: {
+  //         SuperChainWETH: "0x4200000000000000000000000000000000000024",
+  //         ETH: "ETH",
+  //       },
+  //       receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
+  //       iconUrl: "https://avatars.githubusercontent.com/u/139873699?s=200&v=4",
+  //     },
+  //   },
+  // },
 
-  84532: {
-    chainName: "baseSepolia",
-    chainId: "84532",
-    destinationChains: {
-      optimismSepolia: {
-        chainId: "11155420",
-        tokens: {
-          SuperChainWETH: "0x4200000000000000000000000000000000000024",
-          ETH: "ETH",
-        },
-        receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
-        iconUrl:
-          "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
-      },
-      modeSepolia: {
-        chainId: "919",
-        tokens: {
-          SuperChainWETH: "0x4200000000000000000000000000000000000024",
-          ETH: "ETH",
-        },
-        receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
-        iconUrl: "https://avatars.githubusercontent.com/u/139873699?s=200&v=4",
-      },
-    },
-  },
+//   84532: {
+//     chainName: "baseSepolia",
+//     chainId: "84532",
+//     destinationChains: {
+//       optimismSepolia: {
+//         chainId: "11155420",
+//         tokens: {
+//           SuperChainWETH: "0x4200000000000000000000000000000000000024",
+//           ETH: "ETH",
+//         },
+//         receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
+//         iconUrl:
+//           "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+//       },
+//       modeSepolia: {
+//         chainId: "919",
+//         tokens: {
+//           SuperChainWETH: "0x4200000000000000000000000000000000000024",
+//           ETH: "ETH",
+//         },
+//         receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
+//         iconUrl: "https://avatars.githubusercontent.com/u/139873699?s=200&v=4",
+//       },
+//     },
+//   },
 
-  919: {
-    chainName: "modeSepolia",
-    chainId: "919",
-    destinationChains: {
-      baseSepolia: {
-        chainId: "84532",
-        tokens: {
-          SuperChainWETH: "0x4200000000000000000000000000000000000024",
-          ETH: "ETH",
-        },
-        receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
-        iconUrl:
-          "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
-      },
-      optimismSepolia: {
-        chainId: "11155420",
-        tokens: {
-          SuperChainWETH: "0x4200000000000000000000000000000000000024",
-          ETH: "ETH",
-        },
-        receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
-        iconUrl:
-          "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
-      },
-    },
-  },
+//   919: {
+//     chainName: "modeSepolia",
+//     chainId: "919",
+//     destinationChains: {
+//       baseSepolia: {
+//         chainId: "84532",
+//         tokens: {
+//           SuperChainWETH: "0x4200000000000000000000000000000000000024",
+//           ETH: "ETH",
+//         },
+//         receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
+//         iconUrl:
+//           "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
+//       },
+//       optimismSepolia: {
+//         chainId: "11155420",
+//         tokens: {
+//           SuperChainWETH: "0x4200000000000000000000000000000000000024",
+//           ETH: "ETH",
+//         },
+//         receiverAddress: "0x45C5381B349400959900ec235527a946fcc435D4",
+//         iconUrl:
+//           "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+//       },
+//     },
+//   },
 };
 
 export default allchains;

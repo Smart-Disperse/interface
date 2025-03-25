@@ -55,35 +55,35 @@ const crossContracts = {
   //   chainName: "amoy",
   //   APIURL: "https://api.studio.thegraph.com/query/76606/amoy-multichain/version/latest"
   // },
-  11155420: {
-    // address: "0x45C5381B349400959900ec235527a946fcc435D4",
-    address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
-    description: "SMART_DISPERSE_ADDRESS_TEST_OP_SEPOLIA",
-    "block-explorer": "optimism-sepolia.blockscout.com",
-    Abi: SmartDisperseCrossChainLatest,
-    chainDisplayName: "Optimism Sepolia",
-    chainName: "opSepolia",
-    APIURL: "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
-  },
-  84532: {
-    address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
-    description: "SMART_DISPERSE_ADDRESS_TEST_BASE_SEPOLIA",
-    "block-explorer": "base-sepolia.blockscout.com",
-    Abi: SmartDisperseCrossChainLatest,
-    chainDisplayName: "Base Sepolia",
-    chainName: "baseSepolia",
-    APIURL: "https://api.studio.thegraph.com/query/76606/basesepolia-multichain/version/latest"
-  },
-  919: {
-    address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
-    description: "SMART_DISPERSE_ADDRESS_TEST_MODE",
-    "block-explorer": "sepolia.explorer.mode.network",
-    Abi: SmartDisperseCrossChainLatest,
-    chainName: "modeTestnet",
-    chainDisplayName: "Mode Testnet",
-  },
+  // 11155420: {
+  //   // address: "0x45C5381B349400959900ec235527a946fcc435D4",
+  //   address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
+  //   description: "SMART_DISPERSE_ADDRESS_TEST_OP_SEPOLIA",
+  //   "block-explorer": "optimism-sepolia.blockscout.com",
+  //   Abi: SmartDisperseCrossChainLatest,
+  //   chainDisplayName: "Optimism Sepolia",
+  //   chainName: "opSepolia",
+  //   APIURL: "https://api.studio.thegraph.com/query/76606/opsepolia-multichain/version/latest"
+  // },
+  // 84532: {
+  //   address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
+  //   description: "SMART_DISPERSE_ADDRESS_TEST_BASE_SEPOLIA",
+  //   "block-explorer": "base-sepolia.blockscout.com",
+  //   Abi: SmartDisperseCrossChainLatest,
+  //   chainDisplayName: "Base Sepolia",
+  //   chainName: "baseSepolia",
+  //   APIURL: "https://api.studio.thegraph.com/query/76606/basesepolia-multichain/version/latest"
+  // },
+  // 919: {
+  //   address: "0xa32317945343a1129C23Ff5A9E0ECb2f864F5605",
+  //   description: "SMART_DISPERSE_ADDRESS_TEST_MODE",
+  //   "block-explorer": "sepolia.explorer.mode.network",
+  //   Abi: SmartDisperseCrossChainLatest,
+  //   chainName: "modeTestnet",
+  //   chainDisplayName: "Mode Testnet",
+  // },
   // 901: {
-  //   address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",//need to change every time
+  //   address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",
   //   description: "SMART_DISPERSE_ADDRESS_SUPERSIM_1",
   //   "block-explorer": "optimism-testnet.etherscan.io",
   //   Abi: SmartDisperseCrossChainLatest,
@@ -91,13 +91,29 @@ const crossContracts = {
   //   chainName: "OPChainA",
   // },
   // 902: {
-  //   address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",//need to change every time
+  //   address: "0x4629d4bFE3A503852faFd9e7b1c82b0283a195dD",
   //   description: "SMART_DISPERSE_ADDRESS_SUPERSIM_2",
   //   "block-explorer": "optimism-testnet.etherscan.io",
   //   Abi: SmartDisperseCrossChainLatest,
   //   chainDisplayName: "OPChainB",
   //   chainName: "OPChainB",
   // }
+
+  420120000: {
+      address: "0x2AfB4AE8eE6C0C518CaF9F602601766BD47b3B38",
+      "block-explorer": "https://optimism-interop-alpha-0.blockscout.com",
+      Abi: SmartDisperseCrossChainLatest,
+      chainDisplayName: "Superchain Devnet0",
+      chainName: "devnet0",
+  },
+
+  420120001: {
+    address: "0x2AfB4AE8eE6C0C518CaF9F602601766BD47b3B38",
+    "block-explorer": "https://optimism-interop-alpha-1.blockscout.com",
+    Abi: SmartDisperseCrossChainLatest,
+    chainDisplayName: "Superchain Devnet1",
+    chainName: "devnet1",
+  },
 };
 
 export default crossContracts;

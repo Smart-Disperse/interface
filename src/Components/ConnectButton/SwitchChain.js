@@ -23,34 +23,33 @@ function SwitchChain({ closeAccountModal }) {
   const isCrosschainPage = path === "/cross-chain";
   const isSamePage = path === "/same-chain";
 
-  // const mainnetChains = [34443, 534352, 8453, 10];
-  const mainnetChains = ["Available Soon"];
+  const mainnetChains = [34443, 534352, 8453, 10];
+  // const mainnetChains = ["Available Soon"];
   // const testnetChains = [901, 902, 11155111, 534351, 11155420, 919, 84532,];
-  const testnetChains = [11155420, 84532, 919];
+  const testnetChains = [11155111, 534351, 11155420, 919, 84532, 420120000, 420120001];
 
   const crossChainMainnet = ["Available Soon"];
   // const crossChainTestnet = [11155111, 11155420, 84532, 421614, 80002, 901, 902];
-  const crossChainTestnet = [11155420, 84532, 919];
+  const crossChainTestnet = [420120000, 420120001];
   // const sameChainMainnet = [10, 8453, 534352, 34443];
   const sameChainMainnet = [34443, 534352, 8453, 10];
-  // const sameChainTestnet = [11155111, 534351, 11155420, 919, 84532, 901, 902];
-  const sameChainTestnet = [901, 902];
+  const sameChainTestnet = [11155111, 534351, 11155420, 919, 84532];
 
   let displayChains = isMainnet
     ? chains.filter((chain) => mainnetChains.includes(chain.id))
     : chains.filter((chain) => testnetChains.includes(chain.id));
 
-  // if (isCrosschainPage) {
-  //   displayChains = isMainnet
-  //     ? displayChains.filter((chain) => crossChainMainnet.includes(chain.id))
-  //     : displayChains.filter((chain) => crossChainTestnet.includes(chain.id));
-  // }
+  if (isCrosschainPage) {
+    displayChains = isMainnet
+      ? displayChains.filter((chain) => crossChainMainnet.includes(chain.id))
+      : displayChains.filter((chain) => crossChainTestnet.includes(chain.id));
+  }
 
-  // if (isSamePage) {
-  //   displayChains = isMainnet
-  //     ? displayChains.filter((chain) => sameChainMainnet.includes(chain.id))
-  //     : displayChains.filter((chain) => sameChainTestnet.includes(chain.id));
-  // }
+  if (isSamePage) {
+    displayChains = isMainnet
+      ? displayChains.filter((chain) => sameChainMainnet.includes(chain.id))
+      : displayChains.filter((chain) => sameChainTestnet.includes(chain.id));
+  }
 
   const [dropdownVisible, setDropdownVisible] = useState(false);
 

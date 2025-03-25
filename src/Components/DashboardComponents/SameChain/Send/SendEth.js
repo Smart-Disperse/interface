@@ -150,9 +150,7 @@ function SendEth({ listData, setListData }) {
     if (!ethBalance) {
 
       console.log("Ethereum:", ethereum);
-      // const provider = new ethers.providers.Web3Provider(ethereum);
-      const rpcUrl = "http://127.0.0.1:9545"; // Replace with your RPC URL
-      const provider = new ethers.providers.JsonRpcProvider(rpcUrl); // Use JsonRpcProvider
+      const provider = new ethers.providers.Web3Provider(ethereum); 
       console.log("Provider:", provider);
       if (address) {
         console.log("get balance for:", address);

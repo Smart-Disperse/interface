@@ -65,35 +65,26 @@ function ExecuteEth(props) {
     }
 
     try {
-      console.log("chain id is...", chainId)
       const con = await smartDisperseInstance(chainId);
-      console.log('contract will call is', con);
       console.log(recipients, values, props.totalEth);
-      // const txsendPayment = await con.disperseEther(recipients, values, {
-      //   value: props.totalEth,
-      // });
-
-      const txsendPayment = await con.disperseNative(recipients, values, {
+      const txsendPayment = await con.disperseEther(recipients, values, {
         value: props.totalEth,
       });
 
       const receipt = await txsendPayment.wait();
       console.log(receipt);
-
       let blockExplorerURL = await getExplorer();
       setMessage(
         <div
           className={textStyle.Link}
           dangerouslySetInnerHTML={{
-            // __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank "   style={{ color: "white", textDecoration: "none" }}>here</a> for details.`,
-            __html: `Your Transaction was successful. for details.`,
+            __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank "   style={{ color: "white", textDecoration: "none" }}>here</a> for details.`,
           }}
         />
       );
       setExecutionStatusmodal(true);
       setSuccess(true);
     } catch (error) {
-      console.log(error)
       setMessage(error);
       setExecutionStatusmodal(true);
       setSuccess(false);
@@ -153,7 +144,7 @@ function ExecuteEth(props) {
       {" "}
       <button
         id={textStyle.greenbackground}
-        className={`${!props.suffecientBalance ? textStyle.disabledButton : textStyle.sendbutton}`}
+        className={`${textStyle.sendbutton} `}
         onClick={() => {
           execute();
         }}
@@ -181,11 +172,11 @@ function ExecuteEth(props) {
         </Modal>
       </div>
       <Modal
-        style={{
-          overlay: {
-            backgroundColor: "transparent"
-          },
-        }}
+       style={{
+        overlay: {
+          backgroundColor: "transparent"
+        },
+      }}
         className={textStyle.popupforpayment}
         isOpen={executionStatusmodal}
         onRequestClose={() => setExecutionStatusmodal(false)}

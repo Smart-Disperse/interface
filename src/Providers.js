@@ -25,28 +25,41 @@ import { color } from "framer-motion";
 // import { scrollSepolia } from "wagmi/chains";
 const { wallets } = getDefaultWallets();
 
-
-// const modeMainnet = {
-//   id: 34443,
-//   name: "Mode Mainnet",
-//   network: "Mode",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/QmXwYGzbYduEyX6uwaLRXxJ2YtBqLSzACubqMjqP1PAuSQ",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Mode Mainnet",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["https://mainnet.mode.network/"] },
-//     default: { http: ["https://mainnet.mode.network/"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "Mode Mainnet Explorer", url: "https://mainnet.mode.network/explorer" },
-//   },
-// };
+const modeMainnet = {
+  id: 34443,
+  name: "Mode Mainnet",
+  network: "Mode",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmXwYGzbYduEyX6uwaLRXxJ2YtBqLSzACubqMjqP1PAuSQ",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Mode Mainnet",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://mainnet.mode.network/"] },
+    default: { http: ["https://mainnet.mode.network/"] },
+  },
+};
+const base = {
+  id: 8453,
+  name: "Base",
+  network: "Base",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Base Mainnet",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://base.llamarpc.com"] },
+    default: { http: ["https://base.llamarpc.com"] },
+  },
+};
 
 const baseSepolia = {
+  dropdownchainName: "baseSepolia",
   id: 84532,
   name: "Base Sepolia",
   network: "Base Sepolia",
@@ -58,17 +71,30 @@ const baseSepolia = {
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["https://superchain.smartdisperse.xyz/base"] },
-    default: { http: ["https://superchain.smartdisperse.xyz/base"] },
-  },
-  blockExplorers: {
-    default: { name: "BaseScan", url: "https://sepolia.basescan.org" },
+    public: { http: ["wss://base-sepolia-rpc.publicnode.com"] },
+    default: { http: ["wss://base-sepolia-rpc.publicnode.com"] },
   },
 };
-
+const optimism = {
+  id: 10,
+  name: "OP Mainnet",
+  network: "OP Mainnet",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+  nativeCurrency: {
+    decimals: 18,
+    name: "OP Mainnet",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://optimism.llamarpc.com"] },
+    default: { http: ["https://optimism.llamarpc.com"] },
+  },
+};
 const optimismSepolia = {
+  dropdownchainName: "opSepolia",
   id: 11155420,
-  name: "OP sepolia",
+  name: "OP Sepolia",
   network: "OP Sepolia",
   iconUrl:
     "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
@@ -78,202 +104,162 @@ const optimismSepolia = {
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["https://superchain.smartdisperse.xyz/op"] },
-    default: { http: ["https://superchain.smartdisperse.xyz/op"] },
-  },
-  blockExplorers: {
-    default: { name: "Etherscan", url: "https://optimistic.etherscan.io" },
+    public: { http: ["https://sepolia.optimism.io"] },
+    default: { http: ["https://sepolia.optimism.io"] },
   },
 };
+const scroll = {
+  id: 534352,
+  name: "Scroll",
+  network: "Scroll",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/Qmef99zfw3Wgz6E6c3hN1mypsorGDd4DdcJc6MsvWDdnAD",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Scroll",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://scroll.drpc.org"] },
+    default: { http: ["https://scroll.drpc.org"] },
+  },
+};
+const scrollSepolia = {
+  id: 534351,
+  name: "Scroll Sepolia",
+  network: "scrollSepolia",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/Qmef99zfw3Wgz6E6c3hN1mypsorGDd4DdcJc6MsvWDdnAD",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Scroll Sepolia",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://scroll-sepolia.blockpi.network/v1/rpc/public"] },
+    default: { http: ["https://scroll-sepolia.blockpi.network/v1/rpc/public"] },
+  },
+};
+const sepolia = {
+  dropdownchainName: "sepolia",
+  id: 11155111,
+  name: "Sepolia",
+  network: "Sepolia",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmYAbLYRm3DCx261ko8ERjhCgWwf57jAWkxbNcibx8haBi",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Sepolia",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://rpc-sepolia.rockx.com"] },
+    default: { http: ["https://rpc-sepolia.rockx.com"] },
+  },
+};
+
+const arbitrumSepolia = {
+  dropdownchainName: "arbSepolia",
+  id: 421614,
+  name: "Arbitrum Sepolia",
+  network: "ArbitrumSepolia",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmVbtAexzRc2ReSWWyw2Ft7wwkKzsagqnfz3PNfxwM9NMM",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Sepolia",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: {
+      http: ["https://arbitrum-sepolia.blockpi.network/v1/rpc/public"],
+    },
+    default: {
+      http: ["https://arbitrum-sepolia.blockpi.network/v1/rpc/public"],
+    },
+  },
+};
+
+const polygonAmoy = {
+  dropdownchainName: "amoy",
+  id: 80002,
+  name: "Polygon Amoy",
+  network: "Amoy",
+  iconUrl:
+    "https://gateway.lighthouse.storage/ipfs/QmUjiVLiprjXMPceS7r51XNGu277meEkhtWhvH59D2XhzR",
+  nativeCurrency: {
+    decimals: 18,
+    name: "MATIC",
+    symbol: "MATIC",
+  },
+  rpcUrls: {
+    public: { http: ["https://rpc-amoy.polygon.technology"] },
+    default: { http: ["https://rpc-amoy.polygon.technology"] },
+  },
+};
+
+const devnet0 = {
+  id: 420120000,
+  name: "Superchain Devnet0",
+  network: "Superchain Devnet0",
+  iconUrl: "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Superchain Devnet0",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: {http: ["https://interop-alpha-0.optimism.io"]},
+    default: {http: ["https://interop-alpha-0.optimism.io"]},
+    blockExplorers: {
+      default: { name: "Blockscout", url: "https://optimism-interop-alpha-0.blockscout.com"}
+    }
+  }
+
+
+}
+
+const devnet1 = {
+  id: 420120001,
+  name: "Superchain Devnet1",
+  network: "Superchain Devnet1",
+  iconUrl: "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Superchain Devnet1",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: {http: ["https://interop-alpha-1.optimism.io"]},
+    default: {http: ["https://interop-alpha-1.optimism.io"]},
+    blockExplorers: {
+      default: { name: "Blockscout", url: "https://optimism-interop-alpha-1.blockscout.com"}
+    }
+  }
+
+
+}
+
 
 const modeSepolia = {
   id: 919,
   name: "Mode Sepolia",
-    network: "Mode Sepolia",
-    iconUrl: "https://avatars.githubusercontent.com/u/139873699?s=200&v=4",
+  network: "Mode Sepolia",
+  iconUrl: "https://avatars.githubusercontent.com/u/139873699?s=200&v=4",
   nativeCurrency: {
     decimals: 18,
     name: "Mode Sepolia",
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["https://superchain.smartdisperse.xyz/mode"] },
-    default: { http: ["https://superchain.smartdisperse.xyz/mode"] },
+    public: { http: ["https://sepolia.mode.network"] },
+    default: { http: ["https://sepolia.mode.network"] },
   },
   blockExplorers: {
     default: { name: "Blockscout", url: "https://sepolia.explorer.mode.network" },
   },
 };
 
-// const OPChainA = {
-//   dropdownchainName: "OPChainA",
-//   id: 901,
-//   name: "OPChainA",
-//   network: "OPChainA",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "ETH",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["http://127.0.0.1:9545"] },
-//     default: { http: ["http://127.0.0.1:9545"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "PolygonScan", url: "https://amoy.polygonscan.com" },
-//   },
-// };
-
-// const baseSepolia = {
-//   dropdownchainName: "baseSepolia",
-//   id: 84532,
-//   name: "Base Sepolia",
-//   network: "Base Sepolia",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/Qmbkmfi3tUYA1a4cxmGQqhnLzim3RV9QqjpeN77eouLdyu",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Base Sepolia",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["http://127.0.0.1:9546"] },
-//     default: { http: ["http://127.0.0.1:9546"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "BaseScan", url: "https://sepolia.basescan.org" },
-//   },
-// };
-
-// const optimismSepolia = {
-//   dropdownchainName: "opSepolia",
-//   id: 11155420,
-//   name: "OP Sepolia",
-//   network: "OP Sepolia",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/QmZ98kd2LkSySUCydJAjBQzaEpt6aLJYT4WSgahVb9aQJU",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "OP Sepolia",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["http://127.0.0.1:9545"] },
-//     default: { http: ["http://127.0.0.1:9545"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "Etherscan", url: "https://sepolia-optimistic.etherscan.io" },
-//   },
-// };
-
-// const scroll = {
-//   id: 534352,
-//   name: "Scroll",
-//   network: "Scroll",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/Qmef99zfw3Wgz6E6c3hN1mypsorGDd4DdcJc6MsvWDdnAD",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Scroll",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["https://scroll.drpc.org"] },
-//     default: { http: ["https://scroll.drpc.org"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "ScrollScan", url: "https://scrollscan.com" },
-//   },
-// };
-
-// const scrollSepolia = {
-//   id: 534351,
-//   name: "Scroll Sepolia",
-//   network: "scrollSepolia",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/Qmef99zfw3Wgz6E6c3hN1mypsorGDd4DdcJc6MsvWDdnAD",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Scroll Sepolia",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["https://scroll-sepolia.blockpi.network/v1/rpc/public"] },
-//     default: { http: ["https://scroll-sepolia.blockpi.network/v1/rpc/public"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "ScrollScan", url: "https://sepolia.scrollscan.com" },
-//   },
-// };
-
-// const sepolia = {
-//   dropdownchainName: "sepolia",
-//   id: 11155111,
-//   name: "Sepolia",
-//   network: "Sepolia",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/QmYAbLYRm3DCx261ko8ERjhCgWwf57jAWkxbNcibx8haBi",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Sepolia",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: { http: ["https://rpc-sepolia.rockx.com"] },
-//     default: { http: ["https://rpc-sepolia.rockx.com"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "Etherscan", url: "https://sepolia.etherscan.io" },
-//   },
-// };
-
-// const arbitrumSepolia = {
-//   dropdownchainName: "arbSepolia",
-//   id: 421614,
-//   name: "Arbitrum Sepolia",
-//   network: "ArbitrumSepolia",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/QmVbtAexzRc2ReSWWyw2Ft7wwkKzsagqnfz3PNfxwM9NMM",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "Sepolia",
-//     symbol: "ETH",
-//   },
-//   rpcUrls: {
-//     public: {
-//       http: ["https://arbitrum-sepolia.blockpi.network/v1/rpc/public"],
-//     },
-//     default: {
-//       http: ["https://arbitrum-sepolia.blockpi.network/v1/rpc/public"],
-//     },
-//     blockExplorers: {
-//       default: { name: "Arbiscan", url: "https://sepolia.arbiscan.io" },
-//     },
-//   },
-// };
-
-// const polygonAmoy = {
-//   dropdownchainName: "amoy",
-//   id: 80002,
-//   name: "Polygon Amoy",
-//   network: "Amoy",
-//   iconUrl:
-//     "https://gateway.lighthouse.storage/ipfs/QmUjiVLiprjXMPceS7r51XNGu277meEkhtWhvH59D2XhzR",
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: "MATIC",
-//     symbol: "MATIC",
-//   },
-//   rpcUrls: {
-//     public: { http: ["https://rpc-amoy.polygon.technology"] },
-//     default: { http: ["https://rpc-amoy.polygon.technology"] },
-//   },
-//   blockExplorers: {
-//     default: { name: "PolygonScan", url: "https://amoy.polygonscan.com" },
-//   },
-// };
 
 // const OPChainA = {
 //   dropdownchainName: "OPChainA",
@@ -322,18 +308,18 @@ const modeSepolia = {
 export function Providers({ children }) {
   const path = usePathname();
   const chains = [
-    // modeMainnet,
-    // scroll,
-    // scrollSepolia,
-    // sepolia,
-    // optimismSepolia,
-    // baseSepolia,
-    // modeTestnet,
-    baseSepolia,
+    modeMainnet,
+    base,
+    scroll,
+    scrollSepolia,
+    sepolia,
     optimismSepolia,
+    baseSepolia,
     modeSepolia,
-    // arbitrumSepolia,
-    // polygonAmoy,
+    arbitrumSepolia,
+    polygonAmoy,
+    devnet0,
+    devnet1
     // OPChainA,
     // OPChainB,
   ];
