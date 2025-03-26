@@ -222,54 +222,162 @@ function CrossChainTransfer(props) {
         let txsendPayment;
 
         const destinationChain = props.selectedDestinationfinalChains?.[0];
-        console.log("selectedDestinationChain", props.selectedDestinationChain);
+        console.log("Full destination chain object:", destinationChain);
 
-        const dynamicChainId = destinationChain?.chainId;
-        console.log("dynamicChainId ..", destinationChain);
-        if (props.finalData.length === 1 && !props.finalData[0].chainId) {
-          throw new Error("Chain ID is missing or undefined.");
+        // Add detailed logging for debugging
+        console.log("Raw chainId:", destinationChain?.chainId);
+        console.log("Raw amounts:", amounts[0]);
+        console.log("Raw addresses:", addresses[0]);
+        console.log("Token address:", props.tokenAddress);
+
+        // Get the chain ID from the destination chain configuration
+        const chainName = destinationChain?.name;
+        if (!chainName) {
+          throw new Error("Destination chain name is undefined");
         }
 
-        console.log("totalERC20: ", props.totalERC20);
-        console.log("addresses: ", addresses[0]);
-        console.log("amounts: ", amounts[0]);
+        const chainDetails = allchains[chainId]?.destinationChains[chainName];
+        if (!chainDetails) {
+          throw new Error(`Chain details not found for ${chainName}`);
+        }
+
+        // For Superchain, we need to use the chainId directly from chainDetails
+        const dynamicChainId = ethers.BigNumber.from(chainDetails.chainId);
+        console.log("Using chainId for Superchain:", dynamicChainId.toString());
+
+        // Verify the values before conversion
+        if (!amounts[0] || amounts[0].length === 0) {
+          throw new Error("Amounts array is empty or undefined");
+        }
+
+        // Convert amounts to BigNumbers with error handling
+        const formattedAmounts = amounts[0].map((amount, index) => {
+          if (!amount) {
+            throw new Error(`Amount at index ${index} is undefined`);
+          }
+          // console.log("AMOUNT", amount.toString());
+          // Convert amount to Wei if it's not already
+          return amount;
+        });
+
+        // Verify addresses are valid
+        const validAddresses = addresses[0].map((address, index) => {
+          if (!ethers.utils.isAddress(address)) {
+            throw new Error(`Invalid address at index ${index}: ${address}`);
+          }
+          return address;
+        });
+
+        console.log("Validated addresses:", validAddresses);
+        console.log("Formatted amounts:", formattedAmounts.map(a => a.toString()));
+
         if (props.tokenAddress === "ETH") {
           console.log("Token is ETH. Calling crossChainDisperseNative...");
           if (props.finalData.length === 1) {
             console.log("for single cross chain..."); 
             txsendPayment = await con.crossChainDisperseNative(
-              props.finalData[0].chainId, // Use dynamic chainId
-              addresses[0],
-              amounts[0],
-              { value: props.totalERC20 },
+              dynamicChainId,
+              validAddresses,
+              formattedAmounts,
+              { 
+                value: props.totalERC20,
+                gasLimit: 1000000
+              }
             );
           } else {
             console.log("and data is for crossmuliichain is ", props.finalData);
             txsendPayment = await con.crossChainDisperseNativeMultiChain(
               props.finalData,
-              { value: props.totalERC20 },
+              { 
+                value: props.totalERC20,
+                gasLimit: 2000000
+              }
             );
           }
         } else {
           if (props.finalData.length === 1){
-
             console.log("Calling crossChainDisperseERC20...");
-            txsendPayment = await con.crossChainDisperseERC20(
-              dynamicChainId, // Use dynamic chainId
-              addresses[0],
-              amounts[0],
-              props.tokenAddress
-            );
+            
+            // Log all parameters before making the call
+            console.log("Transaction parameters:", {
+              chainId: dynamicChainId,
+              addresses: validAddresses,
+              amounts: formattedAmounts,
+              tokenAddress: props.tokenAddress,
+              gasLimit: 1500000
+            });
+
+            try {
+              // First try to estimate gas
+              // const gasEstimate = await con.estimateGas.crossChainDisperseERC20(
+              //   dynamicChainId,
+              //   validAddresses,
+              //   formattedAmounts,
+              //   props.tokenAddress,
+              //   {
+              //     gasLimit: 2000000
+              //   }
+              // );
+              // console.log("Estimated gas:", gasEstimate.toString());
+
+              // Add 20% buffer to gas estimate
+              // const gasLimit = gasEstimate.mul(120).div(100);
+              // console.log("Using gas limit with buffer:", gasLimit.toString());
+
+              txsendPayment = await con.crossChainDisperseERC20(
+                dynamicChainId,
+                validAddresses,
+                formattedAmounts,
+                props.tokenAddress,
+                { 
+                  gasLimit: 2000000,
+                }
+              );
+            } catch (error) {
+              console.error("Detailed error:", {
+                message: error.message,
+                code: error.code,
+                data: error.data,
+                transaction: error.transaction
+              });
+              throw error;
+            }
           }
           else {
             console.log("Calling crossChainDisperseERC20MultiChain...");
-            txsendPayment = await con.crossChainDisperseERC20MultiChain(
-              props.finalData,
-              props.tokenAddress
-            );
+            try {
+              // First try to estimate gas
+              const gasEstimate = await con.estimateGas.crossChainDisperseERC20MultiChain(
+                props.finalData,
+                props.tokenAddress
+              );
+              console.log("Estimated gas:", gasEstimate.toString());
+
+              // Add 20% buffer to gas estimate
+              const gasLimit = gasEstimate.mul(120).div(100);
+              console.log("Using gas limit with buffer:", gasLimit.toString());
+
+              txsendPayment = await con.crossChainDisperseERC20MultiChain(
+                props.finalData,
+                props.tokenAddress,
+                { 
+                  gasLimit: gasLimit,
+                  maxFeePerGas: ethers.utils.parseUnits("0.1", "gwei"),
+                  maxPriorityFeePerGas: ethers.utils.parseUnits("0.01", "gwei")
+                }
+              );
+            } catch (error) {
+              console.error("Detailed error:", {
+                message: error.message,
+                code: error.code,
+                data: error.data,
+                transaction: error.transaction
+              });
+              throw error;
+            }
           }
         }
-
+        
         console.log("Transaction Successful...");
         const receipt = await txsendPayment.wait();
         console.log("receipt", receipt);
